@@ -1,0 +1,745 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using ARINLAB.Areas.Admin.Utils
+@using System.Globalization
+@using ARINLAB.Services.SessionService
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer localizer
+
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    List<DAL.Models.Dto.NewsModelDTO.NewsDTO> news = (List<DAL.Models.Dto.NewsModelDTO.NewsDTO>)ViewBag.News;
+    var dicts = ViewBag.Dictionaries;
+
+}
+
+@{
+    int totalUsers = Model.StatistiCards[0].Editers + Model.StatistiCards[1].Editers + Model.StatistiCards[2].Editers + Model.StatistiCards[3].Editers;
+}
+@*<div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog" style="padding-bottom:0rem;">
+        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow" style="margin-left:42%">
+            <h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>
+        </div>
+    </div>*@
+
+<div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+    <!-- ******************** ADVERTISMENT LEFT  ********************-->
+    <div dir="ltr" class="flex-grow xl:w-2/12 xl:mr-2 mb-16 xl:mb-0 relative adt-center overflow-hidden" style="margin-top:25%">
+        <div class="adv-slider-left adv-slider flex xl:w-full">
+            <img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-left img-center border-radius7 object-cover img-padding10"
+                 data-desk="../images/Безимени-3.gif"
+                 data-mobile="" />
+        </div>
+    </div>
+    <!-- ******************** ADVERTISMENT LEFT  ********************-->
+    <!-- ******************** Start Words Section ********************-->
+    <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
+
+        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow" style="margin-left:35%">
+            @*<h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>*@
+        </div>
+        <div class="relative">
+            <div class="prev">
+                <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
+                    <path id="path"
+                          d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                          transform="translate(353.6 399.8) rotate(180)"
+                          fill="#5e5e77" />
+                </svg>
+            </div>
+            <div class="next">
+                <svg width="18" height="12" viewBox="0 0 18 12">
+                    <path id="path"
+                          d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                          transform="translate(353.6 399.8) rotate(180)"
+                          fill="#5e5e77" />
+                </svg>
+            </div>
+            <div class="xl:container px-4 xl:px-0 relative overflow-hidden">
+                @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                {
+                    <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                        @SharedLocalizer["Latest News"]
+                    </h2>
+                }
+                else
+                {
+                    <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                        @SharedLocalizer["Latest News"]
+                    </h2>
+                }
+                <div class="products-swiper-container swiper-container">
+                    <div class="swiper-wrapper pb-16">
+                        @foreach (var item in news)
+                        {
+                            <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
+                                <div class="products-slider-card">
+                                    <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
+                                         style="background: rgba(0, 0, 0, 0.5)">
+                                        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                                        {
+                                            <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
+                                                @item.Name
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-white sm:text-lg font-semibold text-base block w-full">
+                                                @item.Name
+                                            </span>
+                                        }
+                                    </div>
+                                    <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
+                                </div>
+                            </a>
+                        }
+                    </div>
+
+                    <!-- Slider main container -->
+                </div>
+            </div>
+        </div>
+        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+        {
+            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["Words Collection"] </h2>
+        }
+        else
+        {
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["Words Collection"] </h2>
+        }
+        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+        {
+            <a class="e-link" dir="rtl" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+        }
+        else
+        {
+            <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+        }
+
+        <div class="row">
+            <div style="touch-action:manipulation" id="gridContainer">
+            </div>
+            <div class="row">
+                @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                {
+                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Words Clauses Collection"]</h2>
+                    <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                }
+                else
+                {
+                    <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Words Clauses Collection"]</h2>
+                    <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+
+                }
+
+                <div id="gridContainer1">
+                </div>
+            </div>
+            <div class="row">
+                @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                {
+                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Names Collection"] </h2>
+                    <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                }
+                else
+                {
+                    <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Names Collection"] </h2>
+                    <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+
+                }
+                <div id="gridContainer3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************** End Words Section ********************-->
+    <!-- ******************** ADVERTISMENT RIGHT  ********************-->
+    <div dir="ltr" class="flex-grow xl:w-2/12 w-full mt-16 xl:mt-0 xl:ml-2 relative adt-center overflow-hidden" style="margin-top:25%">
+        <div class="adv-slider-right adv-slider flex xl:w-full">
+            <img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-right img-center border-radius7 object-cover img-padding10"
+                 data-desk="../images/Безимени-4.gif"
+                 data-mobile="" />
+        </div>
+    </div>
+    <!-- ******************** ADVERTISMENT RIGHT  ********************-->
+
+</div>
+<!-- ******************** PRODUCTS SECTION  ********************-->
+<!--<div class="bg-gray-100 sm:py-16 py-10 md:py-20">
+    <div class="container relative">
+        <div class="prev">
+            <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
+                <path id="path"
+                      d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                      transform="translate(353.6 399.8) rotate(180)"
+                      fill="#5e5e77" />
+            </svg>
+        </div>
+        <div class="next">
+            <svg width="18" height="12" viewBox="0 0 18 12">
+                <path id="path"
+                      d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                      transform="translate(353.6 399.8) rotate(180)"
+                      fill="#5e5e77" />
+            </svg>
+        </div>
+        <div class="xl:container px-4 xl:px-0 relative overflow-hidden">
+            @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+            {
+                <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                    @SharedLocalizer["Latest News"]
+                </h2>
+            }
+            else
+            {
+                <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                    @SharedLocalizer["Latest News"]
+                </h2>
+            }
+            <div class="products-swiper-container swiper-container">
+                <div class="swiper-wrapper pb-16">
+                    @foreach (var item in news)
+                    {
+                        <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
+                            <div class="products-slider-card">
+                                <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
+                                     style="background: rgba(0, 0, 0, 0.5)">
+                                    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                                    {
+                                        <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
+                                            @item.Name
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-white sm:text-lg font-semibold text-base block w-full">
+                                            @item.Name
+                                        </span>
+                                    }
+                                </div>
+                                <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
+                            </div>
+                        </a>
+                    }
+                </div>-->
+<!-- Slider main container -->
+<!--</div>
+        </div>
+    </div>
+</div>-->
+<!-- ******************** PRODUCTS SECTION  ********************-->
+<!-- ******************** STATISTICS SECTION  ********************-->
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div class="bg-gray-100 sm:py-16 py-10 md:py-20">
+        <div dir="rtl" class="bg-white py-8">
+            <div class="xl:container xl:px-0 px-4">
+                <div class="grid lg:grid-cols-2 gap-y-8">
+                    <div class="flex flex-col justify-evenly lg:h-auto lg:py-0 md:h-64 md:py-24">
+                        <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
+                        <div class="grid md:grid-cols-2 md:gap-y-10 gap-y-4 gap-x-6">
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer["Users"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @Model.StatistiCards[0].totalCount @SharedLocalizer["Sentences recorded"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@Model.StatistiCards[1].totalCount  @SharedLocalizer["Phrases recorded"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
+                            </div>
+                        </div>
+                        @*<div>
+                                <a asp-area="" asp-controller="Visitors" asp-action="Index"
+                                   class="btn border-2 inline-flex sm:mt-10 md:mt-4 mt-8 text-secondary border-secondary rounded hover:bg-secondary hover:text-white">
+                                    @SharedLocalizer["More details"]
+                                </a>
+                            </div>*@
+                    </div>
+                    @*<img src="~/images/giphy-63.gif"
+                        alt=""
+                        class="object-cover w-100 rounded row-start-1 lg:col-start-2 h-25 " style="margin-left: 30%;" />*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="bg-gray-100 sm:py-16 py-10 md:py-20">
+        <div class="bg-white py-8">
+            <div class="xl:container xl:px-0 px-4">
+                <div class="grid lg:grid-cols-2 gap-y-8">
+                    <div class="flex flex-col justify-evenly lg:h-auto lg:py-0 md:h-64 md:py-24">
+                        <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
+                        <div class="grid md:grid-cols-2 md:gap-y-10 gap-y-4 gap-x-6">
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer[" Users"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @Model.StatistiCards[0].totalCount @SharedLocalizer["Sentences recorded"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@Model.StatistiCards[1].totalCount  @SharedLocalizer["Phrases recorded"]</span>
+                            </div>
+                            <div>
+                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
+                            </div>
+                        </div>
+                        @*<div>
+                                <a asp-area="" asp-controller="Visitors" asp-action="Index"
+                                   class="btn border-2 inline-flex sm:mt-10 md:mt-4 mt-8 text-secondary border-secondary rounded hover:bg-secondary hover:text-white">
+                                    @SharedLocalizer["More details"]
+                                </a>
+                            </div>*@
+                    </div>
+                    @*<img src="~/images/giphy-63.gif"
+                        alt=""
+                        class="object-cover w-100 rounded row-start-1 lg:col-start-2 h-25 " style="margin-left: 30%;" />*@
+                </div>
+            </div>
+        </div>
+        </div>
+        }
+        <!-- ******************** STATISTICS SECTION  ********************-->
+        <!-- ******************** MAILING SECTION  ********************-->
+        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+        {
+            <div dir="rtl" class="bg-gray-100 lg:py-0 sm:py-4">
+                <div class="xl:container sm:px-4 lg:p-24">
+                    <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded">
+                        <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto">
+                            @SharedLocalizer["Subscribe to the newsletter and events"]
+                        </h2>
+                        @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
+                                и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
+                                Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
+                            </h3>*@
+                        <form asp-area="" asp-controller="Home" asp-action="Subscribe">
+                            <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
+                                <input type="email" style="margin-right: 20%;"
+                                       name="email"
+                                       placeholder="@SharedLocalizer["Enter your email address"]"
+                                       class="sm:w-9/10 bg-transparent p-4 outline-none sm:border-none border border-gray-200 rounded sm:rounded-none" required />
+                                <button type="submit"
+                                        class="button sm:absolute flex items-center justify-center uppercase rounded sm:rounded-none right-0 top-0 btn w-full sm:w-auto bg-secondary h-full text-white">
+                                    <span>@SharedLocalizer["Subscribe"]</span>
+                                </button>
+
+
+                            </div>
+
+                        </form>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="bg-gray-100 lg:py-0 sm:py-4">
+                <div class="xl:container sm:px-4  lg:p-24">
+                    <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded">
+                        <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto">
+                            @SharedLocalizer["Subscribe to the newsletter and events"]
+                        </h2>
+                        @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
+                                и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
+                                Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
+                            </h3>*@
+                        <form asp-area="" asp-controller="Home" asp-action="Subscribe">
+                            <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
+                                <input type="email"
+                                       name="email"
+                                       placeholder="@SharedLocalizer["Enter your email address"]"
+                                       class="sm:w-9/12 w-full bg-transparent p-4 outline-none sm:border-none border border-gray-200 rounded sm:rounded-none" required />
+                                <button type="submit"
+                                        class="button sm:absolute flex items-center justify-center uppercase rounded sm:rounded-none right-0 top-0 btn w-full sm:w-auto bg-secondary h-full text-white">
+                                    <span>@SharedLocalizer["Subscribe"]</span>
+                                </button>
+                            </div>
+                        </form>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- ******************** MAILING SECTION  ********************-->
+
+
+
+        @section Scripts{
+
+            <script src="~/client/js/advertisment.js" defer></script>
+            <script>
+        $(function () {
+            let url = `@API.GetRandomWords`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                hoverStateEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: false
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                 onCellClick: function (e) {
+                    if (e.columnIndex != 2) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab Words"]',
+                        dataField: "arabWord",
+                        allowHeaderFiltering: false,
+                    },{
+                        caption: '@SharedLocalizer["Reads in Türkmen"]',
+                        dataField: "otherWord",
+                        allowHeaderFiltering: false,
+
+                    },
+                    {
+                        caption: '@SharedLocalizer["Voices"]',
+                        dataField: 'arabVoiceFile',
+                        width: 100,
+                        cellTemplate(container, options) {
+                            if (options.value) {
+                                $('<div>', { class: 'cell' })
+                                    .append($('<audio>', { id: options.value, })
+                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                    .append($('<button>', {
+                                        class: 'btn btn-success', style: 'background-color:green; padding:20px;border-radius:15px;',
+                                        onclick: 'playAudio(\'' + options.value + '\')',
+                                        id: '_' + options.value,
+                                        text: '@SharedLocalizer["Play"]',
+                                        style: 'font-color:white'
+
+                                    }, '@SharedLocalizer["Play"]</button>'))
+                                    .appendTo(container);
+                            } else {
+                                $('<div>', { class: 'cell' })
+                                    .append($('<label>', { text: '@SharedLocalizer["No audio voices"]' }))
+                                    .appendTo(container);
+                            }
+                        },
+
+                    },
+                    {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("Share", "Words", new { Area = "" })`;
+                                    window.location = url + '/' + idString;
+                                }
+                            },
+                        ]
+                    }
+                ]
+            });
+        });
+
+        function playAudio(id) {
+
+            var x = document.getElementById(id);
+            var bt = document.getElementById('_' + id);
+            if (bt.textContent == '@SharedLocalizer["Play"]') {
+                x.play();
+                bt.textContent = '@SharedLocalizer["Stop"]';
+            } else {
+                x.pause();
+                bt.textContent = '@SharedLocalizer["Play"]';
+            }
+
+        }
+            </script>
+
+            <script>
+        $(function () {
+            let url = `@API.GetAllWordClauses`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer1").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("Create", "WordClause", new { Area = "Admin" })`;
+                    window.location = url;
+                },
+                onRowClick: function (e) {
+                     var idString = e.data.id;
+                     var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                     window.location = url + '?id=' + idString;
+                },
+                //selection: {
+                //    mode: "multiple"
+                //},
+                "export": {
+                    enabled: false,
+                    fileName: "WordClause",
+                    allowExportSelectedData: false
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                hoverStateEnabled : true,
+                showBorders: false,
+                searchPanel: {
+                    visible: false
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab Clause"]',
+                        dataField: "arabClause",
+                        allowHeaderFiltering: false,
+                    },{
+                        caption: '@SharedLocalizer["Reads in Türkmen"]',
+                                    dataField: "otherReader",
+                        allowHeaderFiltering: false,
+                    },
+
+                     {
+                        caption: '@SharedLocalizer["Türmen Clause"]',
+                         dataField: "otherClause",
+                        allowHeaderFiltering: false,
+                    },{
+                        caption: '@SharedLocalizer["Reads in Arabic"]',
+                        dataField: "arabReader",
+                        allowHeaderFiltering: false,
+                    },
+
+                     {
+                        caption: '@SharedLocalizer["Category"]',
+                        dataField: "categoryName",
+                        allowHeaderFiltering: true,
+                    },
+                     @*{
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                   var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                        ]
+                    }*@
+
+                ]
+            });
+        });
+            </script>
+
+            <script>
+        $(function () {
+            let url = `@API.GetRandomNames`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer3").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
+                    window.location = url;
+                },
+                onRowClick: function (e) {
+                     var idString = e.data.id;
+                     var url = `@Url.Action("Details", "Names", new { Area = "" })`;
+                     window.location = url + '?id=' + idString;
+                },
+                //selection: {
+                //    mode: "multiple"
+                //},
+                "export": {
+                    enabled: false,
+                    fileName: "Documents",
+                    allowExportSelectedData: false
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: false
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                hoverStateEnabled: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: false
+                },
+
+                stateStoring: {
+                    enabled: false,
+                    type: "localStorage",
+                    storageKey: "partnersAdmin"
+                },
+                allowColumnReordering: false,
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab Name"]',
+                        dataField: "arabName",
+                        allowHeaderFiltering: true
+                    },
+                    {
+                        caption: '@SharedLocalizer["Türkmen Name"]',
+                        dataField: "otherName",
+                        allowHeaderFiltering: true
+                    },
+                      {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("Share", "Names", new { Area = "" })`;
+                                    window.location = url + '/' + idString;
+                                }
+                            },
+                        ]
+                    }
+                ]
+            });
+        });
+            </script>
+        }

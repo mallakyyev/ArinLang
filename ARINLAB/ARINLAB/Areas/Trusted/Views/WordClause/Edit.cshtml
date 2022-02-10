@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    
+}
+@using ARINLAB.Models
+@using DAL.Models.Dto
+@model EditWordClauseDto
+
+<h1>Clauses Controller </h1>
+<hr />
+<div class="container">
+    
+    <div class="col-12 mb-30">
+        <form asp-area="Admin" asp-controller="WordClause" asp-action="Edit" method="post">            
+            <input type="hidden" asp-for="Id" value="@Model.Id">            
+            <input type="hidden" asp-for="UserId" value="@Model.UserId">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="title">@SharedLocalizer["Edit Clause"]</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row mbn-20">
+
+                        <!--Form Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">Arab</h6>
+
+                            <div class="row mbn-15">
+                                <div class="col-12 mb-15"><input type="text" asp-for="ArabClause" value="@Model.ArabClause" class="form-control" placeholder="@SharedLocalizer["Clause in Arab"]"></div>
+
+                                <div class="col-12 mb-15"><textarea class="form-control" asp-for="OtherReader" value="@Model.OtherReader" placeholder="@SharedLocalizer["Reads in other Language"]"></textarea></div>
+                            </div>
+
+                        </div>
+                        <!--Form Field-->
+                        <!--Readonly Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+                            <h6 class="mb-15">@SharedLocalizer["Other Language"]</h6>
+                            <div class="row mbn-15">
+                                <div class="col-12 mb-15"><input type="text" asp-for="OtherClause" value="@Model.OtherClause" class="form-control" placeholder="@SharedLocalizer["Tranlation"]"></div>
+
+                                <div class="col-12 mb-15"><textarea asp-for="ArabReader" value="@Model.ArabReader" class="form-control" placeholder="@SharedLocalizer["Reads in Arab "]"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12 mb-20">
+                            <div class="row adomx-checkbox-radio-group inline">
+                                <div class="col-12 mb-15">
+                                    <label for="IsApproved">@SharedLocalizer["Approved?"]</label>
+                                    <label class="adomx-switch success">
+                                        @if (Model.IsApproved)
+                                        {
+                                            <input class="form-control" asp-for="IsApproved" type="checkbox" checked>
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" asp-for="IsApproved" type="checkbox">
+                                        }
+                                        <i class="lever"></i>
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-15">
+                                <label>@SharedLocalizer["Category"]</label>
+                                <select class="form-control form-control-lg" asp-for="CategoryId">
+                                    @foreach (var item in (new List<WordClauseCategoryDto>(ViewBag.Categories)))
+                                    {
+                                        @if (item.Id == Model.CategoryId)
+                                        {
+                                            <option value="@item.Id" selected="selected">@item.CategoryName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.CategoryName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 mb-15">
+                                <label>@SharedLocalizer["Dictionary"]</label>
+                                <select class="form-control form-control-lg" asp-for="DictionaryId">
+                                    @foreach (var item in (new List<DAL.Models.Dictionary>(ViewBag.Dictionaries)))
+                                    {
+                                        @if (item.Id == Model.DictionaryId)
+                                        {
+                                            <option value="@item.Id" selected="selected">@item.Language</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Language</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Edit"]"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

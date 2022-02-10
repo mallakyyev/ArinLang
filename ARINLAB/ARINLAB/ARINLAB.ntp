@@ -1,0 +1,1975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project id="31BE1C48-932E-481E-819E-3F2557A74BB8" created="20220131T054439Z" lastmodified="20220131T063825Z" version="1.0.901" lockedrowcomplete="0" stringid="1280">
+  <lang id="ar"/>
+  <lang id="en"/>
+  <lang id="tk"/>
+  <node class="TNetProjectSource" name="ARINLAB.csproj" fullpath="D:\Work\ARINLAB\ARINLAB\ARINLAB\ARINLAB.csproj" original="en" lastmodified="20220131T063825Z" availableresources="[nrResx,nrHtml]" aspnetmethod="amScanAndCreate" netconfiguration="Debug|AnyCPU" aspnetcore="1" defaultresourcedir="Resources" clearresourcedir="1">
+    <netproperties version="core50" toolsversion="nt150"/>
+    <node class="TDirectoryFolder" name="Resources">
+      <node class="TDirectoryFolder" name="Areas">
+        <node class="TDirectoryFolder" name="Admin">
+          <node class="TDirectoryFolder" name="Views">
+            <node class="TDirectoryFolder" name="Admin">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Admin Dashboard" si="233">
+                  <value>Admin Dashboard</value>
+                  <lang id="tk" st="4" rw="0" time="20220131T063825Z">Admin Paneli</lang>
+                </row>
+                <row id="Total Words" si="234">Total Words</row>
+                <row id="Todays" si="235">Todays</row>
+                <row id="Total" si="236">Total</row>
+                <row id="Users contributed" si="237">Users contributed</row>
+                <row id="Total Sentences" si="238">Total Sentences</row>
+                <row id="Total Clauses" si="239">Total Clauses</row>
+                <row id="Total Names" si="240">Total Names</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Dictionary">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Dictionary" si="241">Dictionary</row>
+                <row id="Insert" si="242">Insert</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Names">
+              <node class="TResXNode" name="AddImage.resx" windowsforms="wf20">
+                <row id="Add Image" si="243">Add Image</row>
+                <row id="Add Image(jpg, png, jpeg) " si="244">Add Image(jpg, png, jpeg) </row>
+                <row id="Upload Image file" si="245">Upload Image file</row>
+                <row id="Add" si="246">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create Name" si="247">Create Name</row>
+                <row id="Name in Arab" si="248">Name in Arab</row>
+                <row id="Name in Other Language" si="249">Name in Other Language</row>
+                <row id="Create" si="250">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Name" si="251">Edit Name</row>
+                <row id="Name in Arab" si="252">Name in Arab</row>
+                <row id="Name in Other language" si="253">Name in Other language</row>
+                <row id="Approve Word:" si="254">Approve Word:</row>
+                <row id="Save" si="255">Save</row>
+                <row id="Images" si="256">Images</row>
+                <row id="Image" si="257">Image</row>
+                <row id="Approve" si="258">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Shared">
+              <node class="TResXNode" name="_Layout.resx" windowsforms="wf20">
+                <row id="Welcome to ARINLANG Control Panel." si="259">Welcome to ARINLANG Control Panel.</row>
+                <row id="You are Super Admin." si="260">You are Super Admin.</row>
+                <row id="Sign out" si="261">Sign out</row>
+              </node>
+              <node class="TResXNode" name="_LoginPartial.resx" windowsforms="wf20">
+                <row id="Administrator's office" si="262">Administrator's office</row>
+                <row id="Trusted User's office" si="263">Trusted User's office</row>
+                <row id="Registerd User's office" si="264">Registerd User's office</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Word">
+              <node class="TResXNode" name="AddWordSentence.resx" windowsforms="wf20">
+                <row id="Add Example Sentence" si="265">Add Example Sentence</row>
+                <row id="Sentence" si="266">Sentence</row>
+                <row id="Transcript" si="267">Transcript</row>
+                <row id="Add" si="268">Add</row>
+              </node>
+              <node class="TResXNode" name="AddWordVoice.resx" windowsforms="wf20">
+                <row id="Add Word Voices" si="269">Add Word Voices</row>
+                <row id="Arab" si="270">Arab</row>
+                <row id="Upload Voice file" si="271">Upload Voice file</row>
+                <row id="Add" si="272">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create new word" si="273">Create new word</row>
+                <row id="New word" si="274">New word</row>
+                <row id="Arab word" si="275">Arab word</row>
+                <row id="Create" si="276">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit new word" si="277">Edit new word</row>
+                <row id="New word" si="278">New word</row>
+                <row id="Arab word" si="279">Arab word</row>
+                <row id="Approve Word:" si="280">Approve Word:</row>
+                <row id="Save" si="281">Save</row>
+              </node>
+              <node class="TResXNode" name="EditVoice.resx" windowsforms="wf20">
+                <row id="Arab Word" si="282">Arab Word</row>
+                <row id="Word" si="283">Word</row>
+                <row id="Voices Related to the Word" si="284">Voices Related to the Word</row>
+                <row id="#" si="285">##</row>
+                <row id="Arab Voice" si="286">Arab Voice</row>
+                <row id="Voice" si="287">Voice</row>
+              </node>
+              <node class="TResXNode" name="EditWord.resx" windowsforms="wf20">
+                <row id="Sentences related to the word" si="288">Sentences related to the word</row>
+                <row id="#" si="289">##</row>
+                <row id="Arab sentence" si="290">Arab sentence</row>
+                <row id="Transcription" si="291">Transcription</row>
+                <row id="sentence" si="292">sentence</row>
+                <row id="Approved" si="293">Approved</row>
+              </node>
+              <node class="TResXNode" name="EditWordSentence.resx" windowsforms="wf20">
+                <row id="Edit Example Sentence" si="294">Edit Example Sentence</row>
+                <row id="Sentence" si="295">Sentence</row>
+                <row id="Transcript" si="296">Transcript</row>
+                <row id="Edit" si="297">Edit</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="#" si="298">##</row>
+                <row id="Arab word" si="299">Arab word</row>
+                <row id="Translation to Other Word" si="300">Translation to Other Word</row>
+                <row id="Dictionary" si="301">Dictionary</row>
+                <row id="Approve" si="302">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClause">
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Add Clause" si="303">Add Clause</row>
+                <row id="Clause in Arab" si="304">Clause in Arab</row>
+                <row id="Reads in other Language" si="305">Reads in other Language</row>
+                <row id="Other Language" si="306">Other Language</row>
+                <row id="Tranlation" si="307">Tranlation</row>
+                <row id="Reads in Arab " si="308">Reads in Arab </row>
+                <row id="Approved?" si="309">Approved?</row>
+                <row id="Category" si="310">Category</row>
+                <row id="Dictionary" si="311">Dictionary</row>
+                <row id="Add" si="312">Add</row>
+              </node>
+              <node class="TResXNode" name="CreateVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="313">Arab Clause</row>
+                <row id="Clause" si="314">Clause</row>
+                <row id="Add Word Voices" si="315">Add Word Voices</row>
+                <row id="Arab" si="316">Arab</row>
+                <row id="Upload Voice file" si="317">Upload Voice file</row>
+                <row id="Add" si="318">Add</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Clause" si="319">Edit Clause</row>
+                <row id="Clause in Arab" si="320">Clause in Arab</row>
+                <row id="Reads in other Language" si="321">Reads in other Language</row>
+                <row id="Other Language" si="322">Other Language</row>
+                <row id="Tranlation" si="323">Tranlation</row>
+                <row id="Reads in Arab " si="324">Reads in Arab </row>
+                <row id="Approved?" si="325">Approved?</row>
+                <row id="Category" si="326">Category</row>
+                <row id="Dictionary" si="327">Dictionary</row>
+                <row id="Edit" si="328">Edit</row>
+              </node>
+              <node class="TResXNode" name="EditClauseVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="329">Arab Clause</row>
+                <row id="Reads in" si="330">Reads in</row>
+                <row id="Clause" si="331">Clause</row>
+                <row id="Reads in Arab" si="332">Reads in Arab</row>
+                <row id="Voices" si="333">Voices</row>
+                <row id="#" si="334">##</row>
+                <row id="Voice in Arab" si="335">Voice in Arab</row>
+                <row id="Voice in " si="336">Voice in </row>
+                <row id="Approved" si="337">Approved</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="338">Category Controller</row>
+                <row id="Word Clause List" si="339">Word Clause List</row>
+                <row id="Arab CLause" si="340">Arab CLause</row>
+                <row id="Other Language read" si="341">Other Language read</row>
+                <row id="Other Language clause" si="342">Other Language clause</row>
+                <row id="Arab read" si="343">Arab read</row>
+                <row id="Dictionary" si="344">Dictionary</row>
+                <row id="Category" si="345">Category</row>
+                <row id="Approved" si="346">Approved</row>
+                <row id="User name" si="347">User name</row>
+                <row id="Edit" si="348">Edit</row>
+                <row id="Edit Voices" si="349">Edit Voices</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClauseCategory">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="350">Category Controller</row>
+                <row id="News categories" si="351">News categories</row>
+                <row id="Name" si="352">Name</row>
+                <row id="Parent Category Name" si="353">Parent Category Name</row>
+                <row id="Edit" si="354">Edit</row>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node class="TDirectoryFolder" name="ApprovedUser">
+          <node class="TDirectoryFolder" name="Views">
+            <node class="TDirectoryFolder" name="ApprovedUser">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Admin Dashboard" si="355">
+                  <value>Admin Dashboard</value>
+                  <lang id="tk" st="4" or="3" rw="0" time="20220131T063825Z">Admin Paneli</lang>
+                </row>
+                <row id="Total Words" si="356">Total Words</row>
+                <row id="Todays" si="357">Todays</row>
+                <row id="Total" si="358">Total</row>
+                <row id="Users contributed" si="359">Users contributed</row>
+                <row id="Total Sentences" si="360">Total Sentences</row>
+                <row id="Total Clauses" si="361">Total Clauses</row>
+                <row id="Total Names" si="362">Total Names</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Names">
+              <node class="TResXNode" name="AddImage.resx" windowsforms="wf20">
+                <row id="Add Image" si="363">Add Image</row>
+                <row id="Add Image(jpg, png, jpeg) " si="364">Add Image(jpg, png, jpeg) </row>
+                <row id="Upload Image file" si="365">Upload Image file</row>
+                <row id="Add" si="366">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create Name" si="367">Create Name</row>
+                <row id="Name in Arab" si="368">Name in Arab</row>
+                <row id="Name in Other Language" si="369">Name in Other Language</row>
+                <row id="Create" si="370">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Name" si="371">Edit Name</row>
+                <row id="Name in Arab" si="372">Name in Arab</row>
+                <row id="Name in Other language" si="373">Name in Other language</row>
+                <row id="Approve Word:" si="374">Approve Word:</row>
+                <row id="Save" si="375">Save</row>
+                <row id="Images" si="376">Images</row>
+                <row id="Image" si="377">Image</row>
+                <row id="Approve" si="378">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Shared">
+              <node class="TResXNode" name="_Layout.resx" windowsforms="wf20">
+                <row id="Welcome to ARINLANG Control Panel." si="379">Welcome to ARINLANG Control Panel.</row>
+                <row id="You are Trusted User" si="380">You are Trusted User</row>
+                <row id="Sign out" si="381">Sign out</row>
+              </node>
+              <node class="TResXNode" name="_LoginPartial.resx" windowsforms="wf20">
+                <row id="Administrator's office" si="382">Administrator's office</row>
+                <row id="Trusted User's office" si="383">Trusted User's office</row>
+                <row id="Registerd User's office" si="384">Registerd User's office</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Word">
+              <node class="TResXNode" name="AddWordSentence.resx" windowsforms="wf20">
+                <row id="Add Example Sentence" si="385">Add Example Sentence</row>
+                <row id="Sentence" si="386">Sentence</row>
+                <row id="Transcript" si="387">Transcript</row>
+                <row id="Add" si="388">Add</row>
+              </node>
+              <node class="TResXNode" name="AddWordVoice.resx" windowsforms="wf20">
+                <row id="Add Word Voices" si="389">Add Word Voices</row>
+                <row id="Arab" si="390">Arab</row>
+                <row id="Upload Voice file" si="391">Upload Voice file</row>
+                <row id="Add" si="392">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create new word" si="393">Create new word</row>
+                <row id="New word" si="394">New word</row>
+                <row id="Arab word" si="395">Arab word</row>
+                <row id="Create" si="396">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit new word" si="397">Edit new word</row>
+                <row id="New word" si="398">New word</row>
+                <row id="Arab word" si="399">Arab word</row>
+                <row id="Approve Word:" si="400">Approve Word:</row>
+                <row id="Save" si="401">Save</row>
+              </node>
+              <node class="TResXNode" name="EditVoice.resx" windowsforms="wf20">
+                <row id="Voices Related to the Word" si="402">Voices Related to the Word</row>
+                <row id="#" si="403">##</row>
+                <row id="Arab Voice" si="404">Arab Voice</row>
+                <row id="Voice" si="405">Voice</row>
+              </node>
+              <node class="TResXNode" name="EditWord.resx" windowsforms="wf20">
+                <row id="Sentences related to the word" si="406">Sentences related to the word</row>
+                <row id="#" si="407">##</row>
+                <row id="Arab sentence" si="408">Arab sentence</row>
+                <row id="Transcription" si="409">Transcription</row>
+                <row id="sentence" si="410">sentence</row>
+                <row id="Approved" si="411">Approved</row>
+              </node>
+              <node class="TResXNode" name="EditWordSentence.resx" windowsforms="wf20">
+                <row id="Edit Example Sentence" si="412">Edit Example Sentence</row>
+                <row id="Sentence" si="413">Sentence</row>
+                <row id="Transcript" si="414">Transcript</row>
+                <row id="Edit" si="415">Edit</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="#" si="416">##</row>
+                <row id="Arab word" si="417">Arab word</row>
+                <row id="Translation to Other Word" si="418">Translation to Other Word</row>
+                <row id="Dictionary" si="419">Dictionary</row>
+                <row id="Approve" si="420">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClause">
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Add Clause" si="421">Add Clause</row>
+                <row id="Clause in Arab" si="422">Clause in Arab</row>
+                <row id="Reads in other Language" si="423">Reads in other Language</row>
+                <row id="Other Language" si="424">Other Language</row>
+                <row id="Tranlation" si="425">Tranlation</row>
+                <row id="Reads in Arab " si="426">Reads in Arab </row>
+                <row id="Approved?" si="427">Approved?</row>
+                <row id="Category" si="428">Category</row>
+                <row id="Dictionary" si="429">Dictionary</row>
+                <row id="Add" si="430">Add</row>
+              </node>
+              <node class="TResXNode" name="CreateVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="431">Arab Clause</row>
+                <row id="Clause" si="432">Clause</row>
+                <row id="Add Word Voices" si="433">Add Word Voices</row>
+                <row id="Arab" si="434">Arab</row>
+                <row id="Upload Voice file" si="435">Upload Voice file</row>
+                <row id="Add" si="436">Add</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Clause" si="437">Edit Clause</row>
+                <row id="Clause in Arab" si="438">Clause in Arab</row>
+                <row id="Reads in other Language" si="439">Reads in other Language</row>
+                <row id="Other Language" si="440">Other Language</row>
+                <row id="Tranlation" si="441">Tranlation</row>
+                <row id="Reads in Arab " si="442">Reads in Arab </row>
+                <row id="Approved?" si="443">Approved?</row>
+                <row id="Category" si="444">Category</row>
+                <row id="Dictionary" si="445">Dictionary</row>
+                <row id="Edit" si="446">Edit</row>
+              </node>
+              <node class="TResXNode" name="EditClauseVoice.resx" windowsforms="wf20">
+                <row id="Manage Word Sentences and Audio File (Voice)" si="447">Manage Word Sentences and Audio File (Voice)</row>
+                <row id="Arab Clause" si="448">Arab Clause</row>
+                <row id="Reads in" si="449">Reads in</row>
+                <row id="Clause" si="450">Clause</row>
+                <row id="Reads in Arab" si="451">Reads in Arab</row>
+                <row id="Voices" si="452">Voices</row>
+                <row id="#" si="453">##</row>
+                <row id="Voice in Arab" si="454">Voice in Arab</row>
+                <row id="Voice in " si="455">Voice in </row>
+                <row id="Approved" si="456">Approved</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="457">Category Controller</row>
+                <row id="Word Clause List" si="458">Word Clause List</row>
+                <row id="Arab CLause" si="459">Arab CLause</row>
+                <row id="Other Language read" si="460">Other Language read</row>
+                <row id="Other Language clause" si="461">Other Language clause</row>
+                <row id="Arab read" si="462">Arab read</row>
+                <row id="Dictionary" si="463">Dictionary</row>
+                <row id="Category" si="464">Category</row>
+                <row id="Approved" si="465">Approved</row>
+                <row id="User name" si="466">User name</row>
+                <row id="Edit" si="467">Edit</row>
+                <row id="Edit Voices" si="468">Edit Voices</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClauseCategory">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="469">Category Controller</row>
+                <row id="News categories" si="470">News categories</row>
+                <row id="Name" si="471">Name</row>
+                <row id="Parent Category Name" si="472">Parent Category Name</row>
+                <row id="Edit" si="473">Edit</row>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node class="TDirectoryFolder" name="Registered">
+          <node class="TDirectoryFolder" name="Views">
+            <node class="TDirectoryFolder" name="Names">
+              <node class="TResXNode" name="AddImage.resx" windowsforms="wf20">
+                <row id="Add Image" si="474">Add Image</row>
+                <row id="Add Image(jpg, png, jpeg) " si="475">Add Image(jpg, png, jpeg) </row>
+                <row id="Upload Image file" si="476">Upload Image file</row>
+                <row id="Add" si="477">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create Name" si="478">Create Name</row>
+                <row id="Name in Arab" si="479">Name in Arab</row>
+                <row id="Name in Other Language" si="480">Name in Other Language</row>
+                <row id="Create" si="481">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Name" si="482">Edit Name</row>
+                <row id="Name in Arab" si="483">Name in Arab</row>
+                <row id="Name in Other language" si="484">Name in Other language</row>
+                <row id="Approve Word:" si="485">Approve Word:</row>
+                <row id="Save" si="486">Save</row>
+                <row id="Images" si="487">Images</row>
+                <row id="Image" si="488">Image</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Registered">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Admin Dashboard" si="489">
+                  <value>Admin Dashboard</value>
+                  <lang id="tk" st="4" or="3" rw="0" time="20220131T063825Z">Admin Paneli</lang>
+                </row>
+                <row id="Total Words" si="490">Total Words</row>
+                <row id="Todays" si="491">Todays</row>
+                <row id="Total" si="492">Total</row>
+                <row id="Users contributed" si="493">Users contributed</row>
+                <row id="Total Sentences" si="494">Total Sentences</row>
+                <row id="Total Clauses" si="495">Total Clauses</row>
+                <row id="Total Names" si="496">Total Names</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Shared">
+              <node class="TResXNode" name="_Layout.resx" windowsforms="wf20">
+                <row id="Welcome to ARINLANG Control Panel." si="497">Welcome to ARINLANG Control Panel.</row>
+                <row id="You are Regular User" si="498">You are Regular User</row>
+                <row id="Sign out" si="499">Sign out</row>
+              </node>
+              <node class="TResXNode" name="_LoginPartial.resx" windowsforms="wf20">
+                <row id="Administrator's office" si="500">Administrator's office</row>
+                <row id="Trusted User's office" si="501">Trusted User's office</row>
+                <row id="Registerd User's office" si="502">Registerd User's office</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Word">
+              <node class="TResXNode" name="AddWordSentence.resx" windowsforms="wf20">
+                <row id="Add Example Sentence" si="503">Add Example Sentence</row>
+                <row id="Sentence" si="504">Sentence</row>
+                <row id="Transcript" si="505">Transcript</row>
+                <row id="Add" si="506">Add</row>
+              </node>
+              <node class="TResXNode" name="AddWordVoice.resx" windowsforms="wf20">
+                <row id="Add Word Voices" si="507">Add Word Voices</row>
+                <row id="Arab" si="508">Arab</row>
+                <row id="Upload Voice file" si="509">Upload Voice file</row>
+                <row id="Add" si="510">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create new word" si="511">Create new word</row>
+                <row id="New word" si="512">New word</row>
+                <row id="Arab word" si="513">Arab word</row>
+                <row id="Create" si="514">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit new word" si="515">Edit new word</row>
+                <row id="New word" si="516">New word</row>
+                <row id="Arab word" si="517">Arab word</row>
+                <row id="Save" si="518">Save</row>
+              </node>
+              <node class="TResXNode" name="EditVoice.resx" windowsforms="wf20">
+                <row id="Voices Related to the Word" si="519">Voices Related to the Word</row>
+                <row id="#" si="520">##</row>
+                <row id="Arab Voice" si="521">Arab Voice</row>
+                <row id="Voice" si="522">Voice</row>
+              </node>
+              <node class="TResXNode" name="EditWord.resx" windowsforms="wf20">
+                <row id="Sentences related to the word" si="523">Sentences related to the word</row>
+                <row id="#" si="524">##</row>
+                <row id="Arab sentence" si="525">Arab sentence</row>
+                <row id="Transcription" si="526">Transcription</row>
+                <row id="sentence" si="527">sentence</row>
+                <row id="Approved" si="528">Approved</row>
+              </node>
+              <node class="TResXNode" name="EditWordSentence.resx" windowsforms="wf20">
+                <row id="Edit Example Sentence" si="529">Edit Example Sentence</row>
+                <row id="Sentence" si="530">Sentence</row>
+                <row id="Transcript" si="531">Transcript</row>
+                <row id="Edit" si="532">Edit</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="#" si="533">##</row>
+                <row id="Arab word" si="534">Arab word</row>
+                <row id="Translation to Other Word" si="535">Translation to Other Word</row>
+                <row id="Dictionary" si="536">Dictionary</row>
+                <row id="Approve" si="537">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClause">
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Add Clause" si="538">Add Clause</row>
+                <row id="Clause in Arab" si="539">Clause in Arab</row>
+                <row id="Reads in other Language" si="540">Reads in other Language</row>
+                <row id="Other Language" si="541">Other Language</row>
+                <row id="Tranlation" si="542">Tranlation</row>
+                <row id="Reads in Arab " si="543">Reads in Arab </row>
+                <row id="Category" si="544">Category</row>
+                <row id="Dictionary" si="545">Dictionary</row>
+                <row id="Add" si="546">Add</row>
+              </node>
+              <node class="TResXNode" name="CreateVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="547">Arab Clause</row>
+                <row id="Clause" si="548">Clause</row>
+                <row id="Add Word Voices" si="549">Add Word Voices</row>
+                <row id="Arab" si="550">Arab</row>
+                <row id="Upload Voice file" si="551">Upload Voice file</row>
+                <row id="Add" si="552">Add</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Clause" si="553">Edit Clause</row>
+                <row id="Clause in Arab" si="554">Clause in Arab</row>
+                <row id="Reads in other Language" si="555">Reads in other Language</row>
+                <row id="Other Language" si="556">Other Language</row>
+                <row id="Tranlation" si="557">Tranlation</row>
+                <row id="Reads in Arab " si="558">Reads in Arab </row>
+                <row id="Category" si="559">Category</row>
+                <row id="Dictionary" si="560">Dictionary</row>
+                <row id="Edit" si="561">Edit</row>
+              </node>
+              <node class="TResXNode" name="EditClauseVoice.resx" windowsforms="wf20">
+                <row id="Manage Word Sentences and Audio File (Voice)" si="562">Manage Word Sentences and Audio File (Voice)</row>
+                <row id="Arab Clause" si="563">Arab Clause</row>
+                <row id="Reads in" si="564">Reads in</row>
+                <row id="Clause" si="565">Clause</row>
+                <row id="Reads in Arab" si="566">Reads in Arab</row>
+                <row id="Voices" si="567">Voices</row>
+                <row id="#" si="568">##</row>
+                <row id="Voice in Arab" si="569">Voice in Arab</row>
+                <row id="Voice in " si="570">Voice in </row>
+                <row id="Approved" si="571">Approved</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="572">Category Controller</row>
+                <row id="Word Clause List" si="573">Word Clause List</row>
+                <row id="Arab CLause" si="574">Arab CLause</row>
+                <row id="Other Language read" si="575">Other Language read</row>
+                <row id="Other Language clause" si="576">Other Language clause</row>
+                <row id="Arab read" si="577">Arab read</row>
+                <row id="Dictionary" si="578">Dictionary</row>
+                <row id="Category" si="579">Category</row>
+                <row id="Approved" si="580">Approved</row>
+                <row id="User name" si="581">User name</row>
+                <row id="Edit" si="582">Edit</row>
+                <row id="Edit Voices" si="583">Edit Voices</row>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node class="TDirectoryFolder" name="Trusted">
+          <node class="TDirectoryFolder" name="Views">
+            <node class="TDirectoryFolder" name="Admin">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Admin Dashboard" si="584">
+                  <value>Admin Dashboard</value>
+                  <lang id="tk" st="4" or="3" rw="0" time="20220131T063825Z">Admin Paneli</lang>
+                </row>
+                <row id="Total Words" si="585">Total Words</row>
+                <row id="Todays" si="586">Todays</row>
+                <row id="Total" si="587">Total</row>
+                <row id="Users contributed" si="588">Users contributed</row>
+                <row id="Total Sentences" si="589">Total Sentences</row>
+                <row id="Total Clauses" si="590">Total Clauses</row>
+                <row id="Total Names" si="591">Total Names</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Dictionary">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Insert" si="592">Insert</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Names">
+              <node class="TResXNode" name="AddImage.resx" windowsforms="wf20">
+                <row id="Add Image" si="593">Add Image</row>
+                <row id="Add Image(jpg, png, jpeg) " si="594">Add Image(jpg, png, jpeg) </row>
+                <row id="Upload Image file" si="595">Upload Image file</row>
+                <row id="Add" si="596">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create Name" si="597">Create Name</row>
+                <row id="Name in Arab" si="598">Name in Arab</row>
+                <row id="Name in Other Language" si="599">Name in Other Language</row>
+                <row id="Create" si="600">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Name" si="601">Edit Name</row>
+                <row id="Name in Arab" si="602">Name in Arab</row>
+                <row id="Name in Other language" si="603">Name in Other language</row>
+                <row id="Approve Word:" si="604">Approve Word:</row>
+                <row id="Save" si="605">Save</row>
+                <row id="Images" si="606">Images</row>
+                <row id="Image" si="607">Image</row>
+                <row id="Approve" si="608">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Shared">
+              <node class="TResXNode" name="_LoginPartial.resx" windowsforms="wf20">
+                <row id="Administrator's office" si="609">Administrator's office</row>
+                <row id="Trusted User's office" si="610">Trusted User's office</row>
+                <row id="Registerd User's office" si="611">Registerd User's office</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="Word">
+              <node class="TResXNode" name="AddWordSentence.resx" windowsforms="wf20">
+                <row id="Add Example Sentence" si="612">Add Example Sentence</row>
+                <row id="Sentence" si="613">Sentence</row>
+                <row id="Transcript" si="614">Transcript</row>
+                <row id="Add" si="615">Add</row>
+              </node>
+              <node class="TResXNode" name="AddWordVoice.resx" windowsforms="wf20">
+                <row id="Add Word Voices" si="616">Add Word Voices</row>
+                <row id="Arab" si="617">Arab</row>
+                <row id="Upload Voice file" si="618">Upload Voice file</row>
+                <row id="Add" si="619">Add</row>
+              </node>
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Create new word" si="620">Create new word</row>
+                <row id="New word" si="621">New word</row>
+                <row id="Arab word" si="622">Arab word</row>
+                <row id="Create" si="623">Create</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit new word" si="624">Edit new word</row>
+                <row id="New word" si="625">New word</row>
+                <row id="Arab word" si="626">Arab word</row>
+                <row id="Approve Word:" si="627">Approve Word:</row>
+                <row id="Save" si="628">Save</row>
+              </node>
+              <node class="TResXNode" name="EditVoice.resx" windowsforms="wf20">
+                <row id="Voices Related to the Word" si="629">Voices Related to the Word</row>
+                <row id="#" si="630">##</row>
+                <row id="Arab Voice" si="631">Arab Voice</row>
+                <row id="Voice" si="632">Voice</row>
+              </node>
+              <node class="TResXNode" name="EditWord.resx" windowsforms="wf20">
+                <row id="Sentences related to the word" si="633">Sentences related to the word</row>
+                <row id="#" si="634">##</row>
+                <row id="Arab sentence" si="635">Arab sentence</row>
+                <row id="Transcription" si="636">Transcription</row>
+                <row id="sentence" si="637">sentence</row>
+                <row id="Approved" si="638">Approved</row>
+              </node>
+              <node class="TResXNode" name="EditWordSentence.resx" windowsforms="wf20">
+                <row id="Edit Example Sentence" si="639">Edit Example Sentence</row>
+                <row id="Sentence" si="640">Sentence</row>
+                <row id="Transcript" si="641">Transcript</row>
+                <row id="Edit" si="642">Edit</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="#" si="643">##</row>
+                <row id="Arab word" si="644">Arab word</row>
+                <row id="Translation to Other Word" si="645">Translation to Other Word</row>
+                <row id="Dictionary" si="646">Dictionary</row>
+                <row id="Approve" si="647">Approve</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClause">
+              <node class="TResXNode" name="Create.resx" windowsforms="wf20">
+                <row id="Add Clause" si="648">Add Clause</row>
+                <row id="Clause in Arab" si="649">Clause in Arab</row>
+                <row id="Reads in other Language" si="650">Reads in other Language</row>
+                <row id="Other Language" si="651">Other Language</row>
+                <row id="Tranlation" si="652">Tranlation</row>
+                <row id="Reads in Arab " si="653">Reads in Arab </row>
+                <row id="Approved?" si="654">Approved?</row>
+                <row id="Category" si="655">Category</row>
+                <row id="Dictionary" si="656">Dictionary</row>
+                <row id="Add" si="657">Add</row>
+              </node>
+              <node class="TResXNode" name="CreateVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="658">Arab Clause</row>
+                <row id="Clause" si="659">Clause</row>
+                <row id="Add Word Voices" si="660">Add Word Voices</row>
+                <row id="Arab" si="661">Arab</row>
+                <row id="Upload Voice file" si="662">Upload Voice file</row>
+                <row id="Add" si="663">Add</row>
+              </node>
+              <node class="TResXNode" name="Edit.resx" windowsforms="wf20">
+                <row id="Edit Clause" si="664">Edit Clause</row>
+                <row id="Clause in Arab" si="665">Clause in Arab</row>
+                <row id="Reads in other Language" si="666">Reads in other Language</row>
+                <row id="Other Language" si="667">Other Language</row>
+                <row id="Tranlation" si="668">Tranlation</row>
+                <row id="Reads in Arab " si="669">Reads in Arab </row>
+                <row id="Approved?" si="670">Approved?</row>
+                <row id="Category" si="671">Category</row>
+                <row id="Dictionary" si="672">Dictionary</row>
+                <row id="Edit" si="673">Edit</row>
+              </node>
+              <node class="TResXNode" name="EditClauseVoice.resx" windowsforms="wf20">
+                <row id="Arab Clause" si="674">Arab Clause</row>
+                <row id="Reads in" si="675">Reads in</row>
+                <row id="Clause" si="676">Clause</row>
+                <row id="Reads in Arab" si="677">Reads in Arab</row>
+                <row id="Voices" si="678">Voices</row>
+                <row id="#" si="679">##</row>
+                <row id="Voice in Arab" si="680">Voice in Arab</row>
+                <row id="Voice in " si="681">Voice in </row>
+                <row id="Approved" si="682">Approved</row>
+              </node>
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="683">Category Controller</row>
+                <row id="Word Clause List" si="684">Word Clause List</row>
+                <row id="Arab CLause" si="685">Arab CLause</row>
+                <row id="Other Language read" si="686">Other Language read</row>
+                <row id="Other Language clause" si="687">Other Language clause</row>
+                <row id="Arab read" si="688">Arab read</row>
+                <row id="Dictionary" si="689">Dictionary</row>
+                <row id="Category" si="690">Category</row>
+                <row id="Approved" si="691">Approved</row>
+                <row id="User name" si="692">User name</row>
+                <row id="Edit" si="693">Edit</row>
+                <row id="Edit Voices" si="694">Edit Voices</row>
+              </node>
+            </node>
+            <node class="TDirectoryFolder" name="WordClauseCategory">
+              <node class="TResXNode" name="Index.resx" windowsforms="wf20">
+                <row id="Category Controller" si="695">Category Controller</row>
+                <row id="News categories" si="696">News categories</row>
+                <row id="Name" si="697">Name</row>
+                <row id="Parent Category Name" si="698">Parent Category Name</row>
+                <row id="Edit" si="699">Edit</row>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Admin.Models.ChangePasswordModel.resx" windowsforms="wf20">
+        <row id="Confirm password" si="1">Confirm password</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Admin.Models.CreateUserModel.resx" windowsforms="wf20">
+        <row id="Email is required" si="2">Email is required</row>
+        <row id="Name is required" si="3">Name is required</row>
+        <row id="Password is required" si="4">Password is required</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Admin.Models.EditUserModel.resx" windowsforms="wf20">
+        <row id="Email is required" si="5">Email is required</row>
+        <row id="Name is required" si="6">Name is required</row>
+        <row id="Phone is required" si="7">Phone is required</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.LoginModel.resx" windowsforms="wf20">
+        <row id="Remember me?" si="8">Remember me?</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.LoginWith2faModel.resx" windowsforms="wf20">
+        <row id="Authenticator code" si="9">Authenticator code</row>
+        <row id="Remember this machine" si="10">Remember this machine</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel.resx" windowsforms="wf20">
+        <row id="Recovery Code" si="11">Recovery Code</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.Manage.ChangePasswordModel.resx" windowsforms="wf20">
+        <row id="Current password" si="12">Current password</row>
+        <row id="New password" si="13">New password</row>
+        <row id="Confirm new password" si="14">Confirm new password</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.Manage.EmailModel.resx" windowsforms="wf20">
+        <row id="New email" si="15">New email</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.Manage.IndexModel.resx" windowsforms="wf20">
+        <row id="Phone number" si="16">Phone number</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.Manage.InputModel.resx" windowsforms="wf20">
+        <row id="Verification Code" si="17">Verification Code</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.Manage.SetPasswordModel.resx" windowsforms="wf20">
+        <row id="New password" si="18">New password</row>
+        <row id="Confirm new password" si="19">Confirm new password</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.RegisterModel.resx" windowsforms="wf20">
+        <row id="Email" si="20">Email</row>
+        <row id="Password" si="21">Password</row>
+        <row id="Confirm password" si="22">Confirm password</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Areas.Identity.Pages.Account.ResetPasswordModel.resx" windowsforms="wf20">
+        <row id="Confirm password" si="23">Confirm password</row>
+      </node>
+      <node class="TResXNode" name="ARINLAB.Models.CreateTestViewModel.resx" windowsforms="wf20">
+        <row id="Name" si="24">Name</row>
+        <row id="Required" si="25">Required</row>
+      </node>
+      <node class="TResXNode" name="SharedResource.resx" windowsforms="wf20">
+        <row id="Change password" si="26">Change password</row>
+        <row id="Change user password" si="27">Change user password</row>
+        <row id="New password" si="28">New password</row>
+        <row id="Confirm password" si="29">Confirm password</row>
+        <row id="Change" si="30">Change</row>
+        <row id="Create user account" si="31">Create user account</row>
+        <row id="Data" si="32">
+          <value>Data</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">التاريخ</lang>
+        </row>
+        <row id="First name" si="33">First name</row>
+        <row id="Last name" si="34">Last name</row>
+        <row id="Accupation" si="35">
+          <value>Accupation</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاحتلال</lang>
+        </row>
+        <row id="Email" si="36">
+          <value>Email</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">بريد الالكتروني</lang>
+        </row>
+        <row id="Phone number" si="37">Phone number</row>
+        <row id="Gender" si="38">
+          <value>Gender</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">جنس تذكير أو تأنيث</lang>
+        </row>
+        <row id="Country" si="39">Country</row>
+        <row id="Password" si="40">
+          <value>Password</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">كلمة المرور</lang>
+        </row>
+        <row id="Login" si="41">Login</row>
+        <row id="Approve" si="42">
+          <value>Approve</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">موافقة</lang>
+        </row>
+        <row id="Male" si="43">Male</row>
+        <row id="Female" si="44">Female</row>
+        <row id="Please enter valid phone number" si="45">Please enter valid phone number</row>
+        <row id="Please enter phone number" si="46">Please enter phone number</row>
+        <row id="Email is empty" si="47">Email is empty</row>
+        <row id="Email is invalid" si="48">Email is invalid</row>
+        <row id="Add" si="49">
+          <value>Add</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إضافة</lang>
+        </row>
+        <row id="Edit user account" si="50">Edit user account</row>
+        <row id="Users" si="51">
+          <value>Users</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">المستخدمون</lang>
+        </row>
+        <row id="Employee" si="52">Employee</row>
+        <row id="Entrepreneur" si="53">Entrepreneur</row>
+        <row id="Organization" si="54">Organization</row>
+        <row id="Name" si="55">
+          <value>Name</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسم</lang>
+        </row>
+        <row id="Approved" si="56">
+          <value>Approved</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تمت الموافقة</lang>
+        </row>
+        <row id="Edit" si="57">
+          <value>Edit</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير</lang>
+        </row>
+        <row id="Email was send successfullt" si="58">
+          <value>Email was send successfullt</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تم إرسال البريد بنجاح</lang>
+        </row>
+        <row id="Some thing went wrong !! Try resend the Email" si="59">
+          <value>Some thing went wrong !! Try resend the Email</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">حدث خطأ!! حاول إعادة الإرسال</lang>
+        </row>
+        <row id="Send email" si="60">
+          <value>Send email</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تم إرسال بريد</lang>
+        </row>
+        <row id="Email header" si="61">
+          <value>Email header</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">رأس البريد</lang>
+        </row>
+        <row id="Subject" si="62">
+          <value>Subject</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">العنوان</lang>
+        </row>
+        <row id="Message" si="63">
+          <value>Message</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الرسالة</lang>
+        </row>
+        <row id="Admin email is required" si="64">
+          <value>Admin email is required</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مطلوب بريد المدير</lang>
+        </row>
+        <row id="Admin email is invalid" si="65">
+          <value>Admin email is invalid</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">خطأ في بريد المدير</lang>
+        </row>
+        <row id="Enter password" si="66">
+          <value>Enter password</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أدخل كلمة المرور</lang>
+        </row>
+        <row id="Enter email header" si="67">
+          <value>Enter email header</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أدخل ترويسة للبريد</lang>
+        </row>
+        <row id="Enter subject" si="68">
+          <value>Enter subject</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أدخل عنوان</lang>
+        </row>
+        <row id="Enter message" si="69">
+          <value>Enter message</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أدخل الرسالة</lang>
+        </row>
+        <row id="Send to" si="70">
+          <value>Send to</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إرسال إلى</lang>
+        </row>
+        <row id="Ordinary Users" si="71">
+          <value>Ordinary Users</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مستخدمود عادييون</lang>
+        </row>
+        <row id="Approved Users" si="72">
+          <value>Approved Users</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">المستخدمون المعتمدون</lang>
+        </row>
+        <row id="Subsrcibers" si="73">
+          <value>Subsrcibers</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">المشتركون</lang>
+        </row>
+        <row id="Send" si="74">
+          <value>Send</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إرسال</lang>
+        </row>
+        <row id="Create menu" si="75">
+          <value>Create menu</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء قائمة</lang>
+        </row>
+        <row id="Link" si="76">
+          <value>Link</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الرابط</lang>
+        </row>
+        <row id="Order" si="77">
+          <value>Order</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">حسب</lang>
+        </row>
+        <row id="Parent menu" si="78">Parent menu</row>
+        <row id="Active" si="79">
+          <value>Active</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">نشط</lang>
+        </row>
+        <row id="Edit menu" si="80">
+          <value>Edit menu</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير القائمة</lang>
+        </row>
+        <row id="Menu" si="81">
+          <value>Menu</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القائمة</lang>
+        </row>
+        <row id="Names" si="82">
+          <value>Names</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسماء</lang>
+        </row>
+        <row id="Names Conroller" si="83">
+          <value>Names Conroller</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">التحكم بالاسماء</lang>
+        </row>
+        <row id="Arab Name" si="84">
+          <value>Arab Name</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسم العربي</lang>
+        </row>
+        <row id="Other Name" si="85">
+          <value>Other Name</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسماء الأخرى</lang>
+        </row>
+        <row id="Dictionary" si="86">
+          <value>Dictionary</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القاموس</lang>
+        </row>
+        <row id="Create news" si="87">
+          <value>Create news</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء خبر</lang>
+        </row>
+        <row id="Description" si="88">
+          <value>Description</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الوصف</lang>
+        </row>
+        <row id="Enter name" si="89">
+          <value>Enter name</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إدخال إسم</lang>
+        </row>
+        <row id="Select news category" si="90">
+          <value>Select news category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إختيار قسم الأخبار</lang>
+        </row>
+        <row id="Picture" si="91">
+          <value>Picture</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الصورة</lang>
+        </row>
+        <row id="Date publish" si="92">
+          <value>Date publish</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تاريخ النشر</lang>
+        </row>
+        <row id="Choose a picture" si="93">
+          <value>Choose a picture</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إختيار الصورة</lang>
+        </row>
+        <row id="or drag picture" si="94">
+          <value>or drag picture</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أو اسحب صورة</lang>
+        </row>
+        <row id="Upload picture" si="95">
+          <value>Upload picture</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">رفع الصورة</lang>
+        </row>
+        <row id="Please select publish date" si="96">
+          <value>Please select publish date</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الرجاء إختيار تاريخ النشر</lang>
+        </row>
+        <row id="Edit news" si="97">
+          <value>Edit news</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير الأخبار</lang>
+        </row>
+        <row id="No photo" si="98">
+          <value>No photo</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">لا يوجد صور</lang>
+        </row>
+        <row id="Please Enter News Publish Date" si="99">
+          <value>Please Enter News Publish Date</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الرجاء إختيار تاريخ نشر الأخبار</lang>
+        </row>
+        <row id="Not Set" si="100">
+          <value>Not Set</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">لم تحدد</lang>
+        </row>
+        <row id="News" si="101">
+          <value>News</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الأخبار</lang>
+        </row>
+        <row id="News category" si="102">
+          <value>News category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">قسم الأخبار</lang>
+        </row>
+        <row id="Create news category" si="103">
+          <value>Create news category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء قسم للأخبار</lang>
+        </row>
+        <row id="Edit news category" si="104">
+          <value>Edit news category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير قسمالأخبار</lang>
+        </row>
+        <row id="News categories" si="105">
+          <value>News categories</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أقسام الأخبار</lang>
+        </row>
+        <row id="Create page" si="106">
+          <value>Create page</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء صفحة</lang>
+        </row>
+        <row id="Menu to assign" si="107">
+          <value>Menu to assign</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تعيين قائمة</lang>
+        </row>
+        <row id="Edit page" si="108">
+          <value>Edit page</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير صفحة</lang>
+        </row>
+        <row id="Pages" si="109">
+          <value>Pages</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">صفحات</lang>
+        </row>
+        <row id="Assigned to menu" si="110">
+          <value>Assigned to menu</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">معين إلى القائمة</lang>
+        </row>
+        <row id="URL page" si="111">URL page</row>
+        <row id="Settings" si="112">Settings</row>
+        <row id="Value" si="113">Value</row>
+        <row id="SideBar" si="114">SideBar</row>
+        <row id="Dashboard" si="115">
+          <value>Dashboard</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">لوحة التحكم</lang>
+        </row>
+        <row id="Words" si="116">
+          <value>Words</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الكلمات</lang>
+        </row>
+        <row id="All Words" si="117">
+          <value>All Words</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">كل الكلمات</lang>
+        </row>
+        <row id="Create New Word" si="118">
+          <value>Create New Word</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء كلمة جديدة</lang>
+        </row>
+        <row id="Word Clauses" si="119">Word Clauses</row>
+        <row id="All Words Clauses" si="120">All Words Clauses</row>
+        <row id="Create New Word Clause" si="121">Create New Word Clause</row>
+        <row id="Word Categories" si="122">
+          <value>Word Categories</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">قسم الكلمة</lang>
+        </row>
+        <row id="All Categories" si="123">
+          <value>All Categories</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">جميع الأقسام</lang>
+        </row>
+        <row id="Create Category" si="124">
+          <value>Create Category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء قسم</lang>
+        </row>
+        <row id="All Word Clauses" si="125">All Word Clauses</row>
+        <row id="Create Word Clause" si="126">Create Word Clause</row>
+        <row id="Create Name" si="127">
+          <value>Create Name</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء إسم</lang>
+        </row>
+        <row id="Dictionaries" si="128">
+          <value>Dictionaries</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القواميس</lang>
+        </row>
+        <row id="Create word category" si="129">
+          <value>Create word category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إنشاء قسم للكلمة</lang>
+        </row>
+        <row id="Edit word category" si="130">
+          <value>Edit word category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تحرير قسم الكلمة</lang>
+        </row>
+        <row id="Thank your for your Registration. Your account confirmed" si="131">
+          <value>Thank your for your Registration. Your account confirmed</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">شكراً لتسجيلك لدينا. تم إعتماد حسابك.</lang>
+        </row>
+        <row id="Invalid Code" si="132">Invalid Code</row>
+        <row id="Conitnue" si="133">Conitnue</row>
+        <row id="Forgot your password?" si="134">
+          <value>Forgot your password?</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">نسيت كلمة المرور؟</lang>
+        </row>
+        <row id="Reset" si="135">Reset</row>
+        <row id="Register as a new user" si="136">Register as a new user</row>
+        <row id="Log in" si="137">
+          <value>Log in</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الدخول</lang>
+        </row>
+        <row id="Login to your account" si="138">
+          <value>Login to your account</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">لدخول لحسابك</lang>
+        </row>
+        <row id="Log out from your account" si="139">
+          <value>Log out from your account</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الخروج من حسابك</lang>
+        </row>
+        <row id="Continue" si="140">
+          <value>Continue</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاستمرار</lang>
+        </row>
+        <row id="You have successfully Logged out" si="141">
+          <value>You have successfully Logged out</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تم تسجيل خروجك بنجاح</lang>
+        </row>
+        <row id="Registration Form" si="142">
+          <value>Registration Form</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">نموذج التسجيل</lang>
+        </row>
+        <row id="Email already in use" si="143">
+          <value>Email already in use</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">البريد مستخدم مسبقا</lang>
+        </row>
+        <row id="FamilyName" si="144">
+          <value>FamilyName</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">اسم العائلة</lang>
+        </row>
+        <row id="Password Confirm" si="145">
+          <value>Password Confirm</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">تأكيد كلمة المرور</lang>
+        </row>
+        <row id="Occupation" si="146">Occupation</row>
+        <row id="More Information" si="147">
+          <value>More Information</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">معلومات اكثر</lang>
+        </row>
+        <row id="Register" si="148">
+          <value>Register</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">التسجيل</lang>
+        </row>
+        <row id="Varification Code have been sent to your Email." si="149">Varification Code have been sent to your Email.</row>
+        <row id="Verify" si="150">Verify</row>
+        <row id="Your Email have not been confirmed !!" si="151">Your Email have not been confirmed !!</row>
+        <row id="Resend" si="152">Resend</row>
+        <row id="My Words" si="153">My Words</row>
+        <row id="My added Words" si="154">My added Words</row>
+        <row id="My Word Clauses" si="155">My Word Clauses</row>
+        <row id="My added Words Clauses" si="156">My added Words Clauses</row>
+        <row id="My Names" si="157">My Names</row>
+        <row id="My added Names" si="158">My added Names</row>
+        <row id="TSTB Unsubscribe" si="159">TSTB Unsubscribe</row>
+        <row id="Please Follow the link below to unsubscribe from ARINLANG: " si="160">Please Follow the link below to unsubscribe from ARINLANG: </row>
+        <row id="Unsubscribe Link from ARINLANG Web Site" si="161">Unsubscribe Link from ARINLANG Web Site</row>
+        <row id="Dateiled instructions was send to " si="162">Dateiled instructions was send to </row>
+        <row id=" email to unsubscribed." si="163"> email to unsubscribed.</row>
+        <row id="Some thing went wrong, Please try again later !" si="164">Some thing went wrong, Please try again later !</row>
+        <row id=" email does not subscribed" si="165"> email does not subscribed</row>
+        <row id="You have succeffully unsubscribed" si="166">You have succeffully unsubscribed</row>
+        <row id="Email successfully subscribed" si="167">Email successfully subscribed</row>
+        <row id="Email is already subscribed ! " si="168">Email is already subscribed ! </row>
+        <row id="WELCOME TO ARINLANG" si="169">
+          <value>WELCOME TO ARINLANG</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مرحباً بكم في العربية في اللغات</lang>
+        </row>
+        <row id="Words Collection" si="170">
+          <value>Words Collection</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مجموعة كلمات</lang>
+        </row>
+        <row id="View all" si="171">
+          <value>View all</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مشاهدة الكل</lang>
+        </row>
+        <row id="Words Clauses Collection" si="172">
+          <value>Words Clauses Collection</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مجموعة فقرات الكلمات</lang>
+        </row>
+        <row id="Names Collection" si="173">
+          <value>Names Collection</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">مجموعة الأسماء</lang>
+        </row>
+        <row id="Latest News" si="174">
+          <value>Latest News</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">آخر الأخبار</lang>
+        </row>
+        <row id="ARINLANG in Numbers" si="175">
+          <value>ARINLANG in Numbers</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">العربية في اللغات بالأرقام</lang>
+        </row>
+        <row id="Total" si="176">
+          <value>Total</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الإجمالي</lang>
+        </row>
+        <row id=" Users" si="177"> Users</row>
+        <row id="Sentences recorded" si="178">Sentences recorded</row>
+        <row id="Similar Names are registered" si="179">
+          <value>Similar Names are registered</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">هناك أسماء مشابهة مسجلة</lang>
+        </row>
+        <row id="More details" si="180">
+          <value>More details</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">التفاصيل</lang>
+        </row>
+        <row id="Subscribe to the newsletter and events" si="181">
+          <value>Subscribe to the newsletter and events</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاشتراك في القائمة البريدية للأخبار والمناسبات</lang>
+        </row>
+        <row id="Enter your email address" si="182">
+          <value>Enter your email address</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">أدخل عنوان بريدك الالكتروني</lang>
+        </row>
+        <row id="Subscribe" si="183">
+          <value>Subscribe</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاشتراك</lang>
+        </row>
+        <row id="Arab Words" si="184">
+          <value>Arab Words</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الكلمات العربية</lang>
+        </row>
+        <row id="Other Language read" si="185">
+          <value>Other Language read</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">قراءة لغة أخرى</lang>
+        </row>
+        <row id="Voices" si="186">
+          <value>Voices</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الأصوات</lang>
+        </row>
+        <row id="Play" si="187">Play</row>
+        <row id="No audio voices" si="188">No audio voices</row>
+        <row id="Share" si="189">Share</row>
+        <row id="Stop" si="190">Stop</row>
+        <row id="Arab CLause" si="191">Arab CLause</row>
+        <row id="Other Language clause" si="192">Other Language clause</row>
+        <row id="Arab read" si="193">
+          <value>Arab read</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القراءة بالعربي</lang>
+        </row>
+        <row id="Category" si="194">
+          <value>Category</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القسم</lang>
+        </row>
+        <row id="Unsublink" si="195">Unsublink</row>
+        <row id="Unsubscribe" si="196">
+          <value>Unsubscribe</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إلغاء الإستراك</lang>
+        </row>
+        <row id="Unsubscribe from ARINLANG web newsletter and events" si="197">
+          <value>Unsubscribe from ARINLANG web newsletter and events</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إلغاء الإشتراك في القائمة البريدية للأخبار والمناسبات</lang>
+        </row>
+        <row id="Unsubscribed" si="198">
+          <value>Unsubscribed</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">إلغاء الإشتراك</lang>
+        </row>
+        <row id="Back to home page" si="199">Back to home page</row>
+        <row id="Export" si="200">Export</row>
+        <row id="Name in Arab" si="201">
+          <value>Name in Arab</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسم بالعربية</lang>
+        </row>
+        <row id="Name in" si="202">
+          <value>Name in</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الاسم</lang>
+        </row>
+        <row id="Submit your Rating" si="203">Submit your Rating</row>
+        <row id="Thank you" si="204">Thank you</row>
+        <row id="Your rating have been successfully recorded" si="205">Your rating have been successfully recorded</row>
+        <row id="Press releases" si="206">
+          <value>Press releases</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">يان صحفي</lang>
+        </row>
+        <row id="Date search" si="207">Date search</row>
+        <row id="Search" si="208">
+          <value>Search</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">البحث</lang>
+        </row>
+        <row id="Show more" si="209">
+          <value>Show more</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">عرض المزيد</lang>
+        </row>
+        <row id="Home" si="210">
+          <value>Home</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الرئيسية</lang>
+        </row>
+        <row id="Contact us" si="211">
+          <value>Contact us</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">اتصل بنا</lang>
+        </row>
+        <row id="ARINLAG" si="212">
+          <value>ARINLAG</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">العربية في اللغات</lang>
+        </row>
+        <row id="All rights reserved" si="213">
+          <value>All rights reserved</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">جميع الحقوق لـ</lang>
+        </row>
+        <row id="ARINLANG" si="214">
+          <value>ARINLANG</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">العربية في اللغات</lang>
+        </row>
+        <row id="Select Dictionary" si="215">
+          <value>Select Dictionary</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">حدد القاموس</lang>
+        </row>
+        <row id="Administrator's office" si="216">Administrator's office</row>
+        <row id="Trusted User's office" si="217">Trusted User's office</row>
+        <row id="Registerd User's office" si="218">Registerd User's office</row>
+        <row id="Sign out" si="219">Sign out</row>
+        <row id="Logout" si="220">Logout</row>
+        <row id="Reads" si="221">
+          <value>Reads</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القراءات</lang>
+        </row>
+        <row id="Clause" si="222">Clause</row>
+        <row id="Reads in Arab" si="223">
+          <value>Reads in Arab</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">القراءات بالعربية</lang>
+        </row>
+        <row id="Arab Voice" si="224">
+          <value>Arab Voice</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الصوت العربي</lang>
+        </row>
+        <row id="Voice" si="225">
+          <value>Voice</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الصوت</lang>
+        </row>
+        <row id="Word Clauses Collection" si="226">Word Clauses Collection</row>
+        <row id="Other Clause" si="227">Other Clause</row>
+        <row id="Arab sentence" si="228">Arab sentence</row>
+        <row id="Transcription" si="229">Transcription</row>
+        <row id="sentence" si="230">sentence</row>
+        <row id="Arab Word" si="231">
+          <value>Arab Word</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">الكلمة العربية</lang>
+        </row>
+        <row id="Other Word" si="232">
+          <value>Other Word</value>
+          <lang id="ar" st="4" or="4" rw="0" time="20220131T054442Z">كلمة أخرى</lang>
+        </row>
+      </node>
+    </node>
+    <node class="TDirectoryFolder" name="Resources - Copy">
+      <node class="TResXNode" name="SharedResource.ar.resx" windowsforms="wf20">
+        <row id="Accupation" si="700">الاحتلال</row>
+        <row id="Active" si="701">نشط</row>
+        <row id="Add" si="702">إضافة</row>
+        <row id="Add Image" si="703">إضافة صورة</row>
+        <row id="Add Image(jpg, png, jpeg)" si="704">أضف صورة نوع  (jpg, png, jpeg)</row>
+        <row id="Add Word Voices" si="705">إضافة أصوات للكلمة</row>
+        <row id="Address" si="706">تبوك</row>
+        <row id="Admin" si="707">المدير</row>
+        <row id="Admin Dashboard" si="708">لوحة التحكم</row>
+        <row id="Admin email is invalid" si="709">خطأ في بريد المدير</row>
+        <row id="Admin email is required" si="710">مطلوب بريد المدير</row>
+        <row id="All Categories" si="711">جميع الأقسام</row>
+        <row id="All rights reserved" si="712">جميع الحقوق لـ</row>
+        <row id="All Words" si="713">كل الكلمات</row>
+        <row id="Approve" si="714">موافقة</row>
+        <row id="Approve Word:" si="715">الموافقة على الكلمة</row>
+        <row id="Approved" si="716">تمت الموافقة</row>
+        <row id="Approved Users" si="717">المستخدمون المعتمدون</row>
+        <row id="Arab" si="718">عربي</row>
+        <row id="Arab Name" si="719">الاسم العربي</row>
+        <row id="Arab read" si="720">القراءة بالعربي</row>
+        <row id="Arab Voice" si="721">الصوت العربي</row>
+        <row id="Arab Word" si="722">الكلمة العربية</row>
+        <row id="Arab Words" si="723">الكلمات العربية</row>
+        <row id="ARINLAG" si="724">العربية في اللغات</row>
+        <row id="ARINLANG" si="725">العربية في اللغات</row>
+        <row id="ARINLANG in Numbers" si="726">العربية في اللغات بالأرقام</row>
+        <row id="Assigned to menu" si="727">معين إلى القائمة</row>
+        <row id="Category" si="728">القسم</row>
+        <row id="Category Controller" si="729">التحكم بالقسم</row>
+        <row id="Choose a picture" si="730">إختيار الصورة</row>
+        <row id="Contact us" si="731">اتصل بنا</row>
+        <row id="Continue" si="732">الاستمرار</row>
+        <row id="Create" si="733">إنشاء</row>
+        <row id="Create Category" si="734">إنشاء قسم</row>
+        <row id="Create menu" si="735">إنشاء قائمة</row>
+        <row id="Create Name" si="736">إنشاء إسم</row>
+        <row id="Create New Word" si="737">إنشاء كلمة جديدة</row>
+        <row id="Create news" si="738">إنشاء خبر</row>
+        <row id="Create news category" si="739">إنشاء قسم للأخبار</row>
+        <row id="Create page" si="740">إنشاء صفحة</row>
+        <row id="Create word category" si="741">إنشاء قسم للكلمة</row>
+        <row id="Dashboard" si="742">لوحة التحكم</row>
+        <row id="Data" si="743">التاريخ</row>
+        <row id="Date publish" si="744">تاريخ النشر</row>
+        <row id="Description" si="745">الوصف</row>
+        <row id="Details" si="746">التفاصيل</row>
+        <row id="Dictionaries" si="747">القواميس</row>
+        <row id="Dictionary" si="748">القاموس</row>
+        <row id="Edit" si="749">تحرير</row>
+        <row id="Edit menu" si="750">تحرير القائمة</row>
+        <row id="Edit Name" si="751">تحرير إسم</row>
+        <row id="Edit news" si="752">تحرير الأخبار</row>
+        <row id="Edit news category" si="753">تحرير قسمالأخبار</row>
+        <row id="Edit page" si="754">تحرير صفحة</row>
+        <row id="Edit Voices" si="755">تحرير الأصوات</row>
+        <row id="Edit word category" si="756">تحرير قسم الكلمة</row>
+        <row id="Email" si="757">بريد الالكتروني</row>
+        <row id="Email already in use" si="758">البريد مستخدم مسبقا</row>
+        <row id="Email header" si="759">رأس البريد</row>
+        <row id="Email was send successfullt" si="760">تم إرسال البريد بنجاح</row>
+        <row id="Enter email header" si="761">أدخل ترويسة للبريد</row>
+        <row id="Enter message" si="762">أدخل الرسالة</row>
+        <row id="Enter name" si="763">إدخال إسم</row>
+        <row id="Enter password" si="764">أدخل كلمة المرور</row>
+        <row id="Enter subject" si="765">أدخل عنوان</row>
+        <row id="Enter your email address" si="766">أدخل عنوان بريدك الالكتروني</row>
+        <row id="FamilyName" si="767">اسم العائلة</row>
+        <row id="Forgot your password?" si="768">نسيت كلمة المرور؟</row>
+        <row id="Gender" si="769">جنس تذكير أو تأنيث</row>
+        <row id="Home" si="770">الرئيسية</row>
+        <row id="Identity" si="771">الهوية</row>
+        <row id="Image" si="772">صورة</row>
+        <row id="Images" si="773">الصور</row>
+        <row id="Index" si="774">الرئيسية</row>
+        <row id="Latest News" si="775">آخر الأخبار</row>
+        <row id="Link" si="776">الرابط</row>
+        <row id="Log in" si="777">الدخول</row>
+        <row id="Log out from your account" si="778">الخروج من حسابك</row>
+        <row id="Login to your account" si="779">لدخول لحسابك</row>
+        <row id="Menu" si="780">القائمة</row>
+        <row id="Menu to assign" si="781">تعيين قائمة</row>
+        <row id="Message" si="782">الرسالة</row>
+        <row id="More details" si="783">التفاصيل</row>
+        <row id="More Information" si="784">معلومات اكثر</row>
+        <row id="Name" si="785">الاسم</row>
+        <row id="Name in" si="786">الاسم</row>
+        <row id="Name in Arab" si="787">الاسم بالعربية</row>
+        <row id="Names" si="788">الاسماء</row>
+        <row id="Names Collection" si="789">مجموعة الأسماء</row>
+        <row id="Names Conroller" si="790">التحكم بالاسماء</row>
+        <row id="News" si="791">الأخبار</row>
+        <row id="News categories" si="792">أقسام الأخبار</row>
+        <row id="News category" si="793">قسم الأخبار</row>
+        <row id="NewsCategory" si="794">قسم الأخبار</row>
+        <row id="No photo" si="795">لا يوجد صور</row>
+        <row id="Not Set" si="796">لم تحدد</row>
+        <row id="or drag picture" si="797">أو اسحب صورة</row>
+        <row id="Order" si="798">حسب</row>
+        <row id="Ordinary Users" si="799">مستخدمود عادييون</row>
+        <row id="Other Language" si="800">لغة أخرى</row>
+        <row id="Other Language read" si="801">قراءة لغة أخرى</row>
+        <row id="Other Name" si="802">الاسماء الأخرى</row>
+        <row id="Other Word" si="803">كلمة أخرى</row>
+        <row id="Pages" si="804">صفحات</row>
+        <row id="Password" si="805">كلمة المرور</row>
+        <row id="Password Confirm" si="806">تأكيد كلمة المرور</row>
+        <row id="Phone" si="807">هاتف</row>
+        <row id="Phone Number" si="808">رقم التليفون</row>
+        <row id="Picture" si="809">الصورة</row>
+        <row id="Please Enter News Publish Date" si="810">الرجاء إختيار تاريخ نشر الأخبار</row>
+        <row id="Please select one" si="811">رجاءا اختر واحدة</row>
+        <row id="Please select publish date" si="812">الرجاء إختيار تاريخ النشر</row>
+        <row id="Press releases" si="813">يان صحفي</row>
+        <row id="Reads" si="814">القراءات</row>
+        <row id="Reads in Arab" si="815">القراءات بالعربية</row>
+        <row id="Register" si="816">التسجيل</row>
+        <row id="Registered" si="817">المسجل</row>
+        <row id="Registration Form" si="818">نموذج التسجيل</row>
+        <row id="Search" si="819">البحث</row>
+        <row id="Select Dictionary" si="820">حدد القاموس</row>
+        <row id="Select news category" si="821">إختيار قسم الأخبار</row>
+        <row id="Send" si="822">إرسال</row>
+        <row id="Send email" si="823">تم إرسال بريد</row>
+        <row id="Send to" si="824">إرسال إلى</row>
+        <row id="Show more" si="825">عرض المزيد</row>
+        <row id="Similar Names are registered" si="826">هناك أسماء مشابهة مسجلة</row>
+        <row id="Some thing went wrong !! Try resend the Email" si="827">حدث خطأ!! حاول إعادة الإرسال</row>
+        <row id="Subject" si="828">العنوان</row>
+        <row id="submit" si="829">إرسال</row>
+        <row id="Subscribe" si="830">الاشتراك</row>
+        <row id="Subscribe to the newsletter and events" si="831">الاشتراك في القائمة البريدية للأخبار والمناسبات</row>
+        <row id="Subsrcibers" si="832">المشتركون</row>
+        <row id="tag" si="833">وسم</row>
+        <row id="Thank your for your Registration. Your account confirmed" si="834">شكراً لتسجيلك لدينا. تم إعتماد حسابك.</row>
+        <row id="Title" si="835">العنوان</row>
+        <row id="Todays" si="836">اليوم</row>
+        <row id="Total" si="837">الإجمالي</row>
+        <row id="Total Clauses" si="838">إجمالي البنود</row>
+        <row id="Total Names" si="839">إجمالي الأسماء</row>
+        <row id="Total Sentences" si="840">إجمالي الجمل</row>
+        <row id="Total Words" si="841">إجمالي الكلمات</row>
+        <row id="Translation to Other Word" si="842">ترجم إلى كلمة أخرى</row>
+        <row id="Trusted" si="843">الموثوق</row>
+        <row id="Unsubscribe" si="844">إلغاء الإستراك</row>
+        <row id="Unsubscribe from ARINLANG web newsletter and events" si="845">إلغاء الإشتراك في القائمة البريدية للأخبار والمناسبات</row>
+        <row id="Unsubscribed" si="846">إلغاء الإشتراك</row>
+        <row id="Upload Image file" si="847">رفع ملف الصورة</row>
+        <row id="Upload picture" si="848">رفع الصورة</row>
+        <row id="Upload Voice file" si="849">رفع ملف الصوت</row>
+        <row id="User name" si="850">إسم المستخدم</row>
+        <row id="Users" si="851">المستخدمون</row>
+        <row id="Users contributed" si="852">مساهمة المستخدمين</row>
+        <row id="View all" si="853">مشاهدة الكل</row>
+        <row id="View Details" si="854">عرض التفاصيل</row>
+        <row id="Voice" si="855">الصوت</row>
+        <row id="Voice in" si="856">الصوت بـ</row>
+        <row id="Voice in Arab" si="857">الصوت بالعربية</row>
+        <row id="Voices" si="858">الأصوات</row>
+        <row id="WELCOME TO ARINLANG" si="859">مرحباً بكم في العربية في اللغات</row>
+        <row id="Word" si="860">الكلمة</row>
+        <row id="Word Categories" si="861">قسم الكلمة</row>
+        <row id="Words" si="862">الكلمات</row>
+        <row id="Words Clauses Collection" si="863">مجموعة فقرات الكلمات</row>
+        <row id="Words Collection" si="864">مجموعة كلمات</row>
+        <row id="You have successfully Logged out" si="865">تم تسجيل خروجك بنجاح</row>
+      </node>
+      <node class="TResXNode" name="SharedResource.en-US.resx" windowsforms="wf20">
+        <row id="Access denied" si="866">Access denied</row>
+        <row id="Accountant" si="867">Accountant</row>
+        <row id="Accountant's office" si="868">Accountant's office</row>
+        <row id="Active" si="869">Active</row>
+        <row id="Activity" si="870">Activity</row>
+        <row id="Activity types" si="871">Activity types</row>
+        <row id="Add" si="872">Add</row>
+        <row id="Add charity" si="873">Add charity</row>
+        <row id="Add city" si="874">Add city</row>
+        <row id="Add phone number" si="875">Add phone number</row>
+        <row id="Address" si="876">Address</row>
+        <row id="AddressSPPT" si="877">Address</row>
+        <row id="Admin" si="878">Admin</row>
+        <row id="Admin email is invalid" si="879">Admin email is invalid</row>
+        <row id="Admin email is required" si="880">Admin email is required</row>
+        <row id="Admin panel" si="881">Admin panel</row>
+        <row id="Administrator's office" si="882">Administrator's office</row>
+        <row id="Advertisement" si="883">Advertisement</row>
+        <row id="All news" si="884">All news</row>
+        <row id="All rights reserved" si="885">All rights reserved</row>
+        <row id="Amount" si="886">Amount</row>
+        <row id="Annual membership fee" si="887">Annual membership fee</row>
+        <row id="Assigned to menu" si="888">Assigned to menu</row>
+        <row id="Author" si="889">Author</row>
+        <row id="Author position" si="890">Author position</row>
+        <row id="Back to home page" si="891">Back to home page</row>
+        <row id="Banners" si="892">Banners</row>
+        <row id="Birth place" si="893">Birth place</row>
+        <row id="Birth Place including region name" si="894">Birth Place including region name</row>
+        <row id="Brief statistics" si="895">Brief statistics</row>
+        <row id="Call backs" si="896">Call backs</row>
+        <row id="Cancelled" si="897">Cancelled</row>
+        <row id="Category" si="898">Category</row>
+        <row id="Change" si="899">Change</row>
+        <row id="Change password" si="900">Change password</row>
+        <row id="Change user password" si="901">Change user password</row>
+        <row id="Charity" si="902">Charity</row>
+        <row id="Choose a logo" si="903">Choose a logo</row>
+        <row id="Choose a picture" si="904">Choose a picture</row>
+        <row id="Choose a pictures" si="905">Choose a pictures</row>
+        <row id="Choose newspaper" si="906">Choose newspaper</row>
+        <row id="Choose year" si="907">Choose year</row>
+        <row id="Cities" si="908">Cities</row>
+        <row id="City" si="909">City</row>
+        <row id="Collected" si="910">Collected</row>
+        <row id="Completed date" si="911">Completed date</row>
+        <row id="Completed projects" si="912">Completed projects</row>
+        <row id="Confirm password" si="913">Confirm password</row>
+        <row id="Confirmed" si="914">Confirmed</row>
+        <row id="Contact person" si="915">Contact person</row>
+        <row id="Contact person name" si="916">Contact person name</row>
+        <row id="Contact us" si="917">Contact us</row>
+        <row id="Content" si="918">Content</row>
+        <row id="Content-Manager" si="919">Content-Manager</row>
+        <row id="Copy of registration certificate or USREO" si="920">Copy of registration certificate or USREO</row>
+        <row id="Copy of the declaration or certificate" si="921">Copy of the declaration or certificate</row>
+        <row id="Copy of the final income statement (last year)" si="922">Copy of the final income statement (last year)</row>
+        <row id="Copy of the passport" si="923">Copy of the passport</row>
+        <row id="Copy of the patent or statutes" si="924">Copy of the patent or statutes</row>
+        <row id="Copy of the precept" si="925">Copy of the precept</row>
+        <row id="Create activity type" si="926">Create activity type</row>
+        <row id="Create advert" si="927">Create advert</row>
+        <row id="Create banner" si="928">Create banner</row>
+        <row id="Create call backs" si="929">Create call backs</row>
+        <row id="Create city" si="930">Create city</row>
+        <row id="Create department" si="931">Create department</row>
+        <row id="Create industry" si="932">Create industry</row>
+        <row id="Create menu" si="933">Create menu</row>
+        <row id="Create news" si="934">Create news</row>
+        <row id="Create news category" si="935">Create news category</row>
+        <row id="Create news paper" si="936">Create news paper</row>
+        <row id="Create newspaper data" si="937">Create newspaper data</row>
+        <row id="Create online trading" si="938">Create online trading</row>
+        <row id="Create page" si="939">Create page</row>
+        <row id="Create partner" si="940">Create partner</row>
+        <row id="Create project" si="941">Create project</row>
+        <row id="Create representative" si="942">Create representative</row>
+        <row id="Create saying" si="943">Create saying</row>
+        <row id="Create service type" si="944">Create service type</row>
+        <row id="Create services" si="945">Create services</row>
+        <row id="Create trading house" si="946">Create trading house</row>
+        <row id="Create user account" si="947">Create user account</row>
+        <row id="Create widget" si="948">Create widget</row>
+        <row id="Create yearly payment request and send declaration for amount confirmation" si="949">Create yearly payment request and send declaration for amount confirmation</row>
+        <row id="Created" si="950">Created</row>
+        <row id="Created date" si="951">Created date</row>
+        <row id="Currency rate" si="952">Currency rate</row>
+        <row id="Data" si="953">Data</row>
+        <row id="Date created" si="954">Date created</row>
+        <row id="Date of birth" si="955">Date of birth</row>
+        <row id="Date publish" si="956">Date publish</row>
+        <row id="Date search" si="957">Date search</row>
+        <row id="Declaration images" si="958">Declaration images</row>
+        <row id="Declaration management" si="959">Declaration management</row>
+        <row id="Declaration scans" si="960">Declaration scans</row>
+        <row id="Declarations" si="961">Declarations</row>
+        <row id="Delete previous picture" si="962">Delete previous picture</row>
+        <row id="Departments" si="963">Departments</row>
+        <row id="Description" si="964">Description</row>
+        <row id="Detailed statistics" si="965">Detailed statistics</row>
+        <row id="Direction of activity" si="966">Direction of activity</row>
+        <row id="Download" si="967">Download</row>
+        <row id="Edit" si="968">Edit</row>
+        <row id="Edit activity type" si="969">Edit activity type</row>
+        <row id="Edit advert" si="970">Edit advert</row>
+        <row id="Edit banner" si="971">Edit banner</row>
+        <row id="Edit call backs" si="972">Edit call backs</row>
+        <row id="Edit charity" si="973">Edit charity</row>
+        <row id="Edit department" si="974">Edit department</row>
+        <row id="Edit industry" si="975">Edit industry</row>
+        <row id="Edit menu" si="976">Edit menu</row>
+        <row id="Edit news" si="977">Edit news</row>
+        <row id="Edit news category" si="978">Edit news category</row>
+        <row id="Edit news paper" si="979">Edit news paper</row>
+        <row id="Edit newspaper data" si="980">Edit newspaper data</row>
+        <row id="Edit online trading" si="981">Edit online trading</row>
+        <row id="Edit page" si="982">Edit page</row>
+        <row id="Edit partner" si="983">Edit partner</row>
+        <row id="Edit project" si="984">Edit project</row>
+        <row id="Edit Representative" si="985">Edit Representative</row>
+        <row id="Edit saying" si="986">Edit saying</row>
+        <row id="Edit service type" si="987">Edit service type</row>
+        <row id="Edit services" si="988">Edit services</row>
+        <row id="Edit trading house" si="989">Edit trading house</row>
+        <row id="Edit user account" si="990">Edit user account</row>
+        <row id="Edit widget" si="991">Edit widget</row>
+        <row id="Edit yearly payment request" si="992">Edit yearly payment request</row>
+        <row id="Edit yearly payment request and send declaration for amount confirmation" si="993">Edit yearly payment request and send declarion for amount confirmation</row>
+        <row id="Edit сity" si="994">Edit сity</row>
+        <row id="Email" si="995">Email</row>
+        <row id="Email fiels is empty or invalid" si="996">Email fiels is empty or invalid</row>
+        <row id="Email header" si="997">Email header</row>
+        <row id="Email is empty" si="998">Email is empty</row>
+        <row id="Email is invalid" si="999">Email is invalid</row>
+        <row id="EmailSPPT" si="1000">Email</row>
+        <row id="Employee" si="1001">Employee</row>
+        <row id="End date" si="1002">End date</row>
+        <row id="End of the working week" si="1003">End of the working week</row>
+        <row id="Enter activity" si="1004">Enter activity</row>
+        <row id="Enter address" si="1005">Enter address</row>
+        <row id="Enter author name" si="1006">Enter author name</row>
+        <row id="Enter author position" si="1007">Enter author position</row>
+        <row id="Enter contact person name" si="1008">Enter contact person name</row>
+        <row id="Enter date of birth" si="1009">Enter date of birth</row>
+        <row id="Enter department name" si="1010">Enter department name</row>
+        <row id="Enter description" si="1011">Enter description</row>
+        <row id="Enter email header" si="1012">Enter email header</row>
+        <row id="Enter footer" si="1013">Enter footer</row>
+        <row id="Enter industry name" si="1014">Enter industry name</row>
+        <row id="Enter membership date" si="1015">Enter membership date</row>
+        <row id="Enter message" si="1016">Enter message</row>
+        <row id="Enter name" si="1017">Enter name</row>
+        <row id="Enter organization address" si="1018">Enter organization address</row>
+        <row id="Enter organization name" si="1019">Enter organization name</row>
+        <row id="Enter passport issue date" si="1020">Enter passport issue date</row>
+        <row id="Enter passport issued organization" si="1021">Enter passport issued organization</row>
+        <row id="Enter passport serial number" si="1022">Enter passport serial number</row>
+        <row id="Enter password" si="1023">Enter password</row>
+        <row id="Enter phone number" si="1024">Enter phone Number</row>
+        <row id="Enter registration place (permanent address by passport)" si="1025">Enter registration place (permanent address by passport)</row>
+        <row id="Enter saying" si="1026">Enter saying</row>
+        <row id="Enter short description" si="1027">Enter short description</row>
+        <row id="Enter subject" si="1028">Enter subject</row>
+        <row id="Enter title" si="1029">Enter title</row>
+        <row id="Enter your email address" si="1030">Enter your email address</row>
+        <row id="Entrance fee" si="1031">Entrance fee</row>
+        <row id="Entrepreneur" si="1032">Entrepreneur</row>
+        <row id="Entrepreneur membership" si="1033">Entrepreneur membership</row>
+        <row id="Entrepreneur's office" si="1034">Entrepreneur's office</row>
+        <row id="Entrepreneurs" si="1035">Entrepreneurs</row>
+        <row id="entrepreneurs trained" si="1036">entrepreneurs trained</row>
+        <row id="ENTREPRENEURS WITH ANNUAL PROFIT MORE THAN 200 000 MANAT" si="1037">ENTREPRENEURS WITH ANNUAL PROFIT MORE THAN 200 000 MANAT</row>
+        <row id="ENTREPRENEURS WITH ANNUAL PROFIT UP TO 200 000 MANATS" si="1038">ENTREPRENEURS WITH ANNUAL PROFIT UP TO 200 000 MANATS</row>
+        <row id="Fax" si="1039">Fax</row>
+        <row id="Female" si="1040">Female</row>
+        <row id="Field of activity" si="1041">Field of activity</row>
+        <row id="Field of activity (Trading, Manufacturing, etc.)" si="1042">Field of activity (Trading, Manufacturing, etc.)</row>
+        <row id="File management" si="1043">File management</row>
+        <row id="First name" si="1044">First name</row>
+        <row id="Footer" si="1045">Footer</row>
+        <row id="Forgot your password?" si="1046">Forgot your password?</row>
+        <row id="Friday" si="1047">Friday</row>
+        <row id="Full name" si="1048">Full name</row>
+        <row id="Home" si="1049">Home</row>
+        <row id="I-AS 000000 or A0000000" si="1050">I-AS 000000 or A0000000</row>
+        <row id="i/n" si="1051">i/n</row>
+        <row id="Industries" si="1052">Industries</row>
+        <row id="Invalid email address" si="1053">Invalid email address</row>
+        <row id="Last name" si="1054">Last name</row>
+        <row id="Legal person" si="1055">Legal person</row>
+        <row id="Legal person membership" si="1056">Legal person membership</row>
+        <row id="Link" si="1057">Link</row>
+        <row id="Log in" si="1058">Log in</row>
+        <row id="Log out" si="1059">Log out</row>
+        <row id="Login" si="1060">Login</row>
+        <row id="Login account" si="1061">Login account</row>
+        <row id="Login to your account" si="1062">Login to your account</row>
+        <row id="Logo" si="1063">Logo</row>
+        <row id="Main image" si="1064">Main image</row>
+        <row id="Male" si="1065">Male</row>
+        <row id="manat" si="1066">manat</row>
+        <row id="Membership amount" si="1067">Membership amount</row>
+        <row id="Membership date" si="1068">Membership date</row>
+        <row id="Membership fee" si="1069">Membership fee</row>
+        <row id="Membership request status" si="1070">Membership request status</row>
+        <row id="Membership requests" si="1071">Membership requests</row>
+        <row id="Menu" si="1072">Menu</row>
+        <row id="Menu to assign" si="1073">Menu to assign</row>
+        <row id="Message" si="1074">Message</row>
+        <row id="Monday" si="1075">Monday</row>
+        <row id="More details" si="1076">More details</row>
+        <row id="Name" si="1077">Name</row>
+        <row id="Native productions" si="1078">Native productions</row>
+        <row id="New items of domestic production" si="1079">New items of domestic production</row>
+        <row id="New password" si="1080">New password</row>
+        <row id="News" si="1081">News</row>
+        <row id="News categories" si="1082">News categories</row>
+        <row id="News category" si="1083">News category</row>
+        <row id="News paper" si="1084">News paper</row>
+        <row id="News papers" si="1085">News papers</row>
+        <row id="Newspaper data" si="1086">Newspaper data</row>
+        <row id="Newspaper pictures" si="1087">Newspaper pictures</row>
+        <row id="Newspapers" si="1088">Newspapers</row>
+        <row id="No photo" si="1089">No image</row>
+        <row id="Not paid!" si="1090">Not paid!</row>
+        <row id="Not paid! Amount refunded" si="1091">Not paid! Amount refunded</row>
+        <row id="Not paid! Authorization cancelled" si="1092">Not paid! Authorization cancelled</row>
+        <row id="Not paid! Authorization initiated by issuing bank ACS" si="1093">Not paid! Authorization initiated by issuing bank ACS</row>
+        <row id="Not paid! Authorization rejected" si="1094">Not paid! Authorization rejected</row>
+        <row id="Not paid! Order registered in the bank" si="1095">Not paid! Order registered in the bank</row>
+        <row id="Not paid! Preauthorized amount frozen for 2 factor authorization" si="1096">Not paid! Preauthorized amount frozen for 2 factor authorization</row>
+        <row id="Not set" si="1097">Not set</row>
+        <row id="Number of results found" si="1098">Number of results found</row>
+        <row id="On the lef" si="1099">On the lef</row>
+        <row id="On the middle" si="1100">On the middle</row>
+        <row id="On the right" si="1101">On the right</row>
+        <row id="Online trading" si="1102">Online trading</row>
+        <row id="Online trading category" si="1103">Online trading category</row>
+        <row id="Online tradings" si="1104">Online tradings</row>
+        <row id="or drag" si="1105">or drag</row>
+        <row id="or drag picture" si="1106">or drag picture</row>
+        <row id="Order" si="1107">Order</row>
+        <row id="Order payed successfully" si="1108">Order payed successfully</row>
+        <row id="Organization" si="1109">Organization</row>
+        <row id="Organization address(with out city name)" si="1110">Organization address(with out city name)</row>
+        <row id="Organization data" si="1111">Organization data</row>
+        <row id="Organization name" si="1112">Organization name</row>
+        <row id="Organizations" si="1113">Organizations</row>
+        <row id="Our achievements" si="1114">Our achievements</row>
+        <row id="Our contacts" si="1115">Our contacts</row>
+        <row id="Our services" si="1116">Our services</row>
+        <row id="Pages" si="1117">Pages</row>
+        <row id="Panel" si="1118">Panel</row>
+        <row id="Parent menu" si="1119">Parent menu</row>
+        <row id="Partners" si="1120">Partners</row>
+        <row id="Passport issue date" si="1121">Passport issue date</row>
+        <row id="Passport issued by" si="1122">Passport issued by</row>
+        <row id="Passport serial number" si="1123">Passport serial number</row>
+        <row id="Password" si="1124">Password</row>
+        <row id="Password and confirm password does not match" si="1125">Password and confirm password does not match</row>
+        <row id="Pay" si="1126">Pay</row>
+        <row id="Payment request has been confirmed" si="1127">Payment request has been confirmed</row>
+        <row id="Payment request management" si="1128">Payment request management</row>
+        <row id="Payment request pending" si="1129">Payment request pending</row>
+        <row id="Payment requests for a year" si="1130">Payment requests for a year</row>
+        <row id="Payment year" si="1131">Payment year</row>
+        <row id="Payments" si="1132">Payments</row>
+        <row id="Pending" si="1133">Pending</row>
+        <row id="Personal area" si="1134">Personal area</row>
+        <row id="Personal card in a specific form" si="1135">Personal card in a specific form</row>
+        <row id="Phone" si="1136">Phone</row>
+        <row id="Phone number" si="1137">Phone number</row>
+        <row id="PhoneSPPT" si="1138">Phone</row>
+        <row id="Picture" si="1139">Picture</row>
+        <row id="Picture for mobile versions" si="1140">Picture for mobile versions</row>
+        <row id="Picture(*.svg format)" si="1141">Picture(*.svg format)</row>
+        <row id="Pictures" si="1142">Pictures</row>
+        <row id="Play" si="1143">Play</row>
+        <row id="Please choose a picture" si="1144">Please choose a picture</row>
+        <row id="Please choose year" si="1145">Please choose year</row>
+        <row id="Please enter email" si="1146">Please enter email</row>
+        <row id="Please enter phone number" si="1147">Please enter phone number</row>
+        <row id="Please enter valid fax number" si="1148">Please enter valid fax number</row>
+        <row id="Please enter valid phone number" si="1149">Please enter valid phone number</row>
+        <row id="Please select a day of the week" si="1150">Please select a day of the week</row>
+        <row id="Please select city" si="1151">Please select city</row>
+        <row id="Please select created date" si="1152">Please select created date</row>
+        <row id="Please select end date" si="1153">Please select end date</row>
+        <row id="Please select menu to assign" si="1154">Please select menu to assign</row>
+        <row id="Please select newspaper publish date" si="1155">Please select newspaper publish date</row>
+        <row id="Please select position" si="1156">Please select position</row>
+        <row id="Please select publish date" si="1157">Please select publish date</row>
+        <row id="Please select start date" si="1158">Please select start date</row>
+        <row id="Please select start time" si="1159">Please select start time</row>
+        <row id="Please select user type" si="1160">Please select user type</row>
+        <row id="Please upload logo" si="1161">Please upload logo</row>
+        <row id="Position" si="1162">Position</row>
+        <row id="Press releases" si="1163">Press releases</row>
+        <row id="Profile" si="1164">Profile</row>
+        <row id="Project completed date" si="1165">Project completed date</row>
+        <row id="Project end date" si="1166">Project end date</row>
+        <row id="Project start date" si="1167">Project start date</row>
+        <row id="Projects" si="1168">Projects</row>
+        <row id="projects completed successfully" si="1169">projects completed successfully</row>
+        <row id="Registration place" si="1170">Registration place</row>
+        <row id="Registration place or permanent address" si="1171">Registration place or permanent address</row>
+        <row id="Registration-Manager" si="1172">Registration-Manager</row>
+        <row id="Rejected because" si="1173">Rejected because</row>
+        <row id="Remember me?" si="1174">Remember me?</row>
+        <row id="Representatives" si="1175">Representatives</row>
+        <row id="Request" si="1176">Request</row>
+        <row id="Return" si="1177">Return</row>
+        <row id="Reviewed" si="1178">Reviewed</row>
+        <row id="Role" si="1179">Role</row>
+        <row id="sample of the enquery form, print it, fill it out, sign it, scan it and upload" si="1180">sample of the enquery form, print it, fill it out, sign it, scan it and upload</row>
+        <row id="sample of the private form, print it, fill it out, sign it, scan it and upload" si="1181">sample of the private form, print it, fill it out, sign it, scan it and upload</row>
+        <row id="Saturday" si="1182">Saturday</row>
+        <row id="Saying" si="1183">Saying</row>
+        <row id="Sayings" si="1184">Sayings</row>
+        <row id="Scanned copy of declaration" si="1185">Scanned copy of declaration</row>
+        <row id="Scanned copy of enquery form" si="1186">Scanned copy of enquery form</row>
+        <row id="Scanned copy of income report (for last year)" si="1187">Scanned copy of income report (for last year)</row>
+        <row id="Scanned copy of patent" si="1188">Scanned copy of patent</row>
+        <row id="Scanned copy of precept" si="1189">Scanned copy of precept</row>
+        <row id="Scanned copy of private form" si="1190">Scanned copy of private form</row>
+        <row id="Scanned copy of registration licence" si="1191">Scanned copy of registration licence</row>
+        <row id="Scanned copy of school certificate" si="1192">Scanned copy of school certificate</row>
+        <row id="Scanned copy of your passport" si="1193">Scanned copy of your passport</row>
+        <row id="School certificate copy" si="1194">School certificate copy</row>
+        <row id="Search" si="1195">Search</row>
+        <row id="Second name" si="1196">Second name</row>
+        <row id="Select activity type" si="1197">Select activity type</row>
+        <row id="Select category" si="1198">Select category</row>
+        <row id="Select city" si="1199">Select сity</row>
+        <row id="Select membership status" si="1200">Select membership status</row>
+        <row id="Select news category" si="1201">Select news category</row>
+        <row id="Select newspaper" si="1202">Select newspaper</row>
+        <row id="Select photo" si="1203">Select picture</row>
+        <row id="Select service" si="1204">Select service</row>
+        <row id="Select sex" si="1205">Select sex</row>
+        <row id="Select user type" si="1206">Select user type</row>
+        <row id="Send" si="1207">Send</row>
+        <row id="Send email" si="1208">Send email</row>
+        <row id="Send request" si="1209">Send request</row>
+        <row id="Send to" si="1210">Send to</row>
+        <row id="Service" si="1211">Service</row>
+        <row id="Service type" si="1212">Service type</row>
+        <row id="Service types" si="1213">Service types</row>
+        <row id="Services" si="1214">Services</row>
+        <row id="Settings" si="1215">Settings</row>
+        <row id="Sex" si="1216">Sex</row>
+        <row id="Short description" si="1217">Short description</row>
+        <row id="Show more" si="1218">Show more</row>
+        <row id="Slider" si="1219">Slider</row>
+        <row id="Something went wrong please try again" si="1220">Something went wrong please try again</row>
+        <row id="Start date" si="1221">Start date</row>
+        <row id="Start of the working week" si="1222">Start of the working week</row>
+        <row id="Statement in a specific form" si="1223">Statement in a specific form</row>
+        <row id="Status" si="1224">Status</row>
+        <row id="String1" si="1225">Scanned copy of enquery form</row>
+        <row id="Subject" si="1226">Subject</row>
+        <row id="Subscribe" si="1227">Subscribe</row>
+        <row id="Subscribe to the newsletter and events" si="1228">Subscribe to the newsletter and events</row>
+        <row id="Subsrcibers" si="1229">Subsrcibers</row>
+        <row id="Success" si="1230">Success</row>
+        <row id="Sunday" si="1231">Sunday</row>
+        <row id="Tariff management" si="1232">Tariff management</row>
+        <row id="Tariffs" si="1233">Tariffs</row>
+        <row id="Tax code" si="1234">Tax code</row>
+        <row id="This order have been paid" si="1235">This order have been paid</row>
+        <row id="Thursday" si="1236">Thursday</row>
+        <row id="Title" si="1237">Title</row>
+        <row id="To contact us" si="1238">To contact us</row>
+        <row id="To find" si="1239">To find</row>
+        <row id="Total" si="1240">Total</row>
+        <row id="Trading houses" si="1241">Trading houses</row>
+        <row id="Transactions" si="1242">Transactions</row>
+        <row id="Tuesday" si="1243">Tuesday</row>
+        <row id="UIET" si="1244">TUIE</row>
+        <row id="UIET departments and their contacts" si="1245">TUIE departments and their contacts</row>
+        <row id="UIET news and events" si="1246">TUIE news and events</row>
+        <row id="Under review" si="1247">Under review</row>
+        <row id="Union of industrialists and entrepreneurs of turkmenistan" si="1248">The Union of Industrialists and Entrepreneurs of Turkmenistan</row>
+        <row id="Union of industrialists and entrepreneurs of turkmenistan with br" class="TTagRow" si="1249">The Union of Industrialists and &lt;br /> Entrepreneurs of Turkmenistan</row>
+        <row id="Unsublink" si="1250">Unsublink</row>
+        <row id="Unsubscribe" si="1251">Unsubscribe</row>
+        <row id="Unsubscribe from UIET web newsletter and events" si="1252">Unsubscribe from TUIE web newsletter and events</row>
+        <row id="Unsubscribed" si="1253">Unsubscribed</row>
+        <row id="Upload declaration obtained from tax office" si="1254">Upload declaration obtained from tax office</row>
+        <row id="Upload main picture" si="1255">Upload main picture</row>
+        <row id="Upload picture" si="1256">Upload picture</row>
+        <row id="Upload picture (*.svg)" si="1257">Upload picture (*.svg)</row>
+        <row id="Upload pictures" si="1258">Upload pictures</row>
+        <row id="Upload your data" si="1259">Upload your data</row>
+        <row id="User" si="1260">User</row>
+        <row id="User name" si="1261">User name</row>
+        <row id="User type" si="1262">User type</row>
+        <row id="Users" si="1263">Users</row>
+        <row id="Value" si="1264">Value</row>
+        <row id="Web site" si="1265">Web site</row>
+        <row id="Web URL" si="1266">Web URL</row>
+        <row id="Wednesday" si="1267">Wednesday</row>
+        <row id="What do you want to find?" si="1268">What do you want to find?</row>
+        <row id="Widgets" si="1269">Widgets</row>
+        <row id="Work ends at" si="1270">Work ends at</row>
+        <row id="Work starts at" si="1271">Work starts at</row>
+        <row id="Working day ends on" si="1272">Working day ends on</row>
+        <row id="Working day starts on" si="1273">Working day starts on</row>
+        <row id="Working hours" si="1274">Working hours</row>
+        <row id="Year for payment" si="1275">Year for payment</row>
+        <row id="Yearly payment for year" si="1276">Yearly payment for year</row>
+        <row id="Yearly payment request" si="1277">Yearly payment request</row>
+        <row id="years with you" si="1278">years with you</row>
+        <row id="You do not have access to this resource" si="1279">You do not have access to this resource</row>
+        <row id="You have successfully applied for Membership! We will reach you soon" si="1280">You have successfully applied for Membership! We will reach you soon</row>
+      </node>
+    </node>
+    <assemblies>
+      <assembly>C:\Program Files\Soluling\Core30.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Core30Library.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Core30x86.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net20Library.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net40Library.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net50.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net50x86.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net60.dll</assembly>
+      <assembly>C:\Program Files\Soluling\Net60x86.dll</assembly>
+      <assembly>C:\Program Files\Soluling\WinRtLibrary.dll</assembly>
+    </assemblies>
+    <extractor localizervariables="SharedLocalizer"/>
+    <configurations>
+      <configuration name="Default" satelliteassemblyoptions="[soDeleteLocalizedResources]"/>
+    </configurations>
+  </node>
+  <terminology>
+    <shared>
+      <item name="Local" type="TSqliteTermbase"/>
+      <item name="Microsoft" type="TMicrosoftTerminologyServiceGlossary"/>
+    </shared>
+  </terminology>
+  <tm>
+    <shared>
+      <item name="Local" type="TSqliteTranslationMemory"/>
+      <item name="Shadow translation memory" type="TCacheTranslationMemory"/>
+    </shared>
+  </tm>
+  <mt>
+    <shared/>
+  </mt>
+  <duplicates>
+  </duplicates>
+</project>

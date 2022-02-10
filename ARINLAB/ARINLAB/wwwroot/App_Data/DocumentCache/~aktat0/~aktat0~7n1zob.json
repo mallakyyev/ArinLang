@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "aktat0",
+  "CachePdfKey": "aktat0/aktat0-md9rl0.pdf",
+  "CacheXpzKey": "aktat0/aktat0-7n1zob.xpz",
+  "CacheInfoKey": "aktat0/aktat0-7n1zob.json",
+  "CacheCopyKey": null,
+  "Document": "ecd8a4124d3b4b6aa28de2969eeb0b94.jpg",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "ecd8a4124d3b4b6aa28de2969eeb0b94.jpg",
+  "InputOptions": {
+    "Format": "Jpg",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "aktat0",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

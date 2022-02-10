@@ -1,0 +1,82 @@
+.content_2 {
+    margin: 100px auto 0 300px;
+}
+
+.content_wrapper_2 {
+    width: 700px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    grid-template-rows: repeat(2, 50px);
+    gap: 20px;
+}
+
+.input_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    margin: 0 auto 0 490px;
+}
+
+.input_wrapper input {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: none;
+    height: 45px;
+}
+.input_wrapper input:focus {
+    outline-color: #198754;
+}
+
+#choose_audio {
+    margin-top: 5px;
+}
+
+.new_words_container {
+    width: 750px;
+    padding: 20px;
+    display: flex;
+    border: 1px solid black;
+    margin: 100px auto 600px 395px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    margin: 0 27px 0 auto;
+}
+
+.new_word {
+    padding: 7px;
+    border: 1px solid black;
+    text-align: center;
+    height: 35px;
+    width: 300px;
+    margin: 10px 0 10px 0;
+}
+
+.new_word p {
+    margin: 0;
+}
+
+.word_title_2 {
+    display: flex;
+}
+
+.word_title_2 .tm {
+    margin-left: 260px;
+    margin-right: 230px;
+}
+
+#add_btn {
+    margin: 0 auto 0 350px;
+}
+
+.word_inputs {
+    display: none;
+}
+
+#close {
+    width: 50px;
+    margin-left: 350px;
+}

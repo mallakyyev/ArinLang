@@ -1,0 +1,149 @@
+﻿@page
+@model RegisterModel
+@using ARINLAB
+@using DAL.Models 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-default">Register</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Use another service to register.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>*@
+
+<div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col" style="margin-bottom: 50px; margin-top: 50px;">
+    <div class="p-10 bg-white shadow-md rounded reg" style="align-items:center">
+        <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+            @SharedLocalizer["Registration Form"]
+        </div>
+        <span class="max-w-xs block text-center text-sm mt-2 text-gray-400"> </span>
+        <style>
+
+            .reg {
+                width: 100%;
+            }
+            @@media only screen and (min-width: 768px) {
+                .reg { width:65%;}
+            }
+        </style>
+        @if (Model.emailInUse)
+        {
+            <span class="text-danger" style="color:red">@SharedLocalizer["Email already in use"]</span>
+        }
+
+    <form class="input-forms flex flex-col py-2" id="account" method="post">
+
+        <input asp-for="Input.Name" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Name"]" />
+        <span asp-validation-for="Input.Name" class="text-danger" style="color:red"></span>
+
+        <input asp-for="Input.FamilyName" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["FamilyName"]" />
+        <span asp-validation-for="Input.FamilyName" class="text-danger" style="color:red"></span>
+
+        <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Email"]" />
+        <span asp-validation-for="Input.Email" class="text-danger" style="color:red"></span>
+        
+        <select asp-for="Input.CountryId" asp-items="@Model.l" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded">
+            <option>@SharedLocalizer["Select Country"]</option>
+        </select>        
+        <span asp-validation-for="Input.CountryId" class="text-danger" style="color:red"></span>
+        
+        <input asp-for="Input.PhoneNumber" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Phone Number"]" />
+        <span asp-validation-for="Input.PhoneNumber" class="text-danger" style="color:red"></span>
+
+
+
+        <select asp-for="Input.Gender" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Gender"]">
+            <option value="1" selected="selected">@SharedLocalizer["Male"]</option>
+            <option value="2">@SharedLocalizer["Female"]</option>
+        </select>
+        <span asp-validation-for="Input.Gender" class="text-danger" style="color:red"></span>
+
+
+        <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
+        <span asp-validation-for="Input.Password" class="text-danger" style="color:red"></span>
+
+
+        <input asp-for="Input.ConfirmPassword" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder=@SharedLocalizer["Password Confirm"] />
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger" style="color:red"></span>
+
+        <input asp-for="Input.Occupation" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Occupation"]" />
+
+        <input asp-for="Input.MoreInfor" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["More Information"]" />
+
+        @*<br />
+        <label asp-for="Input.RememberMe">
+            <input asp-for="Input.RememberMe" />
+            @Html.DisplayNameFor(m => m.Input.RememberMe)
+        </label>*@
+
+        <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Register"]</button>
+    </form>
+
+        @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
+            <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
+        </div>*@
+    </div>
+    @*<div class="text-center mt-4 max-w-sm">
+            Еще не зарегистрировались?
+            <a href="sign-up.html" class="text-link hover:text-secondary">Регистрация</a>
+        </div>*@
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}

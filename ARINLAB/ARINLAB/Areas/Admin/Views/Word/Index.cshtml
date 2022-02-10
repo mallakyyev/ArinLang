@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using DAL.Models.Dto
+@model List<WordDto>
+
+<link href="~/Admin/assets/css/plugins/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Words</h1>
+
+<!--Basic Start-->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@SharedLocalizer["#"]</th>
+                        <th scope="col">@SharedLocalizer["Arab word"]</th>
+                        <th scope="col">@SharedLocalizer["Translation to Other Word"]</th>
+                        <th scope="col">@SharedLocalizer["Dictionary"]</th>
+                        <th scope="col">@SharedLocalizer["Approve"]</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Number</th>
+
+                                <td>@item.ArabWord</td>
+                                <td>@item.OtherWord</td>
+                                <td>@item.Dictionary</td>
+                                <td>
+                                    <div class="adomx-checkbox-radio-group inline">
+                                        <label class="adomx-switch success">
+
+                                            <input id="approve@(item.Id)" type="checkbox" @(item.IsApproved ? "checked" : "")>
+
+                                            <i class="lever"></i>
+                                        </label>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Word" asp-action="EditWord" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
+                                    <a asp-area="Admin" asp-controller="Word" asp-action="EditVoice" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-volume-up"></i></button></a>
+
+                                    <a asp-area="Admin" asp-controller="Word" asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
+                                    <button type="button" id="@(item.Id)" class="sweetalert sweetalert-multiple btn button-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul class="pagination justify-content-end" style="margin:20px 0">
+        @{
+            int pg = (int)ViewBag.page;
+            int totalPages = ((int)ViewBag.total / SD.pageSize) + 1;
+        }
+        @for (int i = 1; i <= totalPages; ++i)
+        {
+            <li class="page-item"><a class="page-link" asp-area="Admin" asp-controller="Word" asp-action="List" asp-route-page="@i" asp-route-count="@SD.pageSize">@i</a></li>
+        }
+    </ul>
+</div>
+
+<!--Basic End-->
+
+@{
+    string text = ViewBag.text;
+    string text_del = ViewBag.text_del;
+}
+
+<button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
+@if (!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <script>
+            const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
+            checkbox@(item.Id).addEventListener('change', (event) => {
+                if (event.currentTarget.checked) {
+                    window.location.href = "/Admin/Word/@item.Id/true/@pg";
+                } else {
+                    window.location.href = "/Admin/Word/@item.Id/false/@pg";
+                }
+            })
+        </script>
+    }
+}

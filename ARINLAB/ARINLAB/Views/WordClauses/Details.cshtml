@@ -1,0 +1,274 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using ARINLAB.Areas.Admin.Utils
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer localizer
+@using DAL.Models.Dto
+@using System.Globalization
+@using ARINLAB.Models
+@model List<DAL.Models.Dto.AudioFileForClauseDto>
+@{
+    string dictName = "";
+    ViewData["Title"] = "Index";
+    EditWordClauseDto m = null;
+    bool ress = false;
+    if (ViewBag.RatingResult != null)
+        ress = (bool)(ViewBag.RatingResult);
+    if (ViewBag.Model != null)
+    {
+        m = ((EditWordClauseDto)ViewBag.Model);
+    }
+    try
+    {
+        if (ViewBag.Dictionaries != null)
+        {
+            var getdictName = ((List<DAL.Models.Dictionary>)ViewBag.Dictionaries).SingleOrDefault(p => p.Id == m.DictionaryId);
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            if (culture == "ar")
+                dictName = getdictName.ArabTranslate;
+            else
+                dictName = getdictName.Language;
+        }
+    }
+    catch (Exception e)
+    {
+
+    }
+}
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
+            <div class="row" style="margin-right:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center" style="padding-top:20px;">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Clause"]: </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600; color:darkgreen">@m.ArabClause</label>
+                </div>
+                <div class=" col-4" style="padding-top:20px;">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in"]  @dictName: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: maroon">@m.OtherReader</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row" style="margin-right:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center" style="padding-top:20px;">
+                    <label style="font-size:24px; font-weight:600">@dictName @SharedLocalizer["Clause"]: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: darkgreen">@m.OtherClause</label>
+                </div>
+                <div class=" col-4" style="padding-top:20px;">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in Arab"]: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: maroon">@m.ArabReader</label>
+                </div>
+                
+                <div dir="ltr" style="margin-left:65%;padding-top:20px;" class="col-2">
+                    <form asp-controller="WordClauses" asp-action="SetRating" id="rtng" method="post">
+                        <input id="kartik" name="Rating" class="rating" value="@(ViewBag.Rating)" data-stars="5" data-step="0.1" title="" />
+                        <input type="hidden" value="@m.Id" name="WordClauseId" />                        
+                    </form>
+                </div>
+            </div>
+           
+            <div class="row" style="margin-right:35%; margin-top:50px;">
+                <div class="col-2"></div>
+                <div class="col-8 items-center">
+                    <label class="text-success" style="font-size:30px; font-weight:600">@SharedLocalizer["Voices"]</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="wrapper_green">
+                <div class="green_table">
+                    <div class="row_green header green">
+                        <div class="cell">
+                            @SharedLocalizer["Arab Voice"]
+                        </div>
+                        <div class="cell">
+                            @dictName @SharedLocalizer["Voice"]
+                        </div>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="row_green">
+
+                            <div class="cell" data-title="Audio">
+                                <audio id="myAudio@(item.Id)">
+                                    <source src="~/@item.ArabVoice" type="audio/mpeg">
+                                </audio>
+                                <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)')">PLAY</button>
+                                <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)')">STOP</button>
+                            </div>
+                            <div class="cell" data-title="Audio">
+                                <audio id="myAudio@(item.Id)_o">
+                                    <source src="~/@item.OtherVoice" type="audio/mpeg">
+                                </audio>
+                                <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)_o')">PLAY</button>
+                                <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)_o')">STOP</button>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+                @*<div dir="ltr" style="margin-top:20px;">
+                    <form asp-controller="WordClauses" asp-action="SetRating" method="post">
+                        <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
+                        <input type="hidden" value="@m.Id" name="WordClauseId" />
+                        <div class="form-group" style="margin-top:10px">
+                            <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
+                        </div>
+                    </form>
+                </div>*@
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
+            <div class="row" style="margin-left:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Clause"]: </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600; color:darkgreen">@m.ArabClause</label>
+                </div>
+                <div class=" col-4">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in"]  @dictName: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: maroon">@m.OtherReader</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row" style="margin-left:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center">
+                    <label style="font-size:24px; font-weight:600">@dictName @SharedLocalizer["Clause"]: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: darkgreen">@m.OtherClause</label>
+                </div>
+                <div class=" col-4">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in Arab"]: </label>
+                    <label class="text-success" style="font-size: 30px; font-weight: 600; color: maroon">@m.ArabReader</label>
+                </div>
+                <div class="col-2"></div>
+                <div style="margin-right:50%" class="col-2">
+                    <form asp-controller="WordClauses" asp-action="SetRating" id="rtng" method="post">
+                        <input id="kartik" name="Rating" class="rating" value="@(ViewBag.Rating)" data-stars="5" data-step="0.1" title="" />
+                        <input type="hidden" value="@m.Id" name="WordClauseId" />
+                    </form>
+                    @*<input id="kartik1" disabled name="Rating1" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />*@
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-left:35%; margin-top:50px;">
+                <div class="col-2"></div>
+                <div class="col-8 items-center">
+                    <label class="text-success" style="font-size:30px; font-weight:600">@SharedLocalizer["Voices"]</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="wrapper_green">
+                <div class="green_table">
+                    <div class="row_green header green">
+                        <div class="cell">
+                            @SharedLocalizer["Arab Voice"]
+                        </div>
+                        <div class="cell">
+                            @dictName @SharedLocalizer["Voice"]
+                        </div>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="row_green">
+
+                            <div class="cell" data-title="Audio">
+                                <audio id="myAudio@(item.Id)">
+                                    <source src="~/@item.ArabVoice" type="audio/mpeg">
+                                </audio>
+                                <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)')">PLAY</button>
+                                <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)')">STOP</button>
+                            </div>
+                            <div class="cell" data-title="Audio">
+                                <audio id="myAudio@(item.Id)_o">
+                                    <source src="~/@item.OtherVoice" type="audio/mpeg">
+                                </audio>
+                                <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)_o')">PLAY</button>
+                                <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)_o')">STOP</button>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+                @*<div style="margin-top:20px;">
+                    <form asp-controller="WordClauses" asp-action="SetRating" method="post">
+                        <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
+                        <input type="hidden" value="@m.Id" name="WordClauseId" />
+                        <div class="form-group" style="margin-top:10px">
+                            <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
+                        </div>
+                    </form>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+}
+
+<button id="btn" hidden></button>
+@section Scripts{
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
+    <script src="/dist/simple-notify.min.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <script src="/assets/js/OverlayScrollbars.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+         const btn = document.querySelector('#btn')
+
+        btn.addEventListener('click', () => {
+            new Notify({
+                status: 'success',
+                title: '@SharedLocalizer["Thank you"]',
+                text: '@SharedLocalizer["Your rating have been successfully recorded"]',
+                effect: 'fade',
+                speed: 300,
+                customClass: '',
+                customIcon: '',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: false,
+                autotimeout: 3000,
+                gap: 60,
+                distance: 20,
+                type: 1,
+                position: 'right top',
+                customWrapper: '',
+            })
+        });
+
+    function playAudio(id) {
+
+        var x = document.getElementById(id);
+        x.play();
+    }
+
+    function pauseAudio(id) {
+
+        var x = document.getElementById(id);
+        x.pause();
+    }
+    </script>
+    @if (ress)
+    {
+        <script>
+            document.getElementById("btn").click();
+        </script>
+    }
+}

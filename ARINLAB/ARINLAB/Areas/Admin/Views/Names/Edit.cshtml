@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using DAL.Models.Dto.NamesDTO
+@using ARINLAB.Areas.Admin.Utils
+@model NamesDto
+<link id="cus-style" rel="stylesheet" href="~/Admin/assets/css/style-primary.css">
+<div class="row">
+
+    <!--Form Wizard Horizontal Start-->
+    <div class="col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h3 class="title">Words</h3>
+            </div>
+            <div class="box-body">
+                <div class="smart-wizard">
+                    <div>
+                        <div id="step-1">
+                            <form asp-area="Admin" asp-controller="Names" asp-action="Edit" method="post">
+                                <div class="row mbn-20">
+                                    <div class="col-12 mb-20">
+                                        <h4>@SharedLocalizer["Edit Name"]</h4>
+                                    </div>
+                                    <input type="hidden" asp-for="@Model.Id" value="@Model.Id">
+                                    <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
+
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.ArabName" placeholder="@SharedLocalizer["Name in Arab"]" class="form-control"></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.OtherName" placeholder="@SharedLocalizer["Name in Other language"]" class="form-control"></div>
+                                    <div class="col-12 mb-15">
+                                        <select class="form-control form-control-lg" asp-for="@Model.DictionaryId">
+                                            @foreach (var item in (new List<DAL.Models.Dictionary>(ViewBag.Dictionaries)))
+                                            {
+                                                if (@Model.DictionaryId == item.Id)
+                                                {
+                                                    <option value="@item.Id" selected>@item.Language</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.Language</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mb-20">
+                                        <h6 class="mb-15">@SharedLocalizer["Approve Word:"]</h6>
+                                        <div class="adomx-checkbox-radio-group inline">
+
+                                            <label class="adomx-switch success">
+                                                @if (Model.IsApproved)
+                                                {
+                                                    <input type="checkbox" asp-for="@Model.IsApproved" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" asp-for="@Model.IsApproved">
+                                                }
+                                                <i class="lever"></i>
+
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Save"]"></div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Form Wizard Horizontal End-->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            @SharedLocalizer["Images"]  
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div id="gridContainer">
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            let url = `@API.GetAllNamesImages/@Model.Id`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: `@API.DeleteImage`,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                 onInitNewRow: function(e) {
+                     var url = `@Url.Action("AddImage", "Names", new { Area = "Admin" })`;
+                     window.location = url + '/' + @Model.Id ;
+                },
+                selection: {
+                    mode: "multiple"
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Documents",
+                    allowExportSelectedData: true
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: true
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: true
+                },
+
+                stateStoring: {
+                    enabled: true,
+                    type: "localStorage",
+                    storageKey: "partnersAdmin"
+                },
+                allowColumnReordering: true,
+                columns: [
+                    {
+                        dataField: "imageUri",
+                        width: 800,
+                        caption: '@SharedLocalizer["Image"]',
+                        allowFiltering: false,
+                        allowSorting: false,
+                        cellTemplate: function (container, options) {
+                            $("<div>")
+                                .append($("<img>", { "src": "/images/Names/"+options.value }))
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Approve"]',
+                                icon: "toggle-on",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("EditApprove", "Names", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString + '&approve=@(!Model.IsApproved)'
+                                }
+                            },
+                            "delete"
+                        ]
+                    }
+                ]
+            });
+        });
+    </script>
+}
+
+<button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
+@{
+    string text = ViewBag.text;
+}
+@if (!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}

@@ -1,0 +1,183 @@
+﻿@model DAL.Models.Dto.EmailsModelDTO.EmailsDTO;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer;
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    @SharedLocalizer["Send email"]
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="gridContainer">
+                <form asp-action="SendEmail" id="form" enctype="multipart/form-data">
+                    <div class="col-md-12">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <input type="hidden" asp-for="Id" />
+
+                                <div class="form-group">
+                                    <label>@SharedLocalizer["Email header"] </label>
+                                    <div id="header"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@SharedLocalizer["Subject"] </label>
+                                    <div id="ind-name"></div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@SharedLocalizer["Message"] *</label>
+                                    @*<textarea class="form-control" name="ProductTranslates[@lngIndex].FullDescription" rows="3" required></textarea>*@
+                                    <div id="description-editor"></div>
+                                </div>
+                                <br />
+
+
+                                <script>
+                                    $(function () {
+                                         $("#adminEmail").dxTextBox({
+                                            name: "AdminEmail",
+
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Admin email is required"]'
+                                            },
+                                                {
+                                                    type: "email",
+                                                    message:'@SharedLocalizer["Admin email is invalid"]'
+
+                                                }]
+                                        });
+
+                                         $("#password").dxTextBox({
+                                            name: "Password",
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter password"]'
+                                            }]
+                                        });
+
+                                         $("#header").dxTextBox({
+                                            name: "Header",
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter email header"]'
+                                            }]
+                                        });
+
+                                        $("#ind-name").dxTextBox({
+                                            name: "Subject",
+
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter subject"]'
+                                            }]
+                                        });
+
+
+                                        $("#description-editor").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                                                                                "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: "Message",
+
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter message"]'
+                                            }]
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+                                <label>@SharedLocalizer["Send to"]: </label>
+                                <div class="form-group">
+                                    <div id="sendToOrg"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div id="sendToEnt"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div id="sendToS"></div>
+                                </div>
+                            </div>
+
+                        </div> <br />
+
+                    </div>
+                    <div class="dx-fieldset" >
+                       
+                        <br />
+
+                        <div id="summary"></div>
+                        <br />
+                        <div id="button" ></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@section Scripts{
+        <script>
+           
+            $(function () {        
+                $("#sendToOrg").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Ordinary Users"]',
+                name: 'SendedToOrganization',
+                });
+                $("#sendToEnt").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Approved Users"]',
+                name: 'SendedToEntrepreneur',
+                });
+                  $("#sendToS").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Subsrcibers"]',
+                name: 'SendedToSubscribers',
+            });
+             $("#button").dxButton({
+                text: '@SharedLocalizer["Send"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+    });
+        </script>
+}

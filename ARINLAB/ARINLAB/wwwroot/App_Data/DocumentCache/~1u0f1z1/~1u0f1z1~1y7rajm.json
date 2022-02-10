@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "1u0f1z1",
+  "CachePdfKey": "1u0f1z1/1u0f1z1-md9rl0.pdf",
+  "CacheXpzKey": "1u0f1z1/1u0f1z1-1y7rajm.xpz",
+  "CacheInfoKey": "1u0f1z1/1u0f1z1-1y7rajm.json",
+  "CacheCopyKey": null,
+  "Document": "d61ba8a429ad4e2eb97fae4c8b495f39.jpg",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "d61ba8a429ad4e2eb97fae4c8b495f39.jpg",
+  "InputOptions": {
+    "Format": "Jpg",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1u0f1z1",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

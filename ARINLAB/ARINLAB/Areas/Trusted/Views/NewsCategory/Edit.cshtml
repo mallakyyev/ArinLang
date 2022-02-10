@@ -1,0 +1,94 @@
+﻿@model DAL.Models.Dto.NewsModelDTO.EditNewsCategoryDTO
+@using TSTB.Web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using DAL.Models
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit news category"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit news category"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="gridContainer">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                <div class="col-md-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @foreach (LanguageDto languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var newsC = Model.NewsCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (newsC != null)
+                                    {
+                                        <input type="hidden" name="NewsCategoryTranslates[@lngIndex].Id" value="@newsC.Id" />
+                                        <input type="hidden" class="form-control" name="NewsCategoryTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Name"]</label>
+                                            <input type="text" class="form-control" name="NewsCategoryTranslates[@lngIndex].Name" value="@newsC.Name" />
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" class="form-control" name="NewsCategoryTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Name"]</label>
+                                            <input type="text" class="form-control" name="NewsCategoryTranslates[@lngIndex].Name" />
+                                        </div>
+
+
+                                    }
+                                }
+
+                                lngIndex++;
+                            }
+
+                        </div>
+                      
+                    </div>
+
+                </div>
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {   
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+
+   
+    </script>
+
+}

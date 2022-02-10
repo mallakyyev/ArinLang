@@ -1,0 +1,305 @@
+﻿@model IEnumerable<DAL.Models.Dto.MenuModelDTO.MenuDTO>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using System.Globalization 
+@using ARINLAB.Services
+@inject LogoService _logoSevice;
+   @{ 
+       var logos = _logoSevice.GetLogos();
+   }
+       
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div dir="rtl" class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none">
+        <div class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
+            <a href="@logos.Link1" ><img src="~/images/Logo/@logos.Image1" alt="" class="max-w-full xl:h-40 h-20" /></a>
+            <a  href="@logos.Link2"><img src="~/images/Logo/@logos.Image2" alt="" class="max-w-full xl:h-40 h-20 " /></a>
+            @*<h2 class="font-bold lg:text-2xl sm:text-lg hidden sm:block leading-7 select-none uppercase">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    @SharedLocalizer["ARINLANG"]
+                </a>
+            </h2>
+            <h2 class="font-bold text-2xl ml-2 block sm:hidden leading-7 select-none uppercase">
+                <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["ARINLANG"]</a>
+            </h2>*@
+        </div>
+        <!-- ******************** MOBILE-BURGER ******************** -->
+        <div id="burger-wrapper" class="relative sm:hidden overflow-hidden w-8">
+            <div class="burger" id="burger-menu">
+                <div class="burger__item item-1"></div>
+                <div class="burger__item item-2"></div>
+            </div>
+        </div>
+        <!-- ******************** MOBILE-BURGER ******************** -->
+        <!-- ******************** MOBILE-NAVIGATION ******************** -->
+        <div id="mobile-nav"
+             class="sm:hidden fixed top-0 left-0 right-0 bottom-0 bg-white pt-24 px-4 overflow-scroll">
+            <h2 class="mobile-menu-label sm:hidden text-2xl font-semibold"  >@SharedLocalizer["Menu"]</h2>
+
+            <div class="mobile-nav-container sm:hidden">
+                @foreach (var menu in Model)
+                {
+                    <div>
+                        <h3 class="menu-title" data-parent="@menu.Id"  >@menu.Name</h3>
+                        <div class="grid gap-3">
+                            @foreach (var child in menu.Childs.OrderBy(o => o.Order))
+                            {
+                                if (child.Childs.Count() > 0)
+                                {
+                                    <div class="border-b py-2">
+                                        <h4 class="font-semibold text-sm border-l-4 pl-2 mb-2 select-none"  > @child.Name</h4>
+                                        <div class="grid gap-3">
+                                            @foreach (var subChild in child.Childs.OrderBy(o => o.Order))
+                                            {
+                                                if (subChild.Link != null)
+                                                {
+                                                    <a href="@subChild.Link" class="menu-link">@subChild.Name</a>
+                                                }
+                                                else if (subChild.Pages != null)
+                                                {
+                                                    <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@subChild.Pages.Id" class="menu-link"  >@subChild.Name</a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="menu-link"  >@subChild.Name</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    if (child.Link != null)
+                                    {
+                                        <a href="@child.Link" class="menu-link"  >@child.Name</a>
+                                    }
+                                    else if (child.Pages != null)
+                                    {
+                                        <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@child.Pages.Id" class="menu-link"  >@child.Name</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="menu-link"  >@child.Name</span>
+                                    }
+
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- ******************** MOBILE-NAVIGATION ******************** -->
+        <nav class="sm:flex items-center xl:justify-between mt-2 dropdown-links xl:h-full xl:pb-0 pb-2 hidden">
+            @foreach (var menu in Model.Where(p => p.ParentId == null))
+            {
+                <a href="#" class="nav-link dropdown" data-child="@menu.Id" @@mouseover="mouseOver(@menu.Id)" style="margin-right:10px;" > @menu.Name</a>
+            }
+        </nav>
+    </div>
+    <!-- ******************** DESKTOP-NAVIGATION ******************** -->
+    <div dir="rtl" class="bg-white shadow-md -mt-3 lg:py-10 sm:py-6 w-full absolute sm:block hidden"
+         id="dropdown-menu">
+        <div class="lg:container xl:px-0 px-4 py-3 grid lg:grid-cols-4 sm:grid-cols-3 lg:gap-16 sm:gap-10">
+            @foreach (var menu in Model)
+            {
+                <div v-if="parent == '@menu.Id'">
+                    <h3 class="menu-title" data-parent="@menu.Id"  >@menu.Name</h3>
+                    <div class="grid gap-3">
+                        @foreach (var child in menu.Childs.OrderBy(o => o.Order))
+                        {
+                            if (child.Childs.Count() > 0)
+                            {
+                                <div class="border-b py-2">
+                                    <h4 class="font-semibold text-sm border-l-4 pl-2 mb-2 select-none"  >@child.Name</h4>
+                                    <div class="grid gap-3">
+                                        @foreach (var subChild in child.Childs.OrderBy(o => o.Order))
+                                        {
+                                            if (subChild.Link != null)
+                                            {
+                                                <a href="@subChild.Link" class="menu-link"  > @subChild.Name</a>
+                                            }
+                                            else if (subChild.Pages != null)
+                                            {
+                                                <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@subChild.Pages.Id" class="menu-link"  >@subChild.Name</a>
+                                            }
+                                            else
+                                            {
+                                                <span class="menu-link"  >@subChild.Name</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (child.Link != null)
+                                {
+                                    <a href="@child.Link" class="menu-link"  >@child.Name</a>
+                                }
+                                else if (child.Pages != null)
+                                {
+                                    <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@child.Pages.Id" class="menu-link"  >@child.Name</a>
+                                }
+                                else
+                                {
+                                    <span class="menu-link"  >@child.Name</span>
+                                }
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- ******************** DESKTOP-NAVIGATION ******************** -->
+}
+else
+{
+    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none">
+        <div class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
+            <a href="@logos.Link1"><img src="~/images/Logo/@logos.Image1" alt="" class="max-w-full xl:h-40 h-20" /></a>
+            <a href="@logos.Link2"><img src="~/images/Logo/@logos.Image2" alt="" class="max-w-full xl:h-40 h-20 " /></a>
+            <h2 class="font-bold lg:text-2xl sm:text-md hidden sm:block leading-7 select-none uppercase">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    @SharedLocalizer["HOME"]
+                </a>
+            </h2>
+            @*<h2 class="font-bold text-2xl ml-2 block sm:hidden leading-7 select-none uppercase">
+            <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["ARINLANG"]</a>
+        </h2>*@
+        </div>
+        <!-- ******************** MOBILE-BURGER ******************** -->
+        <div id="burger-wrapper" class="relative sm:hidden overflow-hidden w-8">
+            <div class="burger" id="burger-menu">
+                <div class="burger__item item-1"></div>
+                <div class="burger__item item-2"></div>
+            </div>
+        </div>
+        <!-- ******************** MOBILE-BURGER ******************** -->
+        <!-- ******************** MOBILE-NAVIGATION ******************** -->
+        <div id="mobile-nav"
+             class="sm:hidden fixed top-0 left-0 right-0 bottom-0 bg-white pt-24 px-4 overflow-scroll">
+            <h2 class="mobile-menu-label sm:hidden text-2xl font-semibold">Меню</h2>
+
+            <div class="mobile-nav-container sm:hidden">
+                @foreach (var menu in Model)
+                {
+                    <div>
+                        <h3 class="menu-title" data-parent="@menu.Id">@menu.Name</h3>
+                        <div class="grid gap-3">
+                            @foreach (var child in menu.Childs.OrderBy(o => o.Order))
+                            {
+                                if (child.Childs.Count() > 0)
+                                {
+                                    <div class="border-b py-2">
+                                        <h4 class="font-semibold text-sm border-l-4 pl-2 mb-2 select-none">@child.Name</h4>
+                                        <div class="grid gap-3">
+                                            @foreach (var subChild in child.Childs.OrderBy(o => o.Order))
+                                            {
+                                                if (subChild.Link != null)
+                                                {
+                                                    <a href="@subChild.Link" class="menu-link">@subChild.Name</a>
+                                                }
+                                                else if (subChild.Pages != null)
+                                                {
+                                                    <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@subChild.Pages.Id" class="menu-link">@subChild.Name</a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="menu-link">@subChild.Name</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    if (child.Link != null)
+                                    {
+                                        <a href="@child.Link" class="menu-link">@child.Name</a>
+                                    }
+                                    else if (child.Pages != null)
+                                    {
+                                        <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@child.Pages.Id" class="menu-link">@child.Name</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="menu-link">@child.Name</span>
+                                    }
+
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- ******************** MOBILE-NAVIGATION ******************** -->
+        <nav class="sm:flex items-center xl:justify-between mt-2 dropdown-links xl:h-full xl:pb-0 pb-2 hidden">
+            @foreach (var menu in Model.Where(p => p.ParentId == null))
+            {
+                <a href="#" class="nav-link dropdown" data-child="@menu.Id" @@mouseover="mouseOver(@menu.Id)"> @menu.Name</a>
+            }
+        </nav>
+    </div>
+    <!-- ******************** DESKTOP-NAVIGATION ******************** -->
+    <div class="bg-white shadow-md -mt-3 lg:py-10 sm:py-6 w-full absolute sm:block hidden"
+         id="dropdown-menu">
+        <div class="lg:container xl:px-0 px-4 py-3 grid lg:grid-cols-4 sm:grid-cols-3 lg:gap-16 sm:gap-10">
+            @foreach (var menu in Model)
+            {
+                <div v-if="parent == '@menu.Id'">
+                    <h3 class="menu-title" data-parent="@menu.Id">@menu.Name</h3>
+                    <div class="grid gap-3">
+                        @foreach (var child in menu.Childs.OrderBy(o => o.Order))
+                        {
+                            if (child.Childs.Count() > 0)
+                            {
+                                <div class="border-b py-2">
+                                    <h4 class="font-semibold text-sm border-l-4 pl-2 mb-2 select-none">@child.Name</h4>
+                                    <div class="grid gap-3">
+                                        @foreach (var subChild in child.Childs.OrderBy(o => o.Order))
+                                        {
+                                            if (subChild.Link != null)
+                                            {
+                                                <a href="@subChild.Link" class="menu-link">@subChild.Name</a>
+                                            }
+                                            else if (subChild.Pages != null)
+                                            {
+                                                <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@subChild.Pages.Id" class="menu-link">@subChild.Name</a>
+                                            }
+                                            else
+                                            {
+                                                <span class="menu-link">@subChild.Name</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (child.Link != null)
+                                {
+                                    <a href="@child.Link" class="menu-link">@child.Name</a>
+                                }
+                                else if (child.Pages != null)
+                                {
+                                    <a asp-area="" asp-controller="Page" asp-action="Detail" asp-route-id="@child.Pages.Id" class="menu-link">@child.Name</a>
+                                }
+                                else
+                                {
+                                    <span class="menu-link">@child.Name</span>
+                                }
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- ******************** DESKTOP-NAVIGATION ******************** -->
+}

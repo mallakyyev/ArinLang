@@ -1,0 +1,39 @@
+﻿@page
+@model ConfirmEmailModel
+@using ARINLAB
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Confirmed confirmation";
+}
+
+<div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col">
+    <div class="p-10 bg-white shadow-md rounded">
+        <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+            @if (Model.StatusMessage == "1")
+            {
+                @SharedLocalizer["Thank your for your Registration. Your account confirmed"]
+            }
+            else
+            {
+                @SharedLocalizer["Invalid Code"]
+            }
+        </div>
+
+        <form class="input-forms flex flex-col py-2" id="account" method="post">
+            <a asp-page="./Login" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Conitnue"]</a>
+         </form>
+
+        @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
+            <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
+        </div>*@
+    </div>
+   
+           
+        @*<div class="text-center mt-4 max-w-sm">
+                Еще не зарегистрировались?
+                <a href="sign-up.html" class="text-link hover:text-secondary">Регистрация</a>
+            </div>*@
+    </div>
+

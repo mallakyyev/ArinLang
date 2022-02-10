@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using DAL.Models.Dto.NamesDTO 
+@model CreateNamesDto
+<div class="row">
+
+    <!--Form Wizard Horizontal Start-->
+    <div class="col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h3 class="title">Words</h3>
+            </div>
+            <div class="box-body">
+                <div class="smart-wizard">                   
+                    <div>
+                        <div id="step-1">
+                            <form asp-area="Registered" asp-controller="Names" asp-action="Create" method="post">
+                                <div class="row mbn-20">
+                                    <div class="col-12 mb-20">
+                                        <h4>@SharedLocalizer["Create Name"]</h4>
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.ArabName" placeholder="@SharedLocalizer["Name in Arab"]" class="form-control"></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.OtherName" placeholder="@SharedLocalizer["Name in Other Language" ]" class="form-control"></div>
+
+                                    <div class="col-12 mb-15">
+                                        <select class="form-control form-control-lg" asp-for="@Model.DictionaryId">
+                                            @foreach (var item in (new List<DAL.Models.Dictionary>(ViewBag.Dictionaries)))
+                                            {
+                                                <option value="@item.Id">@item.Language</option>
+                                            }                                           
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Create"]"></div>
+                                </div>
+                            </form>
+                        </div>
+                     
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Form Wizard Horizontal End-->
+    </div>

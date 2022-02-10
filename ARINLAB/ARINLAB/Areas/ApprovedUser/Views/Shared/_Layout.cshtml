@@ -1,0 +1,157 @@
+﻿
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ARINLANG ADMIN PANEL</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/devextreme/css/dx.common.css" rel="stylesheet" />
+    <link href="~/devextreme/css/dx.light.css" rel="stylesheet" />
+
+    <script src="~/admin1/js/jquery.js"></script>
+    <script src="~/devextreme/js/dx-quill.min.js"></script>
+    <link rel="stylesheet" href="~/lib/jquery-ui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jquery-ui/themes/base/jquery-ui.css" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/admin1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/admin1/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="~/admin1/css/plugins/morris.css" rel="stylesheet">
+
+    <link href="~/css/mystyle.css" rel="stylesheet" />
+
+
+    <!-- Custom Fonts -->
+    <link href="~/admin1/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Admin/assets/images/favicon.ico">
+
+    <!-- CSS
+    ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Admin/assets/css/vendor/bootstrap.min.css">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="~/Admin/assets/css/vendor/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/css/vendor/themify-icons.css">
+    <link rel="stylesheet" href="~/Admin/assets/css/vendor/cryptocurrency-icons.css">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/Admin/assets/css/plugins/plugins.css">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="~/Admin/assets/css/helper.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/Admin/assets/css/style.css">
+
+    <!-- Custom Style CSS Only For Demo Purpose -->
+    <link id="cus-style" rel="stylesheet" href="~/Admin/assets/css/style-primary.css">
+
+    <link href="~/devextreme/css/dx.common.css" rel="stylesheet" />
+    <link href="~/devextreme/css/dx.light.css" rel="stylesheet" />
+    <script src="~/devextreme/js/dx-quill.min.js"></script>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <!-- Header Section Start -->
+        <div class="header-section">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
+                    <!-- Header Logo (Header Left) Start -->
+                    <div class="header-logo col-auto">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/logo_arinlang_1.png" alt="">
+
+                        </a>
+                    </div><!-- Header Logo (Header Left) End -->
+                    <!-- Header Right Start -->
+                    <div class="header-right flex-grow-1 col-auto">
+                        <div class="row justify-content-between align-items-center">
+                            <h1>@SharedLocalizer["Welcome to ARINLANG Control Panel."]</h1><h1 class="text-danger"> @SharedLocalizer["You are Trusted User"]</h1>
+
+                        </div>
+                    </div><!-- Header Right End -->
+                    <form name="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="#" method="post">
+                        <button type="submit" style=" cursor: pointer;" class="bg-transparent text-center text-black-50 py-3 mt-3 select-none rounded"> <i class="fa fa-sign-out" style="padding-left:10px;">@SharedLocalizer["Sign out"]</i></button>
+                    </form>
+                </div>
+            </div>
+        </div><!-- Header Section End -->
+        <!-- Side Header Start -->
+        @await Html.PartialAsync("_SideBarPartial")
+        <!-- Side Header End -->
+
+        <div class="content-body">
+            @RenderBody()
+        </div>
+
+        <div class="footer-section">
+            <div class="container-fluid">
+                <div class="footer-copyright text-center">
+                    <p class="text-body-light">2019 &copy; <a href="https://turkmen-tranzit.com">ARINLANG All Rights Reserved</a></p>
+                </div>
+
+            </div>
+        </div><!-- Footer Section End -->
+    </div>
+
+    <!-- JS
+
+    ============================================ -->
+    <!-- Global Vendor, plugins & Activation JS -->
+    <script src="~/Admin/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="~/Admin/assets/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="~/Admin/assets/js/vendor/popper.min.js"></script>
+    <script src="~/Admin/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/devextreme/js/dx.all.js"></script>
+    <script src="~/devextreme/js/localization/dx.messages.ru.js"></script>
+    <script src="~/devextreme/js/dx.aspnet.data.js"></script>
+    <!--Plugins JS-->
+    <script src="~/Admin/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/Admin/assets/js/plugins/tippy4.min.js.js"></script>
+    <!--Main JS-->
+    <script src="~/Admin/assets/js/main.js"></script>
+
+    <!-- Plugins & Activation JS For Only This Page -->
+    <!--Moment-->
+    <script src="~/Admin/assets/js/plugins/moment/moment.min.js"></script>
+
+    <!--Daterange Picker-->
+    <script src="~/Admin/assets/js/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Admin/assets/js/plugins/daterangepicker/daterangepicker.active.js"></script>
+
+    <!--Echarts-->
+    <script src="~/Admin/assets/js/plugins/chartjs/Chart.min.js"></script>
+    <script src="~/Admin/assets/js/plugins/chartjs/chartjs.active.js"></script>
+
+    <!--VMap-->
+    <script src="~/Admin/assets/js/plugins/vmap/jquery.vmap.min.js"></script>
+    <script src="~/Admin/assets/js/plugins/vmap/maps/jquery.vmap.world.js"></script>
+    <script src="~/Admin/assets/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js"></script>
+    <script src="~/Admin/assets/js/plugins/vmap/vmap.active.js"></script>
+
+    <!-- Plugins & Activation JS For Only This Page -->
+    <script src="~/Admin/assets/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Admin/assets/js/plugins/sweetalert/sweetalert.active.js"></script>
+
+    <script src="~/Admin/assets/js/plugins/jsgrid/jsgrid.min.js"></script>
+    <script src="~/Admin/assets/js/plugins/jsgrid/jsgrid-db.js"></script>
+    <script src="~/Admin/assets/js/plugins/jsgrid/jsgrid.active.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

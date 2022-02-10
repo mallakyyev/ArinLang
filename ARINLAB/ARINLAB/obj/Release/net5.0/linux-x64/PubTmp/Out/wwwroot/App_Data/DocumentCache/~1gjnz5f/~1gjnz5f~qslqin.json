@@ -1,0 +1,31 @@
+{
+  "CacheSourceKey": "1gjnz5f",
+  "CachePdfKey": "1gjnz5f/1gjnz5f-10z0xqk.pdf",
+  "CacheXpzKey": "1gjnz5f/1gjnz5f-qslqin.xpz",
+  "CacheInfoKey": "1gjnz5f/1gjnz5f-qslqin.json",
+  "CacheCopyKey": null,
+  "Document": "AutoArhiw.docx",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\Documents",
+  "DocumentFileName": "AutoArhiw.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1gjnz5f",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

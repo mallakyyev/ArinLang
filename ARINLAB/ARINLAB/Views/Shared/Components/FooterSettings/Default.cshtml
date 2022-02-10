@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DAL.Models.Settings>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using System.Globalization
+  
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <footer dir="rtl" class="bg-gray-100 flex flex-col">
+        <div class="xl:container xl:px-0 px-4 py-8">
+            <div class="grid gap-y-4 justify-between sm:flex">
+                <div class="sm:flex flex-col grid" style="width:15%">
+                    <img src="~/images/Char_1.png" style="width:100%" />
+                </div>
+                @foreach (var setting in Model)
+                {
+                    <div class="sm:flex flex-col grid">
+                        <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
+                        <span class="font-semibold font-roboto"> @Html.Raw(setting.Value) </span>
+                    </div>
+                }
+                <div class="sm:flex flex-col grid" style="width:15%">
+                    <img src="~/images/Char_2.png" style="width:100%" />
+                </div>
+                @*<div class="sm:flex flex-col grid">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">@SharedLocalizer["Home"]</a>
+                        <a asp-area="" asp-controller="News" asp-action="Index"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">@SharedLocalizer["Press releases"]</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">
+                            @SharedLocalizer["Contact us"]
+                        </a>
+                    </div>*@
+            </div>
+        </div>
+        <div class="border-t border-gray-200">
+            <div class="xl:container xl:px-0 px-4 text-gray-400 py-4 font-roboto sm:text-base text-sm">
+                @SharedLocalizer["ARINLAG"], @DateTime.Now.Year. @SharedLocalizer["All rights reserved"].
+            </div>
+        </div>
+    </footer>
+}
+else
+{
+    <footer class="bg-gray-100 flex flex-col">
+        <div class="xl:container xl:px-0 px-4 py-8">
+            <div class="grid gap-y-4 justify-between sm:flex">
+                <div class="sm:flex flex-col grid" style="width:15%">
+                    <img src="~/images/Char_1.png" style="width:100%" />
+                </div>
+                @foreach (var setting in Model)
+                {
+                    <div class="sm:flex flex-col grid">
+                        <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
+                        <span class="font-semibold font-roboto"> @Html.Raw(setting.Value) </span>
+                    </div>
+                }
+                <div class="sm:flex flex-col grid" style="width:15%">
+                    <img src="~/images/Char_2.png" style="width:100%" />
+                </div>
+                @*<div class="sm:flex flex-col grid">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">@SharedLocalizer["Home"]</a>
+                        <a asp-area="" asp-controller="News" asp-action="Index"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">@SharedLocalizer["Press releases"]</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact"
+                           class="text-gray-400 sm:text-right select-none font-roboto hover:underline">
+                            @SharedLocalizer["Contact us"]
+                        </a>
+                    </div>*@
+            </div>
+        </div>
+        <div class="border-t border-gray-200">
+            <div class="xl:container xl:px-0 px-4 text-gray-400 py-4 font-roboto sm:text-base text-sm">
+                @SharedLocalizer["ARINLAG"], @DateTime.Now.Year. @SharedLocalizer["All rights reserved"].
+            </div>
+        </div>
+    </footer>
+}

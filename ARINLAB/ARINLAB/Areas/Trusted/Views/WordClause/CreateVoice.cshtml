@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using ARINLAB.Models
+@using DAL.Models.Dto
+@model CreateAudioFileForClauseDto
+@{
+    ViewData["Title"] = "Index";
+    WordClauseVoiceViewModel m = new WordClauseVoiceViewModel();
+    if(ViewBag.Model != null)
+    {
+        m = (WordClauseVoiceViewModel)ViewBag.Model;
+    }
+
+}
+<h1>Add  Voice </h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+            <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Clause"] : </label>
+            <label class="text-success" style="font-size:30px; font-weight:600">@m.ArabClause</label>
+        </div>
+        <div class=" col-4">
+            <label style="font-size:24px; font-weight:600"> @m.DictName @SharedLocalizer["Clause"]</label>
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@m.OtherClause</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>   
+    <hr />
+    <div class="col-12 mb-30">
+        <form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="WordClause" asp-action="CreateWordClauseVoice">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="title">@SharedLocalizer["Add Word Voices"]</h3>
+                </div>
+                <input type="hidden" asp-for="ClauseId" value="@m.Id" />
+                <input type="hidden" asp-for="IsApproved" value="true" />
+                <div class="box-body">
+                    <div class="row mbn-20">
+                        <!--Form Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+                            <h6 class="mb-15">@SharedLocalizer["Arab"]</h6>
+                            <div class="row mbn-15">
+                                <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                <input asp-for="ArabVoiceFile" type="file" class="form-control" />
+                            </div>
+                        </div>
+                        <!--Form Field-->
+                        <!--Readonly Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+                            <h6 class="mb-15">@m.DictName</h6>
+                            <div class="row mbn-15">
+                                <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                <input asp-for="OtherVoiceFile" type="file" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    string text = ViewBag.Error;
+}
+
+<button class="sweetalert sweetalert-error button button-danger" id="AlertButton" hidden></button>
+@if (!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}

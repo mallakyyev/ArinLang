@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using DAL.Models.Dto.NamesDTO
+@using ARINLAB.Models
+@model List<DAL.Models.Dto.NamesDTO.NameImagesDto>
+@{
+    NamesImagesViewModel mod = (NamesImagesViewModel)ViewBag.Model;
+    bool res = false;
+    if (ViewBag.RatingResult != null)
+        res = (bool)ViewBag.RatingResult;
+
+}
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+        <div class="h-full xl:container xl:px-0 px-4">
+            <a href="@((string)ViewBag.ExportImage)" ><i style="position:fixed" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
+            <div class="row" style="margin-right:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Name in Arab"]: </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600">@mod.ArabName</label>
+                </div>
+                <div class=" col-4">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Name in"] @mod.DictName: </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600">@mod.OtherName</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div dir="ltr" style="margin-top:20px;margin-left:40%">
+                <form asp-controller="Names" asp-action="SetRating" id="rtng" method="post">
+                    <input id="kartik" name="Rating" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />
+                    <input type="hidden" value="@mod.Id" name="NameId" />
+                </form>
+            </div>
+
+            @*<div dir="ltr" style="margin-top:30px;margin-left:40%">
+                <form asp-controller="Names" asp-action="SetRating" method="post">
+                    <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
+                    <input type="hidden" value="@mod.Id" name="NameId" />
+                    <div class="form-group" style="margin-top:10px">
+                        <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
+                    </div>
+                </form>
+            </div>*@
+            <div class="mt-8 mb-16">
+                <div class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
+                    @foreach (var name in Model)
+                    {
+                        <div class="rounded flex flex-col max-w-xs relative overflow-hidden">
+                            <img src="~/images/Names/@name.ImageUri" alt="" class="object-cover">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+        <div class="h-full xl:container xl:px-0 px-4">
+            <a href="@((string)ViewBag.ExportImage)"><i style="position:fixed" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
+            <div class="row" style="margin-left:35%">
+                <div class="col-2"></div>
+                <div class="col-4 items-center">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Name in Arab"] </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600">@mod.ArabName</label>
+                </div>
+                <div class=" col-4">
+                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Name in"] @mod.DictName: </label>
+                    <label class="text-success" style="font-size:30px; font-weight:600">@mod.OtherName</label>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div style="margin-top:20px;margin-left:40%">
+                <form asp-controller="Names" asp-action="SetRating" id="rtng" method="post">
+                    <input id="kartik" name="Rating" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />
+                    <input type="hidden" value="@mod.Id" name="NameId" />
+                 </form>               
+            </div>
+
+            @*<div style="margin-top:30px;margin-left:40%">
+                <form asp-controller="Names" asp-action="SetRating" method="post">
+                    <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
+                    <input type="hidden" value="@mod.Id" name="NameId" />
+                    <div class="form-group" style="margin-top:10px">
+                        <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
+                    </div>
+                </form>
+            </div>*@
+
+
+            <div class="mt-8 mb-16">
+                <div class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
+                    @foreach (var name in Model)
+                    {
+                        <div class="rounded flex flex-col max-w-xs relative overflow-hidden">
+                            <img src="~/images/Names/@name.ImageUri" alt="" class="object-cover">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<button id="btn" hidden></button>
+@section Scripts{
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
+    <script src="/dist/simple-notify.min.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <script src="/assets/js/OverlayScrollbars.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+         const btn = document.querySelector('#btn')
+
+        btn.addEventListener('click', () => {
+            new Notify({
+                status: 'success',
+                title: '@SharedLocalizer["Thank you"]',
+                text: '@SharedLocalizer["Your rating have been successfully recorded"]',
+                effect: 'fade',
+                speed: 300,
+                customClass: '',
+                customIcon: '',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: false,
+                autotimeout: 3000,
+                gap: 60,
+                distance: 20,
+                type: 1,
+                position: 'right top',
+                customWrapper: '',
+            })
+        });
+
+    </script>
+    @if (res)
+    {
+        <script>
+            document.getElementById("btn").click();
+        </script>
+    }
+}

@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Dictionary";
+
+}
+
+@model List<DAL.Models.Dictionary>
+<div class="content-body">
+
+    <!-- Page Headings Start -->
+    <div class="row justify-content-between align-items-center mb-10">
+        <!-- Page Heading Start -->
+        <div class="col-12 col-lg-auto mb-20">
+            <div class="page-heading">
+                <h3 class="title">Dictionary <span>/ List /</span></h3>
+            </div>
+        </div><!-- Page Heading End -->
+
+    </div><!-- Page Headings End -->
+    <div class="row">
+        
+        <div class="col-lg-6 col-6 mb-30">
+            <div class="box">
+                <div class="box-head">
+                    <h4 class="title">Light</h4>
+                </div>
+                <div class="box-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Dictionary Name</th>                              
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+
+                                int i = 1;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@i</th>
+                                    @{i = i + 1;}
+                                    <td> @item.Language</td>
+                                    
+                                    <td>                                                                          
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Remove" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-delete"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> <span>delete</span></a></div>                                  
+                                    </td>
+                                </tr>                                
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-6 mb-30">
+            <div class="box">
+                <div class="box-head">
+                    <h4 class="title">Insert New Dictionary</h4>
+                </div>
+                <div class="box-body">                   
+                    <form method="post" id="AddForm" asp-action="Create" asp-area="Admin" asp-controller="Dictionary">
+                        <input type="text" class="form-control" name="dictName" placeholder="Input">
+                        <input type="submit" class="button button-primary" value="@SharedLocalizer["Insert"]">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

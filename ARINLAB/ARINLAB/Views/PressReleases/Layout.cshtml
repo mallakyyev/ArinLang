@@ -1,0 +1,48 @@
+﻿
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using System.Globalization
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@section Css{
+    @RenderSection("Css", required: false)
+}
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div class="h-full xl:container xl:px-0 px-4">
+        <div class="bg-white sm:pt-12 pt-4 relative">
+            <h1 dir="rtl" class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl text-primary">
+                @SharedLocalizer["Press releases"]
+            </h1>
+            <div dir="rtl" class="flex flex-wrap max-w-5xl -mt-1 -mb-1 pt-6">
+                <span class="tag" id="News"><a asp-area="" asp-controller="News" asp-action="Index1">@SharedLocalizer["News"]</a>  </span>
+            </div>
+            <div class="h-1 w-full bg-gray-100 sm:mt-10 mt-4"></div>
+        </div>
+
+        @RenderBody()
+    </div>
+}
+else
+{
+    <div class="h-full xl:container xl:px-0 px-4">
+        <div class="bg-white sm:pt-12 pt-4 relative">
+            <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl text-primary">
+                @SharedLocalizer["Press releases"]
+            </h1>
+            <div class="flex flex-wrap max-w-5xl -mt-1 -mb-1 pt-6">
+                <span class="tag" id="News"><a asp-area="" asp-controller="News" asp-action="Index1">@SharedLocalizer["News"]</a>  </span>
+            </div>
+            <div class="h-1 w-full bg-gray-100 sm:mt-10 mt-4"></div>
+        </div>
+
+        @RenderBody()
+    </div>
+}
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "m9it9u",
+  "CachePdfKey": "m9it9u/m9it9u-1k3kk2s.pdf",
+  "CacheXpzKey": "m9it9u/m9it9u-s56m1e.xpz",
+  "CacheInfoKey": "m9it9u/m9it9u-s56m1e.json",
+  "CacheCopyKey": null,
+  "Document": "307ba882511e48efbdd040cb63a911cc.pdf",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "307ba882511e48efbdd040cb63a911cc.pdf",
+  "InputOptions": {
+    "Format": "Pdf",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "m9it9u",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

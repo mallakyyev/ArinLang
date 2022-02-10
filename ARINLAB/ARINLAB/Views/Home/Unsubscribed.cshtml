@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Unsubscribed"];
+}
+
+@*<h2>@ViewBag.Email</h2>
+
+<a asp-area="" asp-action="Index" asp-controller="Home">@SharedLocalizer["Back to home page"]</a>*@
+
+<div class="container bg-white sm:pt-12 pt-4 relative">
+    <div class="lg:px-24 px-4">
+        <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl" style="color:darkgreen">
+            @ViewBag.Email
+        </h1>
+        
+    </div>
+</div>

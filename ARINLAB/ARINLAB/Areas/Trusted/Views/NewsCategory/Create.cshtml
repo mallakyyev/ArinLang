@@ -1,0 +1,72 @@
+﻿@model DAL.Models.Dto.NewsModelDTO.CreateNewsCategoryDTO
+@using TSTB.Web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using DAL.Models
+
+@{
+    ViewData["Title"] = SharedLocalizer["Create news category"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Create news category"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="gridContainer">
+            <form asp-action="Create" id="form" enctype="multipart/form-data">
+                <div class="col-md-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @foreach (LanguageDto languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                <input type="hidden" class="form-control" name="NewsCategoryTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                <div class="form-group">
+                                    <label>@SharedLocalizer["Name"]</label>
+                                    <input type="text" class="form-control" name="NewsCategoryTranslates[@lngIndex].Name" />
+                                </div>
+                                <br />
+                                lngIndex++;
+                            }
+
+                        </div>
+                     
+                    </div>
+
+                </div>
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Add"]',
+                type: "default",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

@@ -1,0 +1,54 @@
+.container_register {
+  margin: 0 auto 0 500px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #ddd;
+  outline-color: #1b1b95;
+}
+
+a {
+  color: dodgerblue;
+}
+
+#register_btn {
+  margin: 0 auto 0 180px;
+}
+
+svg {
+  margin-top: 15px;
+  margin-right: 10px;
+  color: #198754;
+}
+
+.fl {
+  display: flex;
+}
+
+.head {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.inner {
+  width: 500px;
+  margin-top: 150px;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  padding: 25px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+

@@ -1,0 +1,42 @@
+﻿@page
+@using ARINLAB
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<header>
+    <div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col">
+        <div class="p-10 bg-white shadow-md rounded">
+            @{
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+                        @SharedLocalizer["Log out from your account"]
+                    </div>
+                    <form name="logout_form" class="form-inline flex flex-col py-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                        <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Continue"]</button>
+                    </form>
+                }
+                else
+                {
+                    <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+                        @SharedLocalizer["You have successfully Logged out"]
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</header>
+@section Scripts{
+    <script>
+        window.onload = function () {
+            document.forms['logout_form'].submit();
+        }
+    </script>
+
+}

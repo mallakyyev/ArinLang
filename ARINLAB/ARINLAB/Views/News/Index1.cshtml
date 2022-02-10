@@ -1,0 +1,298 @@
+﻿@model List<DAL.Models.Dto.NewsModelDTO.NewsDTO>
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    Layout = "/Views/PressReleases/Layout.cshtml";
+    ViewData["Title"] = SharedLocalizer["Press releases"];
+
+    int CurrentCatId = ViewBag.CatId;
+    DateTime currentDateFilter = ViewBag.DateFilter;
+
+    int currentIndex;
+    if (currentDateFilter.Year > 2001)
+        currentIndex = 0;
+    else
+        currentIndex = 1;
+    DateTime d = new DateTime();
+}
+
+@section Css{
+    <link href="~/css/default.css" rel="stylesheet" />
+    <link href="~/css/default.date.css" rel="stylesheet" />
+}
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div dir="rtl" class="sm:mt-10 mt-4 pb-10 flex flex-wrap">
+        @foreach (DAL.Models.Dto.NewsModelDTO.NewsCategoryDTO newsCategoryDTO in ViewBag.NewsCategories)
+        {
+            <span class="tag" id="@newsCategoryDTO.Id+'_'">
+                <a asp-area="" asp-controller="News" asp-action="Index1" asp-route-catId="@newsCategoryDTO.Id" asp-route-filterDate="@currentDateFilter.ToShortDateString()" class="lg:mr-8 mr-3 hover:text-link">@newsCategoryDTO.Name</a>
+            </span>
+        }
+        <form asp-area="" asp-controller="News" asp-action="Index1" asp-route-catId="@CurrentCatId">
+            <span>
+                <input id="filterDate"
+                       class="datepicker date-input"
+                       name="filterDate"
+                       type="date"
+                       @if (currentDateFilter.Year > 2010) { @: value="@currentDateFilter.ToString("yyyy-MM-dd")"
+                       }
+                       placeholder="@SharedLocalizer["Date search"]">
+            </span>
+            <input type="submit" class="btn-filter border-2 inline-flex btn-sm  text-secondary border-secondary rounded hover:bg-secondary hover:text-white" value="@SharedLocalizer["Search"]" />
+        </form>
+    </div>
+    @if (Model.Count() > 0 && !(ViewBag.DateFilter > @d))
+    {
+        <div dir="rtl" class="md:mt-4 sm:mt-2 mt-4">
+
+            <div class="sm:grid hidden lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-6 gap-x-3 mt-2">
+                <div class="xl:col-span-3 lg:col-span-2 lg:h-auto h-64 rounded relative overflow-hidden">
+                    <img src="/images/News/@Model[0].Image"
+                         alt=""
+                         class="absolute top-0 left-0 h-full w-full object-cover" />
+                    <div class="relative z-10 text-white font-semibold p-8 flex flex-col justify-end h-full">
+                        <a asp-action="Details" asp-controller="News" asp-route-id="@Model[0].Id" class="mb-5 text-2xl max-w-md cursor-pointer hover:opacity-75 text-shadow">@Model[0].Name</a>
+                        <span>@Model[0].DatePublished.ToShortDateString()</span>
+                    </div>
+                </div>
+                <div class="pl-2 lg:mt-0 mt-4 md:block hidden">
+                    <div class="lg:flex lg:flex-col grid grid-cols-3 gap-x-6">
+                        @for (int i = 1; i < 4; ++i)
+                        {
+                            if (Model.Count > i)
+                            {
+                                <div class="border-b border-gray-200 pb-4 mb-4">
+                                    <a asp-action="Details" asp-controller="News" asp-route-id="@Model[i].Id" class="select-none hover:text-secondary">
+                                        
+
+                                        @{ currentIndex++; }
+
+
+                                        
+                                        @Model[i].Name
+                                    </a>
+                                    <span class="mt-6 block opacity-75 text-sm"> @Model[i].DatePublished.ToShortDateString()</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @*<script>
+                                    //document.getElementById("more").style.visibility = "hidden";
+                                </script>*@
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div dir="rtl" class="mt-8 mb-16">
+        <div id="container" class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
+
+            @*@for (int i = 4; i < 12; ++i)
+                {
+                    if (Model.Count > i)
+                    {
+                        <div class="rounded flex flex-col max-w-xs relative overflow-hidden">
+                            <img src="/images/News/@Model[i].Image" alt="" class="object-cover" />
+                            <a asp-action="Details" asp-controller="News" asp-route-id="@Model[i].Id" class="md:mt-5 md:mb-3 mt-2 mb-1 font-semibold hover:text-link">
+                                @Model[i].Name
+                            </a>
+                            <span class="opacity-50"> @Model[i].DatePublished.ToString("dd MMMM yyyy")</span>
+                        </div>
+                        <script>
+                                                @{ currentIndex++; }
+                        </script>
+                    }
+                    else
+                    {
+                        <script>
+                            document.getElementById("more").style.visibility = "hidden";
+                        </script>
+                    }
+                }*@
+
+        </div>
+
+        <a onclick="GetData()" id="more" class="py-2 px-2 text-center block border rounded border-link text-link hover:bg-link hover:text-white">
+            @SharedLocalizer["Show more"]
+        </a>
+    </div>
+
+}
+else
+{
+    <div class="sm:mt-10 mt-4 pb-10 flex flex-wrap">
+        @foreach (DAL.Models.Dto.NewsModelDTO.NewsCategoryDTO newsCategoryDTO in ViewBag.NewsCategories)
+        {
+            <span class="tag" id="@newsCategoryDTO.Id+'_'">
+                <a asp-area="" asp-controller="News" asp-action="Index1" asp-route-catId="@newsCategoryDTO.Id" asp-route-filterDate="@currentDateFilter.ToShortDateString()" class="lg:mr-8 mr-3 hover:text-link">@newsCategoryDTO.Name</a>
+            </span>
+        }
+        <form asp-area="" asp-controller="News" asp-action="Index1" asp-route-catId="@CurrentCatId">
+            <span>
+                <input id="filterDate"
+                       class="datepicker date-input"
+                       name="filterDate"
+                       type="date"
+                       @if (currentDateFilter.Year > 2010) { @: value="@currentDateFilter.ToString("yyyy-MM-dd")"
+                       }
+                       placeholder="@SharedLocalizer["Date search"]">
+            </span>
+            <input type="submit" class="btn-filter border-2 inline-flex btn-sm  text-secondary border-secondary rounded hover:bg-secondary hover:text-white" value="@SharedLocalizer["Search"]" />
+        </form>
+    </div>
+    @if (Model.Count() > 0 && !(ViewBag.DateFilter > @d))
+    {
+        <div class="md:mt-4 sm:mt-2 mt-4">
+
+            <div class="sm:grid hidden lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-6 gap-x-3 mt-2">
+                <div class="xl:col-span-3 lg:col-span-2 lg:h-auto h-64 rounded relative overflow-hidden">
+                    <img src="/images/News/@Model[0].Image"
+                         alt=""
+                         class="absolute top-0 left-0 h-full w-full object-cover" />
+                    <div class="relative z-10 text-white font-semibold p-8 flex flex-col justify-end h-full">
+                        <a asp-action="Details" asp-controller="News" asp-route-id="@Model[0].Id" class="mb-5 text-2xl max-w-md cursor-pointer hover:opacity-75 text-shadow">@Model[0].Name</a>
+                        <span>@Model[0].DatePublished.ToShortDateString()</span>
+                    </div>
+                </div>
+                <div class="pl-2 lg:mt-0 mt-4 md:block hidden">
+                    <div class="lg:flex lg:flex-col grid grid-cols-3 gap-x-6">
+                        @for (int i = 1; i < 4; ++i)
+                        {
+                            if (Model.Count > i)
+                            {
+                                <div class="border-b border-gray-200 pb-4 mb-4">
+                                    <a asp-action="Details" asp-controller="News" asp-route-id="@Model[i].Id" class="select-none hover:text-secondary">
+                                        <script>
+
+                                        @{ currentIndex++; }
+
+
+                                        </script>
+                                        @Model[i].Name
+                                    </a>
+                                    <span class="mt-6 block opacity-75 text-sm"> @Model[i].DatePublished.ToShortDateString()</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @*<script>
+                                    //document.getElementById("more").style.visibility = "hidden";
+                                </script>*@
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="mt-8 mb-16">
+        <div id="container" class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
+
+            @*@for (int i = 4; i < 12; ++i)
+                {
+                    if (Model.Count > i)
+                    {
+                        <div class="rounded flex flex-col max-w-xs relative overflow-hidden">
+                            <img src="/images/News/@Model[i].Image" alt="" class="object-cover" />
+                            <a asp-action="Details" asp-controller="News" asp-route-id="@Model[i].Id" class="md:mt-5 md:mb-3 mt-2 mb-1 font-semibold hover:text-link">
+                                @Model[i].Name
+                            </a>
+                            <span class="opacity-50"> @Model[i].DatePublished.ToString("dd MMMM yyyy")</span>
+                        </div>
+                        <script>
+                                                @{ currentIndex++; }
+                        </script>
+                    }
+                    else
+                    {
+                        <script>
+                            document.getElementById("more").style.visibility = "hidden";
+                        </script>
+                    }
+                }*@
+
+        </div>
+
+        <a onclick="GetData()" id="more" class="py-2 px-2 text-center block border rounded border-link text-link hover:bg-link hover:text-white">
+            @SharedLocalizer["Show more"]
+        </a>
+    </div>
+}
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    @*<script src="~/Scripts/jquery-1.5.1.js"></script>*@
+    <script src="~/js/picker.js"></script>
+    <script src="~/js/picker.date.js"></script>
+    <script src="~/js/legacy.js"></script>
+
+    <script type="text/javascript">
+
+        var $input = $('.datepicker').pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            // editable: true,
+            closeOnSelect: true,
+            closeOnClear: true,
+
+        })
+
+        var picker = $input.pickadate('picker');
+        @*@if (currentDateFilter.Year > 2001) {
+
+                        @:picker.set('select', '@currentDateFilter.Day @currentDateFilter.ToString("MMMM", new CultureInfo("en-GB")), @currentDateFilter.Year')
+            }*@
+        //picker.open()
+
+        $('button').on('click', function () {
+                        picker.set('disable', true);
+                    });
+
+                    document.getElementById("News").className = "tag tag--active";
+                    if (@ViewBag.CatId > 0) {
+                        document.getElementById("@ViewBag.CatId+'_'").className = "tag tag--active";
+                    }
+                    var pageSize = @currentIndex;
+                    var pageCount = 1;
+        $(document).ready(function () {
+                        GetData();
+                    });
+
+                    function GetData() {
+
+            $.ajax({
+                        type: 'GET',
+                url: '/News/GetData',
+                data: { "pageSize": pageSize, "pageCount": pageCount, "catId":@CurrentCatId, "filterDate":'@currentDateFilter.ToShortDateString()' },
+                dataType: 'json',
+                success: function (data) {
+                    if (data != null) {
+                        var isEmpty = true;
+                        for (var i = 0; i < data.length; i++) {
+
+                            isEmpty = false;
+                            $("#container").append("<div class=\" rounded flex flex-col max-w-xs relative overflow-hidden\"> <a href=\"/News/Details?id=" + data[i].Id + "\" class='news-card'> <img src=/images/News/" + data[i].Image + " alt=\"\" class=\"object-cover\" /> </a> <a href=\"/News/Details?id=" + data[i].Id + "\" class=\"md:mt-5 md:mb-3 mt-2 mb-1 font-semibold hover:text-link\">"
+                                + data[i].Name + "</a> <span class=\"opacity-50\">" + data[i].ShortDate + "</span> </div>");
+                            pageSize++;
+                        }
+                        if (isEmpty) {
+                            document.getElementById("more").style.visibility = "hidden";
+                        } else {
+                            pageCount++;
+                        }
+                    } else {
+                        document.getElementById("more").style.visibility = "hidden";
+                    }
+                },
+                error: function () {
+                    alert("Error while retrieving data!");
+                }
+            });
+        }
+    </script>
+}

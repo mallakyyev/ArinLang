@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "d6kswe",
+  "CachePdfKey": "d6kswe/d6kswe-1k3kk2s.pdf",
+  "CacheXpzKey": "d6kswe/d6kswe-1ar3t26.xpz",
+  "CacheInfoKey": "d6kswe/d6kswe-1ar3t26.json",
+  "CacheCopyKey": null,
+  "Document": "4ab1b46930ea454980e6853936b889bd.pdf",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "4ab1b46930ea454980e6853936b889bd.pdf",
+  "InputOptions": {
+    "Format": "Pdf",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "d6kswe",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

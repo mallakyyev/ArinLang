@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer localizer
+@using DAL.Models.Dto
+@model LogoDto
+@{
+    ViewData["Title"] = "Manage Logo";   
+}
+<div class="content-body">
+    <h1>@SharedLocalizer["Logo Management"]</h1>
+    
+    <form method="post" asp-action="LogoUpdate" asp-area="Admin" asp-controller="Logo" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id1" value="@Model.Id1">
+        <input type="hidden" asp-for="Id2" value="@Model.Id2">
+        <input type="hidden" asp-for="Name1" value="@Model.Name1">
+        <input type="hidden" asp-for="Name2" value="@Model.Name2">
+        <input type="hidden" asp-for="Image1" value="@Model.Image1">
+        <input type="hidden" asp-for="Image2" value="@Model.Image2">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@SharedLocalizer["Main Logo"]</h2>
+                <img src="~/images/Logo/@Model.Image1" />
+                <div class="form-group">
+                    <label asp-for="Image1" class="form-group">@SharedLocalizer["Upload Image"]</label>
+                    <input type="file" asp-for="ImageForm1" name="ImageForm1" class="form-group" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Link1" class="form-group">@SharedLocalizer["Link"]</label>
+                    <input type="text" asp-for="Link1" class="form-group" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h2>@SharedLocalizer["Secondary Logo"]</h2>
+                <img src="~/images/Logo/@Model.Image2" />
+                <div class="form-group">
+                    <label asp-for="Image2" class="form-group">@SharedLocalizer["Upload Image"]</label>
+                    <input type="file" asp-for="ImageForm2" name="ImageForm2" class="form-group" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Link2" class="form-group">@SharedLocalizer["Link"]</label>
+                    <input type="text" asp-for="Link2" class="form-group" />
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit">@SharedLocalizer["Save"]</button>
+        </div>
+    </form>
+</div>

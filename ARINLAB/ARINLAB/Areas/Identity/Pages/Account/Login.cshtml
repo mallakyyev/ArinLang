@@ -1,0 +1,129 @@
+﻿@page
+@model LoginModel
+@using ARINLAB
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Log in"];
+}
+
+<div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col" style="height: 60vh ">
+    <div class="p-10 bg-white shadow-md rounded">
+        <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+            @SharedLocalizer["Login to your account"]
+        </div>
+        <span class="max-w-xs block text-center text-sm mt-2 text-gray-400"> </span>
+        <form class="input-forms flex flex-col py-2" id="account" method="post">
+
+            <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Login"]" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+            <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+            <br />
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
+
+            <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Log in"]</button>
+            <div class="form-group">
+                <p style="margin-top:10px;">
+                    <a class="btn btn-danger" style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
+                </p>
+                <p style="margin-top:10px;">
+              <a class="btn btn-danger" style="color:green" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@SharedLocalizer["Register as a new user"]</a>
+                </p>
+
+</div>
+
+</form>
+
+                    @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
+        <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
+    </div>*@
+</ div >
+                    @*<div class="text-center mt-4 max-w-sm">
+        Еще не зарегистрировались?
+        <a href="sign-up.html" class="text-link hover:text-secondary">Регистрация</a>
+    </div>*@
+</ div >
+
+                    @*<h2>@ViewData["Title"]</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <section>
+                <form id="account" method="post">
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Log in</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </p>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Use another service to log in.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>*@
+
+@section Scripts {
+                                        <partial name="_ValidationScriptsPartial" />
+                                        }

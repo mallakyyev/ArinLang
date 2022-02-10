@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    string dictName = "";
+
+    EditWordClauseDto m = null;
+
+    if (ViewBag.Model != null)
+    {
+        m = ((EditWordClauseDto)ViewBag.Model);
+    }
+    try
+    {
+        if (ViewBag.Dictionaries != null)
+        {
+            var getdictName = ((List<DAL.Models.Dictionary>)ViewBag.Dictionaries).SingleOrDefault(p => p.Id == m.DictionaryId);
+            dictName = getdictName.Language;
+        }
+    }catch(Exception e)
+            {
+                
+            }
+
+}
+@using ARINLAB.Models
+@using DAL.Models.Dto
+@model List<AudioFileForClauseDto>
+
+
+<h1>Manage Word Sentences and Audio File (Voice)</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+            <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Clause"] : </label>
+            <label class="text-success" style="font-size:30px; font-weight:600">@m.ArabClause</label>
+        </div>
+        <div class=" col-4">
+            <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in"] @dictName : </label>
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@m.OtherReader</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+            <label style="font-size:24px; font-weight:600">@dictName @SharedLocalizer["Clause"] : </label>
+            <label class="text-success" style="font-size:30px; font-weight:600">@m.OtherClause</label>
+        </div>
+        <div class=" col-4">
+            <label style="font-size:24px; font-weight:600">@SharedLocalizer["Reads in Arab"] : </label>
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@m.ArabReader</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-8">
+            <h2>@SharedLocalizer["Voices"]</h2>
+        </div>
+        <div class="col-4">
+            <a asp-area="Admin" asp-controller="WordClause" asp-action="CreateVoice" asp-route-id="@m.Id" asp-route-arabClause="@m.ArabClause" asp-route-otherClause="@m.OtherClause" asp-route-dictName="@dictName"><button class="btn btn-success"><i class="fa fa-plus"></i></button></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@SharedLocalizer["#"]</th>
+                        <th scope="col">@SharedLocalizer["Voice in Arab"]</th>
+                        <th scope="col">@dictName @SharedLocalizer["Voice in "] @dictName</th>
+                        <th scope="col">@SharedLocalizer["Approved"]</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>
+                                    <audio id="myAudio@(item.Id)">
+                                        <source src="~/@item.ArabVoice" type="audio/mpeg">
+                                    </audio>
+                                    <button onclick="playAudio('myAudio@(item.Id)')">PLAY</button>
+                                    <button onclick="pauseAudio('myAudio@(item.Id)')">STOP</button>
+                                </td>
+                                <td>
+                                    <audio id="myAudio@(item.Id)_o">
+                                        <source src="~/@item.OtherVoice" type="audio/mpeg">
+                                    </audio>
+                                    <button onclick="playAudio('myAudio@(item.Id)_o')">PLAY</button>
+                                    <button onclick="pauseAudio('myAudio@(item.Id)_o')">STOP</button>
+                                </td>
+                                <td>
+                                    <div class="adomx-checkbox-radio-group inline">
+                                        <label class="adomx-switch success">
+                                            <input id="approve@(item.Id)" type="checkbox" @(item.IsApproved ? "checked" : "")>
+
+                                            <i class="lever"></i>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" id="@(item.Id)" name="@(m.Id)" class="sweetalert sweetalert-clausevoice btn button-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@{
+    string text1 = ViewBag.successs;
+}
+
+<button class="sweetalert sweetalert-success button button-success" id="AlertButton1" hidden></button>
+@if (!string.IsNullOrEmpty(text1))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton1").click();
+        }
+    </script>
+}
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <script>
+            const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
+            checkbox@(item.Id).addEventListener('change', (event) => {
+                if (event.currentTarget.checked) {
+                    window.location.href = "/Admin/WordClause/Approve/@item.Id/true/@m.Id";
+                } else {
+                    window.location.href = "/Admin/WordClause/Approve/@item.Id/false/@m.Id";
+                }
+            })
+        </script>
+    }
+}
+
+<script>
+
+    function playAudio(id) {
+
+        var x = document.getElementById(id);
+        x.play();
+    }
+
+    function pauseAudio(id) {
+
+        var x = document.getElementById(id);
+        x.pause();
+    }
+
+</script>

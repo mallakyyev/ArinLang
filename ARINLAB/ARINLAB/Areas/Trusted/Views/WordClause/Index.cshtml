@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using DAL.Models.Dto
+@using ARINLAB.Areas.Admin.Utils
+<h1> @SharedLocalizer["Category Controller"]</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                @SharedLocalizer["Word Clause List"]
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="gridContainer">
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            let url = `@API.GetAllWordClauses`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("Create", "WordClause", new { Area = "Admin" })`;
+                    window.location = url;
+                },
+                selection: {
+                    mode: "multiple"
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "WordClause",
+                    allowExportSelectedData: true
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: true
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: true
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab CLause"]',
+                        dataField: "arabClause",
+                        allowHeaderFiltering: false,
+                    },{
+                        caption: '@SharedLocalizer["Other Language read"]',
+                                    dataField: "otherReader",
+                        allowHeaderFiltering: false,
+                    },
+
+                     {
+                        caption: '@SharedLocalizer["Other Language clause"]',
+                         dataField: "otherClause",
+                        allowHeaderFiltering: false,
+                    },{
+                        caption: '@SharedLocalizer["Arab read"]',
+                        dataField: "arabReader",
+                        allowHeaderFiltering: false,
+                    },
+
+                                {
+                        caption: '@SharedLocalizer["Dictionary"]',
+                                    dataField: "dictionaryName",
+                        allowHeaderFiltering: true,
+                    },
+                     {
+                        caption: '@SharedLocalizer["Category"]',
+                        dataField: "categoryName",
+                        allowHeaderFiltering: true,
+                    },
+                     {
+                        caption: '@SharedLocalizer["Approved"]',
+                         dataField: "isApproved",
+                        allowHeaderFiltering: true,
+                    },
+                     {
+                        caption: '@SharedLocalizer["User name"]',
+                        dataField: "userName",
+                        allowHeaderFiltering: true,
+                    },
+                    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Edit"]',
+                                icon: "edit",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("Edit", "WordClause", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                             {
+                                hint: '@SharedLocalizer["Edit Voices"]',
+                                 icon: "fa fa-volume-up",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("EditClauseVoice", "WordClause", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                            "delete"
+                        ]
+                    }
+                ]
+            });
+        });
+    </script>
+}

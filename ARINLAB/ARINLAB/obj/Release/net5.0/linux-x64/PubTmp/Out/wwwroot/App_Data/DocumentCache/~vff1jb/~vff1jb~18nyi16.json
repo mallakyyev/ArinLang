@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "vff1jb",
+  "CachePdfKey": "vff1jb/vff1jb-md9rl0.pdf",
+  "CacheXpzKey": "vff1jb/vff1jb-18nyi16.xpz",
+  "CacheInfoKey": "vff1jb/vff1jb-18nyi16.json",
+  "CacheCopyKey": null,
+  "Document": "34cb2f6aaf6247fbaa0f08437823a4e2.jpg",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "34cb2f6aaf6247fbaa0f08437823a4e2.jpg",
+  "InputOptions": {
+    "Format": "Jpg",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "vff1jb",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

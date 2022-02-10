@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using DAL.Models.Dto
+@model EditWordDto
+<link id="cus-style" rel="stylesheet" href="~/Admin/assets/css/style-primary.css">
+<div class="row">
+
+    <!--Form Wizard Horizontal Start-->
+    <div class="col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h3 class="title">Words</h3>
+            </div>
+            <div class="box-body">
+                <div class="smart-wizard">
+                    <div>
+                        <div id="step-1">
+                            <form asp-area="Admin" asp-controller="Word" asp-action="Edit" method="post">
+                                <div class="row mbn-20">
+                                    <div class="col-12 mb-20">
+                                        <h4>@SharedLocalizer["Edit new word"]</h4>
+                                    </div>
+                                    <input type="hidden" asp-for="@Model.Id" value="@Model.Id">
+                                    <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
+
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.OtherWord" placeholder="@SharedLocalizer["New word"]" class="form-control"></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="@Model.ArabWord" placeholder="@SharedLocalizer["Arab word"]" class="form-control"></div>
+                                    <div class="col-12 mb-15">
+                                        <select class="form-control form-control-lg" asp-for="@Model.DictionaryId">
+                                            @foreach (var item in (new List<DAL.Models.Dictionary>(ViewBag.Dictionaries)))
+                                            {
+                                                if (@Model.DictionaryId == item.Id)
+                                                {
+                                                    <option value="@item.Id" selected>@item.Language</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.Language</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mb-20">
+                                        <h6 class="mb-15">@SharedLocalizer["Approve Word:"]</h6>
+                                        <div class="adomx-checkbox-radio-group inline">
+
+                                            <label class="adomx-switch success">
+                                                @if (Model.IsApproved)
+                                                {
+                                                    <input type="checkbox" asp-for="@Model.IsApproved" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" asp-for="@Model.IsApproved" >
+                                                }
+                                                <i class="lever"></i>
+                                                
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Save"]"></div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Form Wizard Horizontal End-->
+</div>
+<button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
+@{ 
+    string text = ViewBag.text;
+}
+@if(!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}

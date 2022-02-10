@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using DAL.Models.Dto.NamesDTO
+@using ARINLAB.Models
+@model CreateNameImagesDto
+@{
+    NamesImagesViewModel mod = (NamesImagesViewModel)ViewBag.Model;
+}
+<h1>Add  Voice </h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+
+            <label class="text-success" style="font-size:30px; font-weight:600">@mod.ArabName</label>
+        </div>
+        <div class=" col-4">
+
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@mod.OtherName</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <hr />
+    <div class="col-12 mb-30">
+        <form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Names" asp-action="AddImage">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="title">@SharedLocalizer["Add Image"]</h3>
+                </div>
+                <input type="hidden" asp-for="NamesId" value="@mod.Id" />
+                <div class="box-body">
+                    <div class="row mbn-20">
+
+                        <!--Form Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">@SharedLocalizer["Add Image(jpg, png, jpeg) "]</h6>
+
+                            <div class="row mbn-15">
+                                <label class="label">@SharedLocalizer["Upload Image file"]</label>
+                                <input asp-for="ImageUri" type="file" class="form-control" />
+                            </div>
+                        </div>                   
+                    </div>
+                </div>
+                <div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    string text = ViewBag.Error;
+}
+
+<button class="sweetalert sweetalert-error button button-danger" id="AlertButton" hidden></button>
+@if (!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}

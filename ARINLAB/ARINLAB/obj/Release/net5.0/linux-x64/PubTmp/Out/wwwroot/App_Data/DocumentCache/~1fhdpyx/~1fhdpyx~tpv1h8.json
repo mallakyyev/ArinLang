@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "1fhdpyx",
+  "CachePdfKey": "1fhdpyx/1fhdpyx-md9rl0.pdf",
+  "CacheXpzKey": "1fhdpyx/1fhdpyx-tpv1h8.xpz",
+  "CacheInfoKey": "1fhdpyx/1fhdpyx-tpv1h8.json",
+  "CacheCopyKey": null,
+  "Document": "7448813a36c145c78f5771b8ead00f9e.jpg",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "~\\images\\NewsPapers\\NewsPaperFiles",
+  "DocumentFileName": "7448813a36c145c78f5771b8ead00f9e.jpg",
+  "InputOptions": {
+    "Format": "Jpg",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1fhdpyx",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

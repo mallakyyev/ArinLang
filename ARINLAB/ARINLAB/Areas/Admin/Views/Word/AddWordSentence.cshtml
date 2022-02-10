@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    SimpleWordModel mod = (SimpleWordModel)ViewBag.model;
+}
+@using ARINLAB.Models
+@using DAL.Models.Dto
+@model CreateWordSentencesDto
+
+<h1>Add Sentence and Voice </h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+
+            <label class="text-success" style="font-size:30px; font-weight:600">@mod.ArabWord</label>
+        </div>
+        <div class=" col-4">
+
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@mod.OtherWord</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <hr />
+    <div class="col-12 mb-30">
+        <form asp-area="Admin" asp-controller="Word" asp-action="AddWordSentence" method="post">
+            <input type="hidden" asp-for="WordId" value="@mod.Id" />
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="title">@SharedLocalizer["Add Example Sentence"]</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row mbn-20">
+
+                        <!--Form Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">Arab</h6>
+
+                            <div class="row mbn-15">
+                                <div class="col-12 mb-15"><input type="text" asp-for="ArabSentence" class="form-control" placeholder="@SharedLocalizer["Sentence"]"></div>
+
+                                <div class="col-12 mb-15"><textarea class="form-control" asp-for="ArabReader" placeholder="@SharedLocalizer["Transcript"]"></textarea></div>
+                            </div>
+
+                        </div>
+                        <!--Form Field-->
+                        <!--Readonly Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">@mod.DictID</h6>
+
+                            <div class="row mbn-15">
+                                <div class="col-12 mb-15"><input type="text" asp-for="OtherSentence" class="form-control" placeholder="@SharedLocalizer["Sentence"]"></div>
+
+                                <div class="col-12 mb-15"><textarea asp-for="OtherReader" class="form-control" placeholder="@SharedLocalizer["Transcript"]"></textarea></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

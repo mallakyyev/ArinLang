@@ -1,0 +1,34 @@
+﻿@page
+@model RegisterConfirmationModel
+@using ARINLAB
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col" style="height: 60vh ">
+    <div class="p-10 bg-white shadow-md rounded">
+        <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
+            @SharedLocalizer["Varification Code have been sent to your Email."]
+        </div>
+        <form class="input-forms flex flex-col py-2" id="account" method="post">
+
+            <input type="hidden" asp-for="Input.Email" value="@Model.Email" />
+            
+            <input asp-for="Input.ECode" type="number" min="100000" max="1000000" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Code"]" />
+            <span asp-validation-for="Input.ECode" class="text-danger"></span>
+
+            <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Verify"]</button>
+        </form>
+
+        @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
+                <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
+            </div>*@
+    </div>
+    @*<div class="text-center mt-4 max-w-sm">
+            Еще не зарегистрировались?
+            <a href="sign-up.html" class="text-link hover:text-secondary">Регистрация</a>
+        </div>*@
+</div>

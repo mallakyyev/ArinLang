@@ -1,0 +1,16 @@
+﻿@model bool
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer;
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Information";
+}
+
+@if (Model)
+{
+    <h2 class="text-success"> @SharedLocalizer["Email was send successfullt"]</h2>
+}
+else
+{
+    <h2 class="text-danger"> @SharedLocalizer["Some thing went wrong !! Try resend the Email"]</h2>
+}

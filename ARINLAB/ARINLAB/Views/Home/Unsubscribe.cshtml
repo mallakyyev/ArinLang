@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@*<form asp-controller="Home" asp-action="Unsubscribed" asp-route-email="email" id="form">
+    <div class="row">
+        <div class="col-4">
+            <div id="email">
+                <input type="email" class="input-group-text" name="email" min="1" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@SharedLocalizer["Unsubscribe"]</button>
+        </div>
+    </div>
+</form>*@
+
+<div class="bg-gray-100 lg:py-0 sm:py-4">
+    <div class="xl:container sm:px-4 xl:p-40 lg:p-24">
+        <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded">
+            <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto">
+                @SharedLocalizer["Unsubscribe from ARINLANG web newsletter and events"]
+            </h2>
+            @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
+                    и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
+                    Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
+                </h3>*@
+            <form asp-area="" asp-controller="Home" asp-action="Unsubscribed">
+                <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
+                    <input type="email"
+                           name="email"
+                           placeholder="@SharedLocalizer["Enter your email address"]"
+                           class="sm:w-9/12 w-full bg-transparent p-4 outline-none sm:border-none border border-gray-200 rounded sm:rounded-none" required />
+                    <button type="submit"
+                            class="button sm:absolute flex items-center justify-center uppercase rounded sm:rounded-none right-0 top-0 btn w-full sm:w-auto bg-secondary h-full text-white">
+                        <span>@SharedLocalizer["Unsubscribe"]</span>
+                    </button>
+
+
+                </div>
+
+            </form>
+       
+           
+
+        </div>
+    </div>
+</div>

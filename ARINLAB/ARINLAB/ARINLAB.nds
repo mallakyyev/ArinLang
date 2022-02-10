@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<desktop lang="tk" column="TContextColumn" row="Monday">
+  <project>
+  </project>
+  <node>ARINLAB.csproj</node>
+  <node>Resources - Copy</node>
+  <node>SharedResource.en-US.resx</node>
+  <column class="TInfoColumn" width="83"/>
+  <column class="TContextColumn" width="417"/>
+  <column class="TOriginalColumn" width="417"/>
+  <column class="TTranslationColumn" width="417" id="tk"/>
+  <column class="TTranslationStateColumn" width="105"/>
+  <report/>
+</desktop>

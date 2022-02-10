@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using ARINLAB
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["SideBar"];
+}
+<div class="side-header show" style="background-color: #00106d;">
+    <button class="side-header-close"><i class="zmdi zmdi-close"></i></button>
+    <!-- Side Header Inner Start -->
+    <div class="side-header-inner custom-scroll">
+
+        <nav class="side-header-menu" id="side-header-menu">
+            <ul>
+                <li>
+                    <a style="color:#ffffff" asp-area="Registered" asp-controller="Registered" asp-action="Index"><i class="ti-home"></i> <span>@SharedLocalizer["Dashboard"]</span></a>
+                </li>
+                <li class="has-sub-menu">
+                    <a href="#" style="color:#ffffff"><i class="fa fa-file-word-o"></i> <span>@SharedLocalizer["My Words"]</span></a>
+                    <ul class="side-header-sub-menu">
+                        <li><a style="color:#ffffff" asp-area="Registered" asp-controller="Word" asp-action="Index"><span>@SharedLocalizer["My added Words"]</span></a></li>
+                        <li><a style="color:#ffffff" asp-area="Registered" asp-controller="Word" asp-action="Create">@SharedLocalizer["Create New Word"]</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub-menu">
+                    <a href="#" style="color:#ffffff"><i class="fa fa-book"></i> <span>@SharedLocalizer["My Word Clauses"]</span></a>
+                    <ul class="side-header-sub-menu">
+                        <li><a style="color:#ffffff" asp-area="Registered" asp-controller="WordClause" asp-action="Index"><span>@SharedLocalizer["My added Words Clauses"]</span></a></li>
+                        <li><a style="color:#ffffff" asp-area="Registered" asp-controller="WordClause" asp-action="Create">@SharedLocalizer["Create New Word Clause"]</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" style="color:#ffffff"><i class="fa fa-user-o"></i> <span>@SharedLocalizer["My Names"]</span> </a>
+                    <ul class="side-header-sub-menu">
+                        <li>
+                            <a asp-area="Registered" style="color:#ffffff" asp-controller="Names" asp-action="Index"> <span>@SharedLocalizer["My added Names"]</span></a>
+                        </li>
+                        <li>
+                            <a asp-area="Registered" style="color:#ffffff" asp-controller="Names" asp-action="Create"> <span>@SharedLocalizer["Create Name"]</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div><!-- Side Header Inner End -->
+</div>

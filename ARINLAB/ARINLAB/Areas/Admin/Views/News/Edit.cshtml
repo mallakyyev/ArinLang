@@ -1,0 +1,270 @@
+﻿@model DAL.Models.Dto.NewsModelDTO.EditNewsDTO
+@using TSTB.Web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using DAL.Models
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit news"];
+    int lngIndex = 0;
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit news"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <script src="~/js/custom.js"></script>
+        <script src="~/js/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+        <div id="gridContainer">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                <div class="col-md-12">
+                    <input type="hidden" asp-for="Id" />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @foreach (LanguageDto languageDTO in ViewBag.Languages)
+                            {
+                                var prdT = Model.NewsTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                <h3>@languageDTO.Name</h3>
+                                <hr />
+                                if (prdT != null)
+                                {
+                                    <input type="hidden" name="NewsTranslates[@lngIndex].Id" value="@prdT.Id" />
+                                    <input type="hidden" class="form-control" name="NewsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                    <div class="form-group">
+                                        <label>@SharedLocalizer["Name"] *</label>
+                                        <div id="news-name-@lngIndex"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@SharedLocalizer["Description"] *</label>
+                                        <textarea class="editor-@lngIndex" name="NewsTranslates[@lngIndex].Description" rows="3">@Html.Raw(prdT.Description)</textarea>
+                                        @*<div id="description-editor-@lngIndex"></div>*@
+                                    </div>
+                                    <script>
+                                    $(function () {
+                                        $("#news-name-@lngIndex").dxTextBox({
+                                            name: "NewsTranslates[@lngIndex].Name",
+                                            value: @Json.Serialize(prdT.Name),
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter name"]'
+                                            }]
+                                        }).dxTextBox("instance");
+
+                                        InitTinyMce('textarea.editor-@lngIndex', '/api/images')
+
+                                        @*$("#description-editor-@lngIndex").dxHtmlEditor({
+                                            height: 300,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                         "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: "NewsTranslates[@lngIndex].Description",
+                                            value: `@Html.Raw(prdT.Description)`
+                                        }).dxHtmlEditor("instance");*@
+                                    });
+                                    </script>
+
+                                }
+                                else
+                                {
+
+                                }
+
+
+                                lngIndex++;
+                            }
+
+                        </div>
+                        <div class="col-md-12">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Select news category"] *</label>
+                                <div id="newsSelection"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Picture"]</label>
+                                <div id="file"></div>
+                            </div>
+
+                            @*<div class="form-group" style="overflow: hidden;">
+                                <div class="col-md-6">
+                                    <label>@SharedLocalizer["Date publish"] *</label>
+                                    @if (Model.DatePublished != null)
+                                    {
+                                        <div id="completeDate"></div>
+                                    }
+                                    else
+                                    {
+                                        <div id="completeDate1"></div>
+                                    }
+
+                                </div>
+                            </div>*@
+
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Date publish"] *</label>
+                                <div id="datePublished"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div id="published"></div>
+                            </div>
+
+                            <br />
+
+                            @if (Model.PictureName != null)
+                            {
+                                <img src="~/images/News/@Model.PictureName" />
+
+                            }
+                            else
+                            {
+                                <h6 class="col-6 alert-danger">@SharedLocalizer["No photo"]</h6>
+                            }
+
+                            <input type="hidden" name="PictureName" value="@Model.PictureName" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/CustomStore.js"></script>
+    <script>
+        var getNewsCategories = new DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/api/NewsAPI/GetAllNewsCategories",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        });
+
+        $(function () {
+            $("#newsSelection").dxSelectBox({
+                dataSource: getNewsCategories,
+                displayExpr: "name",
+                valueExpr: "id",
+                value: @Html.Raw(Json.Serialize(Model.NewsCategoryID)),
+                name: 'NewsCategoryID',
+                searchEnabled: true
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Select news category"]'
+                }]
+            });
+
+            $("#file").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormFile",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false
+            });
+
+            let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+                value: (published.toLowerCase() == 'true'),
+            });
+
+            $("#datePublished").dxDateBox({
+                type: "date",
+                name: "DatePublished",
+                placeholder: '@SharedLocalizer["Date publish"]',
+                width: 150,
+                displayFormat: 'dd/MM/yyyy',
+                value: @Json.Serialize(Model.DatePublished)
+            }).dxValidator({
+                 validationRules: [{
+                 type: "required",
+                    message: '@SharedLocalizer["Please select publish date"]'
+                }]
+            });
+
+             @*$("#completeDate").dxDateBox({
+                type: "date",
+                name: "DatePublished",
+                value: @Json.Serialize(Model.DatePublished),
+                visible: true,
+                 width: 150,
+             }).dxValidator({
+                 validationRules: [{
+                     type: "required",
+                     message: '@SharedLocalizer["Please Enter News Publish Date"]'
+                 }]
+             });
+
+             $("#completeDate1").dxDateBox({
+                type: "date",
+                name: "DatePublished",
+                placeholder: '@SharedLocalizer["Not Set"]',
+                visible: true,
+                 width: 150,
+            }).dxValidator({
+                 validationRules: [{
+                 type: "required",
+                 message: '@SharedLocalizer["Please Enter News Publish Date"]'
+                                   }]
+                         });*@
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+
+        });
+
+    </script>
+
+}

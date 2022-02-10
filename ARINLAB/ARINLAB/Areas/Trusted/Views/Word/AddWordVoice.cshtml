@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using ARINLAB.Models
+@model SimpleWordVoiceModel
+@{
+    SimpleWordVoiceModel mod = (SimpleWordVoiceModel)ViewBag.model;
+}
+<h1>Add  Voice </h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4 items-center">
+
+            <label class="text-success" style="font-size:30px; font-weight:600">@mod.ArabWord</label>
+        </div>
+        <div class=" col-4">
+
+            <h2 class="text-success" style="font-size:30px; font-weight:600">@mod.OtherWord</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <hr />
+    <div class="col-12 mb-30">
+        <form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Word" asp-action="AddWordVoice">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="title">@SharedLocalizer["Add Word Voices"]</h3>
+                </div>
+                <input type="hidden" asp-for="Id" value="@mod.Id" />
+                <div class="box-body">
+                    <div class="row mbn-20">
+
+                        <!--Form Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">@SharedLocalizer["Arab"]</h6>
+
+                            <div class="row mbn-15">
+                                <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                <input asp-for="ArabVoice" type="file" class="form-control" />
+                            </div>
+
+                        </div>
+                        <!--Form Field-->
+                        <!--Readonly Field-->
+                        <div class="col-lg-6 col-12 mb-20">
+
+                            <h6 class="mb-15">@mod.DictID</h6>
+
+                            <div class="row mbn-15">
+                                <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                <input asp-for="OtherVoice" type="file" class="form-control" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    string text = ViewBag.Error;
+}
+
+<button class="sweetalert sweetalert-error button button-danger" id="AlertButton" hidden></button>
+@if (!string.IsNullOrEmpty(text))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("AlertButton").click();
+        }
+    </script>
+}
