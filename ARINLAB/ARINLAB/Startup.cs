@@ -37,8 +37,8 @@ namespace ARINLAB
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             //services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-             //options.UseSqlServer("Server=45.132.242.156;Database=arinlang; User Id=SA;Password=1987_Maksat;MultipleActiveResultSets=true"));
+              // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlServer("Server=45.132.242.156;Database=arinlang; User Id=SA;Password=1987_Maksat;MultipleActiveResultSets=true"));
             services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
@@ -52,10 +52,10 @@ namespace ARINLAB
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.Password.RequiredLength = 5;
-                options.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
-                options.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
-                options.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
-                options.Password.RequireDigit = false; // требуются ли цифры
+                options.Password.RequireNonAlphanumeric = false;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                options.Password.RequireLowercase = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                options.Password.RequireUppercase = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                options.Password.RequireDigit = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                 options.SignIn.RequireConfirmedAccount = true;
             })
                .AddRoles<IdentityRole>()
