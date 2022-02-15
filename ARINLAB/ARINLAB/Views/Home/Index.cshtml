@@ -104,11 +104,55 @@
         </div>
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["Words Collection"] </h2>
+              <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900;">
+                <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+            @SharedLocalizer["Words Collection"] </h2>
         }
         else
         {
-            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["Words Collection"] </h2>
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900;">
+                <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+            @SharedLocalizer["Words Collection"] </h2>
         }
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
@@ -116,7 +160,7 @@
         }
         else
         {
-            <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+            <a class="e-link" style="float: right; font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
         }
 
         <div class="row">
@@ -125,12 +169,56 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Words Clauses Collection"]</h2>
+                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                         <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+                        @SharedLocalizer["Words Clauses Collection"]</h2>
                     <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
                 }
                 else
                 {
-                    <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Words Clauses Collection"]</h2>
+                    <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                         <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+                        @SharedLocalizer["Words Clauses Collection"]</h2>
                     <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
 
                 }
@@ -141,12 +229,56 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Names Collection"] </h2>
+                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                        <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+                        @SharedLocalizer["Names Collection"] </h2>
                     <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
                 }
                 else
                 {
-                    <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-top:4rem;">@SharedLocalizer["Names Collection"] </h2>
+                    <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                        <span style="padding-top: 16px; padding-right: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 7.84 10.21"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <g id="_2065671225024">
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                </g>
+                </g>
+            </svg>
+            </span>
+                        @SharedLocalizer["Names Collection"] </h2>
                     <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
 
                 }
@@ -237,25 +369,25 @@
 {
     <div class="bg-gray-100 sm:py-16 py-10 md:py-20">
         <div dir="rtl" class="bg-white py-8">
-            <div class="xl:container xl:px-0 px-4">
-                <div class="grid lg:grid-cols-2 gap-y-8">
-                    <div class="flex flex-col justify-evenly lg:h-auto lg:py-0 md:h-64 md:py-24">
+             <div class="xl:container xl:px-0 px-4">
+                <div class="w-full">
+                    <div class="flex flex-col justify-evenly">
                         <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
-                        <div class="grid md:grid-cols-2 md:gap-y-10 gap-y-4 gap-x-6">
+                        <div class="flex flex-row w-full justify-between">
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
-                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer["Users"]</span>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
+                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer[" Users"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@SharedLocalizer["Total"] @Model.StatistiCards[0].totalCount @SharedLocalizer["Sentences recorded"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@Model.StatistiCards[1].totalCount  @SharedLocalizer["Phrases recorded"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
                             </div>
                         </div>
@@ -279,24 +411,24 @@ else
     <div class="bg-gray-100 sm:py-16 py-10 md:py-20">
         <div class="bg-white py-8">
             <div class="xl:container xl:px-0 px-4">
-                <div class="grid lg:grid-cols-2 gap-y-8">
-                    <div class="flex flex-col justify-evenly lg:h-auto lg:py-0 md:h-64 md:py-24">
+                <div class="w-full">
+                    <div class="flex flex-col justify-evenly">
                         <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
-                        <div class="grid md:grid-cols-2 md:gap-y-10 gap-y-4 gap-x-6">
+                        <div class="flex flex-row w-full justify-between">
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer[" Users"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@SharedLocalizer["Total"] @Model.StatistiCards[0].totalCount @SharedLocalizer["Sentences recorded"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@Model.StatistiCards[1].totalCount  @SharedLocalizer["Phrases recorded"]</span>
                             </div>
                             <div>
-                                <div class="h-2 w-16 md:mb-2 mb-1 rounded-sm bg-secondary"></div>
+                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
                                 <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
                             </div>
                         </div>
@@ -353,8 +485,8 @@ else
         {
             <div class="bg-gray-100 lg:py-0 sm:py-4">
                 <div class="xl:container sm:px-4  lg:p-24">
-                    <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded">
-                        <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto">
+                    <div class="bg-white px-4 py-10 rounded" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 850px;">
+                        <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto">
                             @SharedLocalizer["Subscribe to the newsletter and events"]
                         </h2>
                         @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
@@ -362,13 +494,13 @@ else
                                 Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
                             </h3>*@
                         <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                            <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
+                            <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
                                 <input type="email"
                                        name="email"
                                        placeholder="@SharedLocalizer["Enter your email address"]"
-                                       class="sm:w-9/12 w-full bg-transparent p-4 outline-none sm:border-none border border-gray-200 rounded sm:rounded-none" required />
+                                       class="sm:w-9/12 bg-white p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
                                 <button type="submit"
-                                        class="button sm:absolute flex items-center justify-center uppercase rounded sm:rounded-none right-0 top-0 btn w-full sm:w-auto bg-secondary h-full text-white">
+                                        class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 35px;">
                                     <span>@SharedLocalizer["Subscribe"]</span>
                                 </button>
                             </div>
