@@ -10,7 +10,6 @@
 
 .app-wrapper {
     min-height: calc(100vh - 401px);
-    margin-bottom: 1rem;
 }
 
 #tabs-content {
