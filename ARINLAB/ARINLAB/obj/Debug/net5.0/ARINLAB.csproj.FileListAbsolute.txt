@@ -1263,3 +1263,4 @@ C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.RazorTargetAssem
 C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Views.pdb
 C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.csproj.CopyComplete
 C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.genruntimeconfig.cache
+C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\Shared\Components\OtherMenu\Default.cshtml.g.cs

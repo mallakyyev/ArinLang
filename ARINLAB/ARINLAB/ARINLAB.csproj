@@ -2087,7 +2087,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\User\Arinlang\ARINLAB\DAL\DAL.csproj" />
+	  <ProjectReference Include=" C:\Users\User\Arinlang\ARINLAB\DAL\DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

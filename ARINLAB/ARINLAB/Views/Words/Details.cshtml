@@ -33,6 +33,8 @@
     }
 
 }
+@await Component.InvokeAsync("OtherMenu")
+
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
     <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">

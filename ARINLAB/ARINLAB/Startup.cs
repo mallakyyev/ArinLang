@@ -37,7 +37,7 @@ namespace ARINLAB
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             //services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
             services.AddDbContext<ApplicationDbContext>(options =>
-              // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             //  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
              options.UseSqlServer("Server=45.132.242.156;Database=arinlang; User Id=SA;Password=1987_Maksat;MultipleActiveResultSets=true"));
             services.AddDistributedMemoryCache();
 
