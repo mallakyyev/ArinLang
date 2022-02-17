@@ -23,7 +23,7 @@
             <h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>
         </div>
     </div>*@
-
+@await Component.InvokeAsync("HeaderMenu")
 <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
     <!-- ******************** ADVERTISMENT LEFT  ********************-->
     <div dir="ltr" class="flex-grow xl:w-2/12 xl:mr-2 mb-16 xl:mb-0 relative adt-center overflow-hidden" style="margin-top:25%">
@@ -41,127 +41,133 @@
             @*<h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>*@
         </div>
         @* <div class="relative">
-            <div class="prev">
-                <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
-                    <path id="path"
-                          d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                          transform="translate(353.6 399.8) rotate(180)"
-                          fill="#5e5e77" />
-                </svg>          
-            </div>
-            <div class="next">
-                <svg width="18" height="12" viewBox="0 0 18 12">
-                    <path id="path"
-                          d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                          transform="translate(353.6 399.8) rotate(180)"
-                          fill="#5e5e77" />
-                </svg>
-            </div>
-            
-            <div class="xl:container px-4 xl:px-0 relative overflow-hidden text-center"  style="border-bottom: 3px solid #282848; background-color: #fbfbfb;">
-                @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-                {
-                    <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                        @SharedLocalizer["Latest News"]
-                    </h2>
-                }
-                else
-                {
-                    <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                        @SharedLocalizer["Latest News"]
-                    </h2>
-                }
-                <div class="products-swiper-container swiper-container">
-                    <div class="swiper-wrapper pb-16 justify-evenly">
-                        @foreach (var item in news)
-                        {
-                            <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
-                                <div class="products-slider-card">
-                                    <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
-                                         style="background: rgba(0, 0, 0, 0.5)">
-                                        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-                                        {
-                                            <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
-                                                @item.Name
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-white sm:text-lg font-semibold text-base block w-full">
-                                                @item.Name
-                                            </span>
-                                        }
-                                    </div>
-                                    <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
-                                </div>
-                            </a>
-                        }
-                    </div>
-
-                    <!-- Slider main container -->
+                <div class="prev">
+                    <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
+                        <path id="path"
+                              d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                              transform="translate(353.6 399.8) rotate(180)"
+                              fill="#5e5e77" />
+                    </svg>
                 </div>
-            </div>
-        </div> *@
+                <div class="next">
+                    <svg width="18" height="12" viewBox="0 0 18 12">
+                        <path id="path"
+                              d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
+                              transform="translate(353.6 399.8) rotate(180)"
+                              fill="#5e5e77" />
+                    </svg>
+                </div>
+
+                <div class="xl:container px-4 xl:px-0 relative overflow-hidden text-center"  style="border-bottom: 3px solid #282848; background-color: #fbfbfb;">
+                    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                    {
+                        <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                            @SharedLocalizer["Latest News"]
+                        </h2>
+                    }
+                    else
+                    {
+                        <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
+                            @SharedLocalizer["Latest News"]
+                        </h2>
+                    }
+                    <div class="products-swiper-container swiper-container">
+                        <div class="swiper-wrapper pb-16 justify-evenly">
+                            @foreach (var item in news)
+                            {
+                                <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
+                                    <div class="products-slider-card">
+                                        <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
+                                             style="background: rgba(0, 0, 0, 0.5)">
+                                            @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+                                            {
+                                                <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
+                                                    @item.Name
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-white sm:text-lg font-semibold text-base block w-full">
+                                                    @item.Name
+                                                </span>
+                                            }
+                                        </div>
+                                        <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
+                                    </div>
+                                </a>
+                            }
+                        </div>
+
+                        <!-- Slider main container -->
+                    </div>
+                </div>
+            </div> *@
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-              <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; cursor: pointer;">
-                <span style="padding-top: 16px; padding-right: 10px;">
+    <a asp-controller="Words" asp-action="Indexall">
+        <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex"  style="font:900; cursor: pointer;">
+            <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                     viewBox="0 0 7.84 10.21"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
                 <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <metadata id="CorelCorpID_0Corel-Layer" />
                 <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
             </span>
-            @SharedLocalizer["Words Collection"] </h2>
+            @SharedLocalizer["Words Collection"]
+        </h2>
+    </a>
         }
         else
         {
-            <h2 class=" md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; cursor: pointer;">
-                <span style="padding-top: 16px; padding-right: 10px;">
+    <a asp-controller="Words" asp-action="Indexall">
+        <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex"  style="font:900; cursor: pointer;">
+            <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                     viewBox="0 0 7.84 10.21"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
                 <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <metadata id="CorelCorpID_0Corel-Layer" />
                 <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
             </span>
-            @SharedLocalizer["Words Collection"] </h2>
+            @SharedLocalizer["Words Collection"]
+        </h2>
+    </a>
         }
         @* @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-        {
-            <a class="e-link" dir="rtl" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
-        }
-        else
-        {
-            <a class="e-link" style="float: right; font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
-        } *@
+            {
+                <a class="e-link" dir="rtl" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+            }
+            else
+            {
+                <a class="e-link" style="float: right; font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+            } *@
 
         <div class="row">
             <div style="touch-action:manipulation" id="gridContainer">
@@ -169,56 +175,62 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
-                         <span style="padding-top: 16px; padding-right: 10px;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
-                <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
-                <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                <a asp-area="" asp-controller="WordClauses" asp-action="Indexall">
+                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem; cursor: pointer;">
+                        <span style="padding-top: 16px; padding-right: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                 viewBox="0 0 7.84 10.21"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                            <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer" />
+                            <g id="_2065671225024">
+                            <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                            <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                            <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                            <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                            <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
-            </span>
-                        @SharedLocalizer["Words Clauses Collection"]</h2>
+                        </span>
+                        @SharedLocalizer["Words Clauses Collection"]
+                    </h2>
+                </a>
                     @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
-                    <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
-                         <span style="padding-top: 16px; padding-right: 10px;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
-                <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
-                <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+            <a asp-area="" asp-controller="WordClauses" asp-action="Indexall">
+                <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem; cursor: pointer;">
+                    <span style="padding-top: 16px; padding-right: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                             viewBox="0 0 7.84 10.21"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                        <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer" />
+                        <g id="_2065671225024">
+                        <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                        <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                        <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                        <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                        <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
-            </span>
-                        @SharedLocalizer["Words Clauses Collection"]</h2>
+                    </span>
+                    @SharedLocalizer["Words Clauses Collection"]
+                </h2>
+            </a>
                     @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
 
                 }
@@ -229,56 +241,62 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
+                    <a  asp-area="" asp-controller="Names" asp-action="Indexall">
+                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem; cursor: pointer;">
                         <span style="padding-top: 16px; padding-right: 10px;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
-                <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
-                <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                 viewBox="0 0 7.84 10.21"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                            <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer" />
+                            <g id="_2065671225024">
+                            <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                            <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                            <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                            <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                            <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                            <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
-            </span>
-                        @SharedLocalizer["Names Collection"] </h2>
+                        </span>
+                        @SharedLocalizer["Names Collection"]
+                    </h2>
+                        </a>
                     @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
-                    <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
-                        <span style="padding-top: 16px; padding-right: 10px;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 7.84 10.21"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
-                <g id="Layer_x0020_1">
-                <metadata id="CorelCorpID_0Corel-Layer"/>
-                <g id="_2065671225024">
-                <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z"/>
-                <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78"/>
-                <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78"/>
-                <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78"/>
-                <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78"/>
+            <a asp-area="" asp-controller="Names" asp-action="Indexall">
+                <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem; cursor: pointer;">
+                    <span style="padding-top: 16px; padding-right: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                             viewBox="0 0 7.84 10.21"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                        <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer" />
+                        <g id="_2065671225024">
+                        <path class="fil0" d="M1.3 0l5.24 0c0.71,0 1.3,0.58 1.3,1.3l0 7.62c0,0.71 -0.58,1.3 -1.3,1.3l-5.24 0c-0.71,0 -1.3,-0.58 -1.3,-1.3l0 -7.62c0,-0.71 0.58,-1.3 1.3,-1.3zm0 0.77l5.24 0c0.29,0 0.53,0.24 0.53,0.53l0 7.62c0,0.29 -0.24,0.53 -0.53,0.53l-5.24 0c-0.29,0 -0.53,-0.24 -0.53,-0.53l0 -7.62c0,-0.29 0.24,-0.53 0.53,-0.53z" />
+                        <rect class="fil0" x="1.58" y="2.38" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="2.38" width="3.13" height="0.78" />
+                        <rect class="fil0" x="1.58" y="3.93" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="3.93" width="2.71" height="0.78" />
+                        <rect class="fil0" x="1.58" y="5.47" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="5.47" width="3.13" height="0.78" />
+                        <rect class="fil0" x="1.58" y="7.02" width="0.79" height="0.78" />
+                        <rect class="fil0" x="3.15" y="7.02" width="2.71" height="0.78" />
                 </g>
                 </g>
             </svg>
-            </span>
-                        @SharedLocalizer["Names Collection"] </h2>
+                    </span>
+                    @SharedLocalizer["Names Collection"]
+                </h2>
+            </a>
                     @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
 
                 }
@@ -369,7 +387,7 @@
 {
     <div class="bg-gray-100" style="border-top: 2px solid #282848;">
         <div dir="rtl" class="bg-gray-100 py-8">
-             <div class="xl:container xl:px-0 px-4">
+            <div class="xl:container xl:px-0 px-4">
                 <div class="w-full">
                     <div class="flex flex-col justify-evenly">
                         <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
@@ -445,81 +463,85 @@ else
                 </div>
             </div>
         </div>
+    </div>
+}
+<!-- ******************** STATISTICS SECTION  ********************-->
+<!-- ******************** MAILING SECTION  ********************-->
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+{
+    <div dir="rtl" class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
+        <div class="xl:container sm:px-4 lg:p-24">
+            <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
+                <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto" style="margin-left: 18px;">
+                    @SharedLocalizer["Subscribe to the newsletter and events"]
+                </h2>
+                @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
+                        и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
+                        Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
+                    </h3>*@
+                <form asp-area="" asp-controller="Home" asp-action="Subscribe">
+                    <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
+                        <input type="email" style="margin-right: 20%;"
+                               name="email"
+                               placeholder="@SharedLocalizer["Enter your email address"]"
+                               class="sm:w-9/10 bg-transparent p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
+                        <button type="submit"
+                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
+                            <span>@SharedLocalizer["Subscribe"]</span>
+                        </button>
+                    </div>
+
+                </form>
+                <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
+                    Your email address will be used to send you Newsletters, events and emails about Arinlang. <br>
+                    You can unsubscribe at any time by clicking on the unsubscribe link en each email.
+                </p>
+                <hr />
+            </div>
         </div>
-        }
-        <!-- ******************** STATISTICS SECTION  ********************-->
-        <!-- ******************** MAILING SECTION  ********************-->
-        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-        {
-            <div dir="rtl" class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
-                <div class="xl:container sm:px-4 lg:p-24">
-                    <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
-                        <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto" style="margin-left: 18px;">
-                            @SharedLocalizer["Subscribe to the newsletter and events"]
-                        </h2>
-                        @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
-                                и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
-                                Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
-                            </h3>*@
-                        <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                            <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
-                                <input type="email" style="margin-right: 20%;"
-                                       name="email"
-                                       placeholder="@SharedLocalizer["Enter your email address"]"
-                                       class="sm:w-9/10 bg-transparent p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
-                                <button type="submit"
-                                        class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
-                                    <span>@SharedLocalizer["Subscribe"]</span>
-                                </button>
-                            </div>
-
-                        </form>
-                        <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">Your email address will be used to send you Newsletters, events and emails about Arinlang. <br> 
-                        You can unsubscribe at any time by clicking on the unsubscribe link en each email. </p>
-                        <hr />
+    </div>
+}
+else
+{
+    <div class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
+        <div class="xl:container sm:px-4  lg:p-24">
+            <div class="bg-white px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
+                <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
+                    @SharedLocalizer["Subscribe to the newsletter and events"]
+                </h2>
+                @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
+                        и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
+                        Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
+                    </h3>*@
+                <form asp-area="" asp-controller="Home" asp-action="Subscribe">
+                    <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
+                        <input type="email"
+                               name="email"
+                               placeholder="@SharedLocalizer["Enter your email address"]"
+                               class="sm:w-9/12 bg-white p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
+                        <button type="submit"
+                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
+                            <span>@SharedLocalizer["Subscribe"]</span>
+                        </button>
                     </div>
-                </div>
+                </form>
+                <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
+                    Your email address will be used to send you Newsletters, events and emails about Arinlang. <br>
+                    You can unsubscribe at any time by clicking on the unsubscribe link en each email.
+                </p>
+                <hr />
             </div>
-        }
-        else
-        {
-            <div class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
-                <div class="xl:container sm:px-4  lg:p-24">
-                    <div class="bg-white px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
-                        <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
-                            @SharedLocalizer["Subscribe to the newsletter and events"]
-                        </h2>
-                        @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
-                                и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
-                                Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
-                            </h3>*@
-                        <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                            <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
-                                <input type="email"
-                                       name="email"
-                                       placeholder="@SharedLocalizer["Enter your email address"]"
-                                       class="sm:w-9/12 bg-white p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
-                                <button type="submit"
-                                        class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
-                                    <span>@SharedLocalizer["Subscribe"]</span>
-                                </button>
-                            </div>
-                        </form>
-                        <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">Your email address will be used to send you Newsletters, events and emails about Arinlang. <br> 
-                        You can unsubscribe at any time by clicking on the unsubscribe link en each email. </p>
-                        <hr />
-                    </div>
-                </div>
-            </div>
-        }
-        <!-- ******************** MAILING SECTION  ********************-->
+        </div>
+    </div>
+}
+<!-- ******************** MAILING SECTION  ********************-->
 
 
 
-        @section Scripts{
+@section Scripts{
 
-            <script src="~/client/js/advertisment.js" defer></script>
-            <script>
+    <script src="~/client/js/advertisment.js" defer></script>
+    <script>
         $(function () {
             let url = `@API.GetRandomWords`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
@@ -651,9 +673,9 @@ else
             }
 
         }
-            </script>
+    </script>
 
-            <script>
+    <script>
         $(function () {
             let url = `@API.GetAllWordClauses`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
@@ -771,9 +793,9 @@ else
                 ]
             });
         });
-            </script>
+    </script>
 
-            <script>
+    <script>
         $(function () {
             let url = `@API.GetRandomNames`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
@@ -876,5 +898,5 @@ else
                 ]
             });
         });
-            </script>
-        }
+    </script>
+}
