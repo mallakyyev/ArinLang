@@ -104,7 +104,7 @@
         </div> *@
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-              <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900;">
+              <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; cursor: pointer;">
                 <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -130,7 +130,7 @@
         }
         else
         {
-            <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900;">
+            <h2 class=" md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; cursor: pointer;">
                 <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -154,14 +154,14 @@
             </span>
             @SharedLocalizer["Words Collection"] </h2>
         }
-        @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+        @* @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
             <a class="e-link" dir="rtl" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
         }
         else
         {
             <a class="e-link" style="float: right; font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
-        }
+        } *@
 
         <div class="row">
             <div style="touch-action:manipulation" id="gridContainer">
@@ -169,7 +169,7 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
                          <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -192,11 +192,11 @@
             </svg>
             </span>
                         @SharedLocalizer["Words Clauses Collection"]</h2>
-                    <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                    @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
-                    <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                    <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
                          <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -219,7 +219,7 @@
             </svg>
             </span>
                         @SharedLocalizer["Words Clauses Collection"]</h2>
-                    <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                    @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
 
                 }
 
@@ -229,7 +229,7 @@
             <div class="row">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
                 {
-                    <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                    <h2 dir="rtl" class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
                         <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -252,11 +252,11 @@
             </svg>
             </span>
                         @SharedLocalizer["Names Collection"] </h2>
-                    <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                    @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
-                    <h2 class="md:text-4xl text-2xl font-semibold mb-10 flex" style="font:900; padding-top:4rem;">
+                    <h2 class="e-link md:text-4xl text-2xl font-semibold mb-10 flex" asp-area="" asp-controller="Words" asp-action="Indexall" style="font:900; padding-top:4rem; cursor: pointer;">
                         <span style="padding-top: 16px; padding-right: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#282848" xml:space="preserve" width="27px" height="27px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                 viewBox="0 0 7.84 10.21"
@@ -279,7 +279,7 @@
             </svg>
             </span>
                         @SharedLocalizer["Names Collection"] </h2>
-                    <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a>
+                    @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
 
                 }
                 <div id="gridContainer3">
