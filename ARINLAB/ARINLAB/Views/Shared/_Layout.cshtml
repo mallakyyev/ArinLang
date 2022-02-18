@@ -302,7 +302,7 @@
                             @* <span class="block text-gray-200 hover:text-white"> @SharedLocalizer["Search"] </span> *@
                         </div>
                         <div class="mr-10 cursor-pointer select-none flex items-center" id="share-btn">
-                            <a>
+                            <a onclick="toggleText()">
                                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5.2371mm"
                                 height="5.8607mm" version="1.1" fill="#fff"
                                 style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
@@ -380,7 +380,23 @@
         <main class="app-wrapper" style="margin-bottom: 0;">
                 @RenderBody()
             </main>
-
+            <div class="container" id="Myid" style="width: 500px; height: 500px; border-radius: 9px; border: 1px solid silver;">
+                <div style="background-color: #282848; padding: 20px; color: white;">
+                    <h2 style="font-size: 20px;">Share</h2>
+                </div>
+                <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
+                    <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
+                </div>
+                <div class="flex flex-row justify-between" style="margin: auto; width: 450px; padding: 20px; border: 1px solid silver; border-radius: 9px;">
+                    <h2 style="font-size: 20px; font-weight: bold;">https://www.arinlang.com/</h2> <a href=""><img style="margin-right: 15px;" src="~/images/Icons/Copy.svg"></a>
+                </div>
+                <div class="flex flex-row justify-evenly" style="margin-top: 20px;;">
+                    <img style="width: 80px; height: auto;" src="~/images/logo/Mail+Folder.png">
+                    <img style="width: 80px; height: auto;" src="~/images/logo/301280585154211.png">
+                    <img style="width: 80px; height: auto;" src="~/images/logo/b414768e7af1948afcbafb9bd4b0fd12.png">
+                    <img style="width: 80px; height: auto;" src="~/images/logo/986-9860348_o-software-est-disponvel-para-android-blackberry-whatsapp.png">
+                </div>
+            </div>
             @await Component.InvokeAsync("FooterSettings")
         </div>
     }
@@ -423,7 +439,17 @@
     <script src="~/client/js/slider.js" defer></script>
     <script src="~/client/js/header.js" defer></script>
     <script src="~/client/js/Video.js" defer></script>
-
+    
+<script>
+function toggleText(){
+  var x = document.getElementById("Myid");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
     <script>
         const body1 = document.getElementsByTagName('body');
         const dictContainer = document.getElementById('dictionary-container');
@@ -488,6 +514,7 @@
                 closeDictBar();
             }
         });
+
 
     </script>
 

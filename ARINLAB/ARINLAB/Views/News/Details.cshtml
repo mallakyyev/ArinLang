@@ -3,10 +3,43 @@
 @{
     ViewData["Title"] = Model.Name;
 }
+@await Component.InvokeAsync("OtherMenu")
 
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-    <div dir="rtl" class="bg-gray-100 h-full py-8">
+    <div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href=""><img src="~/images/Icons/Bug.svg"></a>
+        <a href=""><img src="~/images/Icons/Print.svg"></a>
+        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+    </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">16879</small>
+        <div>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 700px;margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
+    <div class="wrapper" style="margin: 20px; padding-bottom: 70px;">
+        <h2 style="font-size: 33px; font-weight: bold; margin-bottom: 20px;">6 ways to wake up without coffe</h2>
+        <div>
+            <img style="float: left; margin-right: 15px; width: 200px; height: auto;" src="~/images/News/b2c54120f0e34833b47f68458cae0368.jpg">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Earum, laudantium et? Inventore perspiciatis error nihil eligendi laudantium
+             necessitatibus aliquid nam eveniet sequi, quasi quo cum rerum reiciendis pariatur alias asperiores. <br> Lorem ipsum dolor 
+             sit, amet consectetur adipisicing elit. Rem, possimus? Delectus eos perspiciatis sint, eligendi odio reprehenderit suscipit 
+             aliquam repudiandae nulla quos voluptas autem laboriosam velit ex deleniti, aliquid aspernatur? </p>
+        </div>
+    </div>
+</div>
+    @* <div dir="rtl" class="bg-gray-100 h-full py-8">
         <div class="container bg-white sm:pt-12 pt-4 relative" id="printarea">
             <div class="lg:px-24 px-4">
                 <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl">
@@ -22,11 +55,43 @@
             </div>
             <button class="print-button" id='btn' onclick='printFunc();'><span class="print-icon" style=" width: 30px; height: 20px;"></span></button>
         </div>
-    </div>
+    </div> *@
 }
 else
 {
-    <div class="bg-gray-100 h-full py-8">
+     <div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href=""><img src="~/images/Icons/Bug.svg"></a>
+        <a href=""><img src="~/images/Icons/Print.svg"></a>
+        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+    </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">16879</small>
+        <div>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 700px;margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
+    <div class="wrapper" style="margin: 20px; padding-bottom: 70px;">
+        <h2 style="font-size: 33px; font-weight: bold; margin-bottom: 20px;">6 ways to wake up without coffe</h2>
+        <div>
+            <img style="float: left; margin-right: 15px; width: 200px; height: auto;" src="~/images/News/b2c54120f0e34833b47f68458cae0368.jpg">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Earum, laudantium et? Inventore perspiciatis error nihil eligendi laudantium
+             necessitatibus aliquid nam eveniet sequi, quasi quo cum rerum reiciendis pariatur alias asperiores. <br> Lorem ipsum dolor 
+             sit, amet consectetur adipisicing elit. Rem, possimus? Delectus eos perspiciatis sint, eligendi odio reprehenderit suscipit 
+             aliquam repudiandae nulla quos voluptas autem laboriosam velit ex deleniti, aliquid aspernatur? </p>
+        </div>
+    </div>
+</div>
+    @* <div class="bg-gray-100 h-full py-8">
         <div class="container bg-white sm:pt-12 pt-4 relative" id="printarea">
             <div class="lg:px-24 px-4">
                 <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl">
@@ -42,7 +107,7 @@ else
             </div>
             <button class="print-button" id='btn' onclick='printFunc();'><span class="print-icon" style=" width: 30px; height: 20px;"></span></button>
         </div>
-    </div>
+    </div> *@
 }
 
 @section Scripts

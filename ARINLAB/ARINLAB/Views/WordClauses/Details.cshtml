@@ -35,9 +35,59 @@
 
     }
 }
+@await Component.InvokeAsync("OtherMenu")
+
+
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-    <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+    <div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href=""><img src="~/images/Icons/Bug.svg"></a>
+        <a href=""><img src="~/images/Icons/Print.svg"></a>
+        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+    </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">16879</small>
+        <div>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
+    <div class="wrapper">
+        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
+            <h3 style="font-weight: bold;">Word in Arabic:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
+            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+        </div>
+        <div class="justify-between flex flex-row px-5 bg-gray-100"style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Sentence in Turkmen:</h3>
+            <h3 style="font-weight: bold;">Sentence in Arabic:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg">Mugallym cagalara owredyar</p>
+            <p>Muallim yualimu aletfale<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Transcription in Arabic:</h3>
+            <h3 style="font-weight: bold;">Transcription in Turkmen:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-2" style="margin-top: 20px; margin-left: 40px; margin-right: 40px; border-bottom: 1px solid silver; padding-bottom: 10px; paddding-left: 40px; padding-right: 40px;">
+            <p>Mugallym cagalary okadyar</p>
+            <p>Muallim yualimu aletfale</p>
+        </div>
+    </div>
+</div>
+    @* <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
         <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
             <div class="row" style="margin-right:35%">
                 <div class="col-2"></div>
@@ -112,23 +162,60 @@
 
 
                 </div>
-                @*<div dir="ltr" style="margin-top:20px;">
-                    <form asp-controller="WordClauses" asp-action="SetRating" method="post">
-                        <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
-                        <input type="hidden" value="@m.Id" name="WordClauseId" />
-                        <div class="form-group" style="margin-top:10px">
-                            <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
-                        </div>
-                    </form>
-                </div>*@
             </div>
         </div>
-    </div>
+    </div> *@
 }
 else
 {
-
-    <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+    <div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href=""><img src="~/images/Icons/Bug.svg"></a>
+        <a href=""><img src="~/images/Icons/Print.svg"></a>
+        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+    </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">16879</small>
+        <div>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
+    <div class="wrapper">
+        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
+            <h3 style="font-weight: bold;">Word in Arabic:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
+            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+        </div>
+        <div class="justify-between flex flex-row px-5 bg-gray-100"style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Sentence in Turkmen:</h3>
+            <h3 style="font-weight: bold;">Sentence in Arabic:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg">Mugallym cagalara owredyar</p>
+            <p>Muallim yualimu aletfale<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Transcription in Arabic:</h3>
+            <h3 style="font-weight: bold;">Transcription in Turkmen:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-2" style="margin-top: 20px; margin-left: 40px; margin-right: 40px; border-bottom: 1px solid silver; padding-bottom: 10px; paddding-left: 40px; padding-right: 40px;">
+            <p>Mugallym cagalary okadyar</p>
+            <p>Muallim yualimu aletfale</p>
+        </div>
+    </div>
+</div>
+    @* <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
         <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
             <div class="row" style="margin-left:35%">
                 <div class="col-2"></div>
@@ -158,7 +245,6 @@ else
                         <input id="kartik" name="Rating" class="rating" value="@(ViewBag.Rating)" data-stars="5" data-step="0.1" title="" />
                         <input type="hidden" value="@m.Id" name="WordClauseId" />
                     </form>
-                    @*<input id="kartik1" disabled name="Rating1" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />*@
                 </div>
             </div>
 
@@ -205,18 +291,10 @@ else
 
 
                 </div>
-                @*<div style="margin-top:20px;">
-                    <form asp-controller="WordClauses" asp-action="SetRating" method="post">
-                        <input id="kartik" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" />
-                        <input type="hidden" value="@m.Id" name="WordClauseId" />
-                        <div class="form-group" style="margin-top:10px">
-                            <button type="submit" class="bg-secondary text-white sm:rounded-none rounded px-8 py-3 font-semibold text-center cursor-pointer select-none">@SharedLocalizer["Submit your Rating"]</button>
-                        </div>
-                    </form>
-                </div>*@
+       
             </div>
         </div>
-    </div>
+    </div> *@
 
 }
 
