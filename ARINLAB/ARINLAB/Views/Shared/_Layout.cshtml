@@ -97,7 +97,7 @@
                             <p class="hover:text-white cursor-pointer">HOME</p>
                             <p class="hover:text-white cursor-pointer">NEWS</p>
                             <p class="hover:text-white cursor-pointer">CONTACT</p>
-                            <p class="hover:text-white cursor-pointer">ABOUT</p>
+                           <a asp-area="" asp-controller="AboutUs" asp-action="Index"> <p class="hover:text-white cursor-pointer" >ABOUT</p>   </a>
                         </div>
                         @await Html.PartialAsync("_SelectLanguagePartial")
                         @await Html.PartialAsync("_LoginPartial")
@@ -248,7 +248,7 @@
                             <p class="hover:text-white cursor-pointer">HOME</p>
                             <p class="hover:text-white cursor-pointer">NEWS</p>
                             <p class="hover:text-white cursor-pointer">CONTACT</p>
-                            <p class="hover:text-white cursor-pointer">ABOUT</p>
+                            <a  asp-area="" asp-controller="AboutUs" asp-action="Index"> <p class="hover:text-white cursor-pointer">ABOUT</p>   </a>
                         </div>
                         @await Html.PartialAsync("_SelectLanguagePartial")
                         @await Html.PartialAsync("_LoginPartial")
