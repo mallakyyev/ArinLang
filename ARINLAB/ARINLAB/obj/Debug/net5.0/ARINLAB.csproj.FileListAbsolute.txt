@@ -1266,3 +1266,4 @@ C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.genruntimeconfig
 C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\Shared\Components\OtherMenu\Default.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\Shared\Components\OtherMenu\Default.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\AboutUs\Index.cshtml.g.cs
+C:\Users\User\Arinlang\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\AboutUs\Index.cshtml.g.cs

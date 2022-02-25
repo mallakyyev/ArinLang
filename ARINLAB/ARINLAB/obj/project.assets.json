@@ -9174,8 +9174,8 @@
     },
     "DAL/1.0.0": {
       "type": "project",
-      "path": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj",
-      "msbuildProject": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj"
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9203,29 +9203,27 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Arinlang\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
       "projectName": "ARINLAB",
-      "projectPath": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
+      "projectPath": "C:\\Users\\User\\Arinlang\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\obj\\",
+      "outputPath": "C:\\Users\\User\\Arinlang\\ARINLAB\\ARINLAB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj"
+            "C:\\Users\\User\\Arinlang\\ARINLAB\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\User\\Arinlang\\ARINLAB\\DAL\\DAL.csproj"
             }
           }
         }
@@ -9311,6 +9309,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.14, 5.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9319,7 +9323,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
