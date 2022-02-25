@@ -16,9 +16,150 @@
         res = (bool)ViewBag.RatingResult;
 
 }
+
+@await Component.InvokeAsync("OtherMenu")
+
+<div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href=""><img src="~/images/Icons/Bug.svg"></a>
+        <a href=""><img src="~/images/Icons/Print.svg"></a>
+        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+    </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">16879</small>
+        <div id="full-stars-example">
+    <div class="rating-group">
+        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+    </div>
+</div>
+    </div>
+</div>
+<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 50px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
+    <div class="wrapper">
+        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
+            <h3 style="font-weight: bold;">Word in Arabic:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
+            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 60px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
+      <div class="wrapper">
+        <div class="text-center px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">Album:</h3>
+        </div>
+  <div class="wrapper flex justify-between" style="padding: 20px;">
+       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
+           <div class="flex justify-around align-center px-3">
+               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
+            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+            <small style="margin-right: 15px;" class="px-3">16879</small>
+            <div id="full-stars-example">
+    <div class="rating-group">
+        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+    </div>
+</div>
+        </div>
+       </div>
+       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
+           <div class="flex justify-around align-center px-3">
+               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
+            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+            <small style="margin-right: 15px;" class="px-3">16879</small>
+            <div id="full-stars-example">
+    <div class="rating-group">
+        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+    </div>
+</div>
+        </div>
+       </div>
+    </div>
+    <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
+       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
+           <div class="flex justify-around align-center px-3">
+               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
+            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+            <small style="margin-right: 15px;" class="px-3">16879</small>
+            <div id="full-stars-example">
+    <div class="rating-group">
+        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+    </div>
+</div>
+        </div>
+       </div>
+       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
+           <div class="flex justify-around align-center px-3">
+               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
+            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+            <small style="margin-right: 15px;" class="px-3">16879</small>
+            <div id="full-stars-example">
+    <div class="rating-group">
+        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+    </div>
+</div>
+        </div>
+       </div>
+    </div>
+</div>
+
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-    <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+    @* <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
         <div class="h-full xl:container xl:px-0 px-4">
             <a href="@((string)ViewBag.ExportImage)" ><i style="position:fixed" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
             <div class="row" style="margin-right:35%">
@@ -38,7 +179,7 @@
                     <input id="kartik" name="Rating" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />
                     <input type="hidden" value="@mod.Id" name="NameId" />
                 </form>
-            </div>
+            </div> *@
 
             @*<div dir="ltr" style="margin-top:30px;margin-left:40%">
                 <form asp-controller="Names" asp-action="SetRating" method="post">
@@ -49,7 +190,7 @@
                     </div>
                 </form>
             </div>*@
-            <div class="mt-8 mb-16">
+            @* <div class="mt-8 mb-16">
                 <div class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
                     @foreach (var name in Model)
                     {
@@ -60,11 +201,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 }
 else
 {
-    <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
+    @* <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
         <div class="h-full xl:container xl:px-0 px-4">
             <a href="@((string)ViewBag.ExportImage)"><i style="position:fixed" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
             <div class="row" style="margin-left:35%">
@@ -84,7 +225,7 @@ else
                     <input id="kartik" name="Rating" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />
                     <input type="hidden" value="@mod.Id" name="NameId" />
                  </form>               
-            </div>
+            </div> *@
 
             @*<div style="margin-top:30px;margin-left:40%">
                 <form asp-controller="Names" asp-action="SetRating" method="post">
@@ -97,7 +238,7 @@ else
             </div>*@
 
 
-            <div class="mt-8 mb-16">
+            @* <div class="mt-8 mb-16">
                 <div class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-y-8 sm:gap-4 pb-8">
                     @foreach (var name in Model)
                     {
@@ -108,7 +249,7 @@ else
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 }
 
 

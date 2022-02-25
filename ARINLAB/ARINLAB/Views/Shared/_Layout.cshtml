@@ -33,6 +33,7 @@
 
     <!-- Rating system-->
     <link href="/client/rating/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/client/rating/css/stars.css" media="all" rel="stylesheet" type="text/css" />
     <link href="/client/rating/themes/krajee-fas/theme.css" media="all" rel="stylesheet" type="text/css" />
     <link href="/client/rating/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
@@ -74,8 +75,6 @@
     <script src="~/devextreme/js/jszip.js"></script>
     <script src="~/devextreme/js/jszip.min.js"></script>
     <script src="~/devextreme/js/dx-quill.min.js"></script>
-
-
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
@@ -315,6 +314,23 @@
                                     </g>
                                 </svg>
                             </a>
+                            <div class="container absolute bg-white" id="Myid" style="display: none; margin-top: 10px; top: 99%; right: 9%; width: 490px; height: 470px; border-radius: 15px; border: 1px solid silver;">
+                                <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
+                                    <h2 style="font-size: 20px; font-weight: bold;">Share</h2>
+                                </div>
+                                <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
+                                    <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
+                                </div>
+                                <div class="flex flex-row justify-between" style="margin: auto; width: 450px; padding: 20px; border: 1px solid silver; border-radius: 9px;">
+                                    <h2 style="font-size: 20px; font-weight: bold;">https://www.arinlang.com/</h2> <a href=""><img style="margin-right: 15px;" src="~/images/Icons/Copy.svg"></a>
+                                </div>
+                                <div class="flex flex-row justify-evenly" style="margin-top: 20px;;">
+                                    <img style="width: 80px; height: auto;" src="~/images/logo/Mail+Folder.png">
+                                    <img style="width: 80px; height: auto;" src="~/images/logo/301280585154211.png">
+                                    <img style="width: 80px; height: auto;" src="~/images/logo/b414768e7af1948afcbafb9bd4b0fd12.png">
+                                    <img style="width: 80px; height: auto;" src="~/images/logo/986-9860348_o-software-est-disponvel-para-android-blackberry-whatsapp.png">
+                                </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -380,23 +396,7 @@
         <main class="app-wrapper" style="margin-bottom: 0;">
                 @RenderBody()
             </main>
-            <div class="container" id="Myid" style="width: 500px; height: 500px; border-radius: 9px; border: 1px solid silver;">
-                <div style="background-color: #282848; padding: 20px; color: white;">
-                    <h2 style="font-size: 20px;">Share</h2>
-                </div>
-                <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
-                    <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
-                </div>
-                <div class="flex flex-row justify-between" style="margin: auto; width: 450px; padding: 20px; border: 1px solid silver; border-radius: 9px;">
-                    <h2 style="font-size: 20px; font-weight: bold;">https://www.arinlang.com/</h2> <a href=""><img style="margin-right: 15px;" src="~/images/Icons/Copy.svg"></a>
-                </div>
-                <div class="flex flex-row justify-evenly" style="margin-top: 20px;;">
-                    <img style="width: 80px; height: auto;" src="~/images/logo/Mail+Folder.png">
-                    <img style="width: 80px; height: auto;" src="~/images/logo/301280585154211.png">
-                    <img style="width: 80px; height: auto;" src="~/images/logo/b414768e7af1948afcbafb9bd4b0fd12.png">
-                    <img style="width: 80px; height: auto;" src="~/images/logo/986-9860348_o-software-est-disponvel-para-android-blackberry-whatsapp.png">
-                </div>
-            </div>
+            
             @await Component.InvokeAsync("FooterSettings")
         </div>
     }
