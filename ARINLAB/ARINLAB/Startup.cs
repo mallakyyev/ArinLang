@@ -38,7 +38,7 @@ namespace ARINLAB
             //services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
             services.AddDbContext<ApplicationDbContext>(options =>
              //  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-             options.UseSqlServer("Server=45.132.242.156;Database=arinlang; User Id=SA;Password=1987_Maksat;MultipleActiveResultSets=true"));
+             options.UseSqlServer("Data Source=SQL5102.site4now.net;Initial Catalog=db_a82b93_arinlang;User Id=db_a82b93_arinlang_admin;Password=1987_Maksat"));
             services.AddDistributedMemoryCache();
 
             services.AddSession(options =>

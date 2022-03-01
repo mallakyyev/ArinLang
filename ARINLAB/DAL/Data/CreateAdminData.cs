@@ -67,42 +67,42 @@ namespace DAL.Data
                         dictId = new List<Dictionary>(tm)[0].Id;
                     }
                 }
-                var wordClauseCategory = new List<WordClauseCategory>(_dbContext.WordClauseCategories.AsNoTracking());
-                if(wordClauseCategory.Count > 0)
-                {
-                    var item = wordClauseCategory.Where(p => p.Id == 1);
-                    if(item != null && item.Count() > 0)
-                    {
-                    }
-                    else
-                    {
-                        _dbContext.WordClauseCategories.Add(
-                            new WordClauseCategory
-                            {
-                                Id = 0,
-                                WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
-                                {
-                                  new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
-                                  new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
-                                  new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
-                                }                       
-                            });  
-                    }
-                }
-                else
-                {
-                    _dbContext.WordClauseCategories.Add(
-                             new WordClauseCategory
-                             {                                
-                                 WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
-                                 {
-                                  new WordClauseCategoryTranslate(){ CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
-                                  new WordClauseCategoryTranslate(){ CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
-                                  new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
+                // var wordClauseCategory = new List<WordClauseCategory>(_dbContext.WordClauseCategories.AsNoTracking());
+                // if(wordClauseCategory.Count > 0)
+                // {
+                //     var item = wordClauseCategory.Where(p => p.Id == 0);
+                //     if(item != null && item.Count() > 0)
+                //     {
+                //     }
+                //     else
+                //     {
+                //         _dbContext.WordClauseCategories.Add(
+                //             new WordClauseCategory
+                //             {
+                //                 Id = 0,
+                //                 WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
+                //                 {
+                //                   new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
+                //                   new WordClauseCategoryTranslate(){ Id=2,  CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
+                //                   new WordClauseCategoryTranslate(){ Id=3,  CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
+                //                 }                       
+                //             });  
+                //     }
+                // }
+                // else
+                // {
+                //     _dbContext.WordClauseCategories.Add(
+                //              new WordClauseCategory
+                //              {                                
+                //                  WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
+                //                  {
+                //                   new WordClauseCategoryTranslate(){ CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
+                //                   new WordClauseCategoryTranslate(){ CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
+                //                   new WordClauseCategoryTranslate(){   CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
 
-                                 }
-                             });
-                }
+                //                  }
+                //              });
+                // }
                 _dbContext.SaveChanges();
 
                 Country country = null;

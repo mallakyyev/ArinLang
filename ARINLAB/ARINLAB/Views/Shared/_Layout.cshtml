@@ -242,12 +242,12 @@
         <header class="relative sm:block flex flex-col">
                 <div class="nav-header bg-primary z-30 relative order-2">
                     <div class="xl:container xl:px-0 px-4 flex sm:justify-end justify-between h-12">
-                        <div class="nav_items text-white flex justify-between pt-5 mt-5 w-full"
+                    <div id="navbar" class="nav_items text-white flex justify-between pt-5 mt-5 w-full"
                         style="font-size: 20px; font-weight: 500; padding-right: 400px;">
                             <p class="hover:text-white cursor-pointer">HOME</p>
                             <p class="hover:text-white cursor-pointer">NEWS</p>
                             <p class="hover:text-white cursor-pointer">CONTACT</p>
-                            <a  asp-area="" asp-controller="AboutUs" asp-action="Index"> <p class="hover:text-white cursor-pointer">ABOUT</p>   </a>
+                            <a  asp-area="" asp-controller="AboutUs" asp-action="Index"> <p class="hover:text-white cursor-pointer">ABOUT</p></a>
                         </div>
                         @await Html.PartialAsync("_SelectLanguagePartial")
                         @await Html.PartialAsync("_LoginPartial")

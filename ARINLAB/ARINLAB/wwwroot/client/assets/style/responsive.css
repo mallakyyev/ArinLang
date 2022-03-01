@@ -5,6 +5,7 @@
 }
 
 @media screen and (max-width: 1200px) {
+
     .popup {
         transform: translate(-40%, -180%);
     }
@@ -174,6 +175,11 @@
 
 
 @media screen and (max-width: 1023px) {
+    #header_slider {
+      padding-right: 165px;
+      width: 800px;
+    }
+
     .popup {
         width: 600px;
         left: 50%;
@@ -515,7 +521,39 @@
   }
 }
 
-@media screen and (max-width: 480px) {    
+@media screen and (max-width: 480px) {
+    footer {
+      text-align: center;
+    }  
+
+    footer img {
+      margin: 0 80px;
+    } 
+
+    #header_slider {
+      display: block;
+      margin-top: auto;
+      padding-right: 0px;
+      width: 380px;
+    }
+
+    #header_slider img {
+      margin-right: 40px;
+    }
+
+    #subscribe {
+      width: 360px;
+      margin: 50px auto;
+    }
+
+    #subscribe input {
+      width: 150px;
+    }
+
+    #navbar {
+      display: none;
+    }
+  
     .popup {
         width: 550px;
         left: 30%;
