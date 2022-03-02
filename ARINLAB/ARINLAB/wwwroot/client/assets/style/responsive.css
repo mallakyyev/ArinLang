@@ -2,9 +2,20 @@
     .popup {
         transform: translate(-60%, -70%);
     }
+
+    #subscribe_other{
+      width: 890px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
+    #subscribe_other button{
+      margin-top: 10px;
+    }
+
+    #subscribe_other{
+      width: 1000px;
+    }
 
     .popup {
         transform: translate(-40%, -180%);
@@ -175,6 +186,14 @@
 
 
 @media screen and (max-width: 1023px) {
+    #subscribe_other {
+      width: 490px;
+    }
+
+    #subscribe_other button{
+      margin-top: 10px;
+    }
+
     #header_slider {
       padding-right: 165px;
       width: 800px;
@@ -348,6 +367,14 @@
 }
 
 @media screen and (max-width: 770px) {
+    #subscribe_other {
+      width: 420px;
+    }
+
+    #subscribe_other button{
+      margin-top: 10px;
+    }
+
     .popup {
         width: 550px;
         left: 30%;
@@ -530,7 +557,21 @@
       margin: 0 80px;
     } 
 
-    #header_slider {
+    .wrapper {
+      width: 320px;
+    }
+
+    #news_icons {
+      width: 370px !important;
+      justify-content: space-between !important;
+    }
+
+    #words_det{
+      width: 350px !important;
+      margin: 0 auto !important;
+    }
+
+    #header_slider, #other_menu {
       display: block;
       margin-top: auto;
       padding-right: 0px;
@@ -544,6 +585,18 @@
     #subscribe {
       width: 360px;
       margin: 50px auto;
+    }
+
+    #subscribe_other {
+      text-align: center;
+      width: 299px;
+      margin: 15px 0;
+      padding: 0;
+    }
+
+    #subs_other_form {
+      display: flex;
+      flex-direction: column;
     }
 
     #subscribe input {

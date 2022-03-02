@@ -161,8 +161,8 @@
 }
 else
 {
-    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none" style="height: 319px; border-bottom: 3px solid #282848;">
-        <div class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
+    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none" style="height: auto; border-bottom: 3px solid #282848;">
+        <div id="other_menu" class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
             <img id="other_menu_img" src="~/images/Logo/02768c1962454ebab2222fec2b64a804.png" alt="" class="max-w-full xl:h-40 h-20" />
         <div class="relative" style="margin-left: 10px; margin-right: 10px;">
             @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
@@ -198,8 +198,8 @@ else
 else
 {
     <div class="lg:py-0 sm:py-4">
-        <div class="xl:container sm:px-4  lg:p-24">
-            <div class="py-10 w-auto" style="margin: auto; width: 830px; padding-left: 38px;">
+        <div class="xl:container">
+            <div id="subscribe_other" class="py-10" style="padding-left: 38px;">
                 <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
                     @SharedLocalizer["SEARCH BY WORDS AND PHRASEBOOKS"]
                 </h2>
@@ -208,7 +208,7 @@ else
                         Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
                     </h3>*@
                 <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                    <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
+                    <div id="subs_other_form" class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
                         <input type="email"
                                name="email"
                                placeholder="@SharedLocalizer["Enter a word or phrase"]"
