@@ -19,7 +19,7 @@
 
 @await Component.InvokeAsync("OtherMenu")
 
-<div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+<div id="news_icons"  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
     <div class="flex justify-between" style="width: 140px;">
         <a href=""><img src="~/images/Icons/Bug.svg"></a>
         <a href=""><img src="~/images/Icons/Print.svg"></a>
@@ -45,7 +45,7 @@
 </div>
     </div>
 </div>
-<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 50px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
+<div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 50px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
     <div class="wrapper">
         <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
             <h3 style="font-weight: bold;">Word in Turkmen:</h3>
@@ -58,15 +58,15 @@
     </div>
 </div>
 
-<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 60px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
+<div id="names_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 60px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
       <div class="wrapper">
-        <div class="text-center px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+        <div class="album text-center px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
             <h3 style="font-weight: bold;">Album:</h3>
         </div>
   <div class="wrapper flex justify-between" style="padding: 20px;">
-       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+       <div style="object-fit: cover; width: 320px; height: 250px;">
            <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
-           <div class="flex justify-around align-center px-3">
+           <div class="flex justify-around align-center px-3"> 
                <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
             <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
             <small style="margin-right: 15px;" class="px-3">16879</small>
@@ -86,7 +86,7 @@
 </div>
         </div>
        </div>
-       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
            <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
            <div class="flex justify-around align-center px-3">
                <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
@@ -110,7 +110,7 @@
        </div>
     </div>
     <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
-       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
            <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
            <div class="flex justify-around align-center px-3">
                <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
@@ -132,7 +132,7 @@
 </div>
         </div>
        </div>
-       <div clas style="object-fit: cover; width: 320px; height: 250px;">
+       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
            <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
            <div class="flex justify-around align-center px-3">
                <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
