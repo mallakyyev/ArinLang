@@ -308,7 +308,7 @@ else
         </div>
         <!-- ******************** MOBILE-BURGER ******************** -->
         <!-- ******************** MOBILE-NAVIGATION ******************** -->
-        <div id="mobile-nav"
+        @* <div id="mobile-nav"
              class="sm:hidden fixed top-0 left-0 right-0 bottom-0 bg-white pt-24 px-4 overflow-scroll">
             <h2 class="mobile-menu-label sm:hidden text-2xl font-semibold">Меню</h2>
 
@@ -364,7 +364,7 @@ else
                     </div>
                 }
             </div>
-        </div>
+        </div> *@
         <!-- ******************** MOBILE-NAVIGATION ******************** -->
         <nav class="sm:flex items-center xl:justify-between mt-2 dropdown-links xl:h-full xl:pb-0 pb-2 hidden">
             @foreach (var menu in Model.Where(p => p.ParentId == null))

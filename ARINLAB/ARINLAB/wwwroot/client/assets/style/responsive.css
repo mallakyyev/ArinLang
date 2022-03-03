@@ -626,6 +626,10 @@
       padding: 0;
     }
 
+    #header_slider, #other_menu img {
+      display: none;
+    }
+
     #subs_other_form {
       display: flex;
       flex-direction: column;
