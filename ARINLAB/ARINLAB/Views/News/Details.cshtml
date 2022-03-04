@@ -46,23 +46,6 @@
         </div>
     </div>
 </div>
-    @* <div dir="rtl" class="bg-gray-100 h-full py-8">
-        <div class="container bg-white sm:pt-12 pt-4 relative" id="printarea">
-            <div class="lg:px-24 px-4">
-                <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl">
-                    @Model.Name
-                </h1>
-                <p class="sm:text-xl text-base sm:mt-8 mt-4">@Model.DatePublished.ToShortDateString()</p>
-            </div>
-            <div class="h-1 w-full bg-gray-100 lg:mt-20 sm:mt-10 mt-4"></div>
-
-            <div class="lg:px-24 px-4 sm:mt-10 mt-4 pb-8">
-                <img src="~/images/News/@Model.Image" alt="" class="w-full sm:mb-8 mb-4" />
-                @Html.Raw(Model.Description)
-            </div>
-            <button class="print-button" id='btn' onclick='printFunc();'><span class="print-icon" style=" width: 30px; height: 20px;"></span></button>
-        </div>
-    </div> *@
 }
 else
 {
@@ -105,23 +88,6 @@ else
         </div>
     </div>
 </div>
-    @* <div class="bg-gray-100 h-full py-8">
-        <div class="container bg-white sm:pt-12 pt-4 relative" id="printarea">
-            <div class="lg:px-24 px-4">
-                <h1 class="font-bold text-2xl sm:text-3xl lg:max-w-3xl lg:text-3xl">
-                    @Model.Name
-                </h1>
-                <p class="sm:text-xl text-base sm:mt-8 mt-4">@Model.DatePublished.ToShortDateString()</p>
-            </div>
-            <div class="h-1 w-full bg-gray-100 lg:mt-20 sm:mt-10 mt-4"></div>
-
-            <div class="lg:px-24 px-4 sm:mt-10 mt-4 pb-8">
-                <img src="~/images/News/@Model.Image" alt="" class="w-full sm:mb-8 mb-4" />
-                @Html.Raw(Model.Description)
-            </div>
-            <button class="print-button" id='btn' onclick='printFunc();'><span class="print-icon" style=" width: 30px; height: 20px;"></span></button>
-        </div>
-    </div> *@
 }
 
 @section Scripts

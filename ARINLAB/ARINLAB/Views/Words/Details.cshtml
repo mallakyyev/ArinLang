@@ -39,115 +39,7 @@
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 
 {
-    @* <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
-        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
-            <a href="@((string)ViewBag.ExportImage)"><i style="position:fixed" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
-            <div class="row" style="margin-right:35%">
-                <div class="col-2"></div>
-                <div class="col-4 items-center">
-                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Word"] : </label>
-                    <label class="text-success" style="font-size:30px; font-weight:600">@Model.Word.ArabWord</label>
-                </div>
-                <div class=" col-4">
-                    <label style="font-size:24px; font-weight:600">@dictName @SharedLocalizer["Word"] : </label>
-                    <label class="text-success" style="font-size:30px; font-weight:600">@Model.Word.OtherWord</label>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <div dir="ltr" style="margin-left:50%;padding-top:20px;padding-bottom:20px;" class="col-2">
-                <form asp-controller="Words" asp-action="SetRating" method="post" id="rtng">
-                    <input id="kartik" value="@(ViewBag.Rating)" name="Rating" lang="ar" class="rating" data-stars="5" data-step="0.1" title="" onclick="alert()" />
-                    <input type="hidden" value="@Model.Word.Id" name="WordId" />
-                </form>
-            </div>
-            <div class="row">
-                <div class="wrapper_green">
-                    <div class="green_table">
-                        <div class="row_green header green">
-                            <div class="cell">
-                                @SharedLocalizer["Arab sentence"]
-                            </div>
-                            <div class="cell">
-                                @SharedLocalizer["Transcription"]
-                            </div>
-                            <div class="cell">
-                                @dictName @SharedLocalizer["sentence"]
-                            </div>
-                            <div class="cell">
-                                @SharedLocalizer["Transcription"]
-                            </div>
-                        </div>
-                        @foreach (var item in Model.WordSentences)
-                        {
-                            <div class="row_green">
-                                <div class="cell" data-title=" @SharedLocalizer["Arab sentence"]">
-                                    @item.ArabSentence
-                                </div>
-                                <div class="cell" data-title=" @SharedLocalizer["Transcription"]">
-                                    @item.ArabReader
-                                </div>
-                                <div class="cell" data-title=" @dictName @SharedLocalizer["sentence"]">
-                                    @item.OtherSentence
-                                </div>
-                                <div class="cell" data-title="@SharedLocalizer["Transcription"]">
-                                    @item.OtherReader
-                                </div>
-                            </div>
-                        }
-
-
-                    </div>
-                </div>
-                <hr />
-            </div>
-            <div class="row" style="margin-right:35%">
-                <div class="col-2"></div>
-                <div class="col-8 items-center">
-                    <label class="text-success" style="font-size:30px; font-weight:600">@SharedLocalizer["Voices"]</label>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <div class="wrapper_green">
-                <div class="green_table">
-                    <div class="row_green header green">
-                        <div class="cell">
-                            @SharedLocalizer["Arab Voice"]
-                        </div>
-                        <div class="cell">
-                            @dictName @SharedLocalizer["Voice"]
-                        </div>
-                    </div>
-                    @if (Model.AudioFiles != null)
-                    {
-                        @foreach (var item in Model.AudioFiles)
-                        {
-                            <div class="row_green">
-
-                                <div class="cell" data-title="Audio">
-                                    <audio id="myAudio@(item.Id)">
-                                        <source src="~/@item.ArabVoice" type="audio/mpeg">
-                                    </audio>
-                                    <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)')">PLAY</button>
-                                    <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)')">STOP</button>
-                                </div>
-                                <div class="cell" data-title="Audio">
-                                    <audio id="myAudio@(item.Id)_o">
-                                        <source src="~/@item.OtherVoice" type="audio/mpeg">
-                                    </audio>
-                                    <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)_o')">PLAY</button>
-                                    <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)_o')">STOP</button>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-
-                
-            </div>
-        </div>
-
-    </div> *@
-<div  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+<div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
     <div class="flex justify-between" style="width: 140px;">
         <a href=""><img src="~/images/Icons/Bug.svg"></a>
         <a href=""><img src="~/images/Icons/Print.svg"></a>
@@ -173,7 +65,7 @@
 </div>
     </div>
 </div>
-<div class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 13px; font-size: 18px;">
+<div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 13px; font-size: 18px;">
     <div class="wrapper">
         <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
             <h3 style="font-weight: bold;">Word in Turkmen:</h3>
@@ -206,7 +98,7 @@
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
             <h3 style="font-weight: bold;">Transcription in Arabic:</h3>
             <h3 style="font-weight: bold;">Transcription in Turkmen:</h3>
-        </div>00
+        </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
             <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg">Tutanyerli Mugallym</p>
             <p>Muallim Muthaber<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
@@ -216,120 +108,6 @@
 }
 else
 {
-    @* <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
-        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
-            <div class="row" style="margin-left:35%">
-                <div class="col-2"></div>
-                <div class="col-4 items-center">
-                    <label style="font-size:24px; font-weight:600">@SharedLocalizer["Arab Word"] : </label>
-                    <label class="text-success" style="font-size:30px; font-weight:600">@Model.Word.ArabWord</label>
-                </div>
-                <div class=" col-4">
-                    <label style="font-size:24px; font-weight:600">@dictName @SharedLocalizer["Word"] : </label>
-                    <label class="text-success" style="font-size:30px; font-weight:600">@Model.Word.OtherWord</label>
-                </div>
-                <div class="col-2">
-                    <a href="@((string)ViewBag.ExportImage)"><i style="margin-top:20px;" class="fas fa-file-export">@SharedLocalizer["Export"]</i></a>
-                </div>
-            </div>
-            <div dir="ltr" style="margin-left:45%;padding-top:20px;padding-bottom:20px;" class="col-2">
-                <form asp-controller="Words" asp-action="SetRating" method="post" id="rtng">
-                   
-                    <input id="kartik" value="@(ViewBag.Rating)" name="Rating" class="rating" data-stars="5" data-step="0.1" title="" onclick="alert()" />
-                   
-                    <input type="hidden" value="@Model.Word.Id" name="WordId" />
-                   
-                </form>
-            </div>
-            <div class="row">
-                <div class="wrapper_green">
-                    <div class="green_table">
-                        <div class="row_green header green">
-                            <div class="cell">
-                                @SharedLocalizer["Arab sentence"]
-                            </div>
-                            <div class="cell">
-                                @SharedLocalizer["Transcription"]
-                            </div>
-                            <div class="cell">
-                                @dictName @SharedLocalizer["sentence"]
-                            </div>
-                            <div class="cell">
-                                @SharedLocalizer["Transcription"]
-                            </div>
-                        </div>
-                        @foreach (var item in Model.WordSentences)
-                        {
-                            <div class="row_green">
-                                <div class="cell" data-title=" @SharedLocalizer["Arab sentence"]">
-                                    @item.ArabSentence
-                                </div>
-                                <div class="cell" data-title=" @SharedLocalizer["Transcription"]">
-                                    @item.ArabReader
-                                </div>
-                                <div class="cell" data-title=" @dictName @SharedLocalizer["sentence"]">
-                                    @item.OtherSentence
-                                </div>
-                                <div class="cell" data-title="@SharedLocalizer["Transcription"]">
-                                    @item.OtherReader
-                                </div>
-                            </div>
-                        }
-
-
-                    </div>
-                </div>
-                <hr />
-            </div>
-            <div class="row" style="margin-left:35%">
-                <div class="col-2"></div>
-                <div class="col-8 items-center">
-                    <label class="text-success" style="font-size:30px; font-weight:600">@SharedLocalizer["Voices"]</label>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <div class="wrapper_green">
-                <div class="green_table">
-                    <div class="row_green header green">
-                        <div class="cell">
-                            @SharedLocalizer["Arab Voice"]
-                        </div>
-                        <div class="cell">
-                            @dictName @SharedLocalizer["Voice"]
-                        </div>
-                    </div>
-
-                    @if (Model.AudioFiles != null)
-                    {
-                        @foreach (var item in Model.AudioFiles)
-                        {
-                            <div class="row_green">
-
-                                <div class="cell" data-title="Audio">
-                                    <audio id="myAudio@(item.Id)">
-                                        <source src="~/@item.ArabVoice" type="audio/mpeg">
-                                    </audio>
-                                    <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)')">@SharedLocalizer["Play"]</button>
-                                    <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)')">@SharedLocalizer["Stop"]</button>
-                                </div>
-                                <div class="cell" data-title="Audio">
-                                    <audio id="myAudio@(item.Id)_o">
-                                        <source src="~/@item.OtherVoice" type="audio/mpeg">
-                                    </audio>
-                                    <button class="btn btn-success" style="background-color: green; padding: 20px; border-radius: 15px;" onclick="playAudio('myAudio@(item.Id)_o')">@SharedLocalizer["Play"]</button>
-                                    <button class="btn btn-success" style="background-color: red; padding: 20px; border-radius: 15px;" onclick="pauseAudio('myAudio@(item.Id)_o')">@SharedLocalizer["Stop"]</button>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-
-                
-            </div>
-        </div>
-
-
-    </div> *@
 <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
     <div class="flex justify-between" style="width: 140px;">
         <a href=""><img src="~/images/Icons/Bug.svg"></a>

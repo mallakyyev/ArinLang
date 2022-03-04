@@ -626,7 +626,7 @@
       padding: 0;
     }
 
-    #header_slider, #other_menu img {
+    #header_slider #head_img, #other_menu img {
       display: none;
     }
 
@@ -651,14 +651,7 @@
         align-items: center;
         transform: translate(-50%, -60%);
     }
-
-    /*.container {
-        width: 500px;
-        margin: 40px auto 0 90px ;
-        justify-content: center;
-        align-items: center;
-      }*/
-
+    
       #close {
         width: 120px;
         margin: 10px auto 0 250px;

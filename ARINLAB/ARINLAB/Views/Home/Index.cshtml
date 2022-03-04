@@ -18,11 +18,6 @@
 @{
     int totalUsers = Model.StatistiCards[0].Editers + Model.StatistiCards[1].Editers + Model.StatistiCards[2].Editers + Model.StatistiCards[3].Editers;
 }
-@*<div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog" style="padding-bottom:0rem;">
-        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow" style="margin-left:42%">
-            <h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>
-        </div>
-    </div>*@
 @await Component.InvokeAsync("HeaderMenu")
 <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
     <!-- ******************** ADVERTISMENT LEFT  ********************-->
@@ -37,71 +32,6 @@
     <!-- ******************** Start Words Section ********************-->
     <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
 
-        <div class="xl:w-8/12 xl:px-0 px-4 flex-grow" style="margin-left:35%">
-            @*<h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900">@SharedLocalizer["WELCOME TO ARINLANG"] </h1>*@
-        </div>
-        @* <div class="relative">
-                <div class="prev">
-                    <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
-                        <path id="path"
-                              d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                              transform="translate(353.6 399.8) rotate(180)"
-                              fill="#5e5e77" />
-                    </svg>
-                </div>
-                <div class="next">
-                    <svg width="18" height="12" viewBox="0 0 18 12">
-                        <path id="path"
-                              d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                              transform="translate(353.6 399.8) rotate(180)"
-                              fill="#5e5e77" />
-                    </svg>
-                </div>
-
-                <div class="xl:container px-4 xl:px-0 relative overflow-hidden text-center"  style="border-bottom: 3px solid #282848; background-color: #fbfbfb;">
-                    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-                    {
-                        <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                            @SharedLocalizer["Latest News"]
-                        </h2>
-                    }
-                    else
-                    {
-                        <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                            @SharedLocalizer["Latest News"]
-                        </h2>
-                    }
-                    <div class="products-swiper-container swiper-container">
-                        <div class="swiper-wrapper pb-16 justify-evenly">
-                            @foreach (var item in news)
-                            {
-                                <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
-                                    <div class="products-slider-card">
-                                        <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
-                                             style="background: rgba(0, 0, 0, 0.5)">
-                                            @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-                                            {
-                                                <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
-                                                    @item.Name
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="text-white sm:text-lg font-semibold text-base block w-full">
-                                                    @item.Name
-                                                </span>
-                                            }
-                                        </div>
-                                        <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
-                                    </div>
-                                </a>
-                            }
-                        </div>
-
-                        <!-- Slider main container -->
-                    </div>
-                </div>
-            </div> *@
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
     <a asp-controller="Words" asp-action="Indexall">
@@ -160,15 +90,6 @@
         </h2>
     </a>
         }
-        @* @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-            {
-                <a class="e-link" dir="rtl" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
-            }
-            else
-            {
-                <a class="e-link" style="float: right; font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="Words" asp-action="Indexall">@SharedLocalizer["View all"] </a>
-            } *@
-
         <div class="row">
             <div style="touch-action:manipulation" id="gridContainer">
             </div>
@@ -201,7 +122,6 @@
                         @SharedLocalizer["Words Clauses Collection"]
                     </h2>
                 </a>
-                    @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
@@ -231,8 +151,6 @@
                     @SharedLocalizer["Words Clauses Collection"]
                 </h2>
             </a>
-                    @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px;" asp-area="" asp-controller="WordClauses" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
-
                 }
 
                 <div id="gridContainer1">
@@ -267,7 +185,6 @@
                         @SharedLocalizer["Names Collection"]
                     </h2>
                         </a>
-                    @* <a dir="rtl" class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
                 }
                 else
                 {
@@ -297,7 +214,6 @@
                     @SharedLocalizer["Names Collection"]
                 </h2>
             </a>
-                    @* <a class="e-link" style="font:600;color:darkgreen;font-size:24px" ; asp-area="" asp-controller="Names" asp-action="Indexall">@SharedLocalizer["View all"] </a> *@
 
                 }
                 <div id="gridContainer3">
@@ -318,65 +234,6 @@
     <!-- ******************** ADVERTISMENT RIGHT  ********************-->
 
 </div>
-<!-- ******************** PRODUCTS SECTION  ********************-->
-<!--<div class="bg-gray-100 sm:py-16 py-10 md:py-20">
-    <div class="container relative">
-        <div class="prev">
-            <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
-                <path id="path"
-                      d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                      transform="translate(353.6 399.8) rotate(180)"
-                      fill="#5e5e77" />
-            </svg>
-        </div>
-        <div class="next">
-            <svg width="18" height="12" viewBox="0 0 18 12">
-                <path id="path"
-                      d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
-                      transform="translate(353.6 399.8) rotate(180)"
-                      fill="#5e5e77" />
-            </svg>
-        </div>
-        <div class="xl:container px-4 xl:px-0 relative overflow-hidden">
-            @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-            {
-                <h2 dir="rtl" class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                    @SharedLocalizer["Latest News"]
-                </h2>
-            }
-            else
-            {
-                <h2 class="font-semibold md:mb-8 mb-6 text-2xl md:text-3xl">
-                    @SharedLocalizer["Latest News"]
-                </h2>
-            }
-            <div class="products-swiper-container swiper-container">
-                <div class="swiper-wrapper pb-16">
-                    @foreach (var item in news)
-                    {
-                        <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item.Id" class="swiper-slide">
-                            <div class="products-slider-card">
-                                <div class="absolute w-full top-0 left-0 right-0 py-1 px-2 sm:p-3 z-10"
-                                     style="background: rgba(0, 0, 0, 0.5)">
-                                    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-                                    {
-                                        <span dir="rtl" class="text-white sm:text-lg font-semibold text-base block w-full">
-                                            @item.Name
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="text-white sm:text-lg font-semibold text-base block w-full">
-                                            @item.Name
-                                        </span>
-                                    }
-                                </div>
-                                <img src="~/images/News/@item.Image" alt="" class="object-cover w-full" />
-                            </div>
-                        </a>
-                    }
-                </div>
-<!-- Slider main container -->
 </div>
         </div>
     </div>
@@ -409,16 +266,7 @@
                                 <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
                             </div>
                         </div>
-                        @*<div>
-                                <a asp-area="" asp-controller="Visitors" asp-action="Index"
-                                   class="btn border-2 inline-flex sm:mt-10 md:mt-4 mt-8 text-secondary border-secondary rounded hover:bg-secondary hover:text-white">
-                                    @SharedLocalizer["More details"]
-                                </a>
-                            </div>*@
                     </div>
-                    @*<img src="~/images/giphy-63.gif"
-                        alt=""
-                        class="object-cover w-100 rounded row-start-1 lg:col-start-2 h-25 " style="margin-left: 30%;" />*@
                 </div>
             </div>
         </div>
@@ -450,16 +298,7 @@ else
                                 <span class="font-semibold text-lg">@Model.StatistiCards[2].totalCount @SharedLocalizer["Similar Names are registered"]</span>
                             </div>
                         </div>
-                        @*<div>
-                                <a asp-area="" asp-controller="Visitors" asp-action="Index"
-                                   class="btn border-2 inline-flex sm:mt-10 md:mt-4 mt-8 text-secondary border-secondary rounded hover:bg-secondary hover:text-white">
-                                    @SharedLocalizer["More details"]
-                                </a>
-                            </div>*@
                     </div>
-                    @*<img src="~/images/giphy-63.gif"
-                        alt=""
-                        class="object-cover w-100 rounded row-start-1 lg:col-start-2 h-25 " style="margin-left: 30%;" />*@
                 </div>
             </div>
         </div>
@@ -475,10 +314,6 @@ else
                 <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto" style="margin-left: 18px;">
                     @SharedLocalizer["Subscribe to the newsletter and events"]
                 </h2>
-                @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
-                        и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
-                        Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
-                    </h3>*@
                 <form asp-area="" asp-controller="Home" asp-action="Subscribe">
                     <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
                         <input type="email" style="margin-right: 20%;"
@@ -486,7 +321,7 @@ else
                                placeholder="@SharedLocalizer["Enter your email address"]"
                                class="sm:w-9/10 bg-transparent p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
                         <button type="submit"
-                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
+                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-right: 190px;">
                             <span>@SharedLocalizer["Subscribe"]</span>
                         </button>
                     </div>
@@ -509,10 +344,6 @@ else
                 <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
                     @SharedLocalizer["Subscribe to the newsletter and events"]
                 </h2>
-                @*<h3 class="text-center text-lg mt-2 font-roboto sm:block hidden">
-                        и будьте в курсе всех новостей и событий Союза промышленников и предпринимателей
-                        Туркменистана. Все релизы будут своевременно отправляться на адрес указанный Вами.
-                    </h3>*@
                 <form asp-area="" asp-controller="Home" asp-action="Subscribe">
                     <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
                         <input type="email"
@@ -535,9 +366,6 @@ else
     </div>
 }
 <!-- ******************** MAILING SECTION  ********************-->
-
-
-
 @section Scripts{
 
     <script src="~/client/js/advertisment.js" defer></script>

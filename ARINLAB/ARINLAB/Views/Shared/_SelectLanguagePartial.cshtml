@@ -32,8 +32,9 @@
 }
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-    <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box" style=" padding-left: 150px;">
-      <div class="pl-3 text-center flex items-center z-10 cursor-pointer"
+     <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
+    style=" padding-right: 150px;">
+    <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
         style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
             @if (requestCulture.RequestCulture.UICulture.NativeName == "English (United States)")
             {
@@ -48,33 +49,10 @@
             {
             <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
             asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-3 pr-2">@lng.Value</a>
+            class="py-3 pr-2" style="display: block;">@lng.Value
+            </a>
             }         
-                    @* @if(requestCulture.RequestCulture.UICulture.NativeName.Substring(0, 2).ToUpper() == "TÜ")
-                    {
-                            <span>TK</span>
-                    }else
-                    {
-                    <span>@(requestCulture.RequestCulture.UICulture.NativeName.Substring(0, 2).ToUpper())</span>
-                    }*@
                     </span> 
-                    
-            }
-
-            @* <svg width="9.73" height="6" viewBox="0 0 9.73 6" class="ml-2" id="select-arrow">
-                <path id="path"
-                d="M458.095,877.6l1.135,1.135-4.865,4.865-4.865-4.865,1.135-1.135,3.73,3.73Z"
-                transform="translate(-449.5 -877.6)"
-                fill="#fff"
-                opacity="0.8" />
-                </svg> *@
-        </div>
-        <div class="flex flex-col absolute shadow-lg bg-primary px-4 pb-2" id="select-content">
-            @foreach (var lng in lngListItem)
-            {
-                <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
-            asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-1 hover:text-white">@lng.Text</a>
             }
         </div>
     </div>
@@ -83,7 +61,7 @@ else
 {
     <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
     style=" padding-right: 150px;">
-    <div class="pl-3 text-center flex items-center z-10 cursor-pointer"
+    <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
         style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
             @if (requestCulture.RequestCulture.UICulture.NativeName == "English (United States)")
             {
@@ -98,33 +76,10 @@ else
             {
             <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
             asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-3 pr-2">@lng.Value</a>
+            class="py-3 pr-2" style="display: block;">@lng.Value
+            </a>
             }         
-                    @* @if(requestCulture.RequestCulture.UICulture.NativeName.Substring(0, 2).ToUpper() == "TÜ")
-                    {
-                            <span>TK</span>
-                    }else
-                    {
-                    <span>@(requestCulture.RequestCulture.UICulture.NativeName.Substring(0, 2).ToUpper())</span>
-                    }*@
                     </span> 
-                    
-            }
-
-            @* <svg width="9.73" height="6" viewBox="0 0 9.73 6" class="ml-2" id="select-arrow">
-                <path id="path"
-                d="M458.095,877.6l1.135,1.135-4.865,4.865-4.865-4.865,1.135-1.135,3.73,3.73Z"
-                transform="translate(-449.5 -877.6)"
-                fill="#fff"
-                opacity="0.8" />
-                </svg> *@
-        </div>
-        <div class="flex flex-col absolute shadow-lg bg-primary px-4 pb-2" id="select-content">
-            @foreach (var lng in lngListItem)
-            {
-            <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
-            asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-1">@lng.Text</a>
             }
         </div>
     </div>
