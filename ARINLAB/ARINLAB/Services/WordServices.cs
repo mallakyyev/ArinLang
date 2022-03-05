@@ -46,6 +46,10 @@ namespace ARINLAB.Services
                 {
                     return ResponceGenerator.GetResponceModel(false, "This word is already in the Dictionary", _word);
                 }
+                if (word.ArabVoiceForm != null)
+                    _word.ArabVoice = await _fileService.UploadImage(word.ArabVoiceForm, SD.wordFilePath);
+                if (word.OtherVoiceForm != null)
+                    _word.OtherVoice = await _fileService.UploadImage(word.OtherVoiceForm, SD.wordFilePath);
                 var data = _dbContext.Words.AddAsync(_word).Result;
                 await _dbContext.SaveChangesAsync();
                 if (data.IsKeySet)
@@ -71,6 +75,11 @@ namespace ARINLAB.Services
                     var newSentences = _mapper.Map<WordSentences>(createWordModel);
                     newSentences.ArabSentence = newSentences.ArabSentence;
                     newSentences.OtherSentence = newSentences.OtherSentence;
+                    if (createWordModel.ArabVoiceForm != null)
+                        newSentences.ArabVoice = await _fileService.UploadImage(createWordModel.ArabVoiceForm, SD.wordFilePath);
+                    if (createWordModel.OtherVoiceForm != null)
+                        newSentences.OtherVoice = await _fileService.UploadImage(createWordModel.OtherVoiceForm, SD.wordFilePath);
+
                     var data = await _dbContext.WordSentences.AddAsync(newSentences);
                     await _dbContext.SaveChangesAsync();
                     return ResponceGenerator.GetResponceModel(true, "", data);
@@ -89,21 +98,13 @@ namespace ARINLAB.Services
             try
             {
                 if (res != null)
-                {
-                    var sentences = _dbContext.AudioFiles.Where(p => p.WordId == id).AsNoTracking();
-                    if (sentences != null)
-                    {
-                        foreach (var item in sentences)
-                        {
-                            _fileService.DeleteImage(item.ArabVoice);
-                            _fileService.DeleteImage(item.OtherVoice);
-                        }
-                    }
+                {                                     
+                   _fileService.DeleteImage(res.ArabVoice);
+                   _fileService.DeleteImage(res.OtherVoice);                     
+                }
                     _dbContext.Words.Remove(res);
                     await _dbContext.SaveChangesAsync();
-                    return ResponceGenerator.GetResponceModel(true, "", res);
-                }
-                return ResponceGenerator.GetResponceModel(false, "Cannot delete", null);
+                    return ResponceGenerator.GetResponceModel(true, "", res);                              
             }catch(Exception e)
             {
                 _logger.LogError(e.Message);
@@ -116,6 +117,9 @@ namespace ARINLAB.Services
             var res = await _dbContext.WordSentences.FindAsync(id);
             if (res != null)
             {
+                _fileService.DeleteImage(res.ArabVoice);
+                _fileService.DeleteImage(res.OtherVoice);     
+                
                 _dbContext.WordSentences.Remove(res);
                 await _dbContext.SaveChangesAsync();
                 return ResponceGenerator.GetResponceModel(true, "", res);
@@ -149,21 +153,26 @@ namespace ARINLAB.Services
             _word.UserId = editWordDto.UserId;
             _word.OtherWord = editWordDto.OtherWord;
             _word.ImageForShare = editWordDto.ImageForShare;
-          
+            
+            if (editWordDto.ArabVoiceForm != null)
+            {
+                _fileService.DeleteImage(editWordDto.ArabVoice);
+                _word.ArabVoice = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+            }
 
+            if (editWordDto.OtherVoiceForm != null)
+            {
+                _fileService.DeleteImage(editWordDto.OtherVoice);
+                _word.OtherVoice = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+            }
+           
             Responce result = new Responce();
             try
             {                
                 var data = _dbContext.Words.Update(_word);
                 await _dbContext.SaveChangesAsync();
-                if (data.IsKeySet)
-                {
-                    return ResponceGenerator.GetResponceModel(true, "", data.Entity);
-                }
-                else
-                {
-                    return ResponceGenerator.GetResponceModel(false, $"Could Not update Word. {data.State}", data);
-                }
+               
+                return ResponceGenerator.GetResponceModel(true, "", data.Entity);    
             }
             catch (Exception e)
             {
@@ -191,7 +200,21 @@ namespace ARINLAB.Services
             {
                 if (editWordSentence != null)
                 {
+
                     var editWord = _mapper.Map<WordSentences>(editWordSentence);
+
+                    if (editWordSentence.ArabVoiceForm != null)
+                    {
+                        _fileService.DeleteImage(editWord.ArabVoice);
+                        editWord.ArabVoice = await _fileService.UploadImage(editWordSentence.ArabVoiceForm, SD.wordFilePath);
+                    }
+
+                    if (editWordSentence.OtherVoiceForm != null)
+                    {
+                        _fileService.DeleteImage(editWord.OtherVoice);
+                        editWord.OtherVoice = await _fileService.UploadImage(editWordSentence.OtherVoiceForm, SD.wordFilePath);
+                    }
+
                     editWord.ArabSentence = editWord.ArabSentence;
                     editWord.OtherSentence = editWord.OtherSentence;
                     var data = _dbContext.WordSentences.Update(editWord).Entity;
@@ -252,7 +275,7 @@ namespace ARINLAB.Services
 
         public List<WordDto> GetAllWordsByUserId(string userId)
         {
-            var result = _mapper.Map<List<WordDto>>(_dbContext.Words.Where(p => p.UserId == userId).Include(p => p.AudioFiles).Include(p => p.WordSentences).AsNoTracking());
+            var result = _mapper.Map<List<WordDto>>(_dbContext.Words.Where(p => p.UserId == userId).Include(p => p.WordSentences).AsNoTracking());
             foreach(var item in result)
             {
                 item.Dictionary = _dbContext.Dictionaries.Find(item.DictionaryId).Language;
@@ -321,33 +344,15 @@ namespace ARINLAB.Services
         {
             try
             {
-                var dictId = _userDict.GetDictionaryId();
-                
+                var dictId = _userDict.GetDictionaryId();                
                 var res = _dbContext.Words.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Take(n).ToList();
                 _dictionaryService.Shuffle(res);
-
                 if (res != null)
                 {
-                    var r = _mapper.Map<List<WordDto>>(res);
-                    foreach(var item in r)
-                    {
-                        //item.Dictionary = _dbContext.Dictionaries.Find(item.DictionaryId)?.Language;
-                        item.AudioFiles = _mapper.Map<List<AudioFileDto>>(new List<AudioFile>() { });
-                        var audio = _dbContext.AudioFiles.FirstOrDefault(p => p.WordId == item.Id && p.IsApproved == true);
-                        if(audio != null)
-                        {
-                            item.ArabVoiceFile = audio.ArabVoice;
-                            item.OtherWordFile = audio.OtherVoice;
-                            item.AudioFileId = audio.Id;
-                        }
-                        
-                    }
-                    return r;
+                    return _mapper.Map<List<WordDto>>(res);
                 }
-                else
-                {
-                    return null;
-                }
+                    return new List<WordDto>();                
+               
             }catch(Exception e)
             {
                 _logger.LogError(e.Message);
@@ -364,15 +369,7 @@ namespace ARINLAB.Services
                 string dd = _dbContext.Dictionaries.Find(id)?.Language;
                 foreach (var r in res)
                 {
-                    r.Dictionary = string.IsNullOrEmpty(dd) ? "" : dd;
-                    r.AudioFiles = _mapper.Map<List<AudioFileDto>>(new List<AudioFile>() { });
-                    var audio = _dbContext.AudioFiles.FirstOrDefault(p => p.WordId == r.Id && p.IsApproved==true);
-                    if (audio != null)
-                    {
-                        r.ArabVoiceFile = audio.ArabVoice;
-                        r.OtherWordFile = audio.OtherVoice;
-                        r.AudioFileId = audio.Id;
-                    }
+                    r.Dictionary = string.IsNullOrEmpty(dd) ? "" : dd;                    
                 }
                 return res;
             }

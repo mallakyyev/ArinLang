@@ -24,18 +24,7 @@ namespace ARINLAB.Services
             _fileService = imageService;
         }
 
-        public List<AudioFile> GetAudioFilesByWordId(int id)
-        {
-            try
-            {
-                var res = new List<AudioFile>(_dbContext.AudioFiles.Where(p => p.WordId == id));
-                return res;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
+      
 
         public async Task<Responce> CreateAudioFileAsync(CreateAudioFileDto newFile)
         {

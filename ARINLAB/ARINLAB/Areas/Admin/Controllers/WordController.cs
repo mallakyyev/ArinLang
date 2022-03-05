@@ -89,8 +89,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 {
                     WordSentencesViewModel model = new();
                     model.Word = res;
-                    model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res.Id);
-                    model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(res.Id);
+                    model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res.Id);                    
                     ViewBag.dict = _dictService.GetAllDictionaries().Data;
                     return View("EditWord", model);
                 }
@@ -127,8 +126,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     {
                         WordSentencesViewModel model = new();
                         model.Word = res1;
-                        model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res1.Id);
-                        model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(res1.Id);
+                        model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res1.Id);                       
                         ViewBag.dict = _dictService.GetAllDictionaries().Data;
                         ViewBag.text = "Success";
                         return View("EditWord", model);
@@ -289,7 +287,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     WordSentencesViewModel model = new();
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(id);
-                    model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(id);
+                   
                     ViewBag.dict = _dictService.GetAllDictionaries().Data;
                     return View(model);
                 }
@@ -357,7 +355,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                             WordSentencesViewModel model = new();
                             model.Word = res;
                             model.WordSentences = _wordsService.GetAllWordSentencesByWordId(model1.WordId);
-                            model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(model1.WordId);
+                            
                             ViewBag.dict = _dictService.GetAllDictionaries().Data;
                             ViewBag.text = "Success";
                             return View("EditWord", model);
@@ -412,7 +410,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                             WordSentencesViewModel model = new();
                             model.Word = res;
                             model.WordSentences = _wordsService.GetAllWordSentencesByWordId(model1.WordId);
-                            model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(model1.WordId);
+                           
                             ViewBag.dict = _dictService.GetAllDictionaries().Data;
                             ViewBag.text = "Success";
                             return View("EditWord", model);
@@ -464,7 +462,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     WordSentencesViewModel model = new();
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(id);
-                    model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(id);
+                   
                     ViewBag.dict = _dictService.GetAllDictionaries().Data;
                     return View(model);
                 }
