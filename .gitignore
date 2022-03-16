@@ -3,3 +3,4 @@
 *.ldf
 ARINLAB/mssql/data/arinlang.mdf
 *.mdf
+ARINLAB/mssql/data/arinlang_log.ldf
