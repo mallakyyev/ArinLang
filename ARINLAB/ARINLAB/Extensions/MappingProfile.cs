@@ -26,7 +26,7 @@ namespace ARINLAB.Extensions
             CreateMap<EditWordDto, WordDto>().ReverseMap();
             CreateMap<EditWordSentencesDto, WordSentences>().ReverseMap();
             CreateMap<CreateDictionaryDto, Dictionary>().ReverseMap();
-            CreateMap<CreateAudioFileDto, AudioFile>().ReverseMap();
+            //CreateMap<CreateAudioFileDto, AudioFile>().ReverseMap();
             CreateMap<CreateWordSentencesDto, WordSentences>().ReverseMap();
             CreateMap<CreateWordClauseDto, WordClause>().ReverseMap();
             CreateMap<EditWordClauseDto, WordClauseDto>().ReverseMap();
@@ -37,7 +37,7 @@ namespace ARINLAB.Extensions
             CreateMap<EditWordClauseDto, WordClause>().ReverseMap();
             CreateMap<AudioFileForClause, AudioFileForClauseDto>().ReverseMap();
 
-            CreateMap<AudioFile, AudioFileDto>().ReverseMap();
+           //CreateMap<AudioFile, AudioFileDto>().ReverseMap();
 
             CreateMap<News, NewsDTO>();
             CreateMap<NewsDTO, News>();

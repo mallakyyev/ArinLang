@@ -40,12 +40,14 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.12",
           "Microsoft.AspNetCore.Identity.UI": "5.0.12",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.9",
+          "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
-          "SkiaSharp": "2.80.3",
+          "SkiaSharp.NativeAssets.Linux.NoDependencies": "2.80.3",
+          "Soluling": "1.0.52",
           "System.Drawing.Common": "6.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -325,8 +327,11 @@
           "ar/ARINLAB.resources.dll": {
             "locale": "ar"
           },
-          "en-US/ARINLAB.resources.dll": {
-            "locale": "en-US"
+          "en/ARINLAB.resources.dll": {
+            "locale": "en"
+          },
+          "tk/ARINLAB.resources.dll": {
+            "locale": "tk"
           }
         },
         "compile": {
@@ -1687,6 +1692,49 @@
         },
         "compile": {
           "lib/netstandard2.0/SkiaSharp.dll": {}
+        }
+      },
+      "SkiaSharp.NativeAssets.Linux.NoDependencies/2.80.3": {
+        "dependencies": {
+          "SkiaSharp": "2.80.3"
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libSkiaSharp.so": {
+            "rid": "linux-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-arm64/native/libSkiaSharp.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-x64/native/libSkiaSharp.so": {
+            "rid": "linux-musl-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSkiaSharp.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Soluling/1.0.52": {
+        "runtime": {
+          "lib/netstandard2.1/Soluling.AspNet.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/netstandard2.1/Soluling.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Soluling.AspNet.dll": {},
+          "lib/netstandard2.1/Soluling.dll": {}
         }
       },
       "System.Buffers/4.5.1": {},
@@ -4791,6 +4839,20 @@
       "sha512": "sha512-qX6tGNP3+MXNYe2pKm0PCRiJ/cx+LTeLaggwZifB7sUMXhECfKKKHJq45VqZKt37xQegnCCdf1jHXwmHeJQs5Q==",
       "path": "skiasharp/2.80.3",
       "hashPath": "skiasharp.2.80.3.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.Linux.NoDependencies/2.80.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fMfXO2YRwceJjAN+gsUopmwsPQqW3iiBmnF+ZRMDOAgZRQM47Eih7acExqYkSVv8qoqR9/24Q6RjZW2ScF7k4Q==",
+      "path": "skiasharp.nativeassets.linux.nodependencies/2.80.3",
+      "hashPath": "skiasharp.nativeassets.linux.nodependencies.2.80.3.nupkg.sha512"
+    },
+    "Soluling/1.0.52": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SJMX2BNYAWKobNTAjEVpcJwsVvuLNXEaH5eH+MQ9lMs14N6J1z+2eWxeEooitJtPxn3q2IVcOwYNzxbYa4Rlvg==",
+      "path": "soluling/1.0.52",
+      "hashPath": "soluling.1.0.52.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

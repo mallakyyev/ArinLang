@@ -27,60 +27,62 @@
             c.Text = "Türkmen";
         }
         lngListItem.Add(c);
-        
+
     }
 }
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-     <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
-    style=" padding-right: 150px;">
-    <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
-        style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
-            @if (requestCulture.RequestCulture.UICulture.NativeName == "English (United States)")
-            {
-                <span> English </span>
-            }
-            else
-            {
-                <span class="flex uppercase" style="font-size: 20px;">
-                    <img src="https://img.icons8.com/color/48/000000/usa.png" class="mr-5" />
+    <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
+         style=" padding-right: 150px;">
+        <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
+             style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
 
-                     @foreach (var lng in lngListItem)
-            {
-            <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
-            asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-3 pr-2" style="display: block;">@lng.Value
-            </a>
-            }         
-                    </span> 
+            <span class="flex uppercase" style="font-size: 20px;">
+                <img src="/images/flags/ae.svg" class="mr-5" style="max-width:80%"/>
+                @foreach (var lng in lngListItem)
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
+                       asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
+                       class="py-3 pr-2" style="display: block;">
+                        @lng.Value
+                </a>
             }
+            </span>
+
         </div>
     </div>
 }
 else
 {
-    <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
-    style=" padding-right: 150px;">
-    <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
-        style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
-            @if (requestCulture.RequestCulture.UICulture.NativeName == "English (United States)")
-            {
-                <span> English </span>
-            }
-            else
-            {
-                <span class="flex uppercase" style="font-size: 20px;">
-                    <img src="https://img.icons8.com/color/48/000000/usa.png" class="mr-5" />
 
-                     @foreach (var lng in lngListItem)
-            {
-            <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
-            asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
-            class="py-3 pr-2" style="display: block;">@lng.Value
-            </a>
-            }         
-                    </span> 
-            }
+
+<div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
+         style=" padding-right: 150px;">
+        <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
+             style="height: 35px; width: 130px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
+           
+            <span class="flex uppercase" style="font-size: 20px;">
+                @if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
+                {
+
+
+                    <img src="/images/flags/us.svg" class="mr-5" style="max-width:80%" />
+                }
+                else
+                {
+                    <img src="/images/flags/tm.svg" class="mr-5" style="max-width:80%" />
+                }
+
+                @foreach (var lng in lngListItem)
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
+                       asp-route-value="@Context.Request.QueryString" asp-route-culture="@lng.Value" data-link="#"
+                       class="py-3 pr-2" style="display: block;">
+                        @lng.Value
+                    </a>
+                }
+            </span>
+            
         </div>
     </div>
 }

@@ -180,16 +180,22 @@ namespace ARINLAB.Services
                 return null;
             }
         }
-        public List<NameImagesDto> GetAllNamesImagesByNameId(int id)
+        public async Task<List<NameImagesDto>> GetAllNamesImagesByNameIdAsync(int id)
         {
             try
             {
-                return _mapper.Map<List<NameImagesDto>>(_dbContext.NameImages.Where(p => p.NamesId == id));
+                var result = new List<NameImages>(_dbContext.NameImages.Where(p => p.NamesId == id));
+
+                if(result.Count>0)
+                {
+                    Random rnd = new Random(DateTime.Now.Hour);
+                    var inc = await IncreaseViewedImage(result[rnd.Next(0, result.Count - 1)].Id);
+                }
+                return _mapper.Map<List<NameImagesDto>>(result);
             }catch(Exception e)
             {
                 return null;
-            }
-            
+            }            
         }
 
         public List<NamesDto> GetAllNamesWithDictId(int id)
@@ -304,7 +310,37 @@ namespace ARINLAB.Services
 
             }
             return ResponceGenerator.GetResponceModel(false, "Unknown eror", null);
+        }
+        public async Task<NamesDto> IncreaseViewed(int namesId)
+        {
+            var name = await _dbContext.Names.FindAsync(namesId);
+            if (name != null)
+            {
+                if (name.Viewed == null)
+                    name.Viewed = 0;
+                name.Viewed += 1;
+                _dbContext.Names.Update(name);
+                await _dbContext.SaveChangesAsync();
+                var data = _mapper.Map<NamesDto>(name);
+                data.DictionaryName = _dictionaryService.GetDictionaryNameById(data.DictionaryId);
+                return data;                
+            }
+            return null;
+        }
 
+        public async Task<bool> IncreaseViewedImage(int namesImageId)
+        {
+            var nameImage = await _dbContext.NameImages.FindAsync(namesImageId);
+            if (nameImage != null)
+            {
+                if (nameImage.Viewed == null)
+                    nameImage.Viewed = 0;
+                nameImage.Viewed += 1;
+                _dbContext.NameImages.Update(nameImage);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

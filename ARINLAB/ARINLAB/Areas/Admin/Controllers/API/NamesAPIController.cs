@@ -36,9 +36,9 @@ namespace ARINLAB.Areas.Admin.Controllers.API
         }
 
         [HttpGet("GetImage/{id}")]
-        public object GetImageAsync(DataSourceLoadOptions loadOptions, int id)
+        public async Task<object> GetImageAsync(DataSourceLoadOptions loadOptions, int id)
         {
-            return DataSourceLoader.Load<NameImagesDto>(_namesService.GetAllNamesImagesByNameId(id).AsQueryable(), loadOptions);
+            return DataSourceLoader.Load<NameImagesDto>((await _namesService.GetAllNamesImagesByNameIdAsync(id)).AsQueryable(), loadOptions);
         }
         
         [HttpDelete("{id}")]

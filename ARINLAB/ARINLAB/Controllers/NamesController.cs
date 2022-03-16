@@ -56,9 +56,11 @@ namespace ARINLAB.Controllers
 
         public async Task<IActionResult> DetailsAsync(int id, bool ratingResult = false)
         {
-            var res = await _nameService.GetNameByIdAsync(id);
+            //var res = await _nameService.GetNameByIdAsync(id);
+            var res = await _nameService.IncreaseViewed(id);
             if (res == null)
                 return RedirectToAction("Indexall");
+            
             if (string.IsNullOrEmpty(res.ImageForShare))
             {
                 res.ImageForShare = _imageService.CreateImageForExport(res.ArabName, res.OtherName);
@@ -69,7 +71,8 @@ namespace ARINLAB.Controllers
             model.ArabName = res.ArabName;
             model.OtherName = res.OtherName;
             model.DictName = res.DictionaryName;
-            var file = _nameService.GetAllNamesImagesByNameId(id);
+            model.Viewed = res.Viewed;
+            var file = await _nameService.GetAllNamesImagesByNameIdAsync(id);
             ViewBag.Rating = _ratingServices.GetRatingForName(id);
             ViewBag.Model = model;
             ViewBag.RatingResult = ratingResult;
@@ -97,7 +100,7 @@ namespace ARINLAB.Controllers
             }            
         }
 
-        [HttpPost]
+        
         public async Task<IActionResult> SetRatingAsync(float Rating, int NameId)
         {
             var responce = await _ratingServices.SetRatingForNameAsync(Rating, NameId);
@@ -112,7 +115,7 @@ namespace ARINLAB.Controllers
                     model.ArabName = res.ArabName;
                     model.OtherName = res.OtherName;
                     model.DictName = res.DictionaryName;
-                    var file = _nameService.GetAllNamesImagesByNameId(NameId);
+                    var file = await _nameService.GetAllNamesImagesByNameIdAsync(NameId);
                     ViewBag.Rating = _ratingServices.GetRatingForName(NameId);
                     ViewBag.Model = model;
                     ViewBag.RatingResult = responce.IsSuccess;

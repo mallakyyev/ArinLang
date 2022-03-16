@@ -55,6 +55,7 @@ namespace ARINLAB.Extensions
             services.AddTransient<IRatingService, RatingService>();
             services.AddScoped<LogoService>();
             services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<AboutService>();
             //Add Scoped Services
 
 

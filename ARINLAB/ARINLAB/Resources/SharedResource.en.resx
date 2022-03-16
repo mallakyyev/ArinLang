@@ -543,6 +543,9 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SEARCH BY WORDS AND PHRASEBOOKS" xml:space="preserve">
+    <value>SEARCH BY WORDS AND PHRASEBOOKS</value>
+  </data>
   <data name="Search result for" xml:space="preserve">
     <value>Search result for</value>
   </data>

@@ -56,31 +56,28 @@
                 <tbody>
                     @if (Model != null)
                     {
-                        @foreach (var item in Model.AudioFiles)
-                        {
-                            <tr>
-                                <th scope="row">@item.Id</th>
-                                <td>
-                                    <audio id="myAudio@(item.Id)">
-                                        <source src="~/@item.ArabVoice" type="audio/mpeg">                                      
-                                    </audio>
-                                    <button onclick="playAudio('myAudio@(item.Id)')">PLAY</button>
-                                    <button onclick="pauseAudio('myAudio@(item.Id)')">STOP</button>
-                                </td>
-                                <td>
-                                    <audio id="myAudio@(item.Id)_o">
-                                        <source src="~/@item.OtherVoice" type="audio/mpeg">
-                                    </audio>
-                                    <button onclick="playAudio('myAudio@(item.Id)_o')">PLAY</button>
-                                    <button onclick="pauseAudio('myAudio@(item.Id)_o')">STOP</button>
-                                </td>
+                        <tr>
+                            <th scope="row">@Model.Word.Id</th>
+                            <td>
+                                <audio id="myAudio@(@Model.Word.Id)">
+                                    <source src="~/@Model.Word.ArabVoice" type="audio/mpeg">
+                                </audio>
+                                <button onclick="playAudio('myAudio@(Model.Word.Id)')">PLAY</button>
+                                <button onclick="pauseAudio('myAudio@(Model.Word.Id)')">STOP</button>
+                            </td>
+                            <td>
+                                <audio id="myAudio@(Model.Word.Id)_o">
+                                    <source src="~/@Model.Word.OtherVoice" type="audio/mpeg">
+                                </audio>
+                                <button onclick="playAudio('myAudio@(Model.Word.Id)_o')">PLAY</button>
+                                <button onclick="pauseAudio('myAudio@(Model.Word.Id)_o')">STOP</button>
+                            </td>
 
-                                <td>
-                                  <button type="button" id="@(item.Id)" name="@(Model.Word.Id)" class="sweetalert delete-voice1 btn button-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            <td>
+                                <button type="button" id="@(Model.Word.Id)" name="@(Model.Word.Id)" class="sweetalert delete-voice1 btn button-danger"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
 
-                        }
                     }
 
                 </tbody>

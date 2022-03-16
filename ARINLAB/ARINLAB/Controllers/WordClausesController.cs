@@ -38,12 +38,14 @@ namespace ARINLAB.Controllers
             return View(model);            
         }
 
-        public async Task<IActionResult> DetailsAsync(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var clause = await _wordClauseService.GetWordClauseByIdAsync(id);
+            //var clause = await _wordClauseService.GetWordClauseByIdAsync(id);
+            var clause = await _wordClauseService.IncreaseViewed(id);
             if (clause == null)
                 return RedirectToAction("Index");
-            ViewBag.Rating = _ratingServices.GetRatingForWordClause(id);
+            
+            ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWordClause(id));
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
             ViewBag.Model = clause;
             var voices = _wordClauseService.GetAudioFileForClausebyID(id, true);
@@ -51,7 +53,7 @@ namespace ARINLAB.Controllers
 
         }
 
-        [HttpPost]
+        
         public async Task<IActionResult> SetRatingAsync(float Rating, int WordClauseId)
         {
             var responce = await _ratingServices.SetRatingForWordClauseAsync(Rating, WordClauseId);

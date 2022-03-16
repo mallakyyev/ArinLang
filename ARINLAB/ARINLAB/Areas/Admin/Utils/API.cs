@@ -22,6 +22,7 @@ namespace ARINLAB.Areas.Admin.Utils
         public static string DeleteImage { get; set; } = "/api/NamesAPI/DeleteImage";
         public static string GetRandomWords { get; set; } = "/api/WordsAPI/RandomWords";
         public static string GetWordByUserId { get; set; } = "/api/WordsAPI/";
+        public static string GetAllWords { get; set; } = "/api/WordsAPI/GetAll";
         public static string GetRandomWordClauses{ get; } = "/api/WordClauseAPI/RandomWordClauses";
         public static string GetRandomNames { get; } = "/api/NamesAPI/GetRandomNames";
         public static string GetNamesWithDictId { get; } = "/api/NamesAPI/GetAllNamesWithDict";

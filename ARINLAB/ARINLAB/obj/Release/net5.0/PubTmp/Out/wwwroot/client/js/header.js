@@ -54,6 +54,7 @@ gsap.set(searchContainer, {
 	y: '-100%',
 });
 const openSearchBar = () => {
+	searchContainer.style.display = "block";
 	if (!isSearchAnimationEnd) return;
 	isSearchAnimationEnd = false;
 	gsap.to(searchContainer, {
@@ -81,6 +82,7 @@ const closeSearchBar = () => {
 			isSearchAnimationEnd = true;
 		},
 	});
+	searchContainer.style.display = "none";
 };
 window.addEventListener('keydown', e => {
 	if (e.keyCode === 27 && isOpen) {

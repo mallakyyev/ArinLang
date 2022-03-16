@@ -441,7 +441,7 @@ else
                         allowHeaderFiltering: false,
 
                     },
-                    {
+                    @*{
                         caption: '@SharedLocalizer["Voices"]',
                         dataField: 'arabVoiceFile',
                         width: 100,
@@ -466,7 +466,7 @@ else
                             }
                         },
 
-                    },
+                    },*@
                     {
                         type: "buttons",
                         width: 55,
@@ -518,15 +518,11 @@ else
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
-
-                onInitNewRow: function(e) {
-                    var url = `@Url.Action("Create", "WordClause", new { Area = "Admin" })`;
-                    window.location = url;
-                },
+                
                 onRowClick: function (e) {
                      var idString = e.data.id;
                      var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
-                     window.location = url + '?id=' + idString;
+                     window.location = url + '/' + idString;
                 },
                 //selection: {
                 //    mode: "multiple"

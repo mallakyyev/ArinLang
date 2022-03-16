@@ -297,9 +297,10 @@
                     return pageX - self.$rating.offset().left;
                 },
                 _listenClick: function (e, callback) {
+                                       
                     e.stopPropagation();
                     e.preventDefault();
-                    if (e.handled !== true) {
+                     if (e.handled !== true) {
                         callback(e);
                         e.handled = true;
                     } else {
@@ -346,6 +347,7 @@
                         params = [self.$element.val(), self._getCaption()];
                         self._trigChange(params);
                         self.starClicked = true;
+                        document.getElementById('rtng').submit();
                     });
                 },
                 clearClick: function (e) {
@@ -353,6 +355,7 @@
                         if (!self.inactive) {
                             self.clear();
                             self.clearClicked = true;
+                            document.getElementById('rtng').submit();
                         }
                     });
                 },

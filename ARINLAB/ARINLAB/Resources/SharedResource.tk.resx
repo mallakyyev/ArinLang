@@ -430,7 +430,7 @@
     <value>Atlar</value>
   </data>
   <data name="Names Collection" xml:space="preserve">
-    <value>Atlar kontrolleri</value>
+    <value>Atlar toplumy</value>
   </data>
   <data name="Names Conroller" xml:space="preserve">
     <value>Atlar kontrolleri</value>
@@ -554,6 +554,9 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Gözle</value>
+  </data>
+  <data name="SEARCH BY WORDS AND PHRASEBOOKS" xml:space="preserve">
+    <value>SÖZLERI WE JÜMLELERI GÖZLE</value>
   </data>
   <data name="Search result for" xml:space="preserve">
     <value>Gözlegiň netijesi</value>

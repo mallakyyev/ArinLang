@@ -5,6 +5,7 @@ using DAL.Data;
 using DAL.Models;
 using DAL.Models.Dto;
 using DAL.Models.ResponceModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,8 +23,10 @@ namespace ARINLAB.Services
         private readonly UserDictionary _userDict;
         private readonly ILogger<WordServices> _logger;
         private readonly IDictionaryService _dictionaryService;
+        private readonly UserManager<DAL.Models.ApplicationUser> _userManager;
         public WordServices(ApplicationDbContext applicationDbContext, IMapper mapper, IImageService imageService
-                            , UserDictionary u, ILogger<WordServices> logger, IDictionaryService dictionaryService
+                            , UserDictionary u, ILogger<WordServices> logger, IDictionaryService dictionaryService,
+                            UserManager<DAL.Models.ApplicationUser> userManager
             )
         {
             _dbContext = applicationDbContext;
@@ -32,6 +35,7 @@ namespace ARINLAB.Services
             _userDict = u;
             _logger = logger;
             _dictionaryService = dictionaryService;
+            _userManager = userManager;
         }
         public async Task<Responce> addWordAsync(CreateWordDto word)
         {
@@ -153,7 +157,8 @@ namespace ARINLAB.Services
             _word.UserId = editWordDto.UserId;
             _word.OtherWord = editWordDto.OtherWord;
             _word.ImageForShare = editWordDto.ImageForShare;
-            
+            _word.ArabVoice = editWordDto.ArabVoice;
+            _word.OtherVoice = editWordDto.OtherVoice;
             if (editWordDto.ArabVoiceForm != null)
             {
                 _fileService.DeleteImage(editWordDto.ArabVoice);
@@ -165,7 +170,7 @@ namespace ARINLAB.Services
                 _fileService.DeleteImage(editWordDto.OtherVoice);
                 _word.OtherVoice = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
             }
-           
+            
             Responce result = new Responce();
             try
             {                
@@ -230,17 +235,22 @@ namespace ARINLAB.Services
             }
         }
 
-        public List<WordDto> GetAllWords(int pageNumber, int count)
+        public async Task<List<WordDto>> GetAllWordsAsync()
         {
             try
             {
-                var result = _mapper.Map<List<WordDto>>(_dbContext.Words.Skip((pageNumber - 1) * count).Take(count).AsNoTracking());
-                int n = 1 + (pageNumber - 1) * count;
+                var result = _mapper.Map<List<WordDto>>(_dbContext.Words.AsNoTracking());
+               
                 foreach (var item in result)
                 {
-                    item.Dictionary = _dbContext.Dictionaries.Find(item.DictionaryId).Language;
-                    item.Number = n;
-                    ++n;
+                    try
+                    {
+                        item.Dictionary = _dbContext.Dictionaries.Find(item.DictionaryId)?.Language;
+                        item.UserEmail = (await _userManager.FindByIdAsync(item.UserId))?.Email;
+                    }catch(Exception e)
+                    {
+
+                    }
                 }
                 return result;
             }
@@ -248,8 +258,7 @@ namespace ARINLAB.Services
             {
                 _logger.LogError(e.Message);
                 return new List<WordDto>();
-            }
-            
+            }            
         }
 
         public List<WordDto> GetAllWords(string userId, int pageNumber, int count)
@@ -332,7 +341,7 @@ namespace ARINLAB.Services
 
         public List<WordDto> GetWordsWithApproval(bool isApproved)
         {
-            var res = _mapper.Map<List<WordDto>>(_dbContext.Words.Where(p => p.IsApproved == true).Include(p => p.AudioFiles).Include(p => p.WordSentences));
+            var res = _mapper.Map<List<WordDto>>(_dbContext.Words.Where(p => p.IsApproved == true).Include(p => p.WordSentences));
             foreach(var r in res)
             {
                 r.Dictionary = _dbContext.Dictionaries.Find(r.DictionaryId)?.Language;
@@ -380,5 +389,22 @@ namespace ARINLAB.Services
             }
         }
 
+        public async Task<WordDto> IncreaseViewed(int wordId)
+        {
+            var word = await _dbContext.Words.FindAsync(wordId);
+            if(word!= null)
+            {
+                if (word.Viewed == null)
+                    word.Viewed = 0;
+                word.Viewed += 1;
+                _dbContext.Words.Update(word);
+                await _dbContext.SaveChangesAsync();
+
+                var res = _mapper.Map<WordDto>(word);
+                res.Dictionary = (await _dbContext.Dictionaries.FindAsync(res.DictionaryId))?.Language;
+                return res;
+            }
+            return null;
+        }
     }
 }

@@ -561,6 +561,9 @@
   <data name="Search" xml:space="preserve">
     <value>البحث</value>
   </data>
+  <data name="SEARCH BY WORDS AND PHRASEBOOKS" xml:space="preserve">
+    <value>البحث بالكلمات وكتب الكتب</value>
+  </data>
   <data name="Search result for" xml:space="preserve">
     <value>نتيجة البحث عن</value>
   </data>

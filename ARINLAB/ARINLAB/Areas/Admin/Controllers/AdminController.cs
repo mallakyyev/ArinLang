@@ -32,8 +32,8 @@ namespace ARINLAB.Areas.Admin.Controllers
         [Authorize(Roles = Roles.Admin)]
         public IActionResult Words()
         {
-            List<WordDto> _words = _wordsService.GetAllWords(15,10);
-            return View(_words);
+            //List<WordDto> _words = _wordsService.GetAllWords(15,10);
+            return View();//_words);
         }
     }
 }

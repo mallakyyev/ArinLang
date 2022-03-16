@@ -278,8 +278,16 @@ namespace ARINLAB.Services
                 
                 if (res != null)
                 {
-                    return _mapper.Map<EditWordClauseDto>(res);
+                    var result = _mapper.Map<EditWordClauseDto>(res);
+                    string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                    var category = _dbContext.WordClauseCategoryTranslates.FirstOrDefault(p => p.WordClauseCategoryId == res.CategoryId                                                                                             && p.LanguageCulture == culture);
+                    if (category != null)
+                    {
+                        result.CategoryName = category.CategoryName;
+                    }
+                    return result;
                 }
+                
                 return null;
             }catch(Exception e)
             {
@@ -412,6 +420,28 @@ namespace ARINLAB.Services
                     dto.CategoryName = catName == null ? "" : catName.WordClauseCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == culture)?.CategoryName;
                     
                     result.Add(dto);
+                }
+                return result;
+            }
+            return null;
+        }
+
+        public async Task<EditWordClauseDto> IncreaseViewed(int wordClauseId)
+        {
+            var word = await _dbContext.WordClauses.FindAsync(wordClauseId);
+            if (word != null)
+            {
+                if (word.Viewed == null)
+                    word.Viewed = 0;
+                word.Viewed += 1;
+                _dbContext.WordClauses.Update(word);
+                await _dbContext.SaveChangesAsync();
+                var result = _mapper.Map<EditWordClauseDto>(word);
+                string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                var category = _dbContext.WordClauseCategoryTranslates.FirstOrDefault(p => p.WordClauseCategoryId == word.CategoryId && p.LanguageCulture == culture);
+                if (category != null)
+                {
+                    result.CategoryName = category.CategoryName;
                 }
                 return result;
             }

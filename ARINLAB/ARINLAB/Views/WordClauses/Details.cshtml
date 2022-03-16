@@ -11,6 +11,7 @@
     string dictName = "";
     ViewData["Title"] = "Index";
     EditWordClauseDto m = null;
+    int rating = (int)ViewBag.Rating;
     bool ress = false;
     if (ViewBag.RatingResult != null)
         ress = (bool)(ViewBag.RatingResult);
@@ -37,157 +38,107 @@
 }
 @await Component.InvokeAsync("OtherMenu")
 
+    <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+        <div class="flex justify-between" style="width: 140px;">
+            <a href=""><img src="~/images/Icons/Bug.svg"></a>
+            <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
+            <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
+            @*<a href=""><img src="~/images/Icons/Share_black.svg"></a>*@
+        </div>
+    <div class="flex justify-between align-center" style="width: 220px;">
+        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <small style="margin-right: 15px;">@m.Viewed</small>
+        <div id="full-stars-example">
+            <div class="rating-group">
+                <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-1" value="1" type="radio" onclick="httpGet('@Url.Action("SetRating", "WordClauses")?Rating=1&WordClauseId=@m.Id')" @(rating == 1 ? "checked" : "")>
+                <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-2" value="2" type="radio" onclick="httpGet('@Url.Action("SetRating", "WordClauses")?Rating=2&WordClauseId=@m.Id')" @(rating == 2 ? "checked" : "")>
+                <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" onclick="httpGet('@Url.Action("SetRating", "WordClauses")?Rating=3&WordClauseId=@m.Id')" @(rating == 3 ? "checked" : "")>
+                <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-4" value="4" type="radio" onclick="httpGet('@Url.Action("SetRating", "WordClauses")?Rating=4&WordClauseId=@m.Id')" @(rating == 4 ? "checked" : "")>
+                <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-5" value="5" type="radio" onclick="httpGet('@Url.Action("SetRating", "WordClauses")?Rating=5&WordClauseId=@m.Id')" @(rating == 5 ? "checked" : "")>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
+    <div class="wrapper">
+        <h3 style="text-align: center;">@m.CategoryName</h3>
+        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">@SharedLocalizer["Turkmen Phrase"]:</h3>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Arabic Phrase"]:</h3>
+        </div>
+        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+            @if (Model != null && Model.Count>0)
+            {
+                <audio id="myAudio@(Model[0].Id)">
+                    <source src="~/@Model[0].OtherVoice" type="audio/mpeg">
+                </audio>
+                <audio id="myAudio@(Model[0].Id)_o">
+                    <source src="~/@Model[0].ArabVoice" type="audio/mpeg">
+                </audio>
+            }
+        <p>
+            @if (Model != null && Model.Count > 0)
+            {
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_L.svg" onclick="playAudio('myAudio@(Model[0].Id)')">
+            }
+            else
+            {
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_L.svg" >
 
-@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-{
-    <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
-    <div class="flex justify-between" style="width: 140px;">
-        <a href=""><img src="~/images/Icons/Bug.svg"></a>
-        <a href=""><img src="~/images/Icons/Print.svg"></a>
-        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
-        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
-    </div>
-    <div class="flex justify-between align-center" style="width: 220px;">
-        <a href=""><img src="~/images/Icons/Eye.svg"></a>
-        <small style="margin-right: 15px;">16879</small>
-        <div>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-        </div>
-    </div>
-</div>
-<div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
-    <div class="wrapper">
-        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
-            <h3 style="font-weight: bold;">Word in Arabic:</h3>
-        </div>
-        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
-            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+            }
+            @m.OtherClause
+        </p>
+        <p>
+            @m.ArabClause
+            @if (Model != null && Model.Count > 0)
+            {
+                <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="~/images/Icons/Voice_R.svg" onclick="playAudio('myAudio@(Model[0].Id)_o')">
+            }
+            else
+            {
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_R.svg" >
+            }
+        </p>
+
         </div>
         <div class="justify-between flex flex-row px-5 bg-gray-100"style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Sentence in Turkmen:</h3>
-            <h3 style="font-weight: bold;">Sentence in Arabic:</h3>
-        </div>
-        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg">Mugallym cagalara owredyar</p>
-            <p>Muallim yualimu aletfale<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Arab Transcription"]:</h3>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Turkmen Transcription"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Transcription in Arabic:</h3>
-            <h3 style="font-weight: bold;">Transcription in Turkmen:</h3>
+            <p>@m.ArabReader</p>
+            <p>@m.OtherReader</p>
         </div>
-        <div class="justify-between flex flex-row px-2" style="margin-top: 20px; margin-left: 40px; margin-right: 40px; border-bottom: 1px solid silver; padding-bottom: 10px; paddding-left: 40px; padding-right: 40px;">
-            <p>Mugallym cagalary okadyar</p>
-            <p>Muallim yualimu aletfale</p>
-        </div>
+        
     </div>
 </div>
-}
-else
-{
-    <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
-    <div class="flex justify-between" style="width: 140px;">
-        <a href=""><img src="~/images/Icons/Bug.svg"></a>
-        <a href=""><img src="~/images/Icons/Print.svg"></a>
-        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
-        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
-    </div>
-    <div class="flex justify-between align-center" style="width: 220px;">
-        <a href=""><img src="~/images/Icons/Eye.svg"></a>
-        <small style="margin-right: 15px;">16879</small>
-        <div>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-            <img style="width: 22px; height: 24px;" src="https://img.icons8.com/color/48/000000/filled-star--v1.png"/>
-        </div>
-    </div>
-</div>
-<div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 9px; font-size: 18px;">
-    <div class="wrapper">
-        <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
-            <h3 style="font-weight: bold;">Word in Arabic:</h3>
-        </div>
-        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
-            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
-        </div>
-        <div class="justify-between flex flex-row px-5 bg-gray-100"style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Sentence in Turkmen:</h3>
-            <h3 style="font-weight: bold;">Sentence in Arabic:</h3>
-        </div>
-        <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg">Mugallym cagalara owredyar</p>
-            <p>Muallim yualimu aletfale<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
-        </div>
-        <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Transcription in Arabic:</h3>
-            <h3 style="font-weight: bold;">Transcription in Turkmen:</h3>
-        </div>
-        <div class="justify-between flex flex-row px-2" style="margin-top: 20px; margin-left: 40px; margin-right: 40px; border-bottom: 1px solid silver; padding-bottom: 10px; paddding-left: 40px; padding-right: 40px;">
-            <p>Mugallym cagalary okadyar</p>
-            <p>Muallim yualimu aletfale</p>
-        </div>
-    </div>
-</div>
-}
 
 <button id="btn" hidden></button>
 @section Scripts{
-    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
-    <script src="/dist/simple-notify.min.js"></script>
-    <script src="/assets/js/prism.js"></script>
-    <script src="/assets/js/OverlayScrollbars.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+   
     <script>
-         const btn = document.querySelector('#btn')
-
-        btn.addEventListener('click', () => {
-            new Notify({
-                status: 'success',
-                title: '@SharedLocalizer["Thank you"]',
-                text: '@SharedLocalizer["Your rating have been successfully recorded"]',
-                effect: 'fade',
-                speed: 300,
-                customClass: '',
-                customIcon: '',
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: false,
-                autotimeout: 3000,
-                gap: 60,
-                distance: 20,
-                type: 1,
-                position: 'right top',
-                customWrapper: '',
-            })
-        });
+        function httpGet(theUrl) {
+            document.getElementById("success").click();
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, true); // false for synchronous request
+            xmlHttp.send(null);
+            return null;
+        }
 
     function playAudio(id) {
-
         var x = document.getElementById(id);
         x.play();
     }
 
     function pauseAudio(id) {
-
         var x = document.getElementById(id);
         x.pause();
     }
     </script>
-    @if (ress)
-    {
-        <script>
-            document.getElementById("btn").click();
-        </script>
-    }
+   
 }

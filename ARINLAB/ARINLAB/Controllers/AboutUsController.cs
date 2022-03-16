@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ARINLAB.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,14 @@ namespace ARINLAB.Controllers
 {
     public class AboutUsController : Controller
     {
-        public IActionResult Index()
+        private readonly AboutService _service;
+        public AboutUsController(AboutService service)
         {
-            return View();
+            _service = service; 
+        }
+        public IActionResult About()
+        {
+            return View(_service.GetAboutus());
         }
     }
 }

@@ -59,8 +59,9 @@ namespace ARINLAB.Controllers
         public async Task<IActionResult> Details(int id, bool ratingResult = false)
         {
             try
-            {
-                var res = await _wordsService.GetWordByIdAsync(id);
+            {                
+                var res = await _wordsService.IncreaseViewed(id);
+                //var res = await _wordsService.GetWordByIdAsync(id);
                 if (res != null)
                 {
                     if (string.IsNullOrEmpty(res.ImageForShare))
@@ -71,9 +72,9 @@ namespace ARINLAB.Controllers
                     WordSentencesViewModel model = new();
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(id);
-                    model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(id);
+                    //model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(id);
                     ViewBag.dict = _dictService.GetAllDictionaries().Data;
-                    ViewBag.Rating = _ratingServices.GetRatingForWord(id);
+                    ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWord(id));
                     ViewBag.RatingResult = ratingResult;
                     ViewBag.ExportImage = res.ImageForShare;
                     return View(model);
@@ -115,9 +116,7 @@ namespace ARINLAB.Controllers
                 return RedirectToAction("Indexall");
             }
         } 
-
-
-        [HttpPost]
+        
         public async Task<IActionResult> SetRatingAsync(float Rating, int WordId)
         {
             var responce = await _ratingServices.SetRatingForWordAsync(Rating, WordId);
@@ -130,7 +129,7 @@ namespace ARINLAB.Controllers
                     WordSentencesViewModel model = new();
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(WordId);
-                    model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(WordId);
+                    //model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(WordId);
                     ViewBag.dict = _dictService.GetAllDictionaries().Data;
                     ViewBag.RatingResult = responce.IsSuccess;
                     ViewBag.Rating = _ratingServices.GetRatingForWord(WordId);

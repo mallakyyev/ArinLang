@@ -16,7 +16,7 @@ namespace ARINLAB.Services
         public Task<Responce> DeleteNameAsync(int id);
         public Task<Responce> EditNameAsync(NamesDto name);
         public Task<Responce> CreateNameAsync(CreateNamesDto name);
-        public List<NameImagesDto> GetAllNamesImagesByNameId(int id);
+        public Task<List<NameImagesDto>> GetAllNamesImagesByNameIdAsync(int id);
         public Task<NameImagesDto> GetNameImageByImageIdAsync(int id);
         public Task<Responce> DeleteImageforNameAsync(int id);
         public Task<Responce> CreateImageforNameAsync(CreateNameImagesDto image);
@@ -28,5 +28,7 @@ namespace ARINLAB.Services
         public List<NamesDto> GetAllNamesWithDictId(int id);
 
         public Task<Responce> SetNameImageForShare(int nameId, string ImageLocation);
+        public Task<NamesDto> IncreaseViewed(int namesId);
+        public Task<bool> IncreaseViewedImage(int namesImageId);
     }
 }

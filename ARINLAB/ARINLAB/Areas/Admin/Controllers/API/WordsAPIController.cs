@@ -1,5 +1,6 @@
 ﻿using DAL.Models.Dto;
 using DevExtreme.AspNet.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,12 +31,24 @@ namespace ARINLAB.Areas.Admin.Controllers.API
             string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return DataSourceLoader.Load<WordDto>(_wordService.GetAllWordsByUserId(userId).AsQueryable(), loadOptions);
         }
-        
+        [HttpGet("GetAll")]
+        public async Task<object> GetAllAsync(DataSourceLoadOptions loadOptions)
+        {
+            //string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return DataSourceLoader.Load<WordDto>((await _wordService.GetAllWordsAsync()).AsQueryable(), loadOptions);
+        }
 
         [HttpGet("GetAllWordsWithDict/{dictId}")]
         public object GetAllNamesWithDict(DataSourceLoadOptions loadOptions, int dictId)
         {
             return DataSourceLoader.Load<WordDto>(_wordService.GetAllWordsWithDictId(dictId).AsQueryable(), loadOptions);
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task DeleteAsync(int id)
+        {
+            await _wordService.Delete(id);
         }
     }
 }

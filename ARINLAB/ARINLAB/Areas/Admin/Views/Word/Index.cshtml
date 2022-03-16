@@ -2,107 +2,249 @@
     ViewData["Title"] = "Index";
 }
 @using DAL.Models.Dto
-@model List<WordDto>
-
-<link href="~/Admin/assets/css/plugins/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
-<h1>Words</h1>
-
-<!--Basic Start-->
-<div class="container">
+@using ARINLAB.Areas.Admin.Utils
+<h1> @SharedLocalizer["Words Controller"]</h1>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">@SharedLocalizer["#"]</th>
-                        <th scope="col">@SharedLocalizer["Arab word"]</th>
-                        <th scope="col">@SharedLocalizer["Translation to Other Word"]</th>
-                        <th scope="col">@SharedLocalizer["Dictionary"]</th>
-                        <th scope="col">@SharedLocalizer["Approve"]</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null)
-                    {
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <th scope="row">@item.Number</th>
-
-                                <td>@item.ArabWord</td>
-                                <td>@item.OtherWord</td>
-                                <td>@item.Dictionary</td>
-                                <td>
-                                    <div class="adomx-checkbox-radio-group inline">
-                                        <label class="adomx-switch success">
-
-                                            <input id="approve@(item.Id)" type="checkbox" @(item.IsApproved ? "checked" : "")>
-
-                                            <i class="lever"></i>
-                                        </label>
-
-                                    </div>
-                                </td>
-                                <td>
-                                    <a asp-area="Admin" asp-controller="Word" asp-action="EditWord" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
-                                    <a asp-area="Admin" asp-controller="Word" asp-action="EditVoice" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-volume-up"></i></button></a>
-
-                                    <a asp-area="Admin" asp-controller="Word" asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-                                    <button type="button" id="@(item.Id)" class="sweetalert sweetalert-multiple btn button-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-
-                        }
-                    }
-
-                </tbody>
-            </table>
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                @SharedLocalizer["Word List"]
+            </h3>
         </div>
     </div>
-    <ul class="pagination justify-content-end" style="margin:20px 0">
-        @{
-            int pg = (int)ViewBag.page;
-            int totalPages = ((int)ViewBag.total / SD.pageSize) + 1;
-        }
-        @for (int i = 1; i <= totalPages; ++i)
-        {
-            <li class="page-item"><a class="page-link" asp-area="Admin" asp-controller="Word" asp-action="List" asp-route-page="@i" asp-route-count="@SD.pageSize">@i</a></li>
-        }
-    </ul>
+
+    <div class="row">
+        <div id="gridContainer">
+        </div>
+    </div>
 </div>
+@section Scripts{
+    <script>
+        $(function () {
+            let url = `@API.GetAllWords`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: `/api/WordsAPI`,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("Create", "Word", new { Area = "Admin" })`;
+                    window.location = url;
+                },
+                selection: {
+                    mode: "multiple"
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "WordClause",
+                    allowExportSelectedData: true
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: true
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: true
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordAdmin"
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab Word"]',
+                        dataField: "arabWord",
+                        allowHeaderFiltering: false,
+                    },
+                    {
+                        caption: '@SharedLocalizer["Other word"]',
+                        dataField: "otherWord",
+                        allowHeaderFiltering: false,
+                    },
 
-<!--Basic End-->
+                                {
+                        caption: '@SharedLocalizer["Dictionary"]',
+                                    dataField: "dictionary",
+                        allowHeaderFiltering: true,
+                    },
 
-@{
-    string text = ViewBag.text;
-    string text_del = ViewBag.text_del;
-}
-
-<button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
-@if (!string.IsNullOrEmpty(text))
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            document.getElementById("AlertButton").click();
-        }
+                     {
+                        caption: '@SharedLocalizer["Approved"]',
+                         dataField: "isApproved",
+                        allowHeaderFiltering: true,
+                    },
+                     {
+                        caption: '@SharedLocalizer["User name"]',
+                         dataField: "userEmail",
+                        allowHeaderFiltering: true,
+                    },
+                    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Edit"]',
+                                icon: "edit",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("Edit", "Word", new { Area = "Admin" })`;
+                                    window.location = url + '/' + idString;
+                                }
+                            },
+                            {
+                                hint: '@SharedLocalizer["Edit word sentences"]',
+                                icon: "arrowright",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("EditWord", "Word", new { Area = "Admin" })`;
+                                    window.location = url + '/' + idString;
+                                }
+                            },
+                             @*{
+                                hint: '@SharedLocalizer["Edit Voices"]',
+                                 icon: "fa fa-volume-up",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("EditClauseVoice", "WordClause", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },*@
+                            "delete"
+                        ]
+                    }
+                ]
+            });
+        });
     </script>
 }
 
-@if (Model != null)
-{
-    @foreach (var item in Model)
-    {
-        <script>
-            const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
-            checkbox@(item.Id).addEventListener('change', (event) => {
-                if (event.currentTarget.checked) {
-                    window.location.href = "/Admin/Word/@item.Id/true/@pg";
-                } else {
-                    window.location.href = "/Admin/Word/@item.Id/false/@pg";
-                }
-            })
-        </script>
+<!--Basic Start-->
+@*<div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">@SharedLocalizer["#"]</th>
+                            <th scope="col">@SharedLocalizer["Arab word"]</th>
+                            <th scope="col">@SharedLocalizer["Translation to Other Word"]</th>
+                            <th scope="col">@SharedLocalizer["Dictionary"]</th>
+                            <th scope="col">@SharedLocalizer["Approve"]</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Number</th>
+
+                                    <td>@item.ArabWord</td>
+                                    <td>@item.OtherWord</td>
+                                    <td>@item.Dictionary</td>
+                                    <td>
+                                        <div class="adomx-checkbox-radio-group inline">
+                                            <label class="adomx-switch success">
+
+                                                <input id="approve@(item.Id)" type="checkbox" @(item.IsApproved ? "checked" : "")>
+
+                                                <i class="lever"></i>
+                                            </label>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Word" asp-action="EditWord" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
+                                        <a asp-area="Admin" asp-controller="Word" asp-action="EditVoice" asp-route-id="@item.Id">  <button type="button" class="btn btn-primary"><i class="fa fa-volume-up"></i></button></a>
+
+                                        <a asp-area="Admin" asp-controller="Word" asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
+                                        <button type="button" id="@(item.Id)" class="sweetalert sweetalert-multiple btn button-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <ul class="pagination justify-content-end" style="margin:20px 0">
+            @{
+                int pg = (int)ViewBag.page;
+                int totalPages = ((int)ViewBag.total / SD.pageSize) + 1;
+            }
+            @for (int i = 1; i <= totalPages; ++i)
+            {
+                <li class="page-item"><a class="page-link" asp-area="Admin" asp-controller="Word" asp-action="List" asp-route-page="@i" asp-route-count="@SD.pageSize">@i</a></li>
+            }
+        </ul>
+    </div>*@
+
+<!--Basic End-->
+@*@{
+        string text = ViewBag.text;
+        string text_del = ViewBag.text_del;
     }
-}
+
+    <button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
+    @if (!string.IsNullOrEmpty(text))
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById("AlertButton").click();
+            }
+        </script>
+    }*@
+
+@*@if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <script>
+                const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
+                checkbox@(item.Id).addEventListener('change', (event) => {
+                    if (event.currentTarget.checked) {
+                        window.location.href = "/Admin/Word/@item.Id/true/@pg";
+                    } else {
+                        window.location.href = "/Admin/Word/@item.Id/false/@pg";
+                    }
+                })
+            </script>
+        }
+    }*@

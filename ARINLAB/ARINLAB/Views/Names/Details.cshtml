@@ -12,6 +12,7 @@
 @{
     NamesImagesViewModel mod = (NamesImagesViewModel)ViewBag.Model;
     bool res = false;
+    int rating = (int)ViewBag.Rating;
     if (ViewBag.RatingResult != null)
         res = (bool)ViewBag.RatingResult;
 
@@ -22,141 +23,102 @@
 <div id="news_icons"  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
     <div class="flex justify-between" style="width: 140px;">
         <a href=""><img src="~/images/Icons/Bug.svg"></a>
-        <a href=""><img src="~/images/Icons/Print.svg"></a>
-        <a href=""><img src="~/images/Icons/Copy_link.svg"></a>
-        <a href=""><img src="~/images/Icons/Share_black.svg"></a>           
+        <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
+        <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
+
+        <a href="@((string)ViewBag.ExportImage)" target="_blank"><img src="~/images/Icons/Share_black.svg"></a>
     </div>
     <div class="flex justify-between align-center" style="width: 220px;">
         <a href=""><img src="~/images/Icons/Eye.svg"></a>
-        <small style="margin-right: 15px;">16879</small>
+        <small style="margin-right: 15px;">@mod.Viewed</small>
         <div id="full-stars-example">
-    <div class="rating-group">
-        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
-        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
-    </div>
+            <div class="rating-group">
+                <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-1" value="1" type="radio" onclick="httpGet('@Url.Action("SetRating", "Names")?Rating=1&NameId=@mod.Id')" @(rating == 1 ? "checked" : "")>
+                <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-2" value="2" type="radio" onclick="httpGet('@Url.Action("SetRating", "Names")?Rating=2&NameId=@mod.Id')" @(rating == 2 ? "checked" : "")>
+                <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" onclick="httpGet('@Url.Action("SetRating", "Names")?Rating=3&NameId=@mod.Id')" @(rating == 3 ? "checked" : "")>
+                <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-4" value="4" type="radio" onclick="httpGet('@Url.Action("SetRating", "Names")?Rating=4&NameId=@mod.Id')" @(rating == 4 ? "checked" : "")>
+                <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" name="rating" id="rating-5" value="5" type="radio" onclick="httpGet('@Url.Action("SetRating", "Names")?Rating=5&NameId=@mod.Id')" @(rating == 5 ? "checked" : "")>
+            </div>
 </div>
     </div>
 </div>
 <div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 50px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
     <div class="wrapper">
         <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Word in Turkmen:</h3>
-            <h3 style="font-weight: bold;">Word in Arabic:</h3>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Name in Turkmen"]:</h3>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> Mugallym</p>
-            <p>Moallem <img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> @mod.OtherName</p>
+            <p>@mod.ArabName<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
         </div>
     </div>
 </div>
 
 <div id="names_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 60px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 15px; font-size: 18px;">
-      <div class="wrapper">
+    <div class="wrapper">
         <div class="album text-center px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">Album:</h3>
+            <h3 style="font-weight: bold;">@SharedLocalizer["Album"]:</h3>
         </div>
-  <div class="wrapper flex justify-between" style="padding: 20px;">
-       <div style="object-fit: cover; width: 320px; height: 250px;">
-           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
-           <div class="flex justify-around align-center px-3"> 
-               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
-            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-            <small style="margin-right: 15px;" class="px-3">16879</small>
-            <div id="full-stars-example">
-    <div class="rating-group">
-        <label aria-label="1 star" class="rating__label" for="rating-11"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-11" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating-12"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-12" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating-13"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-13" value="3" type="radio" checked>
-        <label aria-label="4 stars" class="rating__label" for="rating-14"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-14" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating-15"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-15" value="5" type="radio">
-    </div>
-</div>
-        </div>
-       </div>
-       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
-           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
-           <div class="flex justify-around align-center px-3">
-               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
-            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-            <small style="margin-right: 15px;" class="px-3">16879</small>
-            <div id="full-stars-example">
-    <div class="rating-group">
-        <label aria-label="1 star" class="rating__label" for="rating-21"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-21" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating-22"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-22" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating-23"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-23" value="3" type="radio" checked>
-        <label aria-label="4 stars" class="rating__label" for="rating-24"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-24" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating-25"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-25" value="5" type="radio">
-    </div>
-</div>
-        </div>
-       </div>
-    </div>
-    <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
-       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
-           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
-           <div class="flex justify-around align-center px-3">
-               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
-            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-            <small style="margin-right: 15px;" class="px-3">16879</small>
-            <div id="full-stars-example">
-    <div class="rating-group">
-        <label aria-label="1 star" class="rating__label" for="rating-31"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-31" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating-32"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-32" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating-33"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-33" value="3" type="radio" checked>
-        <label aria-label="4 stars" class="rating__label" for="rating-34"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-34" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating-35"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-35" value="5" type="radio">
-    </div>
-</div>
-        </div>
-       </div>
-       <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
-           <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/News/d2c8e502768b443f8b0020ab88060bf8.jpg">
-           <div class="flex justify-around align-center px-3">
-               <a href="" class="px-3"><img src="~/images/Icons/Share_black.svg"></a>  
-            <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-            <small style="margin-right: 15px;" class="px-3">16879</small>
-            <div id="full-stars-example">
-    <div class="rating-group">
-        <label aria-label="1 star" class="rating__label" for="rating-41"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-41" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating-42"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-42" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating-43"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-43" value="3" type="radio" checked>
-        <label aria-label="4 stars" class="rating__label" for="rating-44"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-44" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating-45"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating" id="rating-45" value="5" type="radio">
-    </div>
-</div>
-        </div>
-       </div>
-    </div>
-</div>
+        @if (Model.Count > 0) { 
 
+        <div class="wrapper flex justify-between" style="padding: 20px;">            
+            <div style="object-fit: cover; width: 320px; height: 250px;">
+                <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[0].ImageUri">
+                <div class="flex justify-around align-center px-3">
+                    <a href="~/images/Names/@Model[0].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
+                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+                    <small style="margin-right: 15px;" class="px-3">@Model[0].Viewed</small>                    
+                </div>
+            </div>
+            @if (Model.Count > 1)
+            {
+            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+                <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[1].ImageUri">
+                <div class="flex justify-around align-center px-3">
+                    <a href="~/images/Names/@Model[1].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
+                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+                    <small style="margin-right: 15px;" class="px-3">@Model[1].Viewed</small>                   
+                </div>
+            </div>
+            }
+        </div>
+
+        @for (int i = 2; i < Model.Count; i++)
+        {
+        <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
+            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+                <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[i].ImageUri">
+                <div class="flex justify-around align-center px-3">
+                    <a href="~/images/Names/@Model[i].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
+                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+                    <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>                    
+                </div>
+            </div>
+            @if (Model.Count - 1 >= (i + 1))
+            {
+                
+                    i = i + 1;
+               
+            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+                <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[i].ImageUri">
+                <div class="flex justify-around align-center px-3">
+                    <a href="~/images/Names/@Model[i].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
+                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
+                    <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>                   
+                </div>
+            </div>
+            }
+        </div>
+        }
+        }
+    </div>
+</div>
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
     @* <div dir="rtl" class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
@@ -251,46 +213,19 @@ else
         </div>
     </div> *@
 }
+  
 
-
-<button id="btn" hidden></button>
-@section Scripts{
-    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script> -->
-    <script src="/dist/simple-notify.min.js"></script>
-    <script src="/assets/js/prism.js"></script>
-    <script src="/assets/js/OverlayScrollbars.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+@section Scripts{    
     <script>
-         const btn = document.querySelector('#btn')
 
-        btn.addEventListener('click', () => {
-            new Notify({
-                status: 'success',
-                title: '@SharedLocalizer["Thank you"]',
-                text: '@SharedLocalizer["Your rating have been successfully recorded"]',
-                effect: 'fade',
-                speed: 300,
-                customClass: '',
-                customIcon: '',
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: false,
-                autotimeout: 3000,
-                gap: 60,
-                distance: 20,
-                type: 1,
-                position: 'right top',
-                customWrapper: '',
-            })
-        });
-
+        function httpGet(theUrl) {
+            document.getElementById("success").click();
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, true); // false for synchronous request
+            xmlHttp.send(null);
+            return null;
+        }
+       
     </script>
-    @if (res)
-    {
-        <script>
-            document.getElementById("btn").click();
-        </script>
-    }
+    
 }

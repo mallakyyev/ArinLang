@@ -24,23 +24,6 @@ namespace ARINLAB.Services
             _fileService = imageService;
         }
 
-      
-
-        public async Task<Responce> CreateAudioFileAsync(CreateAudioFileDto newFile)
-        {
-            try
-            {
-                var newF = _mapper.Map<AudioFile>(newFile);
-                newF.IsApproved = true;
-                await _dbContext.AudioFiles.AddAsync(newF);
-                await _dbContext.SaveChangesAsync();
-                return ResponceGenerator.GetResponceModel(true, "", null);
-            }catch(Exception e)
-            {
-                return ResponceGenerator.GetResponceModel(false, e.Message, newFile);
-            }
-        }
-
         public async Task<Responce> CreateClauseAudioFileAsync(CreateAudioFileForClauseDto newFile)
         {
             try
@@ -57,25 +40,7 @@ namespace ARINLAB.Services
             }
         }
 
-        public async Task<Responce> DeleteVoiceFile(int id)
-        {
-            var res = await _dbContext.AudioFiles.FindAsync(id);
-            if(res != null)
-            {
-                try
-                {
-                    _fileService.DeleteImage(res.ArabVoice);
-                    _fileService.DeleteImage(res.OtherVoice);
-                    _dbContext.AudioFiles.Remove(res);
-                    await _dbContext.SaveChangesAsync();
-                    return ResponceGenerator.GetResponceModel(true, "", null);
-                }catch(Exception e)
-                {
-                    return ResponceGenerator.GetResponceModel(false, e.Message, null);
-                }
-            }
-            return ResponceGenerator.GetResponceModel(true, "", null);
-        }
+       
 
         public async Task<Responce> DeleteClauseVoiceFile(int id)
         {

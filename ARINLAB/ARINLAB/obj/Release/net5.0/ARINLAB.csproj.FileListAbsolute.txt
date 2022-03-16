@@ -629,3 +629,6 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\runtimes\linux-arm64\native\l
 D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
 D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\runtimes\linux-x64\native\libSkiaSharp.so
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\Search\Search.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Aboutus\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\AboutUs\About.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\Shared\Components\OtherMenu\Default.cshtml.g.cs

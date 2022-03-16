@@ -38,6 +38,7 @@ namespace ARINLAB.Services
         public Task<Responce> ApproveVoice(int id, bool approve);
         public List<WordClauseDto> GetRandomWordClauses(int n);
         public List<WordClauseDto> GetAllWordClausesWithDictId(int i);
+        public Task<EditWordClauseDto> IncreaseViewed(int wordClauseId);
 
     }
 }

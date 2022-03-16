@@ -83,7 +83,7 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
                 return RedirectToAction("Index");
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
             ViewBag.Model = clause;
-            var voices = _nameService.GetAllNamesImagesByNameId(id);
+            var voices = _nameService.GetAllNamesImagesByNameIdAsync(id);
             return View(voices);
         }
 

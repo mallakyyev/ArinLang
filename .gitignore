@@ -1,2 +1,5 @@
 
 *.dll
+*.ldf
+ARINLAB/mssql/data/arinlang.mdf
+*.mdf

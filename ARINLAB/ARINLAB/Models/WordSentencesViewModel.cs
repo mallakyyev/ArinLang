@@ -10,8 +10,6 @@ namespace ARINLAB.Models
     public class WordSentencesViewModel
     {
         public WordDto Word { get; set; }
-        public List<WordSentencesDto> WordSentences { get; set; }
-        public List<AudioFile> AudioFiles { get; set; }
-
+        public List<WordSentencesDto> WordSentences { get; set; }       
     }
 }

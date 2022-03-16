@@ -11,5 +11,6 @@ namespace ARINLAB.Models
         public string ArabName{ get; set; }
         public string OtherName{ get; set; }
         public string DictName { get; set; }
+        public int? Viewed { get; set; }
     }
 }
