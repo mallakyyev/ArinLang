@@ -26,7 +26,7 @@
 @model List<AudioFileForClauseDto>
 
 
-<h1>@SharedLocalizer["Manage Word Sentences and Audio File (Voice)"]</h1>
+<h1>Manage Word Sentences and Audio File (Voice)</h1>
 <hr />
 <div class="container">
     <div class="row">
@@ -72,7 +72,7 @@
                         <th scope="col">@SharedLocalizer["Voice in Arab"]</th>
                         <th scope="col">@dictName @SharedLocalizer["Voice in "] @dictName</th>
                         <th scope="col">@SharedLocalizer["Approved"]</th>
-                        
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,7 +105,9 @@
                                         </label>
                                     </div>
                                 </td>
-                               
+                                <td>
+                                    <button type="button" id="@(item.Id)" name="@(m.Id)" class="sweetalert sweetalert-clausevoice1 btn button-danger"><i class="fa fa-trash"></i></button>
+                                </td>
                             </tr>
 
                         }
@@ -139,9 +141,9 @@
             const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
             checkbox@(item.Id).addEventListener('change', (event) => {
                 if (event.currentTarget.checked) {
-                    window.location.href = "/Admin/WordClause/Approve/@item.Id/true/@m.Id";
+                    window.location.href = "/ApprovedUser/WordClause/Approve/@item.Id/true/@m.Id";
                 } else {
-                    window.location.href = "/Admin/WordClause/Approve/@item.Id/false/@m.Id";
+                    window.location.href = "/ApprovedUser/WordClause/Approve/@item.Id/false/@m.Id";
                 }
             })
         </script>

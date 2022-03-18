@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace ARINLAB.Areas.Admin.Controllers
 {
     [Area(Roles.Admin)]
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = "Admin,Trusted")]
     public class WordController : Controller
     {
         private readonly IWordServices _wordsService;

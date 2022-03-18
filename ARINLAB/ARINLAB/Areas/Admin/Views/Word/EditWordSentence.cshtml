@@ -23,7 +23,7 @@
     </div>
     <hr />
     <div class="col-12 mb-30">
-        <form asp-area="Admin" asp-controller="Word" asp-action="EditWordSentence" method="post">
+        <form asp-area="Admin" asp-controller="Word" asp-action="EditWordSentence" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" value="@Model.Id">
             <input type="hidden" asp-for="WordId" value="@Model.WordId" />
             <input type="hidden" asp-for="UserId" value="@Model.UserId" />

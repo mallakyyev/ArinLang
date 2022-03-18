@@ -1,4 +1,5 @@
-﻿using DAL.Models.Dto;
+﻿using DAL.Data;
+using DAL.Models.Dto;
 using DevExtreme.AspNet.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,7 @@ namespace ARINLAB.Areas.Admin.Controllers.API
         {
             _wordService = wordService;
         }
+
         [HttpGet("RandomWords")]
         public object RandomWords(DataSourceLoadOptions loadOptions)
         {
@@ -31,6 +33,7 @@ namespace ARINLAB.Areas.Admin.Controllers.API
             string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return DataSourceLoader.Load<WordDto>(_wordService.GetAllWordsByUserId(userId).AsQueryable(), loadOptions);
         }
+
         [HttpGet("GetAll")]
         public async Task<object> GetAllAsync(DataSourceLoadOptions loadOptions)
         {
@@ -45,7 +48,7 @@ namespace ARINLAB.Areas.Admin.Controllers.API
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Trusted")]
         public async Task DeleteAsync(int id)
         {
             await _wordService.Delete(id);

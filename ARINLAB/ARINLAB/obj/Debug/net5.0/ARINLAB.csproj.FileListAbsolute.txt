@@ -525,7 +525,6 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\AddWordVoice.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\Create.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\Edit.cshtml.g.cs
-D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\EditVoice.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\EditWord.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\EditWordSentence.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\ApprovedUser\Views\Word\Index.cshtml.g.cs

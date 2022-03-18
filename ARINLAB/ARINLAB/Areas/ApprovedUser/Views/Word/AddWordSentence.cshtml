@@ -23,8 +23,9 @@
     </div>
     <hr />
     <div class="col-12 mb-30">
-        <form asp-area="ApprovedUser" asp-controller="Word" asp-action="AddWordSentence" method="post">
+        <form asp-area="ApprovedUser" asp-controller="Word" asp-action="AddWordSentence" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="WordId" value="@mod.Id" />
+            
             <div class="box">
                 <div class="box-head">
                     <h3 class="title">@SharedLocalizer["Add Example Sentence"]</h3>
@@ -59,9 +60,46 @@
 
                     </div>
                 </div>
-                <div class="box-foot items-end">
-                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                <div class="box">
+                    <div class="box-head">
+                        <h3 class="title">@SharedLocalizer["Add Word Voices"]</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row mbn-20">
+
+                            <!--Form Field-->
+                            <div class="col-lg-6 col-12 mb-20">
+
+                                <h6 class="mb-15">@SharedLocalizer["Arab"]</h6>
+
+                                <div class="row mbn-15">
+                                    <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                    <input asp-for="ArabVoiceForm" type="file" class="form-control" />
+                                </div>
+
+                            </div>
+                            <!--Form Field-->
+                            <!--Readonly Field-->
+                            <div class="col-lg-6 col-12 mb-20">
+
+                                <h6 class="mb-15">@SharedLocalizer["Turkmen"]</h6>
+
+                                <div class="row mbn-15">
+                                    <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                    <input asp-for="OtherVoiceForm" type="file" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Create"]"></div>
+                    @*<div class="box-foot items-end">
+                <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+            </div>*@
                 </div>
+                @*<div class="box-foot items-end">
+                    <input type="submit" class="btn btn-success" value="@SharedLocalizer["Add"]"></input>
+                </div>*@
             </div>
         </form>
     </div>

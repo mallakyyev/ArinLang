@@ -19,17 +19,17 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
     {
         private readonly IWordClauseService _wordClauseService;
         private readonly IDictionaryService _dictService;
-       
+
         private readonly IMapper _mapper;
 
 
-        public WordClauseController(IWordClauseService wordClauseService, IMapper mapper, 
+        public WordClauseController(IWordClauseService wordClauseService, IMapper mapper,
                                     IDictionaryService dictionaryService)
         {
             _wordClauseService = wordClauseService;
             _mapper = mapper;
             _dictService = dictionaryService;
-            
+
         }
         public IActionResult Index()
         {
@@ -54,7 +54,7 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
                 if (res.IsSuccess)
                 {
                     return RedirectToAction("Index");
-                }               
+                }
             }
             ViewBag.Data = model;
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
@@ -80,7 +80,7 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
                 if (res.IsSuccess)
                 {
                     return RedirectToAction("Index");
-                }                
+                }
             }
             return View();
         }
@@ -114,10 +114,22 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
         public async Task<IActionResult> CreateWordClauseVoice(CreateAudioFileForClauseDto model)
         {
             var res = await _wordClauseService.CreateAudiFileForClause(model);
-            if(res.IsSuccess)
+            if (res.IsSuccess)
             {
                 return RedirectToAction("EditClauseVoice", new { id = model.ClauseId });
             }
+            return View();
+        }
+
+        [HttpGet("/ApprovedUser/[controller]/DeleteVoice/{id}/{clauseId}")]       
+        public async Task<IActionResult> DeleteVoice(int id, int clauseId)
+        {
+            var res = await _wordClauseService.DeleteVoice(id);
+            if (res.IsSuccess)
+            {
+                return RedirectToAction("EditClauseVoice", new { id = clauseId });
+            }
+
             return View();
         }
 

@@ -82,8 +82,8 @@
                                     </div>
                                 </td>
                                 <td>                                    
-                                    <a asp-area="Admin" asp-controller="Word" asp-action="EditWordSentence" asp-route-id="@item.Id" asp-route-arabWord="@Model.Word.ArabWord" asp-route-otherWord="@Model.Word.OtherWord" asp-route-dictId="@dictName"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-                                    <button type="button" id="@(item.Id)" class="sweetalert delete-sentence btn button-danger"><i class="fa fa-trash"></i></button>
+                                    <a asp-area="ApprovedUser" asp-controller="Word" asp-action="EditWordSentence" asp-route-id="@item.Id" asp-route-arabWord="@Model.Word.ArabWord" asp-route-otherWord="@Model.Word.OtherWord" asp-route-dictId="@dictName"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
+                                    <button type="button" id="@(item.Id)" class="sweetalert delete-sentence2 btn button-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -118,7 +118,7 @@
 }
 
 <button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
-@if (!string.IsNullOrEmpty(text))
+@if(!string.IsNullOrEmpty(text))
 {
     <script type="text/javascript">
         window.onload = function () {
