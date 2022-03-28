@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+@using DAL.Models.Dto
+@model CountryDto
+<div class="row">
+
+    <!--Form Wizard Horizontal Start-->
+    <div class="col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h3 class="title">Words</h3>
+            </div>
+            <div class="box-body">
+                <div class="smart-wizard">
+                    <div>
+                        <div id="step-1">
+                            <form asp-area="Admin" asp-controller="Country" asp-action="Create" method="post" enctype="multipart/form-data">
+                                <div class="row mbn-20">
+                                    <div class="col-12 mb-20">
+                                        <h4>@SharedLocalizer["Create Country"]</h4>
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="Name_ar" placeholder="@SharedLocalizer["Country Name in Arab"]" class="form-control" required></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="Name" placeholder="@SharedLocalizer["Country Name" ]" class="form-control" required></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="text" asp-for="CountryCode" placeholder="@SharedLocalizer["Country Code(Numeric)" ]" class="form-control" required></div>
+                                    <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Create"]"></div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Form Wizard Horizontal End-->
+</div>

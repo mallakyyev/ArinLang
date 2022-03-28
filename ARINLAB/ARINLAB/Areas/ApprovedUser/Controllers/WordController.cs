@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -26,8 +25,7 @@ namespace ARINLAB.Areas.ApprovedUser.Controllers
         private readonly IDictionaryService _dictService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly FileServices _audoFileServise;
-        private readonly IImageService _fileService;
-        private static string text = "";
+        private readonly IImageService _fileService;        
         private readonly IMapper _mapper;
         public WordController(IWordServices wordServices, IDictionaryService dictionaryService, UserManager<ApplicationUser> userManager,
                               IMapper mapper, FileServices fileServices, IImageService imageService)

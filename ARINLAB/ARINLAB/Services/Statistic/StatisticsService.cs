@@ -1,4 +1,5 @@
 ﻿using ARINLAB.Models;
+using ARINLAB.Services.SessionService;
 using DAL.Data;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,12 @@ namespace ARINLAB.Services.Statistic
     public class StatisticsService : IStatisticsService
     {
         private readonly ApplicationDbContext _dbContext;
-        public StatisticsService(ApplicationDbContext applicationDb)
+        private readonly UserDictionary _dictService;        
+        public StatisticsService(ApplicationDbContext applicationDb, UserDictionary userDictionary)
         {
             _dbContext = applicationDb;
+            _dictService = userDictionary;
+            
         }
 
         public List<StatisticCard> GetMyStatisticsCard(string userId)
@@ -62,8 +66,9 @@ namespace ARINLAB.Services.Statistic
 
         public List<StatisticCard> GetStatisticsCard()
         {
+            int dictId =_dictService.GetDictionaryId();
             //////////// Statistics for Word ////////////
-            int wordCount = _dbContext.Words.Count();
+            int wordCount = _dbContext.Words.Where(p => p.DictionaryId==dictId).Count();
             int Editers = _dbContext.Words.Select(p => p.UserId).Distinct().Count();
             StatisticCard word = new StatisticCard()
             {
@@ -83,7 +88,7 @@ namespace ARINLAB.Services.Statistic
             };
 
             //////////// Statistics for WordClauses ////////////
-            int wordClauses = _dbContext.WordClauses.Count();
+            int wordClauses = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId).Count();
             int CEditors = _dbContext.WordClauses.Select(p => p.UserId).Distinct().Count();
             StatisticCard clauses = new StatisticCard()
             {
@@ -93,7 +98,7 @@ namespace ARINLAB.Services.Statistic
             };
 
             //////////// Statistics for Names ////////////
-            int names = _dbContext.Names.Count();
+            int names = _dbContext.Names.Where(p => p.DictionaryId == dictId).Count();
             int NameEditors = _dbContext.Names.Select(p => p.UserId).Distinct().Count();
             StatisticCard name = new StatisticCard()
             {

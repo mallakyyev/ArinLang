@@ -495,6 +495,9 @@
   <data name="Phone Number" xml:space="preserve">
     <value>Telefon belgiňiz</value>
   </data>
+  <data name="Phrasebooks" xml:space="preserve">
+    <value>Jümleler</value>
+  </data>
   <data name="Phrases recorded" xml:space="preserve">
     <value>Jümleleri hasaba alyndy</value>
   </data>

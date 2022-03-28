@@ -31,14 +31,14 @@
     <link href="/client/rating/css/stars.css" media="all" rel="stylesheet" type="text/css" />
     @*<link rel="preconnect" href="https://fonts.gstatic.com" />*@
     <!-- Rating system-->
-    
-        <link href="/client/rating/css/stars.css" media="all" rel="stylesheet" type="text/css" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="/assets/css/prism.css" />
-        <link rel="stylesheet" href="/dist/simple-notify.min.css" />
-        <link rel="stylesheet" href="/assets/css/line.min.css" />
-        <link rel="stylesheet" href="/assets/css/OverlayScrollbars.min.css" />
+
+    <link href="/client/rating/css/stars.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/prism.css" />
+    <link rel="stylesheet" href="/dist/simple-notify.min.css" />
+    <link rel="stylesheet" href="/assets/css/line.min.css" />
+    <link rel="stylesheet" href="/assets/css/OverlayScrollbars.min.css" />
     <!--suppress JSUnresolvedLibraryURL -->
     @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
     @*<script src="/client/rating/js/star-rating.js" type="text/javascript"></script>*@
@@ -91,12 +91,13 @@
                 visibility: visible;
                 opacity: 1;
             }
-
     </style>
+   
     @RenderSection("Css", required: false)
 </head>
 
 <body>
+
     <div class="topnav" id="myTopnav" dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"ltr")">
         <div class="nav_items">
             <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["HOME"] </a>
@@ -323,7 +324,7 @@
             alert("Link copied:  @Context.Request.Host@Context.Request.Path");
         }
     </script>
-    
+   
     @RenderSection("Scripts", required: false)
 
 </body>

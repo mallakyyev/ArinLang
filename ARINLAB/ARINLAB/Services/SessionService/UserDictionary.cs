@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,7 +50,23 @@ namespace ARINLAB.Services.SessionService
             }
         }
 
-        public void SetDictionary(int dictId)
+        public string GetDictionaryName()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            string sess = _session.GetString(SessionKeyName);
+            if (string.IsNullOrEmpty(sess))
+            {
+                if(culture == "ar")
+                    return _dbContext.Dictionaries.Take(1).ToList()[0].ArabTranslate;
+                return _dbContext.Dictionaries.Take(1).ToList()[0].Language;
+            }
+            var dict = _dbContext.Dictionaries.Find(int.Parse(sess));
+            if (culture == "ar") 
+                return dict.ArabTranslate;
+            return dict.Language;
+        }
+
+        public void SetDictionary(int dictId )
         {
             _session.SetString(SessionKeyName, $"{dictId}");
         }

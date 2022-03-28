@@ -52,8 +52,7 @@
                         <th scope="col">@SharedLocalizer["Transcription"]</th>
 
                         <th scope="col">@dictName @SharedLocalizer["sentence"]</th>
-                        <th scope="col">@SharedLocalizer["Transcription"]</th>
-                        <th scope="col">@SharedLocalizer["Approved"]</th>
+                        <th scope="col">@SharedLocalizer["Transcription"]</th>                        
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -70,55 +69,27 @@
 
                                 <td>@item.OtherSentence</td>
                                 <td>@item.OtherReader</td>
-                                <td>
-                                    <div class="adomx-checkbox-radio-group inline">
-                                        <label class="adomx-switch success">
-
-                                            <input disabled id="approve@(item.Id)" type="checkbox" @(item.IsApproved ? "checked" : "")>
-
-                                            <i class="lever"></i>
-                                        </label>
-
-                                    </div>
-                                </td>
+                               
                                 <td>                                    
                                     <a asp-area="Registered" asp-controller="Word" asp-action="EditWordSentence" asp-route-id="@item.Id" asp-route-arabWord="@Model.Word.ArabWord" asp-route-otherWord="@Model.Word.OtherWord" asp-route-dictId="@dictName"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-                                    <button type="button" id="@(item.Id)" class="sweetalert delete-sentence1 btn button-danger"><i class="fa fa-trash"></i></button>
+                                    <button type="button" id="@(item.Id)" class="sweetalert delete-sentence3 btn button-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-
                         }
                     }
-
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-@if (Model != null)
-{
-    @foreach (var item in Model.WordSentences)
-    {
-        <script>
-            const checkbox@(item.Id) = document.getElementById('approve@(item.Id)')
-            checkbox@(item.Id).addEventListener('change', (event) => {
-                if (event.currentTarget.checked) {
-                    window.location.href = "/Admin/Word/Sentence/@item.Id/true";
-                } else {
-                    window.location.href = "/Admin/Word/Sentence/@item.Id/false";
-                }
-            })
-        </script>
-    }
-}
 
 @{
     string text = ViewBag.text;    
 }
 
 <button class="sweetalert sweetalert-success button button-success" id="AlertButton" hidden></button>
-@if (!string.IsNullOrEmpty(text))
+@if(!string.IsNullOrEmpty(text))
 {
     <script type="text/javascript">
         window.onload = function () {

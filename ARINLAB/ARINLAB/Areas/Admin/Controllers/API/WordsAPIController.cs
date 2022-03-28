@@ -48,7 +48,7 @@ namespace ARINLAB.Areas.Admin.Controllers.API
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, Trusted")]
+        [Authorize(Roles = "Admin, Trusted, Registered")]
         public async Task DeleteAsync(int id)
         {
             await _wordService.Delete(id);

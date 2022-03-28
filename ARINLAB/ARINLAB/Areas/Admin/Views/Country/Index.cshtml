@@ -1,15 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Countries"];
+
 }
-@using DAL.Models.Dto
 @using ARINLAB.Areas.Admin.Utils
-<h1> @SharedLocalizer["My Words"]</h1>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">
-                @SharedLocalizer["My Word List"]
-            </h3>
+            <h1 class="page-header">
+                @SharedLocalizer["Countries"]
+            </h1>
         </div>
     </div>
 
@@ -18,10 +21,13 @@
         </div>
     </div>
 </div>
+
+
+
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.GetWordByUserId`;
+            let url = `@API.Countries`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
@@ -29,13 +35,13 @@
                     loadUrl: url,
                     insertUrl: url,
                     updateUrl: url,
-                    deleteUrl: `/api/WordsAPI`,
+                    deleteUrl: url,
                     onBeforeSend: function (method, ajaxOptions) {
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
                 onInitNewRow: function(e) {
-                    var url = `@Url.Action("Create", "Word", new { Area = "Registered" })`;
+                    var url = `@Url.Action("Create", "Country", new { Area = "Admin" })`;
                     window.location = url;
                 },
                 selection: {
@@ -43,7 +49,7 @@
                 },
                 "export": {
                     enabled: true,
-                    fileName: "WordClause",
+                    fileName: "Documents",
                     allowExportSelectedData: true
                 },
                 filterPanel: {
@@ -68,7 +74,7 @@
                     allowAdding: true
                 },
                 headerFilter: {
-                    visible: true
+                    visible: false
                 },
                 wordWrapEnabled: true,
                 showColumnLines: true,
@@ -78,39 +84,25 @@
                 searchPanel: {
                     visible: true
                 },
-                stateStoring: {
-                    enabled:false,
-                    type: "localStorage",
-                    storageKey: "WordAdmin"
-                },
+
+                allowColumnReordering: false,
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Arab Word"]',
-                        dataField: "arabWord",
-                        allowHeaderFiltering: false,
+                        caption: '@SharedLocalizer["Arab Name"]',
+                        dataField: "name_ar",
+                        allowHeaderFiltering: true
                     },
                     {
-                        caption: '@SharedLocalizer["Other word"]',
-                        dataField: "otherWord",
-                        allowHeaderFiltering: false,
+                        caption: '@SharedLocalizer["Name"]',
+                        dataField: "name",
+                        allowHeaderFiltering: true
                     },
-
-                                {
-                        caption: '@SharedLocalizer["Dictionary"]',
-                                    dataField: "dictionary",
-                        allowHeaderFiltering: true,
+                    {
+                        caption: '@SharedLocalizer["Code"]',
+                        dataField: "countryCode",
+                        allowHeaderFiltering: false
                     },
-
-                     {
-                        caption: '@SharedLocalizer["Approved"]',
-                         dataField: "isApproved",
-                        allowHeaderFiltering: true,
-                    },
-                     {
-                        caption: '@SharedLocalizer["User name"]',
-                         dataField: "userEmail",
-                        allowHeaderFiltering: true,
-                    },
+                   
                     {
                         type: "buttons",
                         width: 110,
@@ -120,20 +112,10 @@
                                 icon: "edit",
                                 onClick: function (e) {
                                     var idString = e.row.data.id;
-                                    var url = `@Url.Action("Edit", "Word", new { Area = "Registered" })`;
-                                    window.location = url + '/' + idString;
+                                    var url = `@Url.Action("Edit", "Country", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString;
                                 }
                             },
-                            {
-                                hint: '@SharedLocalizer["Edit word sentences"]',
-                                icon: "arrowright",
-                                onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("EditWord", "Word", new { Area = "Registered" })`;
-                                    window.location = url + '/' + idString;
-                                }
-                            },
-                            
                             "delete"
                         ]
                     }

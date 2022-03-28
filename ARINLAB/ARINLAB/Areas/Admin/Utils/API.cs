@@ -9,6 +9,7 @@ namespace ARINLAB.Areas.Admin.Utils
     {
         public static string GetAllWordClauseCategories { get; } = "/api/WordClauseCategoryAPI";
         public static string GetAllWordClauses { get; } = "/api/WordClauseAPI";
+        
         public static string GetAllWordClausesByUser { get; } = "/api/WordClauseAPI/MyWord";
         public static string GetAllWordClauseAudioFiles { get; } = "/api/WordClauseAudioAPI";
         public static string GetAllMenu { get; } = "/api/MenuAPI";
@@ -34,6 +35,8 @@ namespace ARINLAB.Areas.Admin.Utils
         public static string SearchNames { get; } = "/api/SearchAPI/SearchNames";
         public static string SearchWords { get; } = "/api/SearchAPI/SearchWords";
         public static string SearchClauses { get; } = "/api/SearchAPI/SearchClauses";
+
+        public static string Countries { get; } = "/api/CountryAPI";
     }
     
 }

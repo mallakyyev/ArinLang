@@ -56,6 +56,7 @@ namespace ARINLAB.Extensions
             services.AddScoped<LogoService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<AboutService>();
+            services.AddScoped<CountryService>();
             //Add Scoped Services
 
 

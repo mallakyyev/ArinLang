@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Models;
+using DAL.Models.Configs;
 using DAL.Models.Dto;
 using DAL.Models.Dto.MenuModelDTO;
 using DAL.Models.Dto.NamesDTO;
@@ -36,6 +37,8 @@ namespace ARINLAB.Extensions
             CreateMap<Language, LanguageDto>().ReverseMap();
             CreateMap<EditWordClauseDto, WordClause>().ReverseMap();
             CreateMap<AudioFileForClause, AudioFileForClauseDto>().ReverseMap();
+
+            CreateMap<CountryDto, Country>().ReverseMap();
 
            //CreateMap<AudioFile, AudioFileDto>().ReverseMap();
 
