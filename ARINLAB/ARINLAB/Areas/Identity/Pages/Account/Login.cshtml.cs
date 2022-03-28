@@ -56,6 +56,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -78,7 +79,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
+            
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             
             if (ModelState.IsValid)
@@ -92,7 +93,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
                 }
 
                 if (user == null)
-                {
+                {                    
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

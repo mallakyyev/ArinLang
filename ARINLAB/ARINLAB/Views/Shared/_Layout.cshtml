@@ -215,7 +215,7 @@
 
                 <div class="sm:w-8/12 sm:px-0 px-4 mx-auto w-full">
                     <form asp-area="" asp-controller="Search" asp-action="Search" method="get">
-                        <div class="sm:search-box grid gap-y-8 relative sm:overflow-hidden sm:rounded" >
+                        <div class="sm:search-box grid gap-y-8 relative sm:overflow-hidden sm:rounded">
                             <input name="term" type="text" style="margin-right:10%; background-color:aliceblue"
                                    class="h-12 w-full sm:w-10/12 outline-none px-4 sm:border-none border border-gray-200 rounded sm:rounded-none"
                                    id="search-input" required />
@@ -230,7 +230,7 @@
 
             </div>
         </div>
-        
+
     </div>
     <button id="success" hidden></button>
     <main class="app-wrapper" style="margin-bottom: 0;" dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"ltr")">
@@ -259,7 +259,7 @@
     <script src="~/client/js/header.js" defer></script>
     <script src="~/client/js/Video.js" defer></script>
 
-<script>
+    <script>
         function myFunction() {
             var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {
@@ -322,8 +322,8 @@
             /* Alert the copied text */
             alert("Link copied:  @Context.Request.Host@Context.Request.Path");
         }
-</script>
-
+    </script>
+    
     @RenderSection("Scripts", required: false)
 
 </body>
