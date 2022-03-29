@@ -1,10 +1,12 @@
 ﻿using ARINLAB.Models;
 using ARINLAB.Services;
 using ARINLAB.Services.ImageService;
+using ARINLAB.Services.News;
 using ARINLAB.Services.Ratings;
 using ARINLAB.Services.SessionService;
 using AutoMapper;
 using DAL.Models.Dto.NamesDTO;
+using DAL.Models.Dto.NewsModelDTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,9 +28,11 @@ namespace ARINLAB.Controllers
         private readonly IRatingService _ratingServices;
         private readonly IImageService _imageService;
         private readonly IMapper _mapper;
+        private readonly INewsService _newsService;
         public NamesController(UserDictionary userDict, INamesService namesService, 
                             Services.IDictionaryService dictionaryService, IMapper mapper,
-                            IRatingService ratingServices, IImageService imageService)
+                            IRatingService ratingServices, IImageService imageService,
+                            INewsService newsService)
         {
             _nameService = namesService;
             _dictService = dictionaryService;
@@ -36,6 +40,7 @@ namespace ARINLAB.Controllers
             _ratingServices = ratingServices;
             _imageService = imageService;
             _mapper = mapper;
+            _newsService = newsService;
         }
        
 
@@ -77,6 +82,8 @@ namespace ARINLAB.Controllers
             ViewBag.Model = model;
             ViewBag.RatingResult = ratingResult;
             ViewBag.ExportImage = res.ImageForShare;
+            ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
+
             return View(file);
         }
 
@@ -130,6 +137,13 @@ namespace ARINLAB.Controllers
             {
                 return RedirectToAction("Indexall");
             }
+        }
+
+        public IActionResult NameImageView(int imageId, string imageUrl)
+        {
+            _nameService.IncreaseViewedImage(imageId);
+            return Redirect($"~/images/Names/{imageUrl}");
+
         }
     }
 }

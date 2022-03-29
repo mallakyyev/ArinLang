@@ -39,11 +39,11 @@
         <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Log in"]</button>
         <div class="form-group">
             <p style="margin-top:10px;">
-                <a class="btn btn-danger" style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
+                <a  style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
             </p>
-            <p style="margin-top:10px;">
-                <a class="btn btn-danger" style="color:green" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@SharedLocalizer["Register as a new user"]</a>
-            </p>
+           
+                <a style="color:green" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@SharedLocalizer["Register as a new user"]</a>
+            
 
         </div>
     </form>

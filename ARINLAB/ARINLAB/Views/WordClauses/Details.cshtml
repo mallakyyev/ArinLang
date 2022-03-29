@@ -36,7 +36,7 @@
 
     }
 }
-@await Component.InvokeAsync("OtherMenu")
+@await Component.InvokeAsync("HeaderMenu")
 
     <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
         <div class="flex justify-between" style="width: 140px;">
@@ -46,7 +46,7 @@
             <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
         </div>
     <div class="flex justify-between align-center" style="width: 220px;">
-        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <img src="~/images/Icons/Eye.svg">
         <small style="margin-right: 15px;">@m.Viewed</small>
         <div id="full-stars-example">
             <div class="rating-group">
@@ -84,11 +84,11 @@
         <p>
             @if (Model != null && Model.Count > 0)
             {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_L.svg" onclick="playAudio('myAudio@(Model[0].Id)')">
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model[0].Id)')">
             }
             else
             {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_L.svg" >
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" >
 
             }
             @m.OtherClause
@@ -97,11 +97,11 @@
             @m.ArabClause
             @if (Model != null && Model.Count > 0)
             {
-                <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="~/images/Icons/Voice_R.svg" onclick="playAudio('myAudio@(Model[0].Id)_o')">
+                <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model[0].Id)_o')">
             }
             else
             {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="~/images/Icons/Voice_R.svg" >
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" >
             }
         </p>
 

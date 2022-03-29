@@ -186,11 +186,6 @@ namespace ARINLAB.Services
             {
                 var result = new List<NameImages>(_dbContext.NameImages.Where(p => p.NamesId == id));
 
-                if(result.Count>0)
-                {
-                    Random rnd = new Random(DateTime.Now.Hour);
-                    var inc = await IncreaseViewedImage(result[rnd.Next(0, result.Count - 1)].Id);
-                }
                 return _mapper.Map<List<NameImagesDto>>(result);
             }catch(Exception e)
             {
@@ -331,14 +326,14 @@ namespace ARINLAB.Services
 
         public async Task<bool> IncreaseViewedImage(int namesImageId)
         {
-            var nameImage = await _dbContext.NameImages.FindAsync(namesImageId);
+            var nameImage =  _dbContext.NameImages.Find(namesImageId);
             if (nameImage != null)
             {
                 if (nameImage.Viewed == null)
                     nameImage.Viewed = 0;
                 nameImage.Viewed += 1;
                 _dbContext.NameImages.Update(nameImage);
-                await _dbContext.SaveChangesAsync();
+                 _dbContext.SaveChanges();
                 return true;
             }
             return false;

@@ -1,7 +1,9 @@
 ﻿using ARINLAB.Services;
 using ARINLAB.Services.ImageService;
+using ARINLAB.Services.News;
 using ARINLAB.Services.Ratings;
 using ARINLAB.Services.SessionService;
+using DAL.Models.Dto.NewsModelDTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,15 +19,18 @@ namespace ARINLAB.Controllers
         private readonly IDictionaryService _dictService;
         private readonly IRatingService _ratingServices;
         private readonly IImageService _imageService;
+        private readonly INewsService _newsService;
         public WordClausesController(UserDictionary userDict, IWordClauseService wordClauseService, 
                             IDictionaryService dictionaryService, IRatingService ratingServices,
-                            IImageService imageService)
+                            IImageService imageService, INewsService newsService)
         {
             _userDictionary = userDict;
             _wordClauseService = wordClauseService;
             _dictService = dictionaryService;
             _ratingServices = ratingServices;
             _imageService = imageService;
+            _newsService = newsService;
+
         }
         public IActionResult Indexall()
         {
@@ -55,6 +60,7 @@ namespace ARINLAB.Controllers
             ViewBag.ExportImage = _imageService.PhraseExport(clause.ArabClause, clause.OtherReader,
                                                             clause.OtherClause, clause.ArabReader);
             var voices = _wordClauseService.GetAudioFileForClausebyID(id, true);
+            ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
             return View(voices);
 
         }

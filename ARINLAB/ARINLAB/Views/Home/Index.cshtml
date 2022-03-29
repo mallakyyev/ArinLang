@@ -376,7 +376,7 @@ else
                     visible: true
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 hoverStateEnabled: true,
@@ -396,10 +396,15 @@ else
                         window.location = url + '?id=' + idString;
                     }
                 },
-                columns: [                    
+                columns: [
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
+                        cellTemplate: function (element, info) {
+                            element.append("<div><text>" + info.text + "</text><img style='padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg")>")
+                                .append("</div>");
+
+                        },
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },{
@@ -416,16 +421,16 @@ else
                             {
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
-                                onClick: function (e) {                               
+                                onClick: function (e) {
                                     var req = new XMLHttpRequest();
                                     req.open("GET", "/api/ExportAPI/" + e.row.data.arabWord+"/" + e.row.data.otherWord, false);
-                                    req.send();                                    
-                                    var a = document.createElement("a");                                   
+                                    req.send();
+                                    var a = document.createElement("a");
                                     a.setAttribute("href", ""+req.responseText);
                                     a.setAttribute("download", "" + req.responseText);
                                     document.body.appendChild(a);
                                     a.click();
-                                    document.body.removeChild(a);                                                                                                              
+                                    document.body.removeChild(a);
                                 }
                             },
                         ]

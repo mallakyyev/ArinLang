@@ -1,11 +1,13 @@
 ﻿using ARINLAB.Models;
 using ARINLAB.Services;
 using ARINLAB.Services.ImageService;
+using ARINLAB.Services.News;
 using ARINLAB.Services.Ratings;
 using ARINLAB.Services.SessionService;
 using AutoMapper;
 using DAL.Models;
 using DAL.Models.Dto;
+using DAL.Models.Dto.NewsModelDTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,10 +29,10 @@ namespace ARINLAB.Controllers
         private readonly IRatingService _ratingServices;       
         private readonly IMapper _mapper;
         private readonly ILogger<WordsController> _logger;
-
+        private readonly INewsService _newsService;
         public WordsController(UserDictionary userDictionary, IWordServices wordServices, Services.IDictionaryService dictionaryService
                                 , FileServices fileServices, IRatingService ratingServices, IImageService imageService,
-                                IMapper mapper, ILogger<WordsController> logger)
+                                IMapper mapper, ILogger<WordsController> logger, INewsService newsService)
         {
             _userDictionary = userDictionary;
             _wordsService = wordServices;
@@ -40,6 +42,7 @@ namespace ARINLAB.Controllers
             _imageService = imageService;
             _mapper = mapper;
             _logger = logger;
+            _newsService = newsService;
         }
         public IActionResult Indexall()
         {
@@ -74,6 +77,8 @@ namespace ARINLAB.Controllers
                     ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWord(id));
                     ViewBag.RatingResult = ratingResult;
                     ViewBag.ExportImage = res.ImageForShare;
+                   
+                    ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
                     return View(model);
                 }
                 else

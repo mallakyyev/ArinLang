@@ -18,7 +18,7 @@
 
 }
 
-@await Component.InvokeAsync("OtherMenu")
+@await Component.InvokeAsync("HeaderMenu")
 
 <div id="news_icons"  class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
     <div class="flex justify-between" style="width: 140px;">
@@ -29,7 +29,7 @@
         <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
     </div>
     <div class="flex justify-between align-center" style="width: 220px;">
-        <a href=""><img src="~/images/Icons/Eye.svg"></a>
+        <img src="~/images/Icons/Eye.svg">
         <small style="margin-right: 15px;">@mod.Viewed</small>
         <div id="full-stars-example">
             <div class="rating-group">
@@ -54,8 +54,8 @@
             <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="~/images/Icons/Voice_L.svg"> @mod.OtherName</p>
-            <p>@mod.ArabName<img style="padding-left: 10px; padding-right: 40px;" src="~/images/Icons/Voice_R.svg"></p>
+            <p><img style="padding-right: 10px; margin-left: 40px;" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")"> @mod.OtherName</p>
+            <p>@mod.ArabName<img style="padding-left: 10px; padding-right: 40px;" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")"></p>
         </div>
     </div>
 </div>
@@ -69,50 +69,58 @@
 
         <div class="wrapper flex justify-between" style="padding: 20px;">            
             <div style="object-fit: cover; width: 320px; height: 250px;">
-                <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[0].ImageUri">
-                <div class="flex justify-around align-center px-3">
-                    <a href="~/images/Names/@Model[0].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
-                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-                    <small style="margin-right: 15px;" class="px-3">@Model[0].Viewed</small>                    
-                </div>
+                <a target="_blank" asp-controller="Names" asp-action="NameImageView" asp-route-imageId="@Model[0].Id" asp-route-imageUrl="@Model[0].ImageUri">
+                    <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[0].ImageUri">
+                    </a>
+                    <div class="flex justify-around align-center px-3">
+                        <a href="~/images/Names/@Model[0].ImageUri" class="px-3" download><img src="~/images/Icons/Share_black.svg" ></a>
+                        <img src="~/images/Icons/Eye.svg">
+                        <small style="margin-right: 15px;" class="px-3">@Model[0].Viewed</small>
+                    </div>
             </div>
             @if (Model.Count > 1)
             {
-            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+        <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+            <a target="_blank" asp-controller="Names" asp-action="NameImageView" asp-route-imageId="@Model[1].Id" asp-route-imageUrl="@Model[1].ImageUri">
                 <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[1].ImageUri">
+                </a>
                 <div class="flex justify-around align-center px-3">
-                    <a href="~/images/Names/@Model[1].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
-                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-                    <small style="margin-right: 15px;" class="px-3">@Model[1].Viewed</small>                   
+                    <a href="~/images/Names/@Model[1].ImageUri" class="px-3" download><img src="~/images/Icons/Share_black.svg" ></a>
+                    <img src="~/images/Icons/Eye.svg">
+                    <small style="margin-right: 15px;" class="px-3">@Model[1].Viewed</small>
                 </div>
-            </div>
+        </div>
             }
         </div>
 
         @for (int i = 2; i < Model.Count; i++)
         {
-        <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
-            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+    <div class="wrapper flex justify-between" style="margin-top: 30px; padding: 20px;">
+        <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+            <a target="_blank" asp-controller="Names" asp-action="NameImageView" asp-route-imageId="@Model[i].Id" asp-route-imageUrl="@Model[i].ImageUri">
                 <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[i].ImageUri">
-                <div class="flex justify-around align-center px-3">
-                    <a href="~/images/Names/@Model[i].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
-                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-                    <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>                    
-                </div>
+            </a>
+            <div class="flex justify-around align-center px-3">
+                <a href="~/images/Names/@Model[i].ImageUri" class="px-3" download><img src="~/images/Icons/Share_black.svg"></a>
+                <img src="~/images/Icons/Eye.svg">
+                <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>
             </div>
-            @if (Model.Count - 1 >= (i + 1))
-            {
-                
-                    i = i + 1;
-               
-            <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+        </div>
+        @if (Model.Count - 1 >= (i + 1))
+        {
+
+            i = i + 1;
+           
+        <div class="names_img" style="object-fit: cover; width: 320px; height: 250px;">
+            <a target="_blank" asp-controller="Names" asp-action="NameImageView" asp-route-imageId="@Model[i].Id" asp-route-imageUrl="@Model[i].ImageUri">
                 <img style="width: 100%; height: 100%; border: 1px solid silver; border-radius: 15px; cursor: pointer;" src="~/images/Names/@Model[i].ImageUri">
+                </a>
                 <div class="flex justify-around align-center px-3">
-                    <a href="~/images/Names/@Model[i].ImageUri" class="px-3"><img src="~/images/Icons/Share_black.svg" download></a>
-                    <a href="" class="px-3"><img src="~/images/Icons/Eye.svg"></a>
-                    <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>                   
+                    <a href="~/images/Names/@Model[i].ImageUri" class="px-3" download><img src="~/images/Icons/Share_black.svg" ></a>
+                    <img src="~/images/Icons/Eye.svg">
+                    <small style="margin-right: 15px;" class="px-3">@Model[i].Viewed</small>
                 </div>
-            </div>
+        </div>
             }
         </div>
         }
@@ -186,7 +194,7 @@ else
                 <form asp-controller="Names" asp-action="SetRating" id="rtng" method="post">
                     <input id="kartik" name="Rating" value="@(ViewBag.Rating)" class="rating" data-stars="5" data-step="0.1" title="" />
                     <input type="hidden" value="@mod.Id" name="NameId" />
-                 </form>               
+                 </form>
             </div> *@
 
             @*<div style="margin-top:30px;margin-left:40%">
@@ -213,19 +221,19 @@ else
         </div>
     </div> *@
 }
-  
 
-@section Scripts{    
-    <script>
 
-        function httpGet(theUrl) {
-            document.getElementById("success").click();
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", theUrl, true); // false for synchronous request
-            xmlHttp.send(null);
-            return null;
-        }
-       
-    </script>
-    
+@section Scripts{
+            <script>
+
+                function httpGet(theUrl) {
+                    document.getElementById("success").click();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open("GET", theUrl, true); // false for synchronous request
+                    xmlHttp.send(null);
+                    return null;
+                }
+
+            </script>
+
 }
