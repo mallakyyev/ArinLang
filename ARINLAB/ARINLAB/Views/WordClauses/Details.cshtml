@@ -43,7 +43,7 @@
             <a href=""><img src="~/images/Icons/Bug.svg"></a>
             <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
             <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
-            @*<a href=""><img src="~/images/Icons/Share_black.svg"></a>*@
+            <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
         </div>
     <div class="flex justify-between align-center" style="width: 220px;">
         <a href=""><img src="~/images/Icons/Eye.svg"></a>
@@ -129,6 +129,18 @@
             xmlHttp.send(null);
             return null;
         }
+
+        @*function Export(id) {
+            var req = new XMLHttpRequest();
+            req.open("GET", "/api/ExportAPI/Phrase/" + "@m.ArabClause" + "/" + "@m.OtherReader" + "/" + "@m.OtherClause" + "/" + "@m.ArabReader", false);
+            req.send();
+            var a = document.createElement("a");
+            a.setAttribute("href", "" + req.responseText);
+            a.setAttribute("download", "" + req.responseText);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }*@
 
     function playAudio(id) {
         var x = document.getElementById(id);

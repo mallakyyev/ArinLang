@@ -109,32 +109,7 @@
                         dataField: "otherWord",
                         allowHeaderFiltering: true
                     },
-                    {
-                        caption: '@SharedLocalizer["Voices"]',
-                        dataField: 'arabVoiceFile',
-                        width: 100,
-                        cellTemplate(container, options) {
-                            if (options.value) {
-                                $('<div>', { class: 'cell' })
-                                    .append($('<audio>', { id: options.value, })
-                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
-                                    .append($('<button>', {
-                                        class: 'btn btn-success', style: 'background-color:green; padding:20px;border-radius:15px;',
-                                        onclick: 'playAudio(\'' + options.value + '\')',
-                                        id: '_' + options.value,
-                                        text: '@SharedLocalizer["Play"]',
-                                        style: 'font-color:white'
 
-                                    }, '@SharedLocalizer["Play"]</button>'))
-                                    .appendTo(container);
-                            } else {
-                                $('<div>', { class: 'cell' })
-                                    .append($('<label>', { text: '@SharedLocalizer["No audio voices"]' }))                                    
-                                    .appendTo(container);
-                            }
-                        },
-
-                    },
                     {
                         type: "buttons",
                         width: 60,
@@ -144,12 +119,17 @@
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
                                 onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("Share", "Words", new { Area = "" })`;
-                                    window.location = url + '/' + idString;
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabWord+"/" + e.row.data.otherWord, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
                                 }
-                            },
-                            "delete"
+                            }                            
                         ]
                     }
                 ]

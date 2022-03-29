@@ -15,5 +15,6 @@ namespace ARINLAB.Services.ImageService
         public bool _DeleteImage(string pictureName, string pClass);
 
         public string CreateImageForExport(string first, string second);
+        public string PhraseExport(string arabPh, string readsTm, string turkmenPh, string readsAr);
     }
 }

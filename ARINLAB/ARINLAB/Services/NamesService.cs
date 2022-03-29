@@ -272,8 +272,9 @@ namespace ARINLAB.Services
                 var dictId = _userDict.GetDictionaryId();
                 Random rnd = new Random(DateTime.UtcNow.Millisecond);
                 int rn = rnd.Next();
-                var res = _dbContext.Names.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Take(n).ToList();
+                var res = _dbContext.Names.Where(p => p.DictionaryId == dictId && p.IsApproved == true).ToList();
                 _dictionaryService.Shuffle(res);
+                res = res.Take(n).ToList();
                 if (res != null)
                 {                   
                     var r = _mapper.Map<List<NamesDto>>(res);

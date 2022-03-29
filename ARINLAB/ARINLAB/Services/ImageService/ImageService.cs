@@ -89,41 +89,40 @@ namespace ARINLAB.Services.ImageService
 
             return fileName;
         }
-        private int GetLen(string text)
+        private static int GetPos1(int length, int chl)
         {
-            int l = text.Length;
-            if (l > 0 && l < 6)
-                return 180;
-            if (l >= 6 && l < 10)
-                return 130;
-            if (l >= 10 && l < 13)
-                return 100;
-            if (l >= 13 && l < 20)
-                return 90;
-            return 70;
+            const int center = 520;
+            return center - chl * (length / 2);
         }
 
-        private int GetPos(string text)
+        private static int GetPos2(int length, int chl)
         {
-            int l = text.Length;
-            if (l > 0 && l < 6)
-                return 400;
-            if (l >= 6 && l < 10)
-                return 300;
-            if (l >= 10 && l < 13)
-                return 200;
-            if (l >= 13 && l < 20)
-                return 150;
-            return 100;
+            const int center = 520;
+
+            return center - chl * (length / 2) - chl / 2;
+        }
+        private static int TmPos(int length, int chl)
+        {
+            const int center = 520;
+            return center - chl * (length / 2);
+        }
+
+        private static int ArabPos(int length, int chl)
+        {
+            const int center = 520;
+
+            return center - chl * (length / 2) - chl / 2;
         }
         public string CreateImageForExport(string first, string second)
         {
             try
             {
-                var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(".bmp");
-                string imageFile = _appEnvironment.WebRootPath + "/images/export.bmp";
+                var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(".jpg");
+                string imageFile = _appEnvironment.WebRootPath + "/images/export.jpg";
                 _logger.LogInformation(imageFile);
+
                 var resizeFactor = 1f;
+
                 var bitmap = SKBitmap.Decode(imageFile);
                 var toBitmap = new SKBitmap((int)Math.Round(bitmap.Width * resizeFactor), (int)Math.Round(bitmap.Height * resizeFactor), bitmap.ColorType, bitmap.AlphaType);
 
@@ -137,25 +136,29 @@ namespace ARINLAB.Services.ImageService
                 var brush1 = new SKPaint
                 {
                     Typeface = font,
-                    TextSize = GetLen(first),
+                    TextSize = 100,
                     IsAntialias = true,
-                    Color = new SKColor(255, 0, 0, 255)
+                    Color = new SKColor(0, 0, 0, 255)
 
                 };
                 var brush2 = new SKPaint
                 {
                     Typeface = font,
-                    TextSize = GetLen(second),
+                    TextSize = 100,
                     IsAntialias = true,
-                    Color = new SKColor(6, 108, 30, 255),
+                    Color = new SKColor(0, 0, 0, 255),
 
                 };
-                canvas.DrawText(first, GetPos(first), 1200, brush1);
-                canvas.DrawText(second, 200, 1530, brush2);
+                int pos1 = GetPos1(first.Length, 55);
+                int pos2 = GetPos1(second.Length, 55);
+                canvas.DrawText(first, pos1, 1100, brush1);
+                canvas.DrawText(second, pos2, 1500, brush2);
 
                 canvas.Flush();
 
                 var image = SKImage.FromBitmap(toBitmap);
+
+               
 
                 var data = image.Encode();
                 _logger.LogInformation("Saving image");
@@ -175,6 +178,81 @@ namespace ARINLAB.Services.ImageService
             }catch(Exception e)
             {
                 _logger.LogError($"{e.Message}, {e.InnerException}, {e.Source}");
+                return "";
+            }
+        }
+        public string PhraseExport(string arabPh, string readsTm, string turkmenPh, string readsAr)
+        {
+            try
+            {
+                var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(".jpg");
+                string imageFile = _appEnvironment.WebRootPath + "/images/export.jpg";
+
+                var resizeFactor = 1f;
+
+                var bitmap = SKBitmap.Decode(imageFile);
+                var toBitmap = new SKBitmap((int)Math.Round(bitmap.Width * resizeFactor), (int)Math.Round(bitmap.Height * resizeFactor), bitmap.ColorType, bitmap.AlphaType);
+
+                var canvas = new SKCanvas(toBitmap);
+                // Draw a bitmap rescaled
+                canvas.SetMatrix(SKMatrix.CreateScale(resizeFactor, resizeFactor));
+                canvas.DrawBitmap(bitmap, 0, 0);
+                canvas.ResetMatrix();
+
+                var font = SKTypeface.FromFamilyName("Arial");
+                var brush1 = new SKPaint
+                {
+                    Typeface = font,
+                    TextSize = 55,
+                    IsAntialias = true,
+                    Color = new SKColor(0, 0, 0, 255)
+
+                };
+                var brush2 = new SKPaint
+                {
+                    Typeface = font,
+                    TextSize = 55,
+                    IsAntialias = true,
+                    Color = new SKColor(53, 32, 135, 255),
+
+                };
+                int h1 = 1055;
+                int h2 = 1135;
+                int h3 = 1435;
+                int h4 = 1535;
+                int pos1 = ArabPos(arabPh.Length, 25);
+                int pos2 = TmPos(readsTm.Length, 25);
+                int pos3 = TmPos(turkmenPh.Length, 25);
+                int pos4 = ArabPos(readsAr.Length, 25);
+
+                canvas.DrawText(arabPh, pos1, h1, brush1);
+                canvas.DrawText(readsTm, pos2, h2, brush2);
+                canvas.DrawText(turkmenPh, pos3, h3, brush1);
+                canvas.DrawText(readsAr, pos4, h4, brush2);
+
+                canvas.Flush();
+
+                var image = SKImage.FromBitmap(toBitmap);
+
+                var data = image.Encode();
+
+               
+                _logger.LogInformation("Saving image");
+                using (var stream = new FileStream(_appEnvironment.WebRootPath + "/images/Exported/" + fileName, FileMode.Create, FileAccess.Write))
+                    data.SaveTo(stream);
+
+                data.Dispose();
+                image.Dispose();
+                canvas.Dispose();
+                brush1.Dispose();
+                brush2.Dispose();
+                font.Dispose();
+                toBitmap.Dispose();
+                bitmap.Dispose();
+                return "/images/Exported/" + fileName;
+            }
+            catch (Exception e)
+            {
                 return "";
             }
         }

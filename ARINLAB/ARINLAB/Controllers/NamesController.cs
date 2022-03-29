@@ -61,11 +61,11 @@ namespace ARINLAB.Controllers
             if (res == null)
                 return RedirectToAction("Indexall");
             
-            if (string.IsNullOrEmpty(res.ImageForShare))
-            {
+            //if (string.IsNullOrEmpty(res.ImageForShare))
+            //{
                 res.ImageForShare = _imageService.CreateImageForExport(res.ArabName, res.OtherName);
-                await _nameService.EditNameAsync(_mapper.Map<NamesDto>(res));
-            }
+               // await _nameService.EditNameAsync(_mapper.Map<NamesDto>(res));
+            //}
             NamesImagesViewModel model = new();
             model.Id = id;
             model.ArabName = res.ArabName;
@@ -89,7 +89,7 @@ namespace ARINLAB.Controllers
                     return RedirectToAction("Indexall");
                 if (string.IsNullOrEmpty(res.ImageForShare))
                 {
-                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabName, res.OtherName);
+                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabName.Reverse()+"", res.OtherName);
                     await _nameService.EditNameAsync(_mapper.Map<NamesDto>(res));
                 }
                 return Redirect($"~{res.ImageForShare}");

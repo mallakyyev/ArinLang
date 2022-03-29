@@ -354,8 +354,9 @@ namespace ARINLAB.Services
             try
             {
                 var dictId = _userDict.GetDictionaryId();                
-                var res = _dbContext.Words.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Take(n).ToList();
+                var res = _dbContext.Words.Where(p => p.DictionaryId == dictId && p.IsApproved == true).ToList();
                 _dictionaryService.Shuffle(res);
+                res = res.Take(n).ToList();
                 if (res != null)
                 {
                     return _mapper.Map<List<WordDto>>(res);

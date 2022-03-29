@@ -25,7 +25,7 @@ namespace ARINLAB.Services
         private readonly IImageService _fileServices;
         private readonly IDictionaryService _dictionaryService;
         private readonly UserDictionary _userDicts;
-
+        private Random rnd = new Random();
         public WordClauseService(ApplicationDbContext dbContext, IMapper mapper, 
                                 UserManager<DAL.Models.ApplicationUser> userManager, IImageService fileServices,
                                 UserDictionary userDictionary, IDictionaryService dictionaryService)
@@ -379,17 +379,18 @@ namespace ARINLAB.Services
             try
             {
                 var dictId = _userDicts.GetDictionaryId();
-
-                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Take(n).ToList();
+                string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Include(p => p.WordClauseCategory).ThenInclude(p => p.WordClauseCategoryTranslates).ToList();
                 _dictionaryService.Shuffle(res);
+                res = res.Take(n).ToList();
                 //string DictName = _dbContext.Dictionaries.Find(dictId)?.Language;
                 if (res != null)
                 {
-                    var r = _mapper.Map<List<WordClauseDto>>(res);
-                    //foreach(var item in r)
-                    //{
-                    //    item.DictionaryName = DictName;
-                    //}
+                    var r = _mapper.Map<List<WordClauseDto>>(res);                    
+                    foreach(var item in r)
+                    {
+                        item.CategoryName = res.Where(p => p.Id == item.Id).First().WordClauseCategory.WordClauseCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == culture).CategoryName;
+                    }
                     return r;
                 }
                 else

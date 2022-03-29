@@ -1,4 +1,5 @@
 ﻿using ARINLAB.Services;
+using ARINLAB.Services.ImageService;
 using ARINLAB.Services.Ratings;
 using ARINLAB.Services.SessionService;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +16,16 @@ namespace ARINLAB.Controllers
         private readonly IWordClauseService _wordClauseService;
         private readonly IDictionaryService _dictService;
         private readonly IRatingService _ratingServices;
+        private readonly IImageService _imageService;
         public WordClausesController(UserDictionary userDict, IWordClauseService wordClauseService, 
-                            IDictionaryService dictionaryService, IRatingService ratingServices)
+                            IDictionaryService dictionaryService, IRatingService ratingServices,
+                            IImageService imageService)
         {
             _userDictionary = userDict;
             _wordClauseService = wordClauseService;
             _dictService = dictionaryService;
             _ratingServices = ratingServices;
+            _imageService = imageService;
         }
         public IActionResult Indexall()
         {
@@ -48,6 +52,8 @@ namespace ARINLAB.Controllers
             ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWordClause(id));
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
             ViewBag.Model = clause;
+            ViewBag.ExportImage = _imageService.PhraseExport(clause.ArabClause, clause.OtherReader,
+                                                            clause.OtherClause, clause.ArabReader);
             var voices = _wordClauseService.GetAudioFileForClausebyID(id, true);
             return View(voices);
 

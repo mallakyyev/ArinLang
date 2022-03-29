@@ -21,31 +21,32 @@
                 <span class="text-danger" style="color:red">@(string.Join("; ", item.Value.Errors.Select(x => x.ErrorMessage)))</span>
             }
         }
-        <form class="input-forms flex flex-col py-2" id="account" method="post">
+    <form class="input-forms flex flex-col py-2" id="account" method="post">
 
-            <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Login"]" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Login"]" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
 
-            <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
 
-            <br />
-            <label asp-for="Input.RememberMe">
-                <input asp-for="Input.RememberMe" />
-                @Html.DisplayNameFor(m => m.Input.RememberMe)
-            </label>
+        <br />
+        <label asp-for="Input.RememberMe">
+            <input asp-for="Input.RememberMe" />
+            @Html.DisplayNameFor(m => m.Input.RememberMe)
+        </label>
+        
 
-            <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Log in"]</button>
-            <div class="form-group">
-                <p style="margin-top:10px;">
-                    <a class="btn btn-danger" style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
-                </p>
-                <p style="margin-top:10px;">
-                    <a class="btn btn-danger" style="color:green" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@SharedLocalizer["Register as a new user"]</a>
-                </p>
+        <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Log in"]</button>
+        <div class="form-group">
+            <p style="margin-top:10px;">
+                <a class="btn btn-danger" style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
+            </p>
+            <p style="margin-top:10px;">
+                <a class="btn btn-danger" style="color:green" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@SharedLocalizer["Register as a new user"]</a>
+            </p>
 
-            </div>
-        </form>
+        </div>
+    </form>
 
         @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
             <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>

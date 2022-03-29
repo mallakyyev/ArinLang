@@ -19,11 +19,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
 using System.Globalization;
+using System.IO;
 
 namespace ARINLAB
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -69,6 +71,10 @@ namespace ARINLAB
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+
+            
+          
+
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddControllersWithViews()

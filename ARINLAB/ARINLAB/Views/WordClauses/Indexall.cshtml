@@ -51,9 +51,11 @@
                 },
 
                 onRowClick: function (e) {
-                    var idString = e.data.id;
-                    var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
-                    window.location = url + '?id=' + idString;
+                    if (e.columnIndex != 5) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
                 },
                 "export": {
                     enabled: false,
@@ -133,27 +135,32 @@
                         dataField: "categoryName",
                         allowHeaderFiltering: true
                     },
-                    @*{
+                   {
                         type: "buttons",
-                        width: 110,
+                        width: 55,
                         caption: '@SharedLocalizer["Share"]',
                         buttons: [
                             {
-
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
                                 onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
-                                    window.location = url + '?id=' + idString;
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/Phrase/" + e.row.data.arabClause + "/" + e.row.data.otherReader + "/" + e.row.data.otherClause + "/" + e.row.data.arabReader, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
                                 }
                             },
                         ]
-                    }*@
+                    }
                 ]
             });
         });
 
-    
+
     </script>
 }

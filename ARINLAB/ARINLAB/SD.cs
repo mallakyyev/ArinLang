@@ -10,6 +10,6 @@ namespace ARINLAB
         public static int pageSize = 15;
         public static string wordFilePath = "Words";
         public static string clausesFilePath = "Clauses";
-        public static int Home_table_Count = 10;
+        public static int Home_table_Count = 5;
     }
 }

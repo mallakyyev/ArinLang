@@ -34,7 +34,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7eaabdc759d913d3152923739c58bac4294c45d6", @"/Views/Home/Subscribe.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e119a08238c3c4a5c8eaf5a5256788f2de43111b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4fa1d5c591814f7725771882b633ab2ec01fb489", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Subscribe : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

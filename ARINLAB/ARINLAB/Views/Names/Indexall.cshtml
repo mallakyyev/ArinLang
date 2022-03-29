@@ -48,9 +48,11 @@
                 },
 
                 onRowClick: function (e) {
-                     var idString = e.data.id;
-                     var url = `@Url.Action("Details", "Names", new { Area = "" })`;
-                     window.location = url + '?id=' + idString;
+                    if (e.columnIndex != 2) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Names", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
                 },
 
                 "export": {
@@ -127,9 +129,15 @@
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
                                 onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("Share", "Names", new { Area = "" })`;
-                                    window.location = url + '/' + idString;
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabName + "/" + e.row.data.otherName, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
                                 }
                             },
                         ]

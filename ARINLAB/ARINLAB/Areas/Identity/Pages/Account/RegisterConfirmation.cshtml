@@ -17,7 +17,7 @@
 
             <input type="hidden" asp-for="Input.Email" value="@Model.Email" />
             
-            <input asp-for="Input.ECode" type="number" min="100000" max="1000000" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Code"]" />
+            <input asp-for="Input.ECode" type="text" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Code"]" />
             <span asp-validation-for="Input.ECode" class="text-danger"></span>
 
             <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Verify"]</button>
