@@ -275,8 +275,8 @@ namespace ARINLAB.Services
                     var r = _mapper.Map<List<NamesDto>>(res);
                     //foreach(var item in r)
                     //{
-                    //    item.DictionaryName = _dbContext.Dictionaries.FirstOrDefault(p => p.Id == item.DictionaryId)?.Language;
-                    //}
+                        //item.ArabName = item.ArabName + "__" + item.
+                   // }
                     return r;
                 }
                 else

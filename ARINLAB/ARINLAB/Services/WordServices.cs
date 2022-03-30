@@ -359,6 +359,7 @@ namespace ARINLAB.Services
                 res = res.Take(n).ToList();
                 if (res != null)
                 {
+              
                     return _mapper.Map<List<WordDto>>(res);
                 }
                     return new List<WordDto>();                

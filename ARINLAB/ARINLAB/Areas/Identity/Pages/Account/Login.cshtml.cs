@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using DAL.Models;
 using DAL.Data;
+using ARINLAB.Models;
 
 namespace ARINLAB.Areas.Identity.Pages.Account
 {
@@ -44,7 +45,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public class InputModel
+        public class InputModel 
         {
             [Required]      
             //[DataType(DataType.EmailAddress)]
@@ -56,6 +57,11 @@ namespace ARINLAB.Areas.Identity.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+
+            //[Required]
+            //[GoogleReCaptchaValidation]
+            [BindProperty(Name = "g-recaptcha-response")]
+            public string GoogleReCaptchaResponse { get; set; }
 
         }
 
@@ -150,5 +156,6 @@ namespace ARINLAB.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+       
     }
 }

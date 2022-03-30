@@ -390,7 +390,7 @@ else
                     storageKey: "WordClauseAdmin"
                 },
                  onCellClick: function (e) {
-                    if (e.columnIndex != 2) {
+                     if (e.columnIndex == 0 || e.columnIndex == 2) {
                         var idString = e.data.id;
                         var url = `@Url.Action("Details", "Words", new { Area = "" })`;
                         window.location = url + '?id=' + idString;
@@ -400,16 +400,62 @@ else
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        cellTemplate: function (element, info) {
-                            element.append("<div><text>" + info.text + "</text><img style='padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg")>")
-                                .append("</div>");
+                        @*cellTemplate: function (element, info) {
+                            var ii = info.text.split('__');
+                            var name = ii[0];
+                            var voice = '1';
 
+                            element.append("<div><text>" + name + "</text>");
+                            if (ii[1] != '') {
+                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
+                            }
+                             element.append("</div>");
+
+                        },*@
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        cellTemplate: function (element, info) {
+                            if (info.text != '') {
+                                element.append("<audio id="+info.text.split('/')[2]+"><source src=/" + info.text + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio(" +"'"+ info.text.split('/')[2] + "'"+")'>");
+                            }
                         },
                         allowHeaderFiltering: false,
                         alignment: "center"
-                    },{
-                        caption: '@SharedLocalizer["Reads in Türkmen"]',
+                    },
+                    {
+                        caption: '@SharedLocalizer["Türkmen Word"]',
                         dataField: "otherWord",
+                        @*cellTemplate: function (element, info) {
+                            var ii = info.text.split('__');
+                            var name = ii[0];
+                            var voice = '1';
+
+                            element.append("<div><text>" + name + "</text>");
+                            if (ii[1] != '') {
+                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
+                            }
+                             element.append("</div>");
+                        },*@
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, info) {
+                            if (info.text != '') {
+                                element.append("<audio id='myAudio(" + info.text + ")'><source src=/" + info.text + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + info.text + ")')'>");
+                            }
+                        },
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
@@ -440,17 +486,13 @@ else
         });
 
         function playAudio(id) {
-
             var x = document.getElementById(id);
-            var bt = document.getElementById('_' + id);
-            if (bt.textContent == '@SharedLocalizer["Play"]') {
-                x.play();
-                bt.textContent = '@SharedLocalizer["Stop"]';
-            } else {
-                x.pause();
-                bt.textContent = '@SharedLocalizer["Play"]';
-            }
+            x.play();
+        }
 
+        function pauseAudio(id) {
+            var x = document.getElementById(id);
+            x.pause();
         }
     </script>
 
