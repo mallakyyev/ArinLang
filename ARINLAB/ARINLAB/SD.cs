@@ -11,5 +11,6 @@ namespace ARINLAB
         public static string wordFilePath = "Words";
         public static string clausesFilePath = "Clauses";
         public static int Home_table_Count = 5;
+        public static string NamesPath = "Names";
     }
 }

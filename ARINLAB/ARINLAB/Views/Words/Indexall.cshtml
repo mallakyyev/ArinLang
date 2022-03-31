@@ -29,6 +29,7 @@
 
 
 @section Scripts{
+
     <script>
         $(function () {
             let url = `@API.GetAllWordsWithDictId/@Model.DictionaryId`;
@@ -45,14 +46,6 @@
                     }
                 }),
 
-                onCellClick: function (e) {
-                    if (e.columnIndex != 2) {
-                        var idString = e.data.id;
-                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
-                        window.location = url + '?id=' + idString;
-                    }
-                },
-
                 filterPanel: {
                     visible: false
                 },
@@ -61,23 +54,16 @@
                 onRowUpdating: function (e) {
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
-
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
                 paging: {
-                    pageSize: 15
-                },
-                pager: {
-                    visible: true,
-                    allowedPageSizes: [10, 20, 40 ],
-                    showPageSizeSelector: true,
-                    showInfo: true,
-                    showNavigationButtons: true,
-                },
-                loadPanel: {
-                    enabled: true,
+                    pageSize: 100
                 },
                 editing: {
                     useIcons: true,
-                    allowUpdating: true,
+                    allowUpdating: false,
                     allowDeleting: false,
                     allowAdding: false
                 },
@@ -85,35 +71,116 @@
                     visible: true
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 hoverStateEnabled: true,
                 showBorders: true,
                 searchPanel: {
-                    visible: true
+                    visible: false
                 },
-
-
-                allowColumnReordering: false,
-
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                 onCellClick: function (e) {
+                     if (e.columnIndex == 0 || e.columnIndex == 2 || e.columnIndex == 3) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
+                },
                 columns: [
-
                     {
-                        caption: '@SharedLocalizer["Arab Word"]',
+                        caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        allowHeaderFiltering: true
+                        @*cellTemplate: function (element, info) {
+                            var ii = info.text.split('__');
+                            var name = ii[0];
+                            var voice = '1';
+
+                            element.append("<div><text>" + name + "</text>");
+                            if (ii[1] != '') {
+                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
+                            }
+                             element.append("</div>");
+
+                        },*@
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        width: 200,
                     },
                     {
                         caption: '@SharedLocalizer["Türkmen Word"]',
                         dataField: "otherWord",
-                        allowHeaderFiltering: true
-                    },
+                        @*cellTemplate: function (element, info) {
+                            var ii = info.text.split('__');
+                            var name = ii[0];
+                            var voice = '1';
 
+                            element.append("<div><text>" + name + "</text>");
+                            if (ii[1] != '') {
+                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
+                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
+                            }
+                             element.append("</div>");
+                        },*@
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                            if (options.value) {
+                                $('<div>', { class: 'cell' })
+                                    .append($('<audio>', { id: options.value, })
+                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                    .append($('<img>', {
+                                        onclick: 'playAudio(\'' + options.value + '\')',
+                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                        src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    }))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
                     {
                         type: "buttons",
-                        width: 60,
-                         caption: '@SharedLocalizer["Share"]',
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
                         buttons: [
                             {
                                 hint: '@SharedLocalizer["Share"]',
@@ -129,7 +196,7 @@
                                     a.click();
                                     document.body.removeChild(a);
                                 }
-                            }                            
+                            },
                         ]
                     }
                 ]
@@ -137,23 +204,14 @@
         });
 
         function playAudio(id) {
-
             var x = document.getElementById(id);
-            var bt = document.getElementById('_' + id);
-            if (bt.textContent == '@SharedLocalizer["Play"]') {
-                x.play();
-                bt.textContent = '@SharedLocalizer["Stop"]';
-            } else {
-                x.pause();
-                bt.textContent = '@SharedLocalizer["Play"]';
-            }
-
+            x.play();
         }
 
         function pauseAudio(id) {
-
             var x = document.getElementById(id);
             x.pause();
         }
     </script>
+   
 }

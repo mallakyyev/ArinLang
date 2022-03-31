@@ -390,7 +390,7 @@ else
                     storageKey: "WordClauseAdmin"
                 },
                  onCellClick: function (e) {
-                     if (e.columnIndex == 0 || e.columnIndex == 2) {
+                     if (e.columnIndex == 0 || e.columnIndex == 2 || e.columnIndex == 3) {
                         var idString = e.data.id;
                         var url = `@Url.Action("Details", "Words", new { Area = "" })`;
                         window.location = url + '?id=' + idString;
@@ -400,36 +400,38 @@ else
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        @*cellTemplate: function (element, info) {
-                            var ii = info.text.split('__');
-                            var name = ii[0];
-                            var voice = '1';
-
-                            element.append("<div><text>" + name + "</text>");
-                            if (ii[1] != '') {
-                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
-                            }
-                             element.append("</div>");
-
-                        },*@
+                       
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
                         dataField: "arabVoice",
-                        cellTemplate: function (element, info) {
-                            if (info.text != '') {
-                                element.append("<audio id="+info.text.split('/')[2]+"><source src=/" + info.text + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio(" +"'"+ info.text.split('/')[2] + "'"+")'>");
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
                             }
                         },
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
-                        caption: '@SharedLocalizer["Türkmen Word"]',
+                        caption: ' ',
+                        width:200,
+                    },
+                    {
+                        caption: '@SharedLocalizer["Arabic Word in Turkmen"]',
                         dataField: "otherWord",
                         @*cellTemplate: function (element, info) {
                             var ii = info.text.split('__');
@@ -450,10 +452,19 @@ else
                         caption: ' ',
                         dataField: "otherVoice",
                         width: 110,
-                        cellTemplate: function (element, info) {
-                            if (info.text != '') {
-                                element.append("<audio id='myAudio(" + info.text + ")'><source src=/" + info.text + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + info.text + ")')'>");
+                        cellTemplate: function (element, options) {
+                            if (options.value) {
+                                $('<div>', { class: 'cell' })
+                                    .append($('<audio>', { id: options.value, })
+                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                    .append($('<img>', {
+                                        onclick: 'playAudio(\'' + options.value + '\')',
+                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                        src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    }))
+                                    .appendTo(element);
+                            } else {
+
                             }
                         },
                         allowHeaderFiltering: false,
@@ -512,8 +523,8 @@ else
                     }
                 }),
 
-                onRowClick: function (e) {
-                    if (e.columnIndex != 5) {
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
                         var idString = e.data.id;
                         var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
                         window.location = url + '/' + idString;
@@ -552,7 +563,7 @@ else
                     visible: true
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 hoverStateEnabled : true,
@@ -567,29 +578,65 @@ else
                 },
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Arab Clause"]',
+                        caption: '@SharedLocalizer["Sentence in Arabic"]',
                         dataField: "arabClause",
                         allowHeaderFiltering: false,
                         alignment: "center"
-                    },{
-                        caption: '@SharedLocalizer["Reads in Türkmen"]',
-                                    dataField: "otherReader",
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
-
+                    {
+                        caption: ' ',
+                        width: 110,
+                    },
                      {
-                        caption: '@SharedLocalizer["Türmen Clause"]',
+                        caption: '@SharedLocalizer["Sentence in Turmen"]',
                          dataField: "otherClause",
                          allowHeaderFiltering: false,
                          alignment: "center"
-                    },{
-                        caption: '@SharedLocalizer["Reads in Arabic"]',
-                        dataField: "arabReader",
-                         allowHeaderFiltering: false,
-                         alignment: "center"
                     },
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
 
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
                      {
                         caption: '@SharedLocalizer["Category"]',
                         dataField: "categoryName",

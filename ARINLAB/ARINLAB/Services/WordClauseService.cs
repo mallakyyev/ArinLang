@@ -380,7 +380,7 @@ namespace ARINLAB.Services
             {
                 var dictId = _userDicts.GetDictionaryId();
                 string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Include(p => p.WordClauseCategory).ThenInclude(p => p.WordClauseCategoryTranslates).ToList();
+                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Include(p => p.AudioFiles).Include(p => p.WordClauseCategory).ThenInclude(p => p.WordClauseCategoryTranslates).ToList();
                 _dictionaryService.Shuffle(res);
                 res = res.Take(n).ToList();
                 //string DictName = _dbContext.Dictionaries.Find(dictId)?.Language;
@@ -390,6 +390,11 @@ namespace ARINLAB.Services
                     foreach(var item in r)
                     {
                         item.CategoryName = res.Where(p => p.Id == item.Id).First().WordClauseCategory.WordClauseCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == culture).CategoryName;
+                        var audio = res.FirstOrDefault(p => p.Id == item.Id)?.AudioFiles;
+                        if (audio != null && audio.Count > 0) {
+                            item.ArabVoice = audio.ToArray()[0].ArabVoice;
+                            item.OtherVoice = audio.ToArray()[0].OtherVoice;
+                        }
                     }
                     return r;
                 }
@@ -407,7 +412,7 @@ namespace ARINLAB.Services
         public List<WordClauseDto> GetAllWordClausesWithDictId(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var res = _dbContext.WordClauses.Where(p => p.DictionaryId == id && p.IsApproved == true);
+            var res = _dbContext.WordClauses.Where(p => p.DictionaryId == id && p.IsApproved == true).Include(p => p.AudioFiles);
             List<WordClauseDto> result = new List<WordClauseDto>();
             if (res != null)
             {
@@ -419,7 +424,13 @@ namespace ARINLAB.Services
 
                     var catName = _dbContext.WordClauseCategories.Include(p => p.WordClauseCategoryTranslates).FirstOrDefault(p => p.Id == clause.CategoryId);
                     dto.CategoryName = catName == null ? "" : catName.WordClauseCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == culture)?.CategoryName;
-                    
+
+                    var audio = res.FirstOrDefault(p => p.Id == clause.Id)?.AudioFiles;
+                    if (audio != null && audio.Count > 0)
+                    {
+                        dto.ArabVoice = audio.ToArray()[0].ArabVoice;
+                        dto.OtherVoice = audio.ToArray()[0].OtherVoice;
+                    }
                     result.Add(dto);
                 }
                 return result;

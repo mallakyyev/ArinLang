@@ -20,7 +20,7 @@
             <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:5%;">@SharedLocalizer["Word Clauses Collection"] </h2>
         }
         <div class="row" style="padding-left: 5%; padding-right: 5%;">
-            <div id="gridContainer">
+            <div id="gridContainer1">
             </div>
         </div>
     </div>
@@ -28,6 +28,179 @@
 
 @section Scripts{
     <script>
+        function playAudio(id) {
+            var x = document.getElementById(id);
+            x.play();
+        }
+
+        function pauseAudio(id) {
+            var x = document.getElementById(id);
+            x.pause();
+        }
+
+        $(function () {
+            let url = `@API.GetAllWordClausesWithDictId/@Model.DictionaryId`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer1").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                        window.location = url + '/' + idString;
+                    }
+                },
+                //selection: {
+                //    mode: "multiple"
+                //},
+                "export": {
+                    enabled: false,
+                    fileName: "WordClause",
+                    allowExportSelectedData: false
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: false,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                hoverStateEnabled : true,
+                showBorders: false,
+                searchPanel: {
+                    visible: false
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Sentence in Arabic"]',
+                        dataField: "arabClause",
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        width: 110,
+                    },
+                     {
+                        caption: '@SharedLocalizer["Sentence in Turmen"]',
+                         dataField: "otherClause",
+                         allowHeaderFiltering: false,
+                         alignment: "center"
+                    },
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                     {
+                        caption: '@SharedLocalizer["Category"]',
+                        dataField: "categoryName",
+                         allowHeaderFiltering: true,
+                         alignment: "center"
+                    },
+                     {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/Phrase/" + e.row.data.arabClause + "/" + e.row.data.otherReader + "/" + e.row.data.otherClause + "/" + e.row.data.arabReader, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                }
+                            },
+                        ]
+                    }
+
+                ]
+            });
+        });
+    </script>
+
+    @*<script>
         $(function () {
             let url = `@API.GetAllWordClausesWithDictId/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
@@ -162,5 +335,5 @@
         });
 
 
-    </script>
+    </script>*@
 }

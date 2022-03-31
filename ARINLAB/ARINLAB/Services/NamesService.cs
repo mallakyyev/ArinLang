@@ -20,15 +20,18 @@ namespace ARINLAB.Services
         private readonly IMapper _mapper;
         private readonly IDictionaryService _dictionaryService;
         private readonly UserDictionary _userDict;
+        private readonly IImageService _fileService;
 
         public NamesService(ApplicationDbContext applicationDb, IImageService imageService, 
-                            IMapper mapper, IDictionaryService dict, UserDictionary userDictionary)
+                            IMapper mapper, IDictionaryService dict, UserDictionary userDictionary,
+                            IImageService fileService)
         {
             _dbContext = applicationDb;
             _imageService = imageService;
             _mapper = mapper;
             _dictionaryService = dict;
             _userDict = userDictionary;
+            _fileService = fileService;
         }
 
         public async Task<Responce> ApproveImage(int image_id, bool approve)
@@ -74,6 +77,10 @@ namespace ARINLAB.Services
         {
             try {
                 var res = _mapper.Map<Names>(name);
+                if (name.ArabForm != null)
+                    res.ArabVoice = await _fileService.UploadImage(name.ArabForm, SD.NamesPath);
+                if (name.OtherForm!= null)
+                    res.OtherVoice = await _fileService.UploadImage(name.OtherForm, SD.NamesPath);
                 _dbContext.Names.Add(res);
                 await _dbContext.SaveChangesAsync();
                 return ResponceGenerator.GetResponceModel(true, "Success", name);
@@ -112,6 +119,9 @@ namespace ARINLAB.Services
                         _imageService._DeleteImage(image.ImageUri, "Names");
                         _dbContext.NameImages.Remove(image);                        
                     }
+                   
+                   _fileService.DeleteImage(res.ArabVoice);
+                   _fileService.DeleteImage(res.OtherVoice);
                     await _dbContext.SaveChangesAsync();
                     return ResponceGenerator.GetResponceModel(true, "Success", res);
                 }
@@ -135,6 +145,17 @@ namespace ARINLAB.Services
                     result.UserId = name.UserId;
                     result.ImageForShare = name.ImageForShare;
                     result.OtherName = name.OtherName;
+                    if (name.ArabForm != null)
+                    {
+                        _fileService.DeleteImage(result.ArabVoice);
+                        result.ArabVoice = await _fileService.UploadImage(name.ArabForm, SD.NamesPath);
+                    }
+
+                    if (name.OtherForm != null)
+                    {
+                        _fileService.DeleteImage(result.OtherVoice);
+                        result.OtherVoice = await _fileService.UploadImage(name.OtherForm, SD.NamesPath);
+                    }
                     _dbContext.Update(result);
                     _dbContext.SaveChanges();
                     return ResponceGenerator.GetResponceModel(true, "", result);
