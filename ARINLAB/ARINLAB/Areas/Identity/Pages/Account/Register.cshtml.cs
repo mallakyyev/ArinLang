@@ -175,7 +175,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
                     mailMessage.Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
                     mailMessage.Subject = "Verify code from ARINLANG";
                     mailMessage.Message = "Your Email Confirmation for ARINLANG Your Code is " + Ecode;
-                    var res =  _emailService.SendSingleEmail(mailMessage);
+                    var res =  _emailService.SendSingleEmailAsync(mailMessage);
                     
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

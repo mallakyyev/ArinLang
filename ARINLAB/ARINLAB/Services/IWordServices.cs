@@ -29,6 +29,7 @@ namespace ARINLAB.Services
         public List<WordDto>            GetAllWordsWithDictId(int id);
 
         public Task<WordDto>                     IncreaseViewed(int wordId);
+        public Task<bool> DeleteVoice(int id);
 
 
 

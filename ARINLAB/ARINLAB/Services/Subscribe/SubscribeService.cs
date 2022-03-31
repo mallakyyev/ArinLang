@@ -31,9 +31,9 @@ namespace ARINLAB.Services.Subscribe
 
         public async Task DeleteSubscriber(string id)
         {
-            Subscribers d = await _dbContext.Subscribers.FindAsync(id);
+            Subscribers d =  _dbContext.Subscribers.Find(id);
             _dbContext.Subscribers.Remove(d);
-            await _dbContext.SaveChangesAsync();
+             _dbContext.SaveChanges();
         }
 
         public IEnumerable<Subscribers> GetAllSubscribers()

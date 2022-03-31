@@ -16,7 +16,7 @@
                 <div class="smart-wizard">                   
                     <div>
                         <div id="step-1">
-                            <form asp-area="Admin" asp-controller="Names" asp-action="Create" method="post">
+                            <form asp-area="Admin" asp-controller="Names" asp-action="Create" method="post" enctype="multipart/form-data">
                                 <div class="row mbn-20">
                                     <div class="col-12 mb-20">
                                         <h4>@SharedLocalizer["Create Name"]</h4>
@@ -29,8 +29,35 @@
                                             @foreach (var item in (new List<DAL.Models.Dictionary>(ViewBag.Dictionaries)))
                                             {
                                                 <option value="@item.Id">@item.Language</option>
-                                            }                                           
+                                            }
                                         </select>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row mbn-20">
+
+                                            <!--Form Field-->
+                                            <div class="col-lg-6 col-12 mb-20">
+
+                                                <h6 class="mb-15">@SharedLocalizer["Arab"]</h6>
+
+                                                <div class="row mbn-15">
+                                                    <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                                    <input asp-for="@Model.ArabForm" type="file" class="form-control" />
+                                                </div>
+
+                                            </div>
+                                            <!--Form Field-->
+                                            <!--Readonly Field-->
+                                            <div class="col-lg-6 col-12 mb-20">
+
+                                                <h6 class="mb-15">@SharedLocalizer["Turkmen"]</h6>
+
+                                                <div class="row mbn-15">
+                                                    <label class="label">@SharedLocalizer["Upload Voice file"]</label>
+                                                    <input asp-for="@Model.OtherForm" type="file" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["Create"]"></div>
                                 </div>

@@ -30,5 +30,6 @@ namespace ARINLAB.Services
         public Task<Responce> SetNameImageForShare(int nameId, string ImageLocation);
         public Task<NamesDto> IncreaseViewed(int namesId);
         public Task<bool> IncreaseViewedImage(int namesImageId);
+        public Task<bool> DeleteVoice(int id);
     }
 }

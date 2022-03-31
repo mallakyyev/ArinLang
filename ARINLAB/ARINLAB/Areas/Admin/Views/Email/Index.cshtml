@@ -159,18 +159,14 @@
             $(function () {        
                 $("#sendToOrg").dxCheckBox({
                 value: true,
-                text: '@SharedLocalizer["Ordinary Users"]',
-                name: 'SendedToOrganization',
+                text: '@SharedLocalizer["Users"]',
+                    name: 'SendToOrdinary',
                 });
-                $("#sendToEnt").dxCheckBox({
-                value: true,
-                text: '@SharedLocalizer["Approved Users"]',
-                name: 'SendedToEntrepreneur',
-                });
-                  $("#sendToS").dxCheckBox({
+               
+               $("#sendToS").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Subsrcibers"]',
-                name: 'SendedToSubscribers',
+                      name: 'SendToSubscribers',
             });
              $("#button").dxButton({
                 text: '@SharedLocalizer["Send"]',

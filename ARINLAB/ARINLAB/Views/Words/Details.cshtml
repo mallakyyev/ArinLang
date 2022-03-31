@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = SharedLocalizer["Word Details"];
 }
 @using Microsoft.AspNetCore.Mvc.Localization
 @using ARINLAB.Areas.Admin.Utils
@@ -71,14 +71,42 @@
                 <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
             </div>
             <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
+                
                 <audio id="myAudio@(Model.Word.Id)">
                     <source src="~/@Model.Word.OtherVoice" type="audio/mpeg">
                 </audio>
-                <p><img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model.Word.Id)')"> @Model.Word.OtherWord</p>
+                <p>
+                    @if (!string.IsNullOrEmpty(Model.Word.OtherVoice))
+                    {
+                        <img style="padding-right: 10px; margin-left: 40px; cursor: pointer"
+                             src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_R.svg" :
+                   "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model.Word.Id)')">
+                    }
+                    else
+                    {
+                        <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" />
+                    }
+                    @Model.Word.OtherWord
+                </p>
+                
+               
                 <audio id="myAudio@(Model.Word.Id)_o">
                     <source src="~/@Model.Word.ArabVoice" type="audio/mpeg">
                 </audio>
-                <p>@Model.Word.ArabWord <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model.Word.Id)_o')"></p>
+                <p>
+                    @Model.Word.ArabWord
+                    @if (!string.IsNullOrEmpty(Model.Word.ArabVoice))
+                    {
+                        <img style="padding-left: 10px; padding-right: 40px; cursor:pointer"
+                             src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_L.svg" :
+                      "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model.Word.Id)_o')">
+                    }
+                    else
+                    {
+                        <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" />
+                             }
+                    </p>
+               
             </div>
             <div class="justify-between flex flex-row px-5 bg-gray-100" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
                 <h3 style="font-weight: bold;">@SharedLocalizer["Sentence in Turkmen"]:</h3>

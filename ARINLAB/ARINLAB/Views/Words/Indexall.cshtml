@@ -95,26 +95,13 @@
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        @*cellTemplate: function (element, info) {
-                            var ii = info.text.split('__');
-                            var name = ii[0];
-                            var voice = '1';
-
-                            element.append("<div><text>" + name + "</text>");
-                            if (ii[1] != '') {
-                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
-                            }
-                             element.append("</div>");
-
-                        },*@
+                        width:400,                       
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
-                        dataField: "arabVoice",
-                        width: 110,
+                        dataField: "arabVoice",                      
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
@@ -131,34 +118,22 @@
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+                       
                     },
                     {
                         caption: ' ',
-                        width: 200,
+                        width: 100,
                     },
                     {
                         caption: '@SharedLocalizer["Türkmen Word"]',
                         dataField: "otherWord",
-                        @*cellTemplate: function (element, info) {
-                            var ii = info.text.split('__');
-                            var name = ii[0];
-                            var voice = '1';
-
-                            element.append("<div><text>" + name + "</text>");
-                            if (ii[1] != '') {
-                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
-                            }
-                             element.append("</div>");
-                        },*@
+                        width: 400,
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
-                        dataField: "otherVoice",
-                        width: 110,
+                        dataField: "otherVoice",                      
                         cellTemplate: function (element, options) {
                             if (options.value) {
                                 $('<div>', { class: 'cell' })
@@ -175,7 +150,7 @@
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+                       
                     },
                     {
                         type: "buttons",

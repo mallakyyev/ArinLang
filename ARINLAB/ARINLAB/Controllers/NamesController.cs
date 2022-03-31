@@ -76,6 +76,8 @@ namespace ARINLAB.Controllers
             model.ArabName = res.ArabName;
             model.OtherName = res.OtherName;
             model.DictName = res.DictionaryName;
+            model.ArabVoice = res.ArabVoice;
+            model.OtherVoice = res.OtherVoice;
             model.Viewed = res.Viewed;
             var file = await _nameService.GetAllNamesImagesByNameIdAsync(id);
             ViewBag.Rating = _ratingServices.GetRatingForName(id);

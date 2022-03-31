@@ -6,6 +6,7 @@ using ARINLAB.Services.SessionService;
 using ARINLAB.Services.Settings;
 using ARINLAB.Services.Statistic;
 using ARINLAB.Services.Subscribe;
+using DAL.Data;
 using DAL.Models;
 using DAL.Models.Dto.EmailsModelDTO;
 using DAL.Models.Dto.NewsModelDTO;
@@ -35,10 +36,12 @@ namespace ARINLAB.Controllers
         private readonly ISubscribeService _subscriberService;
         private readonly ISettingsService _settings;
         private readonly IEmailService _emailService;
+        private readonly ApplicationDbContext _dbContext;
         public HomeController(ILogger<HomeController> logger, IStatisticsService statisticsService, 
                               UserDictionary userDictionary, IDictionaryService dictionaryService,
                               IWordServices wordServices, INewsService newsService, IStringLocalizer<SharedResource> localizer,
-                              ISettingsService settingsService, ISubscribeService subscribeService, IEmailService emailService)
+                              ISettingsService settingsService, ISubscribeService subscribeService, IEmailService emailService,
+                              ApplicationDbContext applicationDb)
         {
             _logger = logger;
             _statService = statisticsService;
@@ -50,6 +53,7 @@ namespace ARINLAB.Controllers
             _settings = settingsService;
             _subscriberService = subscribeService;
             _emailService = emailService;
+            _dbContext = applicationDb;
         }
 
         public IActionResult Index()
@@ -95,7 +99,7 @@ namespace ARINLAB.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Unsubscribed(string email)
+        public async Task<string> Unsubscribed(string email)
         {
             List<Settings> settings = new List<Settings>(_settings.GetAllSettings());
 
@@ -106,24 +110,25 @@ namespace ARINLAB.Controllers
             if (id.Length > 0)
             {
                 SingleEmailDTO sEmail = new SingleEmailDTO();
-                sEmail.Header = _localizer["TSTB Unsubscribe"];
+                sEmail.Header = _localizer["Arinlang Unsubscribe"];
                 sEmail.Message = _localizer["Please Follow the link below to unsubscribe from ARINLANG: "] + UnsubLink + "?id=" + id;
                 sEmail.Password = AdminEmailPassword;
                 sEmail.AdminEmail = AdminEmail;
                 sEmail.EmailTo = email;
                 sEmail.Subject = _localizer["Unsubscribe Link from ARINLANG Web Site"];
-                bool isSend =  _emailService.SendSingleEmail(sEmail);
+                bool isSend =  await _emailService.SendSingleEmailAsync(sEmail);
                 if (isSend)
-                    ViewBag.Email = _localizer["Dateiled instructions was send to "] + email + _localizer[" email to unsubscribed."];
+                {
+                    //ViewBag.Email = _localizer["Detailed instructions was send to "] + email + _localizer[" email to unsubscribed."];
+                    return _localizer["Detailed instructions was send to "] + email + _localizer[" email to unsubscribed."];
+                }
                 else
-                    ViewBag.Email = _localizer["Some thing went wrong, Please try again later !"];
+                    return _localizer["Some thing went wrong, Please try again later !"];
             }
             else
             {
-                ViewBag.Email = email + _localizer[" email does not subscribed"];
-            }
-            return View();
-            //return View(email + "does not subscribes");
+                return email + _localizer[" email does not subscribed"];
+            }            
         }
         public IActionResult UnsubLink(string id)
         {
@@ -132,17 +137,28 @@ namespace ARINLAB.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Subscribe(string email)
+        public async Task<string> Subscribe([FromQuery]string email)
         {
             Subscribers sub = new Subscribers();
             sub.Email = email;
             sub.Id = Guid.NewGuid().ToString();
             bool isSub = await _subscriberService.AddSubscriber(sub);
             if (isSub)
-                ViewBag.Sub = email + " " + _localizer["Email successfully subscribed"];
+            {               
+                SingleEmailDTO mailMessage = new SingleEmailDTO();
+                mailMessage.AdminEmail = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmail")).Value;
+                mailMessage.EmailTo = email;
+                mailMessage.Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
+                mailMessage.Subject = "Thank your for subscription to ARINLANG";
+                mailMessage.Message = "Stay up to date with new words, phrases and much more. ";
+                var res = _emailService.SendSingleEmailAsync(mailMessage);
+                return email + " " + _localizer["Email successfully subscribed"];
+            }
             else
-                ViewBag.Sub = email + " " + _localizer["Email is already subscribed ! "];
-            return View();
+            {
+                return  "";
+            }
+           
         }
        
     }

@@ -9,6 +9,9 @@ using ARINLAB.Services.Email;
 using ARINLAB.Services.Settings;
 using DAL.Models.Dto.EmailsModelDTO;
 using DAL.Models;
+using Microsoft.AspNetCore.Identity;
+using DAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ARINLAB.Areas.Admin.Controllers
 {
@@ -18,11 +21,14 @@ namespace ARINLAB.Areas.Admin.Controllers
     {
         private readonly IEmailService _emailService;
         private readonly ISettingsService _settings;
+        private readonly ApplicationDbContext _dbContext;
+
         static private bool isSend;
-        public EmailController(IEmailService emailService, ISettingsService settings)
+        public EmailController(IEmailService emailService, ISettingsService settings, ApplicationDbContext dbContext)
         {
             _emailService = emailService;
             _settings = settings;
+            _dbContext  = dbContext;
         }
         public IActionResult Index()
         {           
@@ -31,12 +37,18 @@ namespace ARINLAB.Areas.Admin.Controllers
 
         public async Task<IActionResult> SendEmail(EmailsDTO emailModel)
         {
-            List<Settings> settings = new List<Settings>(_settings.GetAllSettings());
-            emailModel.AdminEmail = settings.Find(x => x.Name == "AdminEmail").Value;
-            emailModel.Password = settings.Find(x => x.Name == "AdminEmailPassword").Value;
-            emailModel.Message += "\n\n\t Follow the link to Unsubscribe : " + settings.Find(x => x.Name == "UnsubscribeLink").Value;
-             isSend = await _emailService.SendEmail(emailModel);
+            List<string> emails = new List<string>();
+            if(emailModel.SendToOrdinary )
+                emails.AddRange(_dbContext.Users.Where(p => !string.IsNullOrEmpty(p.Email)).Select(p => p.Email));
+            if (emailModel.SendToSubscribers)
+                emails.AddRange(_dbContext.Subscribers.Where(p => !string.IsNullOrEmpty(p.Email)).Select(p => p.Email));
+            emails = emails.Distinct().ToList();
+             isSend = await _emailService.SendEmail(emailModel, emails);
+             if(isSend)
                 return RedirectToAction("ErrorView");
+            ViewBag.Error = "Unknown Error, Please try again later!!";
+            return View("Index");
+             
         }
 
         public ActionResult ErrorView()

@@ -21,15 +21,17 @@
 }
 @await Component.InvokeAsync("HeaderMenu")
 
-   
+
 <div class="flex justify-between flex-col xl:flex-row py-10 h-full xl:mb-0 blog">
     <!-- ******************** ADVERTISMENT LEFT  ********************-->
     <div dir="ltr" class="flex-grow xl:w-2/12 xl:mr-2 mb-16 xl:mb-0 relative adt-center overflow-hidden" style="margin-top: 5%; width: 12%;">
 
         <div class="adv-slider-left adv-slider flex xl:w-full">
-            <img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-left img-center border-radius7 object-cover img-padding10"
-                data-desk="../images/Безимени-3.gif"
-                data-mobile="" />
+            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") id="lottie">
+            </div>
+            @*<img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-left img-center border-radius7 object-cover img-padding10"
+        data-desk="../images/Безимени-3.gif"
+        data-mobile="" />*@
         </div>
     </div>
     <!-- ******************** ADVERTISMENT LEFT  ********************-->
@@ -230,9 +232,10 @@
     <!-- ******************** ADVERTISMENT RIGHT  ********************-->
     <div dir="ltr" class="flex-grow xl:w-2/12 w-full mt-16 xl:mt-0 xl:ml-2 relative adt-center overflow-hidden" style="margin-top: 5%; width: 12%;">
         <div class="adv-slider-right adv-slider flex xl:w-full">
-            <img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-right img-center border-radius7 object-cover img-padding10"
-                 data-desk="../images/Безимени-4.gif"
-                 data-mobile="" />
+            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") id="lottie1"></div>
+            @*<img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-right img-center border-radius7 object-cover img-padding10"
+        data-desk="../images/Безимени-4.gif"
+        data-mobile="" />*@
         </div>
     </div>
     <!-- ******************** ADVERTISMENT RIGHT  ********************-->
@@ -241,41 +244,41 @@
 <!-- ******************** PRODUCTS SECTION  ********************-->
 <!-- ******************** STATISTICS SECTION  ********************-->
 
-    <div class="bg-gray-100" style="border-top: 2px solid #282848;">
-        <div dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"")" class="bg-gray-100 py-8">
-            <div class="xl:container xl:px-0 px-4">
-                <div class="w-full">
-                    <div class="flex flex-col justify-evenly">
-                        <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
-                        <div class="flex flex-row w-full justify-between">
-                            <div>
-                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
-                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer[" Users"]</span>
-                            </div>
-                            <div>
-                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
-                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Words"] - @Model.StatistiCards[0].totalCount</span>
-                            </div>
-                            <div>
-                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
-                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Phrasebooks"] - @Model.StatistiCards[2].totalCount  </span>
-                            </div>
-                            <div>
-                                <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
-                                <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Names"] - @Model.StatistiCards[3].totalCount </span>
-                            </div>
+<div class="bg-gray-100" style="border-top: 2px solid #282848;">
+    <div dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"")" class="bg-gray-100 py-8">
+        <div class="xl:container xl:px-0 px-4">
+            <div class="w-full">
+                <div class="flex flex-col justify-evenly">
+                    <h2 class="font-semibold text-2xl lg:my-0 my-8">@SharedLocalizer["ARINLANG in Numbers"]</h2>
+                    <div class="flex flex-row w-full justify-between">
+                        <div>
+                            <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
+                            <span class="font-semibold text-lg">@SharedLocalizer["Total"] @totalUsers @SharedLocalizer[" Users"]</span>
+                        </div>
+                        <div>
+                            <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
+                            <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Words"] - @Model.StatistiCards[0].totalCount</span>
+                        </div>
+                        <div>
+                            <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
+                            <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Phrasebooks"] - @Model.StatistiCards[2].totalCount  </span>
+                        </div>
+                        <div>
+                            <div class="h-2 mb-1 rounded-sm bg-secondary" style="width: 68px;"></div>
+                            <span class="font-semibold text-lg">@SharedLocalizer["Total"] @_userDict.GetDictionaryName() @SharedLocalizer["Names"] - @Model.StatistiCards[3].totalCount </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <!-- ******************** STATISTICS SECTION  ********************-->
 <!-- ******************** MAILING SECTION  ********************-->
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
     <div dir="rtl" class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
-        <div class="xl:container sm:px-4 lg:p-24">
+        <div class="xl:container sm:px-4 lg:p-24" style="max-width: 1000px;">
             <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
                 <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto" style="margin-left: 18px;">
                     @SharedLocalizer["Subscribe to the newsletter and events"]
@@ -305,23 +308,26 @@
 else
 {
     <div class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
-        <div id="subscribe" class="xl:container sm:px-4  lg:p-24">
+        <div id="subscribe" class="xl:container sm:px-4  lg:p-24" style="max-width: 1000px;">
             <div class="bg-white px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; padding-left: 38px;">
                 <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
                     @SharedLocalizer["Subscribe to the newsletter and events"]
                 </h2>
-                <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                    <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
-                        <input type="email"
-                               name="email"
-                               placeholder="@SharedLocalizer["Enter your email address"]"
-                               class="sm:w-9/12 bg-white p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
-                        <button type="submit"
-                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-left: 25px;">
-                            <span>@SharedLocalizer["Subscribe"]</span>
-                        </button>
-                    </div>
-                </form>
+                @*<form asp-area="" asp-controller="Home" asp-action="Subscribe">*@
+                <div class="relative px-4 mt-10 rounded-sm overflow-hidden flex sm:block">
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           placeholder="@SharedLocalizer["Enter your email address"]"
+                           class="sm:w-9/12 bg-white p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
+                    <button class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white"
+                            style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px;
+                                    background-color: #282848; padding: 10px; margin-left: 25px;"
+                            onclick="httpGet()">
+                        <span>@SharedLocalizer["Subscribe"]</span>
+                    </button>
+                </div>
+                @*</form>*@
                 <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
                     Your email address will be used to send you Newsletters, events and emails about Arinlang. <br>
                     You can unsubscribe at any time by clicking on the unsubscribe link en each email.
@@ -330,6 +336,7 @@ else
             </div>
         </div>
     </div>
+
 }
 <!-- ******************** MAILING SECTION  ********************-->
 @section Scripts{
@@ -400,14 +407,14 @@ else
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                       
+                        width:300,
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
                         dataField: "arabVoice",
-                        width: 110,
+
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
@@ -424,7 +431,7 @@ else
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+
                     },
                     {
                         caption: ' ',
@@ -433,25 +440,13 @@ else
                     {
                         caption: '@SharedLocalizer["Arabic Word in Turkmen"]',
                         dataField: "otherWord",
-                        @*cellTemplate: function (element, info) {
-                            var ii = info.text.split('__');
-                            var name = ii[0];
-                            var voice = '1';
-
-                            element.append("<div><text>" + name + "</text>");
-                            if (ii[1] != '') {
-                                element.append("<audio id='myAudio(" + ii[1] + " )'><source src=/" + ii[1] + " type='audio/mpeg'></audio>");
-                                element.append("<img style = 'padding-left: 10px; padding-right: 40px; cursor:pointer' @(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "src=/images/Icons/Voice_L.svg" : "src=/images/Icons/Voice_R.svg") onclick='playAudio('myAudio(" + ii[1] + ")')>");
-                            }
-                             element.append("</div>");
-                        },*@
+                        width: 300,
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
                         dataField: "otherVoice",
-                        width: 110,
                         cellTemplate: function (element, options) {
                             if (options.value) {
                                 $('<div>', { class: 'cell' })
@@ -468,7 +463,7 @@ else
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+
                     },
                     {
                         type: "buttons",
@@ -603,7 +598,7 @@ else
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+
                     },
                     {
                         caption: ' ',
@@ -635,13 +630,14 @@ else
                             }
                         },
                         allowHeaderFiltering: false,
-                        alignment: "center"
+
                     },
                      {
                         caption: '@SharedLocalizer["Category"]',
                         dataField: "categoryName",
                          allowHeaderFiltering: true,
-                         alignment: "center"
+                         alignment: "center",
+                         width:140,
                     },
                      {
                         type: "buttons",
@@ -690,8 +686,8 @@ else
                     var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
                     window.location = url;
                 },
-                onRowClick: function (e) {
-                    if (e.columnIndex != 2) {
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3) {
                         var idString = e.data.id;
                         var url = `@Url.Action("Details", "Names", new { Area = "" })`;
                         window.location = url + '?id=' + idString;
@@ -730,7 +726,7 @@ else
                     visible: false
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 hoverStateEnabled: true,
                 rowAlternationEnabled: true,
@@ -750,13 +746,62 @@ else
                         caption: '@SharedLocalizer["Arab Name"]',
                         dataField: "arabName",
                         allowHeaderFiltering: true,
-                        alignment: "center"
+                        alignment: "center",
+                        width:300
+                    },
+                     {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                    {
+                        caption: ' ',
+                        width : 110,
                     },
                     {
                         caption: '@SharedLocalizer["Türkmen Name"]',
                         dataField: "otherName",
                         allowHeaderFiltering: true,
-                        alignment: "center"
+                        alignment: "center",
+                        width: 300
+                    },
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
                     },
                       {
                         type: "buttons",
@@ -784,6 +829,23 @@ else
             });
         });
     </script>
+    <script>
 
-    
+        function httpGet(theUrl) {
+           
+            var xmlHttp = new XMLHttpRequest();
+            var email = document.getElementById("email");
+            xmlHttp.open("GET", '@Url.Action("Subscribe", "Home")' + '?email=' + email.value, false); // false for synchronous request
+            xmlHttp.send(null);            
+            if (xmlHttp.responseText.length > 0) {
+                document.getElementById("success1").click();
+            } else {
+                document.getElementById("exists").click();
+            }
+            email.innerText = "";
+            email.value = "";
+            return null;
+        }
+    </script>
+
 }

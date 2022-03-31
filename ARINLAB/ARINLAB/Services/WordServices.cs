@@ -408,5 +408,23 @@ namespace ARINLAB.Services
             }
             return null;
         }
+
+        public async Task<bool> DeleteVoice(int id)
+        {
+            var res = await _dbContext.Words.FindAsync(id);
+            if (res == null)
+                return false;
+
+            _fileService.DeleteImage(res.ArabVoice);
+            res.ArabVoice = null;
+
+            _fileService.DeleteImage(res.OtherVoice);
+            res.OtherVoice = null;
+
+            _dbContext.Words.Update(res);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

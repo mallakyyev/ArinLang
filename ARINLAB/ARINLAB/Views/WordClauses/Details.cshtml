@@ -9,7 +9,7 @@
 @model List<DAL.Models.Dto.AudioFileForClauseDto>
 @{
     string dictName = "";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = SharedLocalizer["Phrase Details"];
     EditWordClauseDto m = null;
     int rating = (int)ViewBag.Rating;
     bool ress = false;
@@ -88,8 +88,7 @@
             }
             else
             {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" >
-
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
             }
             @m.OtherClause
         </p>
@@ -101,7 +100,7 @@
             }
             else
             {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" >
+                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
             }
         </p>
 

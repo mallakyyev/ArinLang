@@ -52,5 +52,23 @@ namespace ARINLAB.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var dict = _dictService.GetDictionary(id);
+            if(dict != null)
+            {
+                return View(dict);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(DAL.Models.Dictionary model)
+        {
+            var res = _dictService.EditDictionary(model);
+           
+            return RedirectToAction("Index");
+        }
     }
 }

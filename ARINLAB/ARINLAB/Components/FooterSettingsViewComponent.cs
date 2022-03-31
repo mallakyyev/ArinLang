@@ -19,7 +19,7 @@ namespace TSTB.Web.Components
 
         public IViewComponentResult Invoke()
         {
-            string[] settingsString = new string[] { "Phone", "Address", "Email" };
+          string[] settingsString = new string[] { "Phone", "Address", "Email" };
 
             List<Settings> settings = new List<Settings>();
 
@@ -27,20 +27,8 @@ namespace TSTB.Web.Components
            
 
             foreach (var name in settingsString)
-            {
-                if (name == "Address" )
-                {
-                    settings.Add(new Settings()
-                    {
-                        Id = 0,
-                        Name = name,
-                      
-                    });
-                }
-                else
-                {
-                    settings.Add(getSettings.SingleOrDefault(s => s.Name == name));
-                }
+            {               
+                    settings.Add(getSettings.SingleOrDefault(s => s.Name == name));                
             }
 
             return View(settings);

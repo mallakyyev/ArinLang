@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = SharedLocalizer["Name Details"];
 
 }
 @using System.Globalization
@@ -54,8 +54,34 @@
             <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            <p><img style="padding-right: 10px; margin-left: 40px;" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")"> @mod.OtherName</p>
-            <p>@mod.ArabName<img style="padding-left: 10px; padding-right: 40px;" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")"></p>
+            <audio id="myAudio@(mod.Id)">
+                <source src="~/@mod.OtherVoice" type="audio/mpeg">
+            </audio>
+            <p>
+                @if (!string.IsNullOrEmpty(mod.OtherVoice))
+                {
+                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(mod.Id)')">
+                }
+                else
+                {
+                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
+                }
+                         @mod.OtherName
+                </p>
+            <audio id="myAudio@(mod.Id)_o">
+                <source src="~/@mod.ArabVoice" type="audio/mpeg">
+            </audio>
+            <p>
+                @mod.ArabName
+                        @if (!string.IsNullOrEmpty(mod.ArabVoice))
+                        {
+                            <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(mod.Id)_o')">
+                        }
+                        else
+                        {
+                            <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" />
+                                 }
+                        </p>
         </div>
     </div>
 </div>
@@ -225,15 +251,17 @@ else
 
 @section Scripts{
             <script>
-
+                function playAudio(id) {
+                    var x = document.getElementById(id);
+                    x.play();
+                }
                 function httpGet(theUrl) {
                     document.getElementById("success").click();
                     var xmlHttp = new XMLHttpRequest();
                     xmlHttp.open("GET", theUrl, true); // false for synchronous request
                     xmlHttp.send(null);
+                    xmlHttp.responseText
                     return null;
                 }
-
             </script>
-
 }

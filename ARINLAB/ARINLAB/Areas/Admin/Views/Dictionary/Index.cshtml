@@ -45,8 +45,9 @@
                                     @{i = i + 1;}
                                     <td> @item.Language</td>
                                     <td> @item.ArabTranslate</td>
-                                    <td>                                                                          
-                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Remove" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-delete"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> <span>delete</span></a></div>                                  
+                                    <td>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Remove" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-delete"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> <span>Del</span></a></div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Edit" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-edit"><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <span>Edit</span></a></div>
                                     </td>
                                 </tr>                                
                             }

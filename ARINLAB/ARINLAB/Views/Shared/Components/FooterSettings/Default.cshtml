@@ -16,7 +16,7 @@
                 {
                     <div class="sm:flex flex-col grid">
                         <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
-                        <span class="font-semibold font-roboto"> @Html.Raw(setting.Value) </span>
+                        <span class="font-semibold font-roboto"> @setting.Value </span>
                     </div>
                 }
                 <div class="sm:flex flex-col grid" style="width:15%">
@@ -53,7 +53,7 @@ else
                 {
                     <div class="sm:flex flex-col grid">
                         <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
-                        <span class="font-semibold font-roboto"> @Html.Raw(setting.Value) </span>
+                        <span class="font-semibold font-roboto"> @setting.Value </span>
                     </div>
                 }
                 <div class="sm:flex flex-col grid" style="width:15%">

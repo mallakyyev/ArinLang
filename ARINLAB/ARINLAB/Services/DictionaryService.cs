@@ -68,7 +68,7 @@ namespace ARINLAB.Services
             Responce result = new Responce();
             try
             {              
-                var data = _dbContext.Dictionaries.Add(edit);
+                var data = _dbContext.Dictionaries.Update(edit);
                 _dbContext.SaveChanges();
                 return ResponceGenerator.GetResponceModel(true, "", data.Entity);                
             }
@@ -82,6 +82,14 @@ namespace ARINLAB.Services
         {
             var result = _dbContext.Dictionaries;
             return ResponceGenerator.GetResponceModel(true, "", new List<Dictionary>(result));
+        }
+
+        public DAL.Models.Dictionary GetDictionary(int id)
+        {
+            var res = _dbContext.Dictionaries.Find(id);
+            if (res != null)
+                return res;
+            return null;
         }
 
         public string GetDictionaryNameById(int id)

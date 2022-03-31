@@ -70,7 +70,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
                 mailMessage.Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
                 mailMessage.Subject = "Reset Password from ARINLANG account";
                 mailMessage.Message = $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-                var res = _emailService.SendSingleEmail(mailMessage);                
+                var res = _emailService.SendSingleEmailAsync(mailMessage);                
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
