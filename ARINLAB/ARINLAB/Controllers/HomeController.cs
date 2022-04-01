@@ -160,6 +160,17 @@ namespace ARINLAB.Controllers
             }
            
         }
-       
+        public IActionResult Setsettings(int dictId, string lang, string value, string returnUrl)
+        {
+            _userDict.SetDictionary(dictId);
+            Response.Cookies.Append(
+               CookieRequestCultureProvider.DefaultCookieName,
+               CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
+               new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+           );
+            return LocalRedirect($"{returnUrl}{value}");            
+        }
+        
+
     }
 }
