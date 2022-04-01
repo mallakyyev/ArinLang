@@ -34,11 +34,11 @@
             <input asp-for="Input.RememberMe" />
             @Html.DisplayNameFor(m => m.Input.RememberMe)
         </label>
+        <div class="g-recaptcha" data-sitekey="6LdODTcfAAAAAJH_g_eZMNUWRiDwnoK3_vINS1gA"></div>
 
-
-        <button 
-               
-                data-action='submit' class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Log in"]</button>
+        <button data-action='submit' class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">
+            @SharedLocalizer["Log in"]
+        </button>
         <div class="form-group">
             <p style="margin-top:10px;">
                 <a style="color:brown" id="forgot-password" asp-page="./ForgotPassword">@SharedLocalizer["Forgot your password?"]</a>
@@ -50,11 +50,11 @@
         </div>*@
     </form>
 
-    </div>
+</div>
 
 </div>
 
-            
+
 
 @section Scripts {
     <script>
@@ -62,6 +62,7 @@
             document.getElementById("account").submit();
         }
     </script>
-   
-                                        <partial name="_ValidationScriptsPartial" />
-                                        }
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

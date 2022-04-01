@@ -35,12 +35,11 @@
 }
 @await Component.InvokeAsync("HeaderMenu")
 
-
 @if (true)@*//CultureInfo.CurrentCulture.Name.StartsWith("ar") || )*@
 {
     <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
         <div class="flex justify-between" style="width: 140px;">
-            <a href=""><img src="~/images/Icons/Bug.svg"></a>
+            <a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>
             <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
             <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
             <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
@@ -49,17 +48,17 @@
             <img src="~/images/Icons/Eye.svg">
             <small style="margin-right: 15px;">@Model.Word.Viewed</small>
             <div id="full-stars-example">
-                <div class="rating-group">                      
+                <div class="rating-group">
                     <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating" id="rating-1" value="1" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=1&WordId=@Model.Word.Id')" @(rating==1?"checked":"")>
+                    <input class="rating__input" name="rating" id="rating-1" value="1" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=1&WordId=@Model.Word.Id')" @(rating == 1 ? "checked" : "")>
                     <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating" id="rating-2" value="2" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=2&WordId=@Model.Word.Id')" @(rating==2?"checked":"")>
+                    <input class="rating__input" name="rating" id="rating-2" value="2" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=2&WordId=@Model.Word.Id')" @(rating == 2 ? "checked" : "")>
                     <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=3&WordId=@Model.Word.Id')" @(rating==3?"checked":"")>
+                    <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=3&WordId=@Model.Word.Id')" @(rating == 3 ? "checked" : "")>
                     <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating" id="rating-4" value="4" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=4&WordId=@Model.Word.Id')" @(rating==4?"checked":"")>
+                    <input class="rating__input" name="rating" id="rating-4" value="4" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=4&WordId=@Model.Word.Id')" @(rating == 4 ? "checked" : "")>
                     <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating" id="rating-5" value="5" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=5&WordId=@Model.Word.Id')" @(rating==5?"checked":"")>
+                    <input class="rating__input" name="rating" id="rating-5" value="5" type="radio" onclick="httpGet('@Url.Action("SetRating", "Words")?Rating=5&WordId=@Model.Word.Id')" @(rating == 5 ? "checked" : "")>
                 </div>
             </div>
         </div>
@@ -71,7 +70,7 @@
                 <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
             </div>
             <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-                
+
                 <audio id="myAudio@(Model.Word.Id)">
                     <source src="~/@Model.Word.OtherVoice" type="audio/mpeg">
                 </audio>
@@ -88,8 +87,8 @@
                     }
                     @Model.Word.OtherWord
                 </p>
-                
-               
+
+
                 <audio id="myAudio@(Model.Word.Id)_o">
                     <source src="~/@Model.Word.ArabVoice" type="audio/mpeg">
                 </audio>
@@ -104,9 +103,9 @@
                     else
                     {
                         <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" />
-                             }
-                    </p>
-               
+                    }
+                </p>
+
             </div>
             <div class="justify-between flex flex-row px-5 bg-gray-100" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
                 <h3 style="font-weight: bold;">@SharedLocalizer["Sentence in Turkmen"]:</h3>
@@ -140,7 +139,18 @@
 
 
 @section Scripts{
+
     <script>
+        var r = '@ViewBag.Bag'
+
+        if (r === 'success') {
+            alert('@SharedLocalizer["Thank you for your report!!!"]');
+            document.getElementById("bag").click();
+        } else if (r === 'bagerror') {
+            alert('@SharedLocalizer["Some thing went wrong, you may forget click reCAPTCHA!!!"]');
+            document.getElementById("bagerror").click();
+        }
+
         function playAudio(id) {
             var x = document.getElementById(id);
             x.play();
@@ -154,12 +164,11 @@
             document.getElementById("success").click();
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", theUrl, true); // false for synchronous request
-            xmlHttp.send(null);            
+            xmlHttp.send(null);
             return null;
         }
     </script>
-   
-    @if (ress)
+     @if (ress)
     {
         <script>
             document.getElementById("success").click();

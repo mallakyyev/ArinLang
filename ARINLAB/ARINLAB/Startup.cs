@@ -1,4 +1,5 @@
 using ARINLAB.Extensions;
+using ARINLAB.Models;
 using ARINLAB.Services;
 using ARINLAB.Services.SessionService;
 using AutoMapper;
@@ -72,9 +73,10 @@ namespace ARINLAB
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            
-          
-
+            services.AddHttpClient<ReCaptcha>(x =>
+            {
+                x.BaseAddress = new Uri("https://www.google.com/recaptcha/api/siteverify");
+            });
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddControllersWithViews()

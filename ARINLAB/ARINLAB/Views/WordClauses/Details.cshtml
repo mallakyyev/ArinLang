@@ -40,7 +40,7 @@
 
     <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
         <div class="flex justify-between" style="width: 140px;">
-            <a href=""><img src="~/images/Icons/Bug.svg"></a>
+            <a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>
             <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
             <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
             <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
@@ -121,6 +121,15 @@
 @section Scripts{
    
     <script>
+        var r = '@ViewBag.Bag'
+
+        if (r === 'success') {
+            alert('@SharedLocalizer["Thank you for your report!!!"]');
+            document.getElementById("bag").click();
+        } else if (r === 'bagerror') {
+            alert('@SharedLocalizer["Some thing went wrong, you may forget click reCAPTCHA!!!"]');
+            document.getElementById("bagerror").click();
+        }
         function httpGet(theUrl) {
             document.getElementById("success").click();
             var xmlHttp = new XMLHttpRequest();

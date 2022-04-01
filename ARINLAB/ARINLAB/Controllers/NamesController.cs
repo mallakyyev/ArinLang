@@ -59,7 +59,7 @@ namespace ARINLAB.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> DetailsAsync(int id, bool ratingResult = false)
+        public async Task<IActionResult> DetailsAsync(int id, bool ratingResult = false, string bag="")
         {
             //var res = await _nameService.GetNameByIdAsync(id);
             var res = await _nameService.IncreaseViewed(id);
@@ -85,7 +85,10 @@ namespace ARINLAB.Controllers
             ViewBag.RatingResult = ratingResult;
             ViewBag.ExportImage = res.ImageForShare;
             ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
-
+            if (!string.IsNullOrEmpty(bag))
+            {
+                ViewBag.Bag = bag;
+            }
             return View(file);
         }
 

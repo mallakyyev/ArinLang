@@ -59,7 +59,7 @@ namespace ARINLAB.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details(int id, bool ratingResult = false)
+        public async Task<IActionResult> Details(int id, bool ratingResult = false, string bag = "")
         {
             try
             {                
@@ -77,7 +77,9 @@ namespace ARINLAB.Controllers
                     ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWord(id));
                     ViewBag.RatingResult = ratingResult;
                     ViewBag.ExportImage = res.ImageForShare;
-                   
+                    if (!string.IsNullOrEmpty(bag)) {
+                        ViewBag.Bag = bag;
+                     }
                     ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
                     return View(model);
                 }

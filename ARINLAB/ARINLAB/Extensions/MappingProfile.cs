@@ -90,6 +90,9 @@ namespace ARINLAB.Extensions
             CreateMap<NameImages, NameImagesDto>().ReverseMap();
             CreateMap<CreateNameImagesDto, NameImages>().ReverseMap();
 
+            CreateMap<Contact, CreateContactDto>().ReverseMap();
+            CreateMap<Bag, CreateBagDto>().ReverseMap();
+
         }
     }
 }

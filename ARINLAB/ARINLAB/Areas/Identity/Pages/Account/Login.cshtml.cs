@@ -22,17 +22,20 @@ namespace ARINLAB.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-       
+        private readonly ReCaptcha _captcha;
+
+
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager, ReCaptcha captcha)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            
+            _captcha = captcha;
         }
 
         [BindProperty]
@@ -57,11 +60,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
-
-            //[Required]
-            //[GoogleReCaptchaValidation]
-            [BindProperty(Name = "g-recaptcha-response")]
-            public string GoogleReCaptchaResponse { get; set; }
+           
 
         }
 
@@ -86,7 +85,19 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            
+
+            if (!Request.Form.ContainsKey("g-recaptcha-response"))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return Page();
+            }
+            var captcha = Request.Form["g-recaptcha-response"].ToString();
+            if (!await _captcha.IsValid(captcha))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return Page();
+            }
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             
             if (ModelState.IsValid)

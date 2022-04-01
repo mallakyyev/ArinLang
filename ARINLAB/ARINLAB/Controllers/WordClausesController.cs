@@ -47,7 +47,7 @@ namespace ARINLAB.Controllers
             return View(model);            
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string bag="")
         {
             //var clause = await _wordClauseService.GetWordClauseByIdAsync(id);
             var clause = await _wordClauseService.IncreaseViewed(id);
@@ -57,6 +57,10 @@ namespace ARINLAB.Controllers
             ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWordClause(id));
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
             ViewBag.Model = clause;
+            if (!string.IsNullOrEmpty(bag))
+            {
+                ViewBag.Bag = bag;
+            }
             ViewBag.ExportImage = _imageService.PhraseExport(clause.ArabClause, clause.OtherReader,
                                                             clause.OtherClause, clause.ArabReader);
             var voices = _wordClauseService.GetAudioFileForClausebyID(id, true);

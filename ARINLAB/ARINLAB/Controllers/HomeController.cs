@@ -8,6 +8,7 @@ using ARINLAB.Services.Statistic;
 using ARINLAB.Services.Subscribe;
 using DAL.Data;
 using DAL.Models;
+using DAL.Models.Dto;
 using DAL.Models.Dto.EmailsModelDTO;
 using DAL.Models.Dto.NewsModelDTO;
 using DAL.Models.Email;
@@ -36,12 +37,14 @@ namespace ARINLAB.Controllers
         private readonly ISubscribeService _subscriberService;
         private readonly ISettingsService _settings;
         private readonly IEmailService _emailService;
+        private readonly BagService _bagService;
         private readonly ApplicationDbContext _dbContext;
+        private readonly ReCaptcha _captcha;
         public HomeController(ILogger<HomeController> logger, IStatisticsService statisticsService, 
                               UserDictionary userDictionary, IDictionaryService dictionaryService,
                               IWordServices wordServices, INewsService newsService, IStringLocalizer<SharedResource> localizer,
                               ISettingsService settingsService, ISubscribeService subscribeService, IEmailService emailService,
-                              ApplicationDbContext applicationDb)
+                              ApplicationDbContext applicationDb, BagService bagService,  ReCaptcha captcha)
         {
             _logger = logger;
             _statService = statisticsService;
@@ -54,6 +57,8 @@ namespace ARINLAB.Controllers
             _subscriberService = subscribeService;
             _emailService = emailService;
             _dbContext = applicationDb;
+            _bagService = bagService;
+            _captcha = captcha;
         }
 
         public IActionResult Index()
@@ -170,7 +175,35 @@ namespace ARINLAB.Controllers
            );
             return LocalRedirect($"{returnUrl}{value}");            
         }
-        
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateBagsAsync(string email, string problem, string link)
+        {
+            if (!Request.Form.ContainsKey("g-recaptcha-response"))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return LocalRedirect(link + "&bag=bagerror");
+            }
+            var captcha = Request.Form["g-recaptcha-response"].ToString();
+            if (!await _captcha.IsValid(captcha))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return LocalRedirect(link + "&bag=bagerror");
+            }
+
+            CreateBagDto bag = new CreateBagDto()
+            {
+                Email = email,
+                Problem = problem,
+                Link = link
+            };
+            _bagService.CreateBag(bag);
+            int last = link.IndexOf('&');
+            if(last == -1)
+                return LocalRedirect(link + "&bag=success");
+            link = link.Substring(0, last );
+            return LocalRedirect(link + "&bag=success");
+        }
     }
 }

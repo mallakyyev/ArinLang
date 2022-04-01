@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using ARINLAB.Models;
 using ARINLAB.Services.Email;
 using DAL.Data;
 using DAL.Enums;
@@ -33,12 +34,13 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _dbContext;
         private readonly IEmailService _emailService;
-
+        private readonly ReCaptcha _captcha;
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender, ApplicationDbContext dbContext, IEmailService emailService)
+            IEmailSender emailSender, ApplicationDbContext dbContext, IEmailService emailService,
+            ReCaptcha captcha)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -46,6 +48,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _dbContext = dbContext;
             _emailService = emailService;
+            _captcha = captcha;
         }
 
         [BindProperty]
@@ -124,6 +127,19 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
+
+            if (!Request.Form.ContainsKey("g-recaptcha-response"))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return Page();
+            }
+            var captcha = Request.Form["g-recaptcha-response"].ToString();
+            if (!await _captcha.IsValid(captcha))
+            {
+                ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
+                return Page();
+            }
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {

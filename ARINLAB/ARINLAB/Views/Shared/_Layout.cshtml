@@ -190,7 +190,7 @@
         <div class="nav_items">
             <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["HOME"] </a>
             <a asp-area="" asp-controller="News" asp-action="Index1">@SharedLocalizer["NEWS"] </a>
-            <a asp-area="" asp-controller="AboutUs" asp-action="About">@SharedLocalizer["CONTACT"] </a>
+            <a asp-area="" asp-controller="Contact" asp-action="Us">@SharedLocalizer["CONTACT"] </a>
             <a asp-area="" asp-controller="AboutUs" asp-action="About">@SharedLocalizer["ABOUT"] </a>
         </div>
         <div class="select_lang">@await Html.PartialAsync("_SelectLanguagePartial")</div>
@@ -300,7 +300,6 @@
                 <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
                     <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
                 </div>
-
                 <div class="sm:w-8/12 sm:px-0 px-4 mx-auto w-full">
                     <form asp-area="" asp-controller="Home" asp-action="SetDictionary" method="get">
                         <div class="sm:search-box grid gap-y-8 relative sm:overflow-hidden sm:rounded" style="width:100%">
@@ -398,13 +397,134 @@
                 </div>
             </div>
             <!--/////////////////////////////////// End of Modal for Settings /////////////////////////////////////////////////////////-->
+            <!--/////////////////////////////////// Modal for Bag Report /////////////////////////////////////////////////////////-->
+            <style>
+                #logo {
+                    width: 390px;
+                    height: auto;
+                    margin: 40px 30px;
+                }
 
+                #input1, #textarea1 {
+                    border: none;
+                    width: 100%;
+                }
+
+                    #input1:focus, #textarea1:focus, select:focus {
+                        outline: none;
+                    }
+
+                #fieldset1 {
+                    width: 420px;
+                    border: 1px solid silver;
+                    border-radius: 8px;
+                    margin-bottom: 10px;
+                }
+
+                #legend1 {
+                    color: silver;
+                }
+
+                #wrapper {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                #btn_wrapper {
+                    display: flex;
+                    margin-top: 20px;
+                }
+
+                    #btn_wrapper button {
+                        width: 150px;
+                        height: 40px;
+                        padding: 10px;
+                        border-radius: 10px;
+                        text-align: center;
+                    }
+
+                #btn1 {
+                    margin: 0 50px;
+                    border: 1px solid silver;
+                    background-color: white;
+                }
+
+                #btn2 {
+                    background-color: #282848;
+                    color: white;
+                    border: 1px solid #282848;
+                }
+
+                .container1 {
+                    padding: 10px;
+                    width: 450px;
+                    height: auto;
+                    margin: auto;
+                }
+
+                #top {
+                    background-color: #282848;
+                    height: 40px;
+                    display: flex;
+                    flex-direction: row;
+                    color: white;
+                }
+
+                #h3 {
+                    margin: 9px 0 4px 175px;
+                }
+
+                #icon {
+                    margin-left: 150px;
+                    width: 25px;
+                    height: auto;
+                }
+
+                ::placeholder {
+                    color: silver;
+                }
+            </style>
+            <div class="container absolute bg-white" id="Bags" style="z-index: 100; display: none; margin-top: 10px; top: 8%; left:35%;  width: 490px; height: 800px; border-radius: 15px; border: 1px solid silver;">
+                <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
+                    <span style="font-size: 20px; font-weight: bold;">@SharedLocalizer["Bar Report"]</span>
+                    <span onclick="OpenBag()" style="cursor:pointer; margin-left:55%;font-size:23px">X</span>
+                </div>
+                <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
+                    <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
+                </div>
+                <form method="post" asp-controller="Home" asp-action="CreateBags">
+                    <div id="content" style="margin-left: 6%;">
+                        <div id="wrapper">
+                            <fieldset id="fieldset1">
+                                <legend id="legend1">@SharedLocalizer["Email"]</legend>
+                                <input type="email" id="input1" name="email" required>
+                            </fieldset>
+                            <fieldset id="fieldset1">
+                                <legend id="legend1">@SharedLocalizer["Describe the problem"]</legend>
+                                <textarea id="textarea1" name="problem" cols="30" rows="10" required></textarea>
+                            </fieldset>
+                            <fieldset id="fieldset1">
+                                <legend id="legend1">@SharedLocalizer["Link"]</legend>
+                                <input id="input1" name="l" value="@Context.Request.Host@Context.Request.Path@Context.Request.QueryString" disabled>
+                                <input type="hidden" name="link" value="@Context.Request.Path@Context.Request.QueryString" />
+                            </fieldset>
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LdODTcfAAAAAJH_g_eZMNUWRiDwnoK3_vINS1gA"></div>
+                        <div id="btn_wrapper">
+                            <button id="btn1" onclick="OpenBag()" style="cursor:pointer">@SharedLocalizer["Cancel"]</button>
+                            <button id="btn2" type="submit" style="cursor:pointer">@SharedLocalizer["Send"]</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
+
     <button id="success" hidden></button>
     <button id="success1" hidden></button>
     <button id="exists" hidden></button>
+    <button id="bag" hidden></button>
+    <button id="bagerror" hidden></button>
 
     <main class="app-wrapper" style="margin-bottom: 0;" dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"ltr")">
         @RenderBody()
@@ -489,6 +609,15 @@
             }
         }
 
+        function OpenBag() {
+            var x = document.getElementById("Bags");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
         function OpenSearch() {
             var x = document.getElementById("Search");
             if (x.style.display === "none") {
@@ -506,6 +635,7 @@
                 x.style.display = "none";
             }
         }
+
         document.addEventListener("DOMContentLoaded", () => {
             const Notify = new XNotify();
             let success = document.getElementById("success");
@@ -531,30 +661,53 @@
            });
 
          document.addEventListener("DOMContentLoaded", () => {
-                    const Notify1 = new XNotify();
+                    const Notify2 = new XNotify();
              let success = document.getElementById("exists");
                     success.addEventListener("click", () => {
-                        Notify1.success({
+                        Notify2.success({
                             title: "@SharedLocalizer["Information!"]",
                             description: "@SharedLocalizer["Email already subscribed"]",
                             duration: 3000
                         });
                     });
-                });
+         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+                    const Notify3 = new XNotify();
+             let success = document.getElementById("bag");
+                    success.addEventListener("click", () => {
+                        Notify3.success({
+                            title: "@SharedLocalizer["Information!"]",
+                            description: "@SharedLocalizer["Thank you for your report"]",
+                            duration: 3000
+                        });
+                    });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+                    const Notify4 = new XNotify();
+             let success = document.getElementById("bagerror");
+                    success.addEventListener("click", () => {
+                        Notify4.success({
+                            title: "@SharedLocalizer["Error!!"]",
+                            description: "@SharedLocalizer["Error Submitting the report, Please make sure to check reCAPTCHA"]",
+                            duration: 3000
+                        });
+                    });
+        });
+
 
         function Copy() {
-
             navigator.clipboard.writeText("https://arinlang.com");
-
             /* Alert the copied text */
             alert("Copied the text: https://arinlang.com");
         }
          function CopyLink() {
 
-            navigator.clipboard.writeText(" @Context.Request.Host@Context.Request.Path");
+            navigator.clipboard.writeText("@Context.Request.Host@Context.Request.Path@Context.Request.QueryString");
 
             /* Alert the copied text */
-            alert("Link copied:  @Context.Request.Host@Context.Request.Path");
+            alert("Link copied:  @Context.Request.Host@Context.Request.Path@Context.Request.QueryString");
         }
     </script>
     <script>
@@ -574,6 +727,9 @@
             }
         });
     </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <partial name="_ValidationScriptsPartial" />
     @RenderSection("Scripts", required: false)
 
 </body>

@@ -275,39 +275,8 @@
 </div>
 <!-- ******************** STATISTICS SECTION  ********************-->
 <!-- ******************** MAILING SECTION  ********************-->
-@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-{
-    <div dir="rtl" class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
-        <div class="xl:container sm:px-4 lg:p-24" style="max-width: 1000px;">
-            <div class="bg-white shadow-md md:p-16 px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; width: 830px; padding-left: 38px;">
-                <h2 class="font-bold text-2xl md:text-3xl text-center text-primary font-roboto" style="margin-left: 18px;">
-                    @SharedLocalizer["Subscribe to the newsletter and events"]
-                </h2>
-                <form asp-area="" asp-controller="Home" asp-action="Subscribe">
-                    <div class="relative px-4 mt-10 sm:bg-gray-100 rounded-sm overflow-hidden grid sm:block gap-y-2">
-                        <input type="email" style="margin-right: 20%;"
-                               name="email"
-                               placeholder="@SharedLocalizer["Enter your email address"]"
-                               class="sm:w-9/10 bg-transparent p-4 outline-none rounded sm:rounded-none" style="border-radius: 9px; border: 2px solid black" required />
-                        <button type="submit"
-                                class="uppercase rounded sm:rounded-none w-full sm:w-auto h-full text-white" style="width: 140px; height: 50px; cursor: pointer; border-radius: 8px; background-color: #282848; padding: 10px; margin-right: 190px;">
-                            <span>@SharedLocalizer["Subscribe"]</span>
-                        </button>
-                    </div>
 
-                </form>
-                <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
-                    Your email address will be used to send you Newsletters, events and emails about Arinlang. <br>
-                    You can unsubscribe at any time by clicking on the unsubscribe link en each email.
-                </p>
-                <hr />
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <div class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
+    <div dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"ltr")" class="bg-gray-100 lg:py-0 sm:py-4" style="border-top: 2px solid #282848;">
         <div id="subscribe" class="xl:container sm:px-4  lg:p-24" style="max-width: 1000px;">
             <div class="bg-white px-4 py-10 rounded w-auto" style="margin: auto; border: 2px solid silver; border-radius: 9px; padding-left: 38px;">
                 <h2 class="font-bold text-2xl md:text-2xl text-left text-primary font-roboto" style="margin-left: 18px;">
@@ -336,8 +305,6 @@ else
             </div>
         </div>
     </div>
-
-}
 <!-- ******************** MAILING SECTION  ********************-->
 @section Scripts{
 
@@ -830,21 +797,40 @@ else
         });
     </script>
     <script>
-
+        function checkEmail(emailAddress) {
+            var sQtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+            var sDtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+            var sAtom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+            var sQuotedPair = '\\x5c[\\x00-\\x7f]';
+            var sDomainLiteral = '\\x5b(' + sDtext + '|' + sQuotedPair + ')*\\x5d';
+            var sQuotedString = '\\x22(' + sQtext + '|' + sQuotedPair + ')*\\x22';
+            var sDomain_ref = sAtom;
+            var sSubDomain = '(' + sDomain_ref + '|' + sDomainLiteral + ')';
+            var sWord = '(' + sAtom + '|' + sQuotedString + ')';
+            var sDomain = sSubDomain + '(\\x2e' + sSubDomain + ')*';
+            var sLocalPart = sWord + '(\\x2e' + sWord + ')*';
+            var sAddrSpec = sLocalPart + '\\x40' + sDomain; // complete RFC822 email address spec
+            var sValidEmail = '^' + sAddrSpec + '$'; // as whole string
+            var reValidEmail = new RegExp(sValidEmail);
+            return reValidEmail.test(emailAddress);
+        }
         function httpGet(theUrl) {
-           
             var xmlHttp = new XMLHttpRequest();
             var email = document.getElementById("email");
-            xmlHttp.open("GET", '@Url.Action("Subscribe", "Home")' + '?email=' + email.value, false); // false for synchronous request
-            xmlHttp.send(null);            
-            if (xmlHttp.responseText.length > 0) {
-                document.getElementById("success1").click();
+            if (checkEmail(email.value)) {
+                xmlHttp.open("GET", '@Url.Action("Subscribe", "Home")' + '?email=' + email.value, false); // false for synchronous request
+                xmlHttp.send(null);
+                if (xmlHttp.responseText.length > 0) {
+                    document.getElementById("success1").click();
+                } else {
+                    document.getElementById("exists").click();
+                }
+                email.innerText = "";
+                email.value = "";
+                return null;
             } else {
                 document.getElementById("exists").click();
             }
-            email.innerText = "";
-            email.value = "";
-            return null;
         }
     </script>
 

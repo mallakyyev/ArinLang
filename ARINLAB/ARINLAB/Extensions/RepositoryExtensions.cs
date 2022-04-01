@@ -57,6 +57,8 @@ namespace ARINLAB.Extensions
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<AboutService>();
             services.AddScoped<CountryService>();
+            services.AddTransient<ContactService>();
+            services.AddTransient<BagService>();
             //Add Scoped Services
 
 

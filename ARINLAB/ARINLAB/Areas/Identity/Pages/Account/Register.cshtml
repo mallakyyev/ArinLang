@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @using ARINLAB
-@using DAL.Models 
+@using DAL.Models
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
@@ -70,14 +70,24 @@
         <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
             @SharedLocalizer["Registration Form"]
         </div>
+        @foreach (var item in ViewContext.ViewData.ModelState)
+        {
+            if (item.Value.Errors.Any())
+            {
+                <span class="text-danger" style="color:red">@(item.Value.Errors.Last().ErrorMessage)</span>
+            }
+        }
         <span class="max-w-xs block text-center text-sm mt-2 text-gray-400"> </span>
         <style>
 
             .reg {
                 width: 100%;
             }
+
             @@media only screen and (min-width: 768px) {
-                .reg { width:65%;}
+                .reg {
+                    width: 65%;
+                }
             }
         </style>
         @if (Model.emailInUse)
@@ -85,53 +95,53 @@
             <span class="text-danger" style="color:red">@SharedLocalizer["Email already in use"]</span>
         }
 
-    <form class="input-forms flex flex-col py-2" id="account" method="post">
+        <form class="input-forms flex flex-col py-2" id="account" method="post">
 
-        <input asp-for="Input.Name" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Name"]" />
-        <span asp-validation-for="Input.Name" class="text-danger" style="color:red"></span>
+            <input asp-for="Input.Name" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Name"]" />
+            <span asp-validation-for="Input.Name" class="text-danger" style="color:red"></span>
 
-        <input asp-for="Input.FamilyName" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["FamilyName"]" />
-        <span asp-validation-for="Input.FamilyName" class="text-danger" style="color:red"></span>
+            <input asp-for="Input.FamilyName" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["FamilyName"]" />
+            <span asp-validation-for="Input.FamilyName" class="text-danger" style="color:red"></span>
 
-        <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Email"]" />
-        <span asp-validation-for="Input.Email" class="text-danger" style="color:red"></span>
-        
-        <select asp-for="Input.CountryId" asp-items="@Model.l" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded">
-            <option>@SharedLocalizer["Select Country"]</option>
-        </select>        
-        <span asp-validation-for="Input.CountryId" class="text-danger" style="color:red"></span>
-        
-        <input asp-for="Input.PhoneNumber" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Phone Number"]" />
-        <span asp-validation-for="Input.PhoneNumber" class="text-danger" style="color:red"></span>
+            <input asp-for="Input.Email" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Email"]" />
+            <span asp-validation-for="Input.Email" class="text-danger" style="color:red"></span>
 
+            <select asp-for="Input.CountryId" asp-items="@Model.l" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded">
+                <option>@SharedLocalizer["Select Country"]</option>
+            </select>
+            <span asp-validation-for="Input.CountryId" class="text-danger" style="color:red"></span>
 
-
-        <select asp-for="Input.Gender" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Gender"]">
-            <option value="1" selected="selected">@SharedLocalizer["Male"]</option>
-            <option value="2">@SharedLocalizer["Female"]</option>
-        </select>
-        <span asp-validation-for="Input.Gender" class="text-danger" style="color:red"></span>
+            <input asp-for="Input.PhoneNumber" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Phone Number"]" />
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger" style="color:red"></span>
 
 
-        <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
-        <span asp-validation-for="Input.Password" class="text-danger" style="color:red"></span>
+
+            <select asp-for="Input.Gender" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Gender"]">
+                <option value="1" selected="selected">@SharedLocalizer["Male"]</option>
+                <option value="2">@SharedLocalizer["Female"]</option>
+            </select>
+            <span asp-validation-for="Input.Gender" class="text-danger" style="color:red"></span>
 
 
-        <input asp-for="Input.ConfirmPassword" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder=@SharedLocalizer["Password Confirm"] />
-        <span asp-validation-for="Input.ConfirmPassword" class="text-danger" style="color:red"></span>
+            <input asp-for="Input.Password" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Password"]" />
+            <span asp-validation-for="Input.Password" class="text-danger" style="color:red"></span>
 
-        <input asp-for="Input.Occupation" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Occupation"]" />
 
-        <input asp-for="Input.MoreInfor" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["More Information"]" />
+            <input asp-for="Input.ConfirmPassword" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder=@SharedLocalizer["Password Confirm"] />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger" style="color:red"></span>
 
-        @*<br />
-        <label asp-for="Input.RememberMe">
-            <input asp-for="Input.RememberMe" />
-            @Html.DisplayNameFor(m => m.Input.RememberMe)
-        </label>*@
+            <input asp-for="Input.Occupation" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Occupation"]" />
 
-        <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Register"]</button>
-    </form>
+            <input asp-for="Input.MoreInfor" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["More Information"]" />
+
+            @*<br />
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>*@
+            <div class="g-recaptcha" data-sitekey="6LdODTcfAAAAAJH_g_eZMNUWRiDwnoK3_vINS1gA"></div>
+            <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Register"]</button>
+        </form>
 
         @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
             <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
@@ -144,6 +154,8 @@
 </div>
 
 @section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <partial name="_ValidationScriptsPartial" />
 
 }
