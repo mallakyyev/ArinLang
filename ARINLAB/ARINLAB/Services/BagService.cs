@@ -24,7 +24,7 @@ namespace ARINLAB.Services
             try
             {                 
                 _dbContext.Bags.Add(_mapper.Map<Bag>(bag));
-                _dbContext.SaveChangesAsync();
+                _dbContext.SaveChanges();
                 return true;
             }catch(Exception e)
             {

@@ -394,7 +394,10 @@ namespace ARINLAB.Services
         public async Task<WordDto> IncreaseViewed(int wordId)
         {
             var word = await _dbContext.Words.FindAsync(wordId);
-            if(word!= null)
+            int dictId = _userDict.GetDictionaryId();
+            if(word.DictionaryId != dictId)
+                return null;
+            if (word!= null)
             {
                 if (word.Viewed == null)
                     word.Viewed = 0;

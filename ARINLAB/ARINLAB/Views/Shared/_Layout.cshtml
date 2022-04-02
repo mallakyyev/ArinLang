@@ -188,10 +188,12 @@
 
     <div class="topnav" id="myTopnav" dir="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"rtl":"ltr")">
         <div class="nav_items">
-            <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["HOME"] </a>
-            <a asp-area="" asp-controller="News" asp-action="Index1">@SharedLocalizer["NEWS"] </a>
-            <a asp-area="" asp-controller="Contact" asp-action="Us">@SharedLocalizer["CONTACT"] </a>
-            <a asp-area="" asp-controller="AboutUs" asp-action="About">@SharedLocalizer["ABOUT"] </a>
+           
+                <a asp-area="" asp-controller="AboutUs" asp-action="About">@SharedLocalizer["About"] </a>
+                <a asp-area="" asp-controller="Contact" asp-action="Us">@SharedLocalizer["Contact"] </a>
+                <a asp-area="" asp-controller="News" asp-action="Index1">@SharedLocalizer["News"] </a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["Home"] </a>
+          
         </div>
         <div class="select_lang">@await Html.PartialAsync("_SelectLanguagePartial")</div>
         <div class="nav_icons">
@@ -274,7 +276,7 @@
             <div class="popup1">
                 <div class="container absolute bg-white" id="Myid" style="z-index: 100; display: none; margin-top: 10px; top: 8%; @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "left: 9%;" : "right: 9%;")  width: 490px; height: 480px; border-radius: 15px; border: 1px solid silver;">
                     <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
-                        <h2 style="font-size: 20px; font-weight: bold;">Share</h2>
+                        <h2 style="font-size: 20px; font-weight: bold;">@SharedLocalizer["Share"]</h2>
                     </div>
                     <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
                         <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
@@ -294,8 +296,8 @@
             <!--///////////////////////////////////  Modal for Dictionary/////////////////////////////////////////////////////////-->
             <div class="container absolute bg-white" id="Dictionary" style="z-index: 100; display: none; margin-top: 10px; top: 8%; left:35%;  width: 490px; height: 350px; border-radius: 15px; border: 1px solid silver;">
                 <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
-                    <span style="font-size: 20px; font-weight: bold;">Share</span>
-                    <span onclick="OpenDict()" style="margin-left:85%; cursor:pointer;">X</span>
+                    <span style="font-size: 20px; font-weight: bold;">@SharedLocalizer["Dictionary"]</span>
+                    <span onclick="OpenDict()" style="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"margin-right:70%; ":"margin-left:70%;") cursor:pointer" >X</span>
                 </div>
                 <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
                     <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
@@ -325,7 +327,7 @@
             <div class="container absolute bg-white" id="Search" style="z-index: 100; display: none; margin-top: 10px; top: 8%; left:35%;  width: 490px; height: 350px; border-radius: 15px; border: 1px solid silver;">
                 <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
                     <span style="font-size: 20px; font-weight: bold;">@SharedLocalizer["Search"]</span>
-                    <span onclick="OpenSearch()" style="margin-left:75%; cursor:pointer;">X</span>
+                    <span onclick="OpenSearch()" style="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"margin-right:70%; ":"margin-left:70%;") cursor:pointer">X</span>
                 </div>
                 <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
                     <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
@@ -334,7 +336,7 @@
                 <div class="sm:w-8/12 sm:px-0 px-4 mx-auto w-full">
                     <form asp-area="" asp-controller="Search" asp-action="Search" method="get">
                         <div class="sm:search-box grid gap-y-8 relative sm:overflow-hidden sm:rounded">
-                            <input name="term" type="text" style="margin-right:10%; background-color:aliceblue"
+                            <input name="term" type="text" style="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"margin-right:30%; ":"margin-right:10%;") background-color:aliceblue"
                                    class="h-12 w-full sm:w-10/12 outline-none px-4 sm:border-none border border-gray-200 rounded sm:rounded-none"
                                    id="search-input" required />
                             <div class="sm:absolute right-0 top-0 h-12 z-10 flex items-center sm:w-2/12 box-border">
@@ -350,7 +352,7 @@
             <div class="container absolute bg-white" id="Settings" style="z-index: 100; display: none; margin-top: 10px; top: 8%; left:35%;  width: 490px; height: 530px; border-radius: 15px; border: 1px solid silver;">
                 <div style="background-color: #282848; padding: 20px; color: white; border-radius: 15px;">
                     <span style="font-size: 20px; font-weight: bold;">@SharedLocalizer["Site preferences"]</span>
-                    <span onclick="OpenSettings()" style="cursor:pointer; margin-left:55%;font-size:23px">X</span>
+                    <span onclick="OpenSettings()" style="cursor:pointer; @(CultureInfo.CurrentCulture.Name.StartsWith("ar")?"margin-right:55%; ":"margin-left:55%;")font-size:23px">X</span>
                 </div>
                 <div class="justify-center align-center" style="width: 350px; height: auto; margin: auto; padding-top: 15px;">
                     <img src="~/images/Logo/61097513bc084caf8d47cc6492401d95.png">
@@ -447,6 +449,13 @@
                     margin: 0 50px;
                     border: 1px solid silver;
                     background-color: white;
+                    width: 150px;
+                    height: 40px;
+                    padding: 7px;
+                    border-radius: 10px;
+                    text-align: center;
+                    
+                    color:black;
                 }
 
                 #btn2 {
@@ -511,7 +520,7 @@
                         </div>
                         <div class="g-recaptcha" data-sitekey="6LdODTcfAAAAAJH_g_eZMNUWRiDwnoK3_vINS1gA"></div>
                         <div id="btn_wrapper">
-                            <button id="btn1" onclick="OpenBag()" style="cursor:pointer">@SharedLocalizer["Cancel"]</button>
+                            <a id="btn1" onclick="OpenBag()" style="cursor:pointer">@SharedLocalizer["Cancel"]</a>
                             <button id="btn2" type="submit" style="cursor:pointer">@SharedLocalizer["Send"]</button>
                         </div>
                     </div>
@@ -602,6 +611,12 @@
 
         function OpenDict() {
             var x = document.getElementById("Dictionary");
+            var bagg = document.getElementById("Bags");
+             bagg.style.display = "none";
+            var ser = document.getElementById("Search");
+            ser.style.display = "none";
+            var sett = document.getElementById("Settings");
+            sett.style.display = "none";
             if (x.style.display === "none") {
                 x.style.display = "block";
             } else {
@@ -610,6 +625,14 @@
         }
 
         function OpenBag() {
+           
+            var dict = document.getElementById("Dictionary");            
+            dict.style.display = "none";
+            var ser = document.getElementById("Search");
+            ser.style.display = "none";
+            var sett = document.getElementById("Settings");
+            sett.style.display = "none";
+
             var x = document.getElementById("Bags");
             if (x.style.display === "none") {
                 x.style.display = "block";
@@ -619,6 +642,13 @@
         }
 
         function OpenSearch() {
+            var dict = document.getElementById("Dictionary");
+            dict.style.display = "none";
+            var ser = document.getElementById("Bags");
+            ser.style.display = "none";
+            var sett = document.getElementById("Settings");
+            sett.style.display = "none";
+
             var x = document.getElementById("Search");
             if (x.style.display === "none") {
                 x.style.display = "block";
@@ -628,6 +658,14 @@
         }
 
         function OpenSettings() {
+
+            var dict = document.getElementById("Dictionary");
+            dict.style.display = "none";
+            var ser = document.getElementById("Bags");
+            ser.style.display = "none";
+            var sett = document.getElementById("Search");
+            sett.style.display = "none"
+
             var x = document.getElementById("Settings");
             if (x.style.display === "none") {
                 x.style.display = "block";

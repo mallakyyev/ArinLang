@@ -60,11 +60,11 @@
                     pageSize: 100
                 },
                 editing: {
-                    
+
                     useIcons: true,
                     allowUpdating: true,
                     allowDeleting: false,
-                    
+
                 },
                 onEditorPreparing: function (e) {
                     if (e.dataField === "name" && e.parentType === "dataRow") {
@@ -94,15 +94,21 @@
                         caption: '@SharedLocalizer["Name"]',
                         dataField: "name",
                         allowHeaderFiltering: false,
-                       
                     },
-
-
                     {
                         caption: '@SharedLocalizer["Value"]',
                         dataField: "value",
                         allowHeaderFiltering: false,
-
+                    },
+                    {
+                        caption: '@SharedLocalizer["Value in Turkmen"]',
+                        dataField: "value_tm",
+                        allowHeaderFiltering: false,
+                    },
+                    {
+                        caption: '@SharedLocalizer["Value in Arabic"]',
+                        dataField: "value_ar",
+                        allowHeaderFiltering: false,
                     },
                 ]
 

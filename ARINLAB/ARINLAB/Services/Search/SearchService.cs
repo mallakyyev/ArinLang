@@ -3,8 +3,10 @@ using AutoMapper;
 using DAL.Data;
 using DAL.Models.Dto;
 using DAL.Models.Dto.NamesDTO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,11 +26,21 @@ namespace ARINLAB.Services.Search
         {
             try
             {
-                return _mapper.Map<List<WordClauseDto>>(_dbContext.WordClauses.Where(p => p.IsApproved == true && p.DictionaryId == dictId
+                List<WordClauseDto> result = new List<WordClauseDto>();
+                string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;                
+                var res = (_dbContext.WordClauses.Where(p => p.IsApproved == true && p.DictionaryId == dictId
                                                                 && (p.ArabClause.ToLower().Contains(term.ToLower())
                                                                 || p.ArabReader.ToLower().Contains(term.ToLower())
                                                                 || p.OtherClause.ToLower().Contains(term.ToLower())
                                                                 || p.OtherReader.ToLower().Contains(term.ToLower()))));
+                
+                foreach (var item in res) {
+                    var catName = _dbContext.WordClauseCategories.Include(p => p.WordClauseCategoryTranslates).FirstOrDefault(p => p.Id == item.CategoryId);
+                    var dto = _mapper.Map<WordClauseDto>(item);
+                    dto.CategoryName = catName == null ? "" : catName.WordClauseCategoryTranslates.FirstOrDefault(p => p.LanguageCulture == culture)?.CategoryName;
+                    result.Add(dto);
+                }
+                return result;
             } catch (Exception e)
             {
                 return new List<WordClauseDto>();

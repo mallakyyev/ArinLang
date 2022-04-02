@@ -18,13 +18,9 @@
     <WebStackScaffolding_EnablerDialogWidth>650.4</WebStackScaffolding_EnablerDialogWidth>
     <ActiveDebugProfile>ARINLAB</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>D:\Work\ARINLAB\ARINLAB\ARINLAB\Properties\PublishProfiles\Default Settings.pubxml</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\SharedResource.ar.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>

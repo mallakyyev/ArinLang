@@ -441,6 +441,9 @@ namespace ARINLAB.Services
         public async Task<EditWordClauseDto> IncreaseViewed(int wordClauseId)
         {
             var word = await _dbContext.WordClauses.FindAsync(wordClauseId);
+            int dictId = _userDicts.GetDictionaryId();
+            if (word.DictionaryId != dictId)
+                return null;
             if (word != null)
             {
                 if (word.Viewed == null)

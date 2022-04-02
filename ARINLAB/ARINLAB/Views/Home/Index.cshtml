@@ -297,10 +297,11 @@
                     </button>
                 </div>
                 @*</form>*@
-                <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
-                    Your email address will be used to send you Newsletters, events and emails about Arinlang. <br>
-                    You can unsubscribe at any time by clicking on the unsubscribe link en each email.
-                </p>
+            <p style="margin-top: 20px; padding-left: 19px; font-size: 13px;">
+                @SharedLocalizer["Subscription1"]. <br>
+                @SharedLocalizer["Subscription2"].
+                
+            </p>
                 <hr />
             </div>
         </div>
@@ -405,7 +406,7 @@
                         width:200,
                     },
                     {
-                        caption: '@SharedLocalizer["Arabic Word in Turkmen"]',
+                        caption: '@SharedLocalizer["Arabic Word in"] @Html.Raw(_userDict.GetDictionaryName())',
                         dataField: "otherWord",
                         width: 300,
                         allowHeaderFiltering: false,
@@ -571,8 +572,8 @@
                         caption: ' ',
                         width: 110,
                     },
-                     {
-                        caption: '@SharedLocalizer["Sentence in Turmen"]',
+                    {
+                        caption: '@SharedLocalizer["Sentence in"] @Html.Raw(_userDict.GetDictionaryName())',
                          dataField: "otherClause",
                          allowHeaderFiltering: false,
                          alignment: "center"
@@ -710,7 +711,7 @@
                 allowColumnReordering: false,
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Arab Name"]',
+                        caption: '@SharedLocalizer["Names in Arabic"]',
                         dataField: "arabName",
                         allowHeaderFiltering: true,
                         alignment: "center",
@@ -742,7 +743,7 @@
                         width : 110,
                     },
                     {
-                        caption: '@SharedLocalizer["Türkmen Name"]',
+                        caption: '@Html.Raw(_userDict.GetDictionaryName()) @SharedLocalizer["Names"]',
                         dataField: "otherName",
                         allowHeaderFiltering: true,
                         alignment: "center",

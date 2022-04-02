@@ -4,7 +4,7 @@
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
 @using System.Globalization
   
-@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+@if(CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
     <footer dir="rtl" class="bg-gray-100 flex flex-col" style="border-top: 2px solid #282848;">
         <div class="xl:container xl:px-0 px-4 py-8">
@@ -16,7 +16,7 @@
                 {
                     <div class="sm:flex flex-col grid">
                         <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
-                        <span class="font-semibold font-roboto"> @setting.Value </span>
+                        <span class="font-semibold font-roboto"> @setting.Value_ar </span>
                     </div>
                 }
                 <div class="sm:flex flex-col grid" style="width:15%">
@@ -51,10 +51,19 @@ else
                 </div>
                 @foreach (var setting in Model)
                 {
-                    <div class="sm:flex flex-col grid">
-                        <span class="text-gray-400 select-none font-roboto"> @SharedLocalizer[setting.Name] </span>
-                        <span class="font-semibold font-roboto"> @setting.Value </span>
-                    </div>
+            <div class="sm:flex flex-col grid">
+                <span class="text-gray-400 select-none font-roboto">
+                    @SharedLocalizer[setting.Name]
+                </span>
+                @if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
+                {
+                    <span class="font-semibold font-roboto"> @setting.Value </span>
+                }
+                else
+                {
+                    <span class="font-semibold font-roboto"> @setting.Value_tm </span>
+                }
+            </div>
                 }
                 <div class="sm:flex flex-col grid" style="width:15%">
                     <img src="~/images/Char_2.png" style="width:100%" />

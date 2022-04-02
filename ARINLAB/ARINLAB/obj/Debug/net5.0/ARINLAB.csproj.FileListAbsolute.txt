@@ -434,9 +434,6 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0
 D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\DAL.dll
 D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\DAL.pdb
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.csproj.AssemblyReference.cache
-D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.ar.resources
-D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.en.resources
-D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.tk.resources
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.csproj.GenerateResource.cache
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.GeneratedMSBuildEditorConfig.editorconfig
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.AssemblyInfoInputs.cache
@@ -1274,3 +1271,12 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Subscri
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Views\Contact\Us.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Contact\Index.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Bag\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources___Copy.SharedResource.ar.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources___Copy.SharedResource.en.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources___Copy.SharedResource.tk.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Resources\SharedResource.ar.resx
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Resources\SharedResource.en.resx
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Resources\SharedResource.tk.resx
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.ar.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.en.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.tk.resources

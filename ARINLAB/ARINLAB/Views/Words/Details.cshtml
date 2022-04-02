@@ -8,6 +8,8 @@
 @inject IViewLocalizer localizer
 @using System.Globalization
 @using ARINLAB.Models
+@inject ARINLAB.Services.SessionService.UserDictionary _userDict;
+
 @model WordSentencesViewModel
 @{
     int rating = (int)ViewBag.Rating;
@@ -66,7 +68,7 @@
     <div id="words_det" class="container" style="width: 700px; padding-top: 20px; padding-bottom: 30px; margin-top: 20px; margin-bottom: 50px; border: 1px solid silver; border-radius: 13px; font-size: 18px;">
         <div class="wrapper">
             <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-                <h3 style="font-weight: bold;">@SharedLocalizer["Word in Turkmen"]:</h3>
+                <h3 style="font-weight: bold;">@SharedLocalizer["Word in"] @Html.Raw(_userDict.GetDictionaryName()):</h3>
                 <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
             </div>
             <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
@@ -108,7 +110,7 @@
 
             </div>
             <div class="justify-between flex flex-row px-5 bg-gray-100" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-                <h3 style="font-weight: bold;">@SharedLocalizer["Sentence in Turkmen"]:</h3>
+                <h3 style="font-weight: bold;">@SharedLocalizer["Sentence in"] @Html.Raw(_userDict.GetDictionaryName()):</h3>
                 <h3 style="font-weight: bold;">@SharedLocalizer["Sentence in Arabic"]:</h3>
             </div>
             @foreach (var sentence in Model.WordSentences)
@@ -168,7 +170,7 @@
             return null;
         }
     </script>
-     @if (ress)
+    @if (ress)
     {
         <script>
             document.getElementById("success").click();

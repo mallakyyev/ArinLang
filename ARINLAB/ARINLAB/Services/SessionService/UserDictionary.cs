@@ -58,11 +58,17 @@ namespace ARINLAB.Services.SessionService
             {
                 if(culture == "ar")
                     return _dbContext.Dictionaries.Take(1).ToList()[0].ArabTranslate;
+                else if(culture == "tk")
+                    return _dbContext.Dictionaries.Take(1).ToList()[0].Language + "ça";
                 return _dbContext.Dictionaries.Take(1).ToList()[0].Language;
             }
             var dict = _dbContext.Dictionaries.Find(int.Parse(sess));
             if (culture == "ar") 
                 return dict.ArabTranslate;
+
+            if(culture == "tk")
+                return dict.Language+"ça";
+
             return dict.Language;
         }
 

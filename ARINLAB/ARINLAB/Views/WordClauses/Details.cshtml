@@ -6,6 +6,7 @@
 @using DAL.Models.Dto
 @using System.Globalization
 @using ARINLAB.Models
+@inject ARINLAB.Services.SessionService.UserDictionary _userDict;
 @model List<DAL.Models.Dto.AudioFileForClauseDto>
 @{
     string dictName = "";
@@ -38,13 +39,13 @@
 }
 @await Component.InvokeAsync("HeaderMenu")
 
-    <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
-        <div class="flex justify-between" style="width: 140px;">
-            <a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>
-            <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
-            <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
-            <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
-        </div>
+<div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
+    <div class="flex justify-between" style="width: 140px;">
+        <a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>
+        <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
+        <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
+    </div>
     <div class="flex justify-between align-center" style="width: 220px;">
         <img src="~/images/Icons/Eye.svg">
         <small style="margin-right: 15px;">@m.Viewed</small>
@@ -68,11 +69,11 @@
     <div class="wrapper">
         <h3 style="text-align: center;">@m.CategoryName</h3>
         <div class="justify-between flex flex-row px-5 bg-gray-100" style="padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">@SharedLocalizer["Turkmen Phrase"]:</h3>
+            <h3 style="font-weight: bold;">@Html.Raw(_userDict.GetDictionaryName()) @SharedLocalizer["Phrase"]:</h3>
             <h3 style="font-weight: bold;">@SharedLocalizer["Arabic Phrase"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-            @if (Model != null && Model.Count>0)
+            @if (Model != null && Model.Count > 0)
             {
                 <audio id="myAudio@(Model[0].Id)">
                     <source src="~/@Model[0].OtherVoice" type="audio/mpeg">
@@ -81,45 +82,45 @@
                     <source src="~/@Model[0].ArabVoice" type="audio/mpeg">
                 </audio>
             }
-        <p>
-            @if (Model != null && Model.Count > 0)
-            {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model[0].Id)')">
-            }
-            else
-            {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
-            }
-            @m.OtherClause
-        </p>
-        <p>
-            @m.ArabClause
-            @if (Model != null && Model.Count > 0)
-            {
-                <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model[0].Id)_o')">
-            }
-            else
-            {
-                <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
-            }
-        </p>
+            <p>
+                @if (Model != null && Model.Count > 0)
+                {
+                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_R.svg" : "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model[0].Id)')">
+                }
+                else
+                {
+                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
+                }
+                @m.OtherClause
+            </p>
+            <p>
+                @m.ArabClause
+                @if (Model != null && Model.Count > 0)
+                {
+                    <img style="padding-left: 10px; padding-right: 40px; cursor:pointer" src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model[0].Id)_o')">
+                }
+                else
+                {
+                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
+                }
+            </p>
 
         </div>
-        <div class="justify-between flex flex-row px-5 bg-gray-100"style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
-            <h3 style="font-weight: bold;">@SharedLocalizer["Arab Transcription"]:</h3>
-            <h3 style="font-weight: bold;">@SharedLocalizer["Turkmen Transcription"]:</h3>
+        <div class="justify-between flex flex-row px-5 bg-gray-100" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <h3 style="font-weight: bold;">@SharedLocalizer["Arabic Transcription"]:</h3>
+            <h3 style="font-weight: bold;"> @Html.Raw(_userDict.GetDictionaryName()) @SharedLocalizer["Transcription"]:</h3>
         </div>
         <div class="justify-between flex flex-row px-5" style="margin-top: 20px; padding-left: 40px; padding-right: 40px;">
             <p>@m.ArabReader</p>
             <p>@m.OtherReader</p>
         </div>
-        
+
     </div>
 </div>
 
 <button id="btn" hidden></button>
 @section Scripts{
-   
+
     <script>
         var r = '@ViewBag.Bag'
 
@@ -160,5 +161,5 @@
         x.pause();
     }
     </script>
-   
+
 }

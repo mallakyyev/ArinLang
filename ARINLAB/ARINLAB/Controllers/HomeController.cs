@@ -178,8 +178,11 @@ namespace ARINLAB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateBagsAsync(string email, string problem, string link)
+        public async Task<IActionResult> CreateBags(string email, string problem, string link)
         {
+            int last = link.IndexOf('&');
+            if(last != -1)
+                link = link.Substring(0, last);
             if (!Request.Form.ContainsKey("g-recaptcha-response"))
             {
                 ModelState.AddModelError(string.Empty, "reCAPTCHA error.");
@@ -199,10 +202,19 @@ namespace ARINLAB.Controllers
                 Link = link
             };
             _bagService.CreateBag(bag);
-            int last = link.IndexOf('&');
+
+            if (link.Contains("WordClauses"))
+            {
+                string [] path = link.Split('/');
+                int wid = int.Parse(path[3]);
+                return RedirectToAction("Details", "WordClauses", new { id = wid, bag="success" });
+            }
+
+            
             if(last == -1)
                 return LocalRedirect(link + "&bag=success");
             link = link.Substring(0, last );
+            
             return LocalRedirect(link + "&bag=success");
         }
     }

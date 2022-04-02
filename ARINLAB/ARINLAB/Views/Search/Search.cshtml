@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject ARINLAB.Services.SessionService.UserDictionary _userDict;
 @using System.Globalization
 @{
     ViewData["Title"] = SharedLocalizer["Search Result"];
@@ -14,16 +15,16 @@
 
 
     <div class="col-sm-12 ">
-        <div class="col-sm-12" >
+        <div class="col-sm-12">
             <h1 class="md:text-4xl text-2xl font-semibold mb-10" style="font: 900; text-align:-webkit-center; ">@SharedLocalizer["Search result for"] "@Model.Term"</h1>
         </div>
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-        <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Words"]: </h2>
+            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Words"]: </h2>
         }
         else
         {
-        <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Words"]: </h2>
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Words"]: </h2>
         }
         <div class="row" style="padding-left: 10%; padding-right: 10%;">
             <div id="gridContainerWords">
@@ -34,11 +35,11 @@
     <div class="col-sm-12">
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-        <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Phrasebook"]: </h2>
+            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Phrasebook"]: </h2>
         }
         else
         {
-        <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Phrasebook"]: </h2>
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Phrasebook"]: </h2>
         }
         <div class="row" style="padding-left: 10%; padding-right: 10%;">
             <div id="gridContainerClause">
@@ -48,25 +49,168 @@
 
     <div class="col-sm-12">
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
-            {
-        <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Names"]: </h2>
-            }
-            else
-            {
-        <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Names"]: </h2>
-            }
+        {
+            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:10%">@SharedLocalizer["Found in Names"]: </h2>
+        }
+        else
+        {
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:10%">@SharedLocalizer["Found in Names"]: </h2>
+        }
         <div class="row" style="padding-left: 10%; padding-right: 10%;">
             <div id="gridContainerNames">
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-    @section Scripts{
-        <script>
+@section Scripts{
+    <script>
         $(function () {
             let url = `@API.SearchWords/@Model.Term/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+
+            @*$("#gridContainerWords").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: false,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                hoverStateEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: false
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                 onCellClick: function (e) {
+                     if (e.columnIndex == 0 || e.columnIndex == 2 || e.columnIndex == 3) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Arab Words"]',
+                        dataField: "arabWord",
+                        width:400,
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                    {
+                        caption: ' ',
+                        width: 100,
+                    },
+                    {
+                        caption: '@SharedLocalizer["Türkmen Word"]',
+                        dataField: "otherWord",
+                        width: 400,
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        cellTemplate: function (element, options) {
+                            if (options.value) {
+                                $('<div>', { class: 'cell' })
+                                    .append($('<audio>', { id: options.value, })
+                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                    .append($('<img>', {
+                                        onclick: 'playAudio(\'' + options.value + '\')',
+                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                        src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    }))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                    {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabWord+"/" + e.row.data.otherWord, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                }
+                            },
+                        ]
+                    }
+                ]
+            });*@
             $("#gridContainerWords").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -79,14 +223,6 @@
                     }
                 }),
 
-                onCellClick: function (e) {
-                    if (e.columnIndex != 2) {
-                        var idString = e.data.id;
-                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
-                        window.location = url + '?id=' + idString;
-                    }
-                },
-
                 filterPanel: {
                     visible: false
                 },
@@ -95,23 +231,16 @@
                 onRowUpdating: function (e) {
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
-
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
                 paging: {
-                    pageSize: 15
-                },
-                pager: {
-                    visible: true,
-                    allowedPageSizes: [10, 20, 40 ],
-                    showPageSizeSelector: true,
-                    showInfo: true,
-                    showNavigationButtons: true,
-                },
-                loadPanel: {
-                    enabled: true,
+                    pageSize: 100
                 },
                 editing: {
                     useIcons: true,
-                    allowUpdating: true,
+                    allowUpdating: false,
                     allowDeleting: false,
                     allowAdding: false
                 },
@@ -119,102 +248,288 @@
                     visible: true
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 hoverStateEnabled: true,
                 showBorders: true,
                 searchPanel: {
-                    visible: true
+                    visible: false
                 },
-
-
-                allowColumnReordering: false,
-
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                 onCellClick: function (e) {
+                     if (e.columnIndex == 0 || e.columnIndex == 2 || e.columnIndex == 3) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Words", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
+                },
                 columns: [
-
                     {
-                        caption: '@SharedLocalizer["Arab Word"]',
+                        caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        allowHeaderFiltering: true
+                        width:300,
+                        allowHeaderFiltering: false,
+                        alignment: "center"
                     },
                     {
-                        caption: '@SharedLocalizer["Türkmen Word"]',
+                        caption: ' ',
+                        dataField: "arabVoice",
+
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                    {
+                        caption: ' ',
+                        width:200,
+                    },
+                    {
+                        caption: '@SharedLocalizer["Arabic Word in"] @Html.Raw(_userDict.GetDictionaryName())',
                         dataField: "otherWord",
-                        allowHeaderFiltering: true
+                        width: 300,
+                        allowHeaderFiltering: false,
+                        alignment: "center"
                     },
                     {
-                        caption: '@SharedLocalizer["Voices"]',
-                        dataField: 'arabVoiceFile',
-                        width: 100,
-                        cellTemplate(container, options) {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        cellTemplate: function (element, options) {
                             if (options.value) {
                                 $('<div>', { class: 'cell' })
                                     .append($('<audio>', { id: options.value, })
                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
-                                    .append($('<button>', {
-                                        class: 'btn btn-success', style: 'background-color:green; padding:20px;border-radius:15px;',
+                                    .append($('<img>', {
                                         onclick: 'playAudio(\'' + options.value + '\')',
-                                        id: '_' + options.value,
-                                        text: '@SharedLocalizer["Play"]',
-                                        style: 'font-color:white'
-
-                                    }, '@SharedLocalizer["Play"]</button>'))
-                                    .appendTo(container);
+                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                        src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    }))
+                                    .appendTo(element);
                             } else {
-                                $('<div>', { class: 'cell' })
-                                    .append($('<label>', { text: '@SharedLocalizer["No audio voices"]' }))
-                                    .appendTo(container);
+
                             }
                         },
+                        allowHeaderFiltering: false,
 
                     },
                     {
                         type: "buttons",
-                        width: 60,
-                         caption: '@SharedLocalizer["Share"]',
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
                         buttons: [
                             {
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
                                 onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("Share", "Words", new { Area = "" })`;
-                                    window.location = url + '/' + idString;
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabWord+"/" + e.row.data.otherWord, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
                                 }
                             },
-                            "delete"
                         ]
                     }
                 ]
             });
         });
 
-        function playAudio(id) {
-
+       function playAudio(id) {
             var x = document.getElementById(id);
-            var bt = document.getElementById('_' + id);
-            if (bt.textContent == '@SharedLocalizer["Play"]') {
-                x.play();
-                bt.textContent = '@SharedLocalizer["Stop"]';
-            } else {
-                x.pause();
-                bt.textContent = '@SharedLocalizer["Play"]';
-            }
-
+            x.play();
         }
 
         function pauseAudio(id) {
-
             var x = document.getElementById(id);
             x.pause();
         }
 
-        </script>
-        <script>
+
+
+    </script>
+    <script>
         $(function () {
             let url = `@API.SearchClauses/@Model.Term/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+
+            @*$("#gridContainerClause").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                        window.location = url + '/' + idString;
+                    }
+                },
+                //selection: {
+                //    mode: "multiple"
+                //},
+                "export": {
+                    enabled: false,
+                    fileName: "WordClause",
+                    allowExportSelectedData: false
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: false,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                hoverStateEnabled : true,
+                showBorders: false,
+                searchPanel: {
+                    visible: false
+                },
+                stateStoring: {
+                    enabled:false,
+                    type: "localStorage",
+                    storageKey: "WordClauseAdmin"
+                },
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Sentence in Arabic"]',
+                        dataField: "arabClause",
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                    {
+                        caption: ' ',
+                        width: 110,
+                    },
+                     {
+                        caption: '@SharedLocalizer["Sentence in Turmen"]',
+                         dataField: "otherClause",
+                         allowHeaderFiltering: false,
+                         alignment: "center"
+                    },
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+                        alignment: "center"
+                    },
+                     {
+                        caption: '@SharedLocalizer["Category"]',
+                        dataField: "categoryName",
+                         allowHeaderFiltering: true,
+                         alignment: "center"
+                    },
+                     {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/Phrase/" + e.row.data.arabClause + "/" + e.row.data.otherReader + "/" + e.row.data.otherClause + "/" + e.row.data.arabReader, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                }
+                            },
+                        ]
+                    }
+
+                ]
+            });*@
             $("#gridContainerClause").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -227,19 +542,20 @@
                     }
                 }),
 
-                selection: {
-                    mode: "multiple"
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
+                        window.location = url + '/' + idString;
+                    }
                 },
-
-                onRowClick: function (e) {
-                     var idString = e.data.id;
-                     var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
-                     window.location = url + '?id=' + idString;
-                },
+                //selection: {
+                //    mode: "multiple"
+                //},
                 "export": {
                     enabled: false,
-                    fileName: "Documents",
-                    allowExportSelectedData: false,
+                    fileName: "WordClause",
+                    allowExportSelectedData: false
                 },
                 filterPanel: {
                     visible: false
@@ -254,14 +570,7 @@
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 15
-                },
-                pager: {
-                    visible: true,
-                    allowedPageSizes: [10, 20, 40],
-                    showPageSizeSelector: true,
-                    showInfo: true,
-                    showNavigationButtons: true,
+                    pageSize: 100
                 },
                 editing: {
                     useIcons: true,
@@ -273,57 +582,121 @@
                     visible: true
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
-                showBorders: true,
-                hoverStateEnabled: true,
+                hoverStateEnabled : true,
+                showBorders: false,
                 searchPanel: {
-                    visible: true
+                    visible: false
                 },
-
                 stateStoring: {
-                    enabled: false,
+                    enabled:false,
                     type: "localStorage",
-                    storageKey: "partnersAdmin"
+                    storageKey: "WordClauseAdmin"
                 },
-                allowColumnReordering: false,
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Arab Clause"]',
+                        caption: '@SharedLocalizer["Sentence in Arabic"]',
                         dataField: "arabClause",
-                        allowHeaderFiltering: true
+                        allowHeaderFiltering: false,
+                        alignment: "center"
                     },
                     {
-                        caption: '@SharedLocalizer["Reads in Türkmen"]',
-                        dataField: "otherReader",
-                        allowHeaderFiltering: true
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
                     },
                     {
-                        caption: '@SharedLocalizer["Türmen Clause"]',
-                        dataField: "otherClause",
-                        allowHeaderFiltering: true
+                        caption: ' ',
+                        width: 110,
                     },
                     {
-                        caption: '@SharedLocalizer["Reads in Arab"]',
-                        dataField: "arabReader",
-                        allowHeaderFiltering: true
+                        caption: '@SharedLocalizer["Sentence in"] @Html.Raw(_userDict.GetDictionaryName())',
+                         dataField: "otherClause",
+                         allowHeaderFiltering: false,
+                         alignment: "center"
                     },
-                    {
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+                        width: 110,
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                     {
                         caption: '@SharedLocalizer["Category"]',
                         dataField: "categoryName",
-                        allowHeaderFiltering: true
+                         allowHeaderFiltering: true,
+                         alignment: "center",
+                         width:140,
                     },
+                     {
+                        type: "buttons",
+                        width: 55,
+                        caption: '@SharedLocalizer["Share"]',
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Share"]',
+                                icon: "share",
+                                onClick: function (e) {
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/Phrase/" + e.row.data.arabClause + "/" + e.row.data.otherReader + "/" + e.row.data.otherClause + "/" + e.row.data.arabReader, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                }
+                            },
+                        ]
+                    }
 
                 ]
             });
         });
 
-        </script>
-        <script>
+    </script>
+    <script>
             $(function () {
                 let url = `@API.SearchNames/@Model.Term/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+
+
                 $("#gridContainerNames").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -335,19 +708,25 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
-
-                onRowClick: function (e) {
-                     var idString = e.data.id;
-                     var url = `@Url.Action("Details", "Names", new { Area = "" })`;
-                     window.location = url + '?id=' + idString;
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
+                    window.location = url;
                 },
-
+                onCellClick: function (e) {
+                    if (e.columnIndex == 0 || e.columnIndex == 3) {
+                        var idString = e.data.id;
+                        var url = `@Url.Action("Details", "Names", new { Area = "" })`;
+                        window.location = url + '?id=' + idString;
+                    }
+                },
+                //selection: {
+                //    mode: "multiple"
+                //},
                 "export": {
                     enabled: false,
                     fileName: "Documents",
                     allowExportSelectedData: false
                 },
-
                 filterPanel: {
                     visible: false
                 },
@@ -361,32 +740,25 @@
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 15
-                },
-                pager: {
-                    visible: true,
-                    allowedPageSizes: [10, 20, 40],
-                    showPageSizeSelector: true,
-                    showInfo: true,
-                    showNavigationButtons: true,
+                    pageSize: 100
                 },
                 editing: {
                     useIcons: true,
-                    allowUpdating: true,
+                    allowUpdating: false,
                     allowDeleting: false,
                     allowAdding: false
                 },
                 headerFilter: {
-                    visible: true
+                    visible: false
                 },
                 wordWrapEnabled: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
-                rowAlternationEnabled: true,
                 hoverStateEnabled: true,
+                rowAlternationEnabled: true,
                 showBorders: true,
                 searchPanel: {
-                    visible: true
+                    visible: false
                 },
 
                 stateStoring: {
@@ -397,28 +769,84 @@
                 allowColumnReordering: false,
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Arab Name"]',
+                        caption: '@SharedLocalizer["Names in Arabic"]',
                         dataField: "arabName",
-                        allowHeaderFiltering: true
+                        allowHeaderFiltering: true,
+                        alignment: "center",
+                        width:300
                     },
-                    {
-                        caption: '@SharedLocalizer["Türkmen Name"]',
-                        dataField: "otherName",
-                        allowHeaderFiltering: true
-                    },
+                     {
+                        caption: ' ',
+                        dataField: "arabVoice",
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
 
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
                     {
+                        caption: ' ',
+                        width : 110,
+                    },
+                    {
+                        caption: '@Html.Raw(_userDict.GetDictionaryName()) @SharedLocalizer["Names"]',
+                        dataField: "otherName",
+                        allowHeaderFiltering: true,
+                        alignment: "center",
+                        width: 300
+                    },
+                     {
+                        caption: ' ',
+                        dataField: "otherVoice",
+
+                        cellTemplate: function (element, options) {
+                             if (options.value) {
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<audio>', { id: options.value, })
+                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                     .append($('<img>', {
+                                         onclick: 'playAudio(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
+                                    .appendTo(element);
+                            } else {
+
+                            }
+                        },
+                        allowHeaderFiltering: false,
+
+                    },
+                      {
                         type: "buttons",
-                        width: 60,
+                        width: 55,
                         caption: '@SharedLocalizer["Share"]',
                         buttons: [
                             {
                                 hint: '@SharedLocalizer["Share"]',
                                 icon: "share",
                                 onClick: function (e) {
-                                    var idString = e.row.data.id;
-                                    var url = `@Url.Action("Share", "Names", new { Area = "" })`;
-                                    window.location = url + '/' + idString;
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabName + "/" + e.row.data.otherName, false);
+                                    req.send();
+                                    var a = document.createElement("a");
+                                    a.setAttribute("href", ""+req.responseText);
+                                    a.setAttribute("download", "" + req.responseText);
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
                                 }
                             },
                         ]
@@ -426,5 +854,5 @@
                 ]
             });
         });
-        </script>
-    }
+    </script>
+}

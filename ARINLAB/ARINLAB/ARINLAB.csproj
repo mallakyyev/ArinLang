@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,10 +8,18 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Trusted\**" />
+    <Compile Remove="Resources\**" />
     <Content Remove="Areas\Trusted\**" />
+    <Content Remove="Resources\**" />
     <EmbeddedResource Remove="Areas\Trusted\**" />
+   
     <None Remove="Areas\Trusted\**" />
+    <None Remove="Resources\**" />
   </ItemGroup>
+
+  
+
+  
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\ApplicationUser\ChangePassword.cshtml" />
@@ -2116,4 +2124,19 @@
     <Folder Include="wwwroot\Sounds\Words\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\SharedResource.ar.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResource.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResource.tk.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  
+
+  
 </Project>
