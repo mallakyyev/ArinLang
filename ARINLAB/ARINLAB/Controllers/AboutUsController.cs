@@ -1,4 +1,6 @@
 ﻿using ARINLAB.Services;
+using ARINLAB.Services.News;
+using DAL.Models.Dto.NewsModelDTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,15 @@ namespace ARINLAB.Controllers
     public class AboutUsController : Controller
     {
         private readonly AboutService _service;
-        public AboutUsController(AboutService service)
+        private readonly INewsService _newsService;
+        public AboutUsController(AboutService service, INewsService newsService)
         {
-            _service = service; 
+            _service = service;
+            _newsService = newsService;
         }
         public IActionResult About()
         {
+            ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
             return View(_service.GetAboutus());
         }
     }

@@ -27,7 +27,7 @@ using ARINLAB.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"78e0670a4f0f2eabec4b3c8643b141451a0a384d", @"/Views/Page/Detail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e119a08238c3c4a5c8eaf5a5256788f2de43111b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4fa1d5c591814f7725771882b633ab2ec01fb489", @"/Views/_ViewImports.cshtml")]
     public class Views_Page_Detail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DAL.Models.Dto.MenuModelDTO.PagesDTO>
     {
         #pragma warning disable 1998

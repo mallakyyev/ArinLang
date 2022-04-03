@@ -222,6 +222,9 @@
   <data name="Assigned to menu" xml:space="preserve">
     <value>Assigned to menu</value>
   </data>
+  <data name="Bag Report" xml:space="preserve">
+    <value>Bag Report</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -290,6 +293,9 @@
   </data>
   <data name="Date publish" xml:space="preserve">
     <value>Date publish</value>
+  </data>
+  <data name="Describe the problem" xml:space="preserve">
+    <value>Describe the problem</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>

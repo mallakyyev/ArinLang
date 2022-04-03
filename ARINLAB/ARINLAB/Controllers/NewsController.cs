@@ -113,6 +113,7 @@ namespace TSTB.Web.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
+            ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
             NewsDTO d = await _newsService.GetNewsByIdAsync(id);
             return View(d);
         }

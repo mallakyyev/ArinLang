@@ -574,7 +574,6 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\AddWordVoice.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\Create.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\Edit.cshtml.g.cs
-D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\EditVoice.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\EditWord.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\EditWordSentence.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Registered\Views\Word\Index.cshtml.g.cs
@@ -631,3 +630,17 @@ D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\Search\Search.csh
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Aboutus\Index.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\AboutUs\About.cshtml.g.cs
 D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\Shared\Components\OtherMenu\Default.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\ARINLAB.Resources___Copy.SharedResource.ar.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\ARINLAB.Resources___Copy.SharedResource.en.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\ARINLAB.Resources___Copy.SharedResource.tk.resources
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Bag\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Contact\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Country\Create.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Country\Edit.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Country\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Dictionary\Edit.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\Subscribers\Index.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Views\Contact\Us.cshtml.g.cs
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.ar.resx
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.en.resx
+D:\Work\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.tk.resx

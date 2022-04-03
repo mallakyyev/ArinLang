@@ -222,6 +222,9 @@
   <data name="Assigned to menu" xml:space="preserve">
     <value>معين إلى القائمة</value>
   </data>
+  <data name="Bag Report" xml:space="preserve">
+    <value>تقرير الحقيبة</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>يلغي</value>
   </data>
@@ -290,6 +293,9 @@
   </data>
   <data name="Date publish" xml:space="preserve">
     <value>تاريخ النشر</value>
+  </data>
+  <data name="Describe the problem" xml:space="preserve">
+    <value>صِف المشكلة</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>الوصف</value>
