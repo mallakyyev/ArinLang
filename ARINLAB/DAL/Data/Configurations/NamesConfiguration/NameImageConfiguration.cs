@@ -18,6 +18,7 @@ namespace DAL.Data.Configurations.NamesConfiguration
             builder.Property(p => p.NamesId).IsRequired();
             builder.Property(p => p.IsApproved).IsRequired();
             builder.Property(p => p.UserId).IsRequired();
+            builder.Property(p => p.Viewed).IsRequired(false);
             builder.HasOne(p => p.Names).WithMany(p => p.NameImages).HasForeignKey(p => p.NamesId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(p => p.NamesImageRatings).WithOne(p => p.NameImage).HasForeignKey(p => p.NamesImageId).OnDelete(DeleteBehavior.Cascade);
         }

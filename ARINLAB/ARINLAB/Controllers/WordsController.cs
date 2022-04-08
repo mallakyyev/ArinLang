@@ -67,7 +67,7 @@ namespace ARINLAB.Controllers
                 //var res = await _wordsService.GetWordByIdAsync(id);
                 if (res != null)
                 {
-                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord, res.OtherWord);
+                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord.ReverseWithNumber(), res.OtherWord);
                     //await _wordsService.editWordAsync(_mapper.Map<EditWordDto>(res));
                     WordSentencesViewModel model = new();
                     model.Word = res;
@@ -106,7 +106,7 @@ namespace ARINLAB.Controllers
                    // if (string.IsNullOrEmpty(res.ImageForShare))
                    // {
                         _logger.LogInformation($"Inside image null block");
-                        res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord, res.OtherWord);
+                        res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord.ReverseWithNumber(), res.OtherWord);
                         _logger.LogInformation($"Saved image at {res.ImageForShare}.");
                         await _wordsService.editWordAsync(_mapper.Map<EditWordDto>(res));
                         _logger.LogInformation($"Saved in database.");

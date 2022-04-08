@@ -14,11 +14,14 @@ namespace DAL.Models
         public int DictionaryId { get; set; }
         public string UserId { get; set; }
         public string ImageForShare { get; set; }
-        public ICollection<WordSentences> WordSentences { get; set; }
-        public ICollection<AudioFile> AudioFiles { get; set; }
+        public bool IsApproved { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
+        public int? Viewed { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public Dictionary Dictionary { get; set; }
         public ICollection<WordRating> WordRatings { get; set; }
-        public bool IsApproved { get; set; }
+        public ICollection<WordSentences> WordSentences { get; set; }
+       
     }
 }

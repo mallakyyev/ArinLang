@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -25,6 +26,9 @@ namespace DAL.Models.Dto
 
         [Required]
         public bool IsApproved { get; set; }
-
+        public IFormFile ArabVoiceForm { get; set; }
+        public IFormFile OtherVoiceForm { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
     }
 }

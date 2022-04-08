@@ -2097,10 +2097,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <ProjectReference Include="C:\Users\User\source\repos\GlobalizationAndLocalizationInDotNetCore5\DAL\DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="wwwroot\devextreme\ts\cldr.js-event.d.ts" />
     <TypeScriptCompile Include="wwwroot\devextreme\ts\cldr.js-supplemental.d.ts" />
     <TypeScriptCompile Include="wwwroot\devextreme\ts\cldr.js.d.ts" />
@@ -2122,6 +2118,10 @@
     <Folder Include="wwwroot\images\News\" />
     <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\Sounds\Words\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

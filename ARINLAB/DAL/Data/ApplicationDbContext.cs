@@ -16,8 +16,7 @@ namespace DAL.Data
         public DbSet<Settings> Settings { get; set; }
         public DbSet<Dictionary> Dictionaries{ get; set; }
         public DbSet<Word> Words { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<AudioFile> AudioFiles { get; set; }
+        public DbSet<Country> Countries { get; set; }        
         public DbSet<WordSentences> WordSentences { get; set; }
         public DbSet<WordClause> WordClauses { get; set; }
         public DbSet<WordClauseCategory> WordClauseCategories { get; set; }
@@ -27,7 +26,7 @@ namespace DAL.Data
         public DbSet<MenuTranslate> MenuTranslates { get; set; }
         public DbSet<Pages> Pages { get; set; }
         public DbSet<PagesTranslate> PagesTranslates { get; set; }
-
+        public DbSet<Aboutus> Aboutus { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<NewsCategory> NewsCategories { get; set; }
         public DbSet<NewsCategoryTranslate> NewsCategoryTranslates { get; set; }
@@ -44,6 +43,9 @@ namespace DAL.Data
         public DbSet<WordClauseRating> WordClauseRatings { get; set; }
         public DbSet<NamesRating> NamesRatings { get; set; }
         public DbSet<Logo> Logos { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Bag> Bags { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

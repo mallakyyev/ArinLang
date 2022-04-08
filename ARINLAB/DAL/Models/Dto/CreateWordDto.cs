@@ -20,7 +20,10 @@ namespace DAL.Models.Dto
         public int DictionaryId { get; set; }
        
         public string UserId { get; set; }
-
+        public IFormFile ArabVoiceForm{ get; set; }
+        public IFormFile OtherVoiceForm { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
         [Required]
         public bool IsApproved { get; set; }
 

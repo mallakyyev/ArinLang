@@ -18,6 +18,9 @@ namespace DAL.Data.Configurations
             builder.Property(p => p.ArabWord).IsRequired();
             builder.Property(p => p.OtherWord).IsRequired();
             builder.Property(p => p.IsApproved).IsRequired();
+            builder.Property(p => p.ArabVoice).IsRequired(false);
+            builder.Property(p => p.OtherVoice).IsRequired(false);
+            builder.Property(p => p.Viewed).IsRequired(false);
             builder.HasOne(p => p.ApplicationUser).WithMany(p => p.Words).HasForeignKey(p => p.UserId);
             builder.HasMany(p => p.WordRatings).WithOne(p => p.Word).HasForeignKey(p => p.WordId).OnDelete(DeleteBehavior.Cascade);
             

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace DAL.Models.Dto.NamesDTO
         public string ImageForShare { get; set; }
         public string DictionaryName { get; set; }        
         public string UserId { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
+        public IFormFile ArabForm{ get; set; }
+        public IFormFile OtherForm { get; set; }
+        public int? Viewed { get; set; }
         public ICollection<NameImages> NameImages { get; set; }
 
     }

@@ -22,8 +22,7 @@ namespace DAL.Data
     {
         
         public async static Task CreateDataTask(IHost host)
-        {
-            
+        {            
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -53,13 +52,14 @@ namespace DAL.Data
                 int dictId = 0;
                 if(res != null && res.Count() > 0)
                 {
-                    var tm = res.Where(p => p.Language.Contains("Türkmen"));
+                    var tm = res.Where(p => p.Language.Contains("Turkmen"));
                     if(tm == null || tm.Count() < 1)
                     {
                         dictId = _dbContext.Dictionaries.Add(
                             new Dictionary
                             {
-                                Language = "Türkmen",
+                                Language = "Turkmen",
+                                ArabTranslate = ""
                             }).Entity.Id;
                     }
                     else
@@ -67,42 +67,42 @@ namespace DAL.Data
                         dictId = new List<Dictionary>(tm)[0].Id;
                     }
                 }
-                // var wordClauseCategory = new List<WordClauseCategory>(_dbContext.WordClauseCategories.AsNoTracking());
-                // if(wordClauseCategory.Count > 0)
-                // {
-                //     var item = wordClauseCategory.Where(p => p.Id == 0);
-                //     if(item != null && item.Count() > 0)
-                //     {
-                //     }
-                //     else
-                //     {
-                //         _dbContext.WordClauseCategories.Add(
-                //             new WordClauseCategory
-                //             {
-                //                 Id = 0,
-                //                 WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
-                //                 {
-                //                   new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
-                //                   new WordClauseCategoryTranslate(){ Id=2,  CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
-                //                   new WordClauseCategoryTranslate(){ Id=3,  CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
-                //                 }                       
-                //             });  
-                //     }
-                // }
-                // else
-                // {
-                //     _dbContext.WordClauseCategories.Add(
-                //              new WordClauseCategory
-                //              {                                
-                //                  WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
-                //                  {
-                //                   new WordClauseCategoryTranslate(){ CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
-                //                   new WordClauseCategoryTranslate(){ CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
-                //                   new WordClauseCategoryTranslate(){   CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
+                var wordClauseCategory = new List<WordClauseCategory>(_dbContext.WordClauseCategories.AsNoTracking());
+                if(wordClauseCategory.Count > 0)
+                {
+                    //var item = wordClauseCategory.Where(p => p.Id == 0);
+                    //if(item != null && item.Count() > 0)
+                    //{
+                    //}
+                    //else
+                    //{
+                    //    _dbContext.WordClauseCategories.Add(
+                    //        new WordClauseCategory
+                    //        {
+                    //            Id = 0,
+                    //            WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
+                    //            {
+                    //              new WordClauseCategoryTranslate(){ Id=1,  CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
+                    //              new WordClauseCategoryTranslate(){ Id=2,  CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
+                    //              new WordClauseCategoryTranslate(){ Id=3,  CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
+                    //            }                       
+                    //        });  
+                    //}
+                }
+                else
+                {
+                    _dbContext.WordClauseCategories.Add(
+                             new WordClauseCategory
+                             {                                
+                                 WordClauseCategoryTranslates = new List<WordClauseCategoryTranslate>()
+                                 {
+                                  new WordClauseCategoryTranslate(){ CategoryName = "جذر", LanguageCulture="ar", WordClauseCategoryId = 0 },
+                                  new WordClauseCategoryTranslate(){ CategoryName = "Root", LanguageCulture="en", WordClauseCategoryId = 0 },
+                                  new WordClauseCategoryTranslate(){ CategoryName = "Kök", LanguageCulture="tk", WordClauseCategoryId = 0}
 
-                //                  }
-                //              });
-                // }
+                                 }
+                             });
+                }
                 _dbContext.SaveChanges();
 
                 Country country = null;
@@ -117,16 +117,16 @@ namespace DAL.Data
                     ).Entity;
                 }
                 await _dbContext.SaveChangesAsync();
-                var admin = await userContext.FindByNameAsync("Admin");
+                var admin = await userContext.FindByNameAsync("Maksat");
 
                 if (admin == null)
                 {
                     ApplicationUser adminUser = new ApplicationUser
                     {
-                        FirstName = "Admin",
-                        FamilyName = "Admin",
+                        FirstName = "Maksat",
+                        FamilyName = "Maksat",
                         Email = $"allakyyev@gmail.com",
-                        UserName = "Admin",
+                        UserName = "Maksat",
                         IsApproved = true,
                         EmailConfirmed = true,
                         CountryId = country.Id
@@ -137,7 +137,7 @@ namespace DAL.Data
                 }
 
                 List<Language> languages = new List<Language>();
-                languages.Add(new Language() { Culture = "en", Name = "English", DisplayOrder = 0, IsPublish = true });
+                languages.Add(new Language() { Culture = "en", Name = "English", DisplayOrder = 0, IsPublish = true, FlagImage="" });
                 languages.Add(new Language() { Culture = "ar", Name = "Arabic", DisplayOrder = 1, IsPublish = true });
                 languages.Add(new Language() { Culture = "tk", Name = "Türkmen", DisplayOrder = 1, IsPublish = true });
 
@@ -171,8 +171,8 @@ namespace DAL.Data
                 settings.Add(new Settings() { Name = "language", Value = "ru" });
 
 
-                settings.Add(new Settings() { Name = "AdminEmail", Value = "arinlang@outlook.com" });
-                settings.Add(new Settings() { Name = "AdminEmailPassword", Value = "YhussY2022" }); 
+                settings.Add(new Settings() { Name = "AdminEmail", Value = "info@arinlang.com" });
+                settings.Add(new Settings() { Name = "AdminEmailPassword", Value = "Yhussy_2022" }); 
 
                 settings.Add(new Settings() { Name = "Phone", Value = " " });
                 settings.Add(new Settings() { Name = "Address", Value = " " });
@@ -180,6 +180,10 @@ namespace DAL.Data
                
                 settings.Add(new Settings() { Name = "UnsubLink", Value = "https://localhost:5001/Home/UnsubLink" });
                 settings.Add(new Settings() { Name = "UnsubscribeLink", Value = "https://localhost:5001/Home/Unsubscribe" });
+                settings.Add(new Settings() { Name = "Email", Value = "info@arinlang.com" });
+                settings.Add(new Settings() { Name = "Twitter", Value = "" });
+                settings.Add(new Settings() { Name = "Instagramm", Value = "" });
+                settings.Add(new Settings() { Name = "WhatsApp", Value = "" });
 
 
                 _dbContext.Settings.RemoveRange(_dbContext.Settings);
@@ -194,6 +198,18 @@ namespace DAL.Data
                         await _dbContext.SaveChangesAsync();
                     }
                 }
+
+                Aboutus about = new Aboutus()
+                {
+                    TittleTM = "Aringlang",
+                    DescriptionTM = "Aringlang sözlük edarasy",
+                    TittleEN="Aringlang",
+                    DescriptionEN="Aringlang is a funny dictionary",
+                    TittleRU="Aringlang",
+                    DescriptionRU="Aringlang это удевительный словарь"
+                };
+                _dbContext.Aboutus.Add(about);
+                _dbContext.SaveChanges();
             }
            
         }

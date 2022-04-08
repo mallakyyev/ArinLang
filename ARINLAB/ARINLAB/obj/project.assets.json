@@ -9174,8 +9174,8 @@
     },
     "DAL/1.0.0": {
       "type": "project",
-      "path": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj",
-      "msbuildProject": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj"
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9204,11 +9204,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
+      "projectUniqueName": "D:\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
       "projectName": "ARINLAB",
-      "projectPath": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
+      "projectPath": "D:\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\obj\\",
+      "outputPath": "D:\\ARINLAB\\ARINLAB\\ARINLAB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9225,8 +9225,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\GlobalizationAndLocalizationInDotNetCore5\\DAL\\DAL.csproj"
+            "D:\\ARINLAB\\ARINLAB\\DAL\\DAL.csproj": {
+              "projectPath": "D:\\ARINLAB\\ARINLAB\\DAL\\DAL.csproj"
             }
           }
         }

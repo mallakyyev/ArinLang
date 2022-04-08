@@ -19,32 +19,34 @@ namespace DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DAL.Models.AudioFile", b =>
+            modelBuilder.Entity("DAL.Models.Aboutus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ArabVoice")
-                        .IsRequired()
+                    b.Property<string>("DescriptionEN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("OtherVoice")
-                        .IsRequired()
+                    b.Property<string>("DescriptionRU")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WordId")
-                        .HasColumnType("int");
+                    b.Property<string>("DescriptionTM")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TittleEN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TittleRU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TittleTM")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WordId");
-
-                    b.ToTable("AudioFiles");
+                    b.ToTable("Aboutus");
                 });
 
             modelBuilder.Entity("DAL.Models.AudioFileForClause", b =>
@@ -75,6 +77,30 @@ namespace DAL.Migrations
                     b.ToTable("AudioFileForClauses");
                 });
 
+            modelBuilder.Entity("DAL.Models.Bag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Problem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bags");
+                });
+
             modelBuilder.Entity("DAL.Models.Configs.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -95,6 +121,30 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("DAL.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("DAL.Models.Dictionary", b =>
@@ -326,6 +376,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Viewed")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NamesId");
@@ -344,6 +397,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ArabVoice")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DictionaryId")
                         .HasColumnType("int");
 
@@ -357,9 +413,15 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OtherVoice")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Viewed")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -513,6 +575,12 @@ namespace DAL.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Value_ar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value_tm")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
@@ -524,6 +592,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArabVoice")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArabWord")
                         .IsRequired()
@@ -538,12 +609,18 @@ namespace DAL.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
+                    b.Property<string>("OtherVoice")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OtherWord")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("Viewed")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -589,6 +666,9 @@ namespace DAL.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("Viewed")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -714,6 +794,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ArabVoice")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
@@ -722,6 +805,9 @@ namespace DAL.Migrations
 
                     b.Property<string>("OtherSentence")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherVoice")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -971,17 +1057,6 @@ namespace DAL.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("DAL.Models.AudioFile", b =>
-                {
-                    b.HasOne("DAL.Models.Word", "Word")
-                        .WithMany("AudioFiles")
-                        .HasForeignKey("WordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Word");
                 });
 
             modelBuilder.Entity("DAL.Models.AudioFileForClause", b =>
@@ -1335,8 +1410,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.Word", b =>
                 {
-                    b.Navigation("AudioFiles");
-
                     b.Navigation("WordRatings");
 
                     b.Navigation("WordSentences");

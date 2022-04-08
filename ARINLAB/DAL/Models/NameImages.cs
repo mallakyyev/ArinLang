@@ -13,6 +13,7 @@ namespace DAL.Models
         public int NamesId { get; set; }
         public bool IsApproved { get; set; }
         public string UserId { get; set; }
+        public int? Viewed { get; set; }
         public Names Names { get; set; }
         public ICollection<NamesImageRating> NamesImageRatings { get; set; }
     }

@@ -12,5 +12,8 @@ namespace DAL.Models.Dto.EmailsModelDTO
         public string Header { get; set; }
         public string AdminEmail { get; set; }
         public string Password { get; set; }
+        public bool SendToOrdinary { get; set; }
+        public bool SendToApprove { get; set; }
+        public bool SendToSubscribers { get; set; }
     }
 }

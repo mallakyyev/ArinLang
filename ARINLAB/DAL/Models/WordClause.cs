@@ -17,6 +17,7 @@ namespace DAL.Models
         public int DictionaryId { get; set; }        
         public bool IsApproved { get; set; }
         public string UserId { get; set; }
+        public int? Viewed { get; set; }
         public ICollection<AudioFileForClause> AudioFiles { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public WordClauseCategory WordClauseCategory { get; set; }

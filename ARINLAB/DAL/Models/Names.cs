@@ -15,7 +15,10 @@ namespace DAL.Models
         public bool IsApproved { get; set; }
         public string UserId { get; set; }
         public string ImageForShare { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
         public Dictionary Dictionary{ get; set; }
+        public int? Viewed { get; set; }
         public ICollection<NameImages> NameImages { get; set; }
         public ICollection<NamesRating> NamesRatings { get; set; }
 

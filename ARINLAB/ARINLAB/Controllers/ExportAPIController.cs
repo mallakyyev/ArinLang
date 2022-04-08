@@ -1,4 +1,5 @@
-﻿using ARINLAB.Services.ImageService;
+﻿using ARINLAB.Services;
+using ARINLAB.Services.ImageService;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,13 @@ namespace ARINLAB.Controllers
         [HttpGet("{first}/{second}")]
         public string Get(string first, string second)
         {
-            return _imageService.CreateImageForExport(new string(first.Reverse().ToArray()), second);
+            return _imageService.CreateImageForExport(first.ReverseWithNumber(), second);
         }
 
         [HttpGet("Phrase/{first}/{second}/{third}/{fourth}")]
         public string Phrase(string first, string second, string third, string fourth)
         {
-            return _imageService.PhraseExport(new string(first.Reverse().ToArray()), second, third, new string(fourth.Reverse().ToArray()));
+            return _imageService.PhraseExport(first.ReverseWithNumber(), second, third, fourth.ReverseWithNumber());
         }
         // POST api/<ExportAPIController>
         [HttpPost]

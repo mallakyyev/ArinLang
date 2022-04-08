@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A61sc5opZJdwHDhz7/JA90OrG7bZaw7qMGawmXWV+okLP+LyfT/CqrAmBaMsNU9eb1f6Pl3RZQwzfK8VaiE44Q==",
+  "dgSpecHash": "/7Yh2DudwFxqTMICJU5oRS/+/P/lV/VK1p/J5ZoTfndrCOEFj91KqB6XdTdtrTa11HA/9W/6eS7EaFp11/asLQ==",
   "success": true,
-  "projectFilePath": "D:\\Work\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
+  "projectFilePath": "D:\\ARINLAB\\ARINLAB\\ARINLAB\\ARINLAB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

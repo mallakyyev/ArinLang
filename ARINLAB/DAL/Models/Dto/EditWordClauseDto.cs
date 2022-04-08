@@ -23,8 +23,9 @@ namespace DAL.Models.Dto
         public string OtherReader { get; set; }
         [Required]
         public int DictionaryId { get; set; }
-        
+        public string CategoryName { get; set; }
         public bool IsApproved { get; set; }
+        public int? Viewed { get; set; }
         public string UserId { get; set; }
        
     }

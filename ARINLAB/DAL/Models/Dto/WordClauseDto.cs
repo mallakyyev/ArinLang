@@ -12,6 +12,9 @@ namespace DAL.Models.Dto
         public string ArabClause { get; set; }
         public string OtherClause { get; set; }
         public string ArabReader { get; set; }
+        public string ArabVoice{ get; set; }
+        public string OtherVoice { get; set; }
+        public int? Viewed { get; set; }
         public string OtherReader { get; set; }        
         public bool IsApproved { get; set; }        
         public string UserName { get; set; }

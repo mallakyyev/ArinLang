@@ -10,23 +10,23 @@ namespace DAL.Models.Dto
 {
     public class EditWordDto
     {
-
         public int Id { get; set; }
 
         [Required]
-        public string ArabWord { get; set; }
-        
+        public string ArabWord { get; set; }        
         [Required]
-        public string OtherWord { get; set; }
-        
+        public string OtherWord { get; set; }        
         [Required]
         public int DictionaryId { get; set; }
-
         [Required]
         public string UserId { get; set; }
-
         [Required]
         public bool IsApproved { get; set; }
+        public IFormFile ArabVoiceForm { get; set; }
+        public IFormFile OtherVoiceForm { get; set; }
+        public string ArabVoice { get; set; }
+        public string OtherVoice { get; set; }
+
         public string ImageForShare { get; set; }
 
 
