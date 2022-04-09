@@ -2569,3 +2569,16 @@ D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.dll
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ref\ARINLAB.dll
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.pdb
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.genruntimeconfig.cache
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\HarfBuzzSharp.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\SkiaSharp.HarfBuzz.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Extensions.Logging.File.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.Async.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.File.dll
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll

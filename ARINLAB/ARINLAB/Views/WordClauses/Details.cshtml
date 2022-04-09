@@ -40,11 +40,13 @@
 @await Component.InvokeAsync("HeaderMenu")
 
 <div id="news_icons" class="container flex flex-row justify-between" style=" padding-left: 25px; padding-right: 25px; width: 700px; margin-top: 70px;">
-    <div class="flex justify-between" style="width: 140px;">
-        <a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>
-        <a href="#" onclick="window.print()"><img src="~/images/Icons/Print.svg"></a>
-        <a href="#" onclick="CopyLink()"><img src="~/images/Icons/Copy_link.svg"></a>
-        <a href="@((string)ViewBag.ExportImage)" download><img src="~/images/Icons/Share_black.svg"></a>
+    <div class="flex justify-between">
+        @*<a href="#" onclick="OpenBag()"><img src="~/images/Icons/Bug.svg"></a>*@
+        <a href="#ex4" rel="modal:open" style="margin-right:15px;"><img src="~/images/Icons/Bug.svg"></a>
+        <a href="#" onclick="window.print()" style="margin-right:15px;"><img src="~/images/Icons/Print.svg"></a>
+        <a href="#" onclick="CopyLink()" style="margin-right:15px;"><img src="~/images/Icons/Copy_link.svg"></a>
+        <a href="@((string)ViewBag.ExportImage)" download style="margin-right:15px;"><img src="~/images/Icons/Share_black.svg"></a>
+        <a asp-controller="WordClauses" asp-action="Indexall" title="@SharedLocalizer["Phrasebook collection"] "><i class="fa fa-list"></i></a>
     </div>
     <div class="flex justify-between align-center" style="width: 220px;">
         <img src="~/images/Icons/Eye.svg">
@@ -89,7 +91,7 @@
                 }
                 else
                 {
-                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
+                    <img style="padding-right: 10px; margin-left: 25px; cursor: pointer" />
                 }
                 @m.OtherClause
             </p>
@@ -101,7 +103,7 @@
                 }
                 else
                 {
-                    <img style="padding-right: 10px; margin-left: 40px; cursor: pointer" />
+                    <img style="padding-right: 0px; margin-left: 40px; cursor: pointer" />
                 }
             </p>
 

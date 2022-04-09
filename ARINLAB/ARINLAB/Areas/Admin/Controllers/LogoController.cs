@@ -25,21 +25,38 @@ namespace ARINLAB.Areas.Admin.Controllers
         public IActionResult Index()
         {
             LogoDto model = new LogoDto();
-            var res = new List<Logo>(_dbContext.Logos);
-            if (res.Count > 0)
+            var mainLogo = _dbContext.Logos.FirstOrDefault(p => p.Name.Contains("Main"));
+            var secondaryLogo = _dbContext.Logos.FirstOrDefault(p => p.Name.Contains("Sec"));
+            if(mainLogo!=null)
             {
-                if (res.Count > 1)
-                {
-                    model.Id2 = res[1].Id;
-                    model.Image2 = res[1].Image;
-                    model.Name2 = res[1].Name;
-                    model.Link2 = res[1].Link;
-                }
-                    model.Id1 = res[0].Id;
-                    model.Image1 = res[0].Image;
-                    model.Name1 = res[0].Name;
-                    model.Link1 = res[0].Link;               
+                model.Id1 = mainLogo.Id;
+                model.Image1 = mainLogo.Image;
+                model.Name1 = mainLogo.Name;
+                model.Link1 = mainLogo.Link;
             }
+            if(secondaryLogo != null)
+            {
+                model.Id2 = secondaryLogo.Id;
+                model.Image2 = secondaryLogo.Image;
+                model.Name2 = secondaryLogo.Name;
+                model.Link2 = secondaryLogo .Link;
+
+            }
+            ////var res = new List<Logo>(_dbContext.Logos);
+            //if (res.Count > 0)
+            //{
+            //    if (res.Count > 1)
+            //    {
+            //        model.Id2 = res[1].Id;
+            //        model.Image2 = res[1].Image;
+            //        model.Name2 = res[1].Name;
+            //        model.Link2 = res[1].Link;
+            //    }
+            //        model.Id1 = res[0].Id;
+            //        model.Image1 = res[0].Image;
+            //        model.Name1 = res[0].Name;
+            //        model.Link1 = res[0].Link;               
+            //}
             return View(model);
         }
 

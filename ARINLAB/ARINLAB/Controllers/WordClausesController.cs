@@ -61,8 +61,8 @@ namespace ARINLAB.Controllers
             {
                 ViewBag.Bag = bag;
             }
-            ViewBag.ExportImage = _imageService.PhraseExport(clause.ArabClause.ReverseWithNumber(), clause.OtherReader,
-                                                            clause.OtherClause, clause.ArabReader.ReverseWithNumber());
+            ViewBag.ExportImage = _imageService.PhraseExport(clause.ArabClause.ReverseOnlyNumbers(), clause.OtherReader,
+                                                            clause.OtherClause, clause.ArabReader.ReverseOnlyNumbers());
             var voices = _wordClauseService.GetAudioFileForClausebyID(id, true);
             ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());
             return View(voices);

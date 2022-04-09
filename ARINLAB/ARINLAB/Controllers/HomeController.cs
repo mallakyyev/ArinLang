@@ -15,12 +15,14 @@ using DAL.Models.Email;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ARINLAB.Controllers
@@ -104,36 +106,22 @@ namespace ARINLAB.Controllers
             return View();
         }
 
-        public async Task<string> Unsubscribed(string email)
+        [HttpGet("Unsubscribed/{email}/{code}")]
+        public async Task<IActionResult> Unsubscribed(string email, string code)
         {
-            List<Settings> settings = new List<Settings>(_settings.GetAllSettings());
+            
+            string emailcode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
 
-            string UnsubLink = settings.Find(x => x.Name == "UnsubLink").Value;
-            string AdminEmail = settings.Find(x => x.Name == "AdminEmail").Value;
-            string AdminEmailPassword = settings.Find(x => x.Name == "AdminEmailPassword").Value;
-            string id = _subscriberService.GetEmail(email);
-            if (id.Length > 0)
+            if(email == emailcode)
             {
-                SingleEmailDTO sEmail = new SingleEmailDTO();
-                sEmail.Header = _localizer["Arinlang Unsubscribe"];
-                sEmail.Message = _localizer["Please Follow the link below to unsubscribe from ARINLANG: "] + UnsubLink + "?id=" + id;
-                sEmail.Password = AdminEmailPassword;
-                sEmail.AdminEmail = AdminEmail;
-                sEmail.EmailTo = email;
-                sEmail.Subject = _localizer["Unsubscribe Link from ARINLANG Web Site"];
-                bool isSend =  await _emailService.SendSingleEmailAsync(sEmail);
-                if (isSend)
-                {
-                    //ViewBag.Email = _localizer["Detailed instructions was send to "] + email + _localizer[" email to unsubscribed."];
-                    return _localizer["Detailed instructions was send to "] + email + _localizer[" email to unsubscribed."];
-                }
-                else
-                    return _localizer["Some thing went wrong, Please try again later !"];
+                string id = _subscriberService.GetEmail(email);
+                await _subscriberService.DeleteSubscriber(id);
+                ViewBag.Email = _localizer["You have succeffully unsubscribed"];
+                return View();
             }
-            else
-            {
-                return email + _localizer[" email does not subscribed"];
-            }            
+            ViewBag.Email = email + _localizer[" email not in subcribers list!!"];
+            return View();
+
         }
         public IActionResult UnsubLink(string id)
         {

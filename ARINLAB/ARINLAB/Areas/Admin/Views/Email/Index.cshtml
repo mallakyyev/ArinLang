@@ -1,49 +1,53 @@
 ﻿@model DAL.Models.Dto.EmailsModelDTO.EmailsDTO;
 @using Microsoft.AspNetCore.Mvc.Localization;
+@using TSTB.Web
 @inject IViewLocalizer Localizer;
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
 
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    @SharedLocalizer["Send email"]
-                </h1>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Send email"]
+            </h1>
         </div>
+    </div>
 
-        <div class="row">
-            <div id="gridContainer">
-                <form asp-action="SendEmail" id="form" enctype="multipart/form-data">
-                    <div class="col-md-12">
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <input type="hidden" asp-for="Id" />
+    <div class="cold-12">
+        <script src="~/js/custom.js"></script>
+        <script src="~/js/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+        <div id="gridContainer">
+            <form asp-action="SendEmail" id="form" enctype="multipart/form-data">
+                <div class="col-md-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
 
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input type="hidden" asp-for="Id" />
 
-                                <div class="form-group">
-                                    <label>@SharedLocalizer["Email header"] </label>
-                                    <div id="header"></div>
-                                </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Email header"] </label>
+                                <div id="header"></div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>@SharedLocalizer["Subject"] </label>
-                                    <div id="ind-name"></div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Subject"] </label>
+                                <div id="ind-name"></div>
 
-                                </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>@SharedLocalizer["Message"] *</label>
-                                    @*<textarea class="form-control" name="ProductTranslates[@lngIndex].FullDescription" rows="3" required></textarea>*@
-                                    <div id="description-editor"></div>
-                                </div>
-                                <br />
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Message"] *</label>
+                                @*<textarea class="form-control" name="ProductTranslates[@lngIndex].FullDescription" rows="3" required></textarea>*@
+                                <textarea class="editor-1" name="Message" rows="3"></textarea>
+                            </div>
+                            <br />
 
 
-                                <script>
+                            <script>
+
                                     $(function () {
                                          $("#adminEmail").dxTextBox({
                                             name: "AdminEmail",
@@ -59,6 +63,8 @@
 
                                                 }]
                                         });
+
+                                        InitTinyMce('textarea.editor-1', '/api/images')
 
                                          $("#password").dxTextBox({
                                             name: "Password",
@@ -89,7 +95,7 @@
                                         });
 
 
-                                        $("#description-editor").dxHtmlEditor({
+                                        @*$("#description-editor").dxHtmlEditor({
                                             height: 250,
                                             toolbar: {
                                                 items: [
@@ -123,46 +129,46 @@
                                                 type: "required",
                                                 message: '@SharedLocalizer["Enter message"]'
                                             }]
-                                        }).dxHtmlEditor("instance");
+                                        }).dxHtmlEditor("instance");*@
                                     });
-                                </script>
-                                <label>@SharedLocalizer["Send to"]: </label>
-                                <div class="form-group">
-                                    <div id="sendToOrg"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div id="sendToEnt"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div id="sendToS"></div>
-                                </div>
+                            </script>
+                            <label>@SharedLocalizer["Send to"]: </label>
+                            <div class="form-group">
+                                <div id="sendToOrg"></div>
                             </div>
+                            <div class="form-group">
+                                <div id="sendToEnt"></div>
+                            </div>
+                            <div class="form-group">
+                                <div id="sendToS"></div>
+                            </div>
+                        </div>
 
-                        </div> <br />
+                    </div> <br />
 
-                    </div>
-                    <div class="dx-fieldset" >
-                       
-                        <br />
+                </div>
+                <div class="dx-fieldset">
 
-                        <div id="summary"></div>
-                        <br />
-                        <div id="button" ></div>
-                    </div>
-                </form>
-            </div>
+                    <br />
+
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 @section Scripts{
-        <script>
-           
-            $(function () {        
+    <script>
+
+            $(function () {
                 $("#sendToOrg").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Users"]',
                     name: 'SendToOrdinary',
                 });
-               
+
                $("#sendToS").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Subsrcibers"]',
@@ -175,5 +181,5 @@
             });
             $("#summary").dxValidationSummary({});
     });
-        </script>
+    </script>
 }

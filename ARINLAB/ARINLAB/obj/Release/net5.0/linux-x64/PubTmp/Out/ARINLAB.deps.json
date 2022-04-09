@@ -40,11 +40,13 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.12",
           "Microsoft.AspNetCore.Identity.UI": "5.0.12",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.9",
+          "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
+          "SkiaSharp.HarfBuzz": "2.80.3",
           "SkiaSharp.NativeAssets.Linux.NoDependencies": "2.80.3",
           "Soluling": "1.0.52",
           "System.Drawing.Common": "6.0.0",
@@ -1701,6 +1703,14 @@
           "lib/netstandard2.0/DevExtreme.AspNet.Data.dll": {}
         }
       },
+      "HarfBuzzSharp/2.6.1.8": {
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/HarfBuzzSharp.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {},
       "MailKit/2.15.0": {
         "dependencies": {
@@ -2544,6 +2554,15 @@
           "lib/netstandard2.0/SkiaSharp.dll": {}
         }
       },
+      "SkiaSharp.HarfBuzz/2.80.3": {
+        "dependencies": {
+          "HarfBuzzSharp": "2.6.1.8",
+          "SkiaSharp": "2.80.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/SkiaSharp.HarfBuzz.dll": {}
+        }
+      },
       "SkiaSharp.NativeAssets.Linux.NoDependencies/2.80.3": {
         "dependencies": {
           "SkiaSharp": "2.80.3"
@@ -3262,11 +3281,13 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.12",
           "Microsoft.AspNetCore.Identity.UI": "5.0.12",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.9",
+          "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
+          "SkiaSharp.HarfBuzz": "2.80.3",
           "SkiaSharp.NativeAssets.Linux.NoDependencies": "2.80.3",
           "Soluling": "1.0.52",
           "System.Drawing.Common": "6.0.0",
@@ -3590,6 +3611,17 @@
           "lib/netstandard2.0/DevExtreme.AspNet.Data.dll": {
             "assemblyVersion": "2.8.6.0",
             "fileVersion": "2.8.6.0"
+          }
+        }
+      },
+      "HarfBuzzSharp/2.6.1.8": {
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/HarfBuzzSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.6.1.8"
           }
         }
       },
@@ -4766,6 +4798,18 @@
           }
         }
       },
+      "SkiaSharp.HarfBuzz/2.80.3": {
+        "dependencies": {
+          "HarfBuzzSharp": "2.6.1.8",
+          "SkiaSharp": "2.80.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.HarfBuzz.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.3.0"
+          }
+        }
+      },
       "SkiaSharp.NativeAssets.Linux.NoDependencies/2.80.3": {
         "dependencies": {
           "SkiaSharp": "2.80.3"
@@ -5543,6 +5587,13 @@
       "sha512": "sha512-i1yihftbQALysX/Sh5rm4XFVRKPXKwHcmfH8esD0fTH+RTPGpMmIUoYOg2oAAOxqJsi/F5IQ8Gkp60lDzOigRA==",
       "path": "devextreme.aspnet.data/2.8.6",
       "hashPath": "devextreme.aspnet.data.2.8.6.nupkg.sha512"
+    },
+    "HarfBuzzSharp/2.6.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IJHUC9fRIRszlejFtnkskKZ19EuE8+0REhgxYAlXFxXFCCu9nE4tTSxku2X5zZZ02LpfghxDJ4EP77FDY+J/sA==",
+      "path": "harfbuzzsharp/2.6.1.8",
+      "hashPath": "harfbuzzsharp.2.6.1.8.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -6446,6 +6497,13 @@
       "sha512": "sha512-qX6tGNP3+MXNYe2pKm0PCRiJ/cx+LTeLaggwZifB7sUMXhECfKKKHJq45VqZKt37xQegnCCdf1jHXwmHeJQs5Q==",
       "path": "skiasharp/2.80.3",
       "hashPath": "skiasharp.2.80.3.nupkg.sha512"
+    },
+    "SkiaSharp.HarfBuzz/2.80.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-L5R4B/1jaGxpVyMedkDNc/hqW+r+wha+M61PFiq0nmTNcN6Ze3OXox63B8XwPiamdLX+A6PNq+auGXqZTNTcDg==",
+      "path": "skiasharp.harfbuzz/2.80.3",
+      "hashPath": "skiasharp.harfbuzz.2.80.3.nupkg.sha512"
     },
     "SkiaSharp.NativeAssets.Linux.NoDependencies/2.80.3": {
       "type": "package",

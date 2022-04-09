@@ -30,13 +30,13 @@ namespace ARINLAB.Controllers
         [HttpGet("{first}/{second}")]
         public string Get(string first, string second)
         {
-            return _imageService.CreateImageForExport(first.ReverseWithNumber(), second);
+            return _imageService.CreateImageForExport(first, second);
         }
 
         [HttpGet("Phrase/{first}/{second}/{third}/{fourth}")]
         public string Phrase(string first, string second, string third, string fourth)
         {
-            return _imageService.PhraseExport(first.ReverseWithNumber(), second, third, fourth.ReverseWithNumber());
+            return _imageService.PhraseExport(first.ReverseOnlyNumbers(), second, third, fourth.ReverseOnlyNumbers());
         }
         // POST api/<ExportAPIController>
         [HttpPost]

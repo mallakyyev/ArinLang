@@ -15,11 +15,11 @@
     <div class="xl:w-8/12 xl:px-0 px-4 flex-grow">
         @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
         {
-            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:5%;">@SharedLocalizer["Word Clauses Collection"] </h2>
+            <h2 dir="rtl" class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-right:5%;">@SharedLocalizer["Phrasebook collection"] </h2>
         }
         else
         {
-            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:5%;">@SharedLocalizer["Word Clauses Collection"] </h2>
+            <h2 class="md:text-4xl text-2xl font-semibold mb-10" style="font:900; padding-left:5%;">@SharedLocalizer["Phrasebook collection"] </h2>
         }
         <div class="row" style="padding-left: 5%; padding-right: 5%;">
             <div id="gridContainer1">
@@ -54,7 +54,7 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
-
+                columnHidingEnabled: true,
                 onCellClick: function (e) {
                     if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
                         var idString = e.data.id;
@@ -123,7 +123,7 @@
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -155,7 +155,7 @@
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -204,140 +204,5 @@
         });
     </script>
 
-    @*<script>
-            $(function () {
-                let url = `@API.GetAllWordClausesWithDictId/@Model.DictionaryId`;
-                var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
-                $("#gridContainer").dxDataGrid({
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
-                        loadUrl: url,
-                        insertUrl: url,
-                        updateUrl: url,
-                        deleteUrl: url,
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true };
-                        }
-                    }),
-                    onInitNewRow: function (e) {
-                        var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
-                        window.location = url;
-                    },
-                    selection: {
-                        mode: "multiple"
-                    },
-
-                    onRowClick: function (e) {
-                        if (e.columnIndex != 5) {
-                            var idString = e.data.id;
-                            var url = `@Url.Action("Details", "WordClauses", new { Area = "" })`;
-                            window.location = url + '?id=' + idString;
-                        }
-                    },
-                    "export": {
-                        enabled: false,
-                        fileName: "Documents",
-                        allowExportSelectedData: false,
-                    },
-                    filterPanel: {
-                        visible: false
-                    },
-                    filterRow: { visible: false },
-                    remoteOperations: true,
-                    onRowUpdating: function (e) {
-                        e.newData = Object.assign(e.oldData, e.newData)
-                    },
-                    scrolling: {
-                        mode: "virtual",
-                        rowRenderingMode: "virtual"
-                    },
-                    paging: {
-                        pageSize: 15
-                    },
-                    pager: {
-                        visible: true,
-                        allowedPageSizes: [10, 20, 40],
-                        showPageSizeSelector: true,
-                        showInfo: true,
-                        showNavigationButtons: true,
-                    },
-                    editing: {
-                        useIcons: true,
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    headerFilter: {
-                        visible: true
-                    },
-                    wordWrapEnabled: true,
-                    showColumnLines: true,
-                    showRowLines: true,
-                    rowAlternationEnabled: true,
-                    showBorders: true,
-                    hoverStateEnabled: true,
-                    searchPanel: {
-                        visible: true
-                    },
-
-                    stateStoring: {
-                        enabled: false,
-                        type: "localStorage",
-                        storageKey: "partnersAdmin"
-                    },
-                    allowColumnReordering: false,
-                    columns: [
-                        {
-                            caption: '@SharedLocalizer["Arab Clause"]',
-                            dataField: "arabClause",
-                            allowHeaderFiltering: true
-                        },
-                        {
-                            caption: '@SharedLocalizer["Reads in Türkmen"]',
-                            dataField: "otherReader",
-                            allowHeaderFiltering: true
-                        },
-                        {
-                            caption: '@SharedLocalizer["Türmen Clause"]',
-                            dataField: "otherClause",
-                            allowHeaderFiltering: true
-                        },
-                        {
-                            caption: '@SharedLocalizer["Reads in Arab"]',
-                            dataField: "arabReader",
-                            allowHeaderFiltering: true
-                        },
-                        {
-                            caption: '@SharedLocalizer["Category"]',
-                            dataField: "categoryName",
-                            allowHeaderFiltering: true
-                        },
-                       {
-                            type: "buttons",
-                            width: 55,
-                            caption: '@SharedLocalizer["Share"]',
-                            buttons: [
-                                {
-                                    hint: '@SharedLocalizer["Share"]',
-                                    icon: "share",
-                                    onClick: function (e) {
-                                        var req = new XMLHttpRequest();
-                                        req.open("GET", "/api/ExportAPI/Phrase/" + e.row.data.arabClause + "/" + e.row.data.otherReader + "/" + e.row.data.otherClause + "/" + e.row.data.arabReader, false);
-                                        req.send();
-                                        var a = document.createElement("a");
-                                        a.setAttribute("href", ""+req.responseText);
-                                        a.setAttribute("download", "" + req.responseText);
-                                        document.body.appendChild(a);
-                                        a.click();
-                                        document.body.removeChild(a);
-                                    }
-                                },
-                            ]
-                        }
-                    ]
-                });
-            });
-
-
-        </script>*@
+   
 }

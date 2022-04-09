@@ -10,6 +10,9 @@ using ARINLAB.Services.ApplicationUser;
 using DAL.Models.Dto.EmailsModelDTO;
 using MailKit.Net.Smtp;
 using System.Linq;
+using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 
 namespace ARINLAB.Services.Email
 {
@@ -17,46 +20,48 @@ namespace ARINLAB.Services.Email
     {
         private readonly IApplicationUserService _userService;
         private readonly ApplicationDbContext _dbContext;
-        
-        public EmailService(IApplicationUserService userService,ApplicationDbContext dbContext)
+        private readonly ILogger<EmailService> _logger;
+        public EmailService(IApplicationUserService userService,ApplicationDbContext dbContext, ILogger<EmailService> logger)
         {
             _userService = userService;
             _dbContext = dbContext;
+            _logger = logger;
         }
         public async Task<bool> SendEmail(EmailsDTO emailsDto, List<string> emails)
-        {           
-            string AdminEmail = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmail")).Value;
-            string Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
-            List<MailboxAddress> address = new List<MailboxAddress>();
-            foreach(string email in emails)
-            {
-                address.Add(new MailboxAddress("", email));
-            }
-            var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("", AdminEmail));
-            emailMessage.To.AddRange(address);
-            emailMessage.Subject = emailsDto.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-            {
-                Text = emailsDto.Message
-            };
-
+        {
             try
             {
+                string AdminEmail = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmail")).Value;
+                string Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
                 string smtp = "mail." + AdminEmail.Substring(AdminEmail.IndexOf("@") + 1);
                 using var client = new SmtpClient();
                 await client.ConnectAsync(smtp, 8889, SecureSocketOptions.None);
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
                 await client.AuthenticateAsync(AdminEmail, Password);
-                await client.SendAsync(emailMessage);
-                await client.DisconnectAsync(true);
-            }
-            catch (Exception e)
+                string code;
+                foreach (string email in emails)
+                {
+                    var emailMessage = new MimeMessage();
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(email));
+                    emailMessage.From.Add(new MailboxAddress("", AdminEmail));
+                    emailMessage.To.Add(new MailboxAddress("", email));
+                    emailMessage.Subject = emailsDto.Subject;
+                    emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                    {
+                        Text = emailsDto.Message + $"<br/> <br/> Please press the <a href='https://aringlang.com/Unsubscribed/{email}/{code}'>Link</a> to unsubscribe"
+                    };
+                    await client.SendAsync(emailMessage);
+                    await client.DisconnectAsync(true);
+                }
+
+            }catch(Exception e)
             {
+                _logger.LogError( $"{e.Message} \n {e.StackTrace} \n {e.InnerException} \n {e.Data}", e );
                 return false;
             }
-            return true;                      
-        }
+            return true;
+           }
+        
 
         public async Task<bool> SendSingleEmailAsync(SingleEmailDTO emails)
         {

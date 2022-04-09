@@ -11,12 +11,12 @@
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
     <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
-         style=" padding-right: 150px;">
+         >
         <div class="pl-3 text-center flex items-center z-10 cursor`-pointer"
-             style="height: 35px; width: 200px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
+             style="height: 30px; width: 200px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
 
             <span class="flex uppercase" style="font-size: 20px;">
-                <img src="/images/flags/sa.svg" class="" style="max-width: 30%; margin-right: 10px;" />
+                <img src="/images/flags/sa.svg" class="" style="max-width: 25%; margin-right: 10px;" />
                 @*@foreach (var lng in lngListItem)
             {
                 <a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
@@ -44,14 +44,14 @@ else
 {
 
 <div class="text-white mr-10 select-none select-box relative h-full flex items-center" id="select-box"
-         style=" padding-right: 150px;">
+         >
         <div id="sel_div" class="pl-3 text-center flex items-center z-10 cursor`-pointer"
-             style="height: 35px; width: 200px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
+             style="height: 30px; width: 200px; background-color: white; margin: 15px; border-radius: 9px; color: black; text-align: center;">
            
             <span class="flex uppercase" style="font-size: 20px;">
                 @if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
                 {
-                    <img src="/images/flags/us.svg" class="" style="max-width:30%; margin-right:10px" />
+                    <img src="/images/flags/us.svg" class="" style="max-width:25%; margin-right:10px" />
                     <a data-link="#" class="py-3 pr-2" style="display: block;">
                         EN
                     </a>

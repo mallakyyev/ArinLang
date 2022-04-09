@@ -67,7 +67,7 @@ namespace ARINLAB.Controllers
                 //var res = await _wordsService.GetWordByIdAsync(id);
                 if (res != null)
                 {
-                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord.ReverseWithNumber(), res.OtherWord);
+                    res.ImageForShare = _imageService.CreateImageForExport(res.ArabWord, res.OtherWord);
                     //await _wordsService.editWordAsync(_mapper.Map<EditWordDto>(res));
                     WordSentencesViewModel model = new();
                     model.Word = res;

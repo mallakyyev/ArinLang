@@ -68,7 +68,7 @@ namespace ARINLAB.Controllers
             
             //if (string.IsNullOrEmpty(res.ImageForShare))
             //{
-                res.ImageForShare = _imageService.CreateImageForExport(res.ArabName.ReverseWithNumber(), res.OtherName);
+                res.ImageForShare = _imageService.CreateImageForExport(res.ArabName, res.OtherName);
                // await _nameService.EditNameAsync(_mapper.Map<NamesDto>(res));
             //}
             NamesImagesViewModel model = new();

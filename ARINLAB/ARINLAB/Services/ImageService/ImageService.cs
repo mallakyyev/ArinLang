@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Drawing;
 using SkiaSharp;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.HarfBuzz;
 
 namespace ARINLAB.Services.ImageService
 {
@@ -133,9 +134,10 @@ namespace ARINLAB.Services.ImageService
                 canvas.ResetMatrix();
 
                 var font = SKTypeface.FromFamilyName("Arial");
+                var fontArab = SKTypeface.FromFamilyName("Arial");
                 var brush1 = new SKPaint
                 {
-                    Typeface = font,
+                    Typeface = fontArab,
                     TextSize = 100,
                     IsAntialias = true,
                     Color = new SKColor(0, 0, 0, 255)
@@ -151,9 +153,15 @@ namespace ARINLAB.Services.ImageService
                 };
                 int pos1 = GetPos1(first.Length, 55);
                 int pos2 = GetPos1(second.Length, 55);
-                canvas.DrawText(first, pos1, 1100, brush1);
+                // canvas.DrawText(first, pos1, 1100, brush1);
+                 canvas.DrawText(second, pos2, 1500, brush2);
+                using (var tf = SKFontManager.Default.MatchCharacter('ئ'))
+                using (var shaper = new SKShaper(tf))
+                using (var paint = new SKPaint { TextSize = 100, Typeface = tf })
+                {                    
+                    canvas.DrawShapedText(shaper, first, pos1, 1100, paint);
+                }
                 canvas.DrawText(second, pos2, 1500, brush2);
-
                 canvas.Flush();
 
                 var image = SKImage.FromBitmap(toBitmap);
@@ -203,15 +211,15 @@ namespace ARINLAB.Services.ImageService
                 var brush1 = new SKPaint
                 {
                     Typeface = font,
-                    TextSize = 55,
-                    IsAntialias = true,
+                    TextSize = (turkmenPh.Length > 35)? 45:55,
+                    IsAntialias = true,                 
                     Color = new SKColor(0, 0, 0, 255)
 
                 };
                 var brush2 = new SKPaint
                 {
                     Typeface = font,
-                    TextSize = 55,
+                    TextSize = (readsTm.Length > 35)? 45:55,
                     IsAntialias = true,
                     Color = new SKColor(53, 32, 135, 255),
 
@@ -220,16 +228,28 @@ namespace ARINLAB.Services.ImageService
                 int h2 = 1135;
                 int h3 = 1435;
                 int h4 = 1535;
-                int pos1 = ArabPos(arabPh.Length, 25);
-                int pos2 = TmPos(readsTm.Length, 25);
-                int pos3 = TmPos(turkmenPh.Length, 25);
-                int pos4 = ArabPos(readsAr.Length, 25);
+                int pos1 = ArabPos(arabPh.Length, (arabPh.Length > 35) ? 20 : 25);
+                int pos2 = TmPos(readsTm.Length, (readsTm.Length > 35) ? 20 : 25);
+                int pos3 = TmPos(turkmenPh.Length, (turkmenPh.Length > 35) ? 20 : 25);
+                int pos4 = ArabPos(readsAr.Length, (readsAr.Length > 35) ? 20 : 25);
 
-                canvas.DrawText(arabPh, pos1, h1, brush1);
+                //canvas.DrawText(arabPh, pos1, h1, brush1);
+                using (var tf = SKFontManager.Default.MatchCharacter('ئ'))
+                using (var shaper = new SKShaper(tf))
+                using (var paint = new SKPaint { TextSize = arabPh.Length > 35 ? 45 : 55, Typeface = tf })
+                {
+                    canvas.DrawShapedText(shaper, arabPh, pos1, h1, paint);
+                }
+                
                 canvas.DrawText(readsTm, pos2, h2, brush2);
                 canvas.DrawText(turkmenPh, pos3, h3, brush1);
-                canvas.DrawText(readsAr, pos4, h4, brush2);
-
+                //canvas.DrawText(readsAr, pos4, h4, brush2);
+                using (var tf = SKFontManager.Default.MatchCharacter('ئ'))
+                using (var shaper = new SKShaper(tf))
+                using (var paint = new SKPaint { TextSize = readsAr.Length>35?45:55, Typeface = tf })
+                {
+                    canvas.DrawShapedText(shaper, readsAr, pos4, h4, paint);
+                }
                 canvas.Flush();
 
                 var image = SKImage.FromBitmap(toBitmap);

@@ -2,6 +2,7 @@
 @using ARINLAB.Areas.Admin.Utils
 @using System.Globalization
 @using ARINLAB.Services.SessionService
+@using ARINLAB
 
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
@@ -27,11 +28,11 @@
     <div dir="ltr" class="flex-grow xl:w-2/12 xl:mr-2 mb-16 xl:mb-0 relative adt-center overflow-hidden" style="margin-top: 5%; width: 12%;">
 
         <div class="adv-slider-left adv-slider flex xl:w-full">
-            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") id="lottie">
+            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg);margin-left: 15%;" : "") id="lottie">
             </div>
             @*<img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-left img-center border-radius7 object-cover img-padding10"
-        data-desk="../images/Безимени-3.gif"
-        data-mobile="" />*@
+            data-desk="../images/Безимени-3.gif"
+            data-mobile="" />*@
         </div>
     </div>
     <!-- ******************** ADVERTISMENT LEFT  ********************-->
@@ -232,7 +233,7 @@
     <!-- ******************** ADVERTISMENT RIGHT  ********************-->
     <div dir="ltr" class="flex-grow xl:w-2/12 w-full mt-16 xl:mt-0 xl:ml-2 relative adt-center overflow-hidden" style="margin-top: 5%; width: 12%;">
         <div class="adv-slider-right adv-slider flex xl:w-full">
-            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") id="lottie1"></div>
+            <div @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") id="lottie1" style="margin-left:45px;"></div>
             @*<img @(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "style=transform:rotateY(180deg)" : "") class="avdertisment-item advertisment-right img-center border-radius7 object-cover img-padding10"
         data-desk="../images/Безимени-4.gif"
         data-mobile="" />*@
@@ -325,6 +326,7 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
+                columnHidingEnabled: true,
 
                 filterPanel: {
                     visible: false
@@ -375,22 +377,22 @@
                     {
                         caption: '@SharedLocalizer["Arab Words"]',
                         dataField: "arabWord",
-                        width:300,
+                        //width:300,
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
                         dataField: "arabVoice",
-
+                        width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
-                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         style: 'padding-left: 10px; padding-right: 10px; cursor:pointer',
                                          src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
                                     },))
                                     .appendTo(element);
@@ -403,26 +405,27 @@
                     },
                     {
                         caption: ' ',
-                        width:200,
+                        width: 110,
                     },
                     {
                         caption: '@SharedLocalizer["Arabic Word in"] @Html.Raw(_userDict.GetDictionaryName())',
                         dataField: "otherWord",
-                        width: 300,
+                        //width: 300,
                         allowHeaderFiltering: false,
                         alignment: "center"
                     },
                     {
                         caption: ' ',
                         dataField: "otherVoice",
+                        width: 110,
                         cellTemplate: function (element, options) {
                             if (options.value) {
                                 $('<div>', { class: 'cell' })
                                     .append($('<audio>', { id: options.value, })
-                                        .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                        .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                     .append($('<img>', {
                                         onclick: 'playAudio(\'' + options.value + '\')',
-                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                        style: 'padding-left: 10px; padding-right: 10px; cursor:pointer; width:40px',
                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
                                     }))
                                     .appendTo(element);
@@ -485,6 +488,7 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
+                columnHidingEnabled: true,
 
                 onCellClick: function (e) {
                     if (e.columnIndex == 0 || e.columnIndex == 3 || e.columnIndex == 2) {
@@ -554,7 +558,7 @@
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -586,7 +590,7 @@
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -650,6 +654,7 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
+                columnHidingEnabled: true,
                 onInitNewRow: function(e) {
                     var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
                     window.location = url;
@@ -715,16 +720,17 @@
                         dataField: "arabName",
                         allowHeaderFiltering: true,
                         alignment: "center",
-                        width:300
+                        //width:300
                     },
                      {
                         caption: ' ',
-                        dataField: "arabVoice",
+                         dataField: "arabVoice",
+                         width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -747,17 +753,17 @@
                         dataField: "otherName",
                         allowHeaderFiltering: true,
                         alignment: "center",
-                        width: 300
+                        //width: 300
                     },
                      {
                         caption: ' ',
                         dataField: "otherVoice",
-
+                         width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',

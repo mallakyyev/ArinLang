@@ -2091,6 +2091,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="SkiaSharp.HarfBuzz" Version="2.80.3" />
     <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.80.3" />
     <PackageReference Include="Soluling" Version="1.0.52" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
@@ -2112,6 +2114,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Logs\" />
     <Folder Include="wwwroot\Admin\assets\js\plugins\plugins-related\" />
     <Folder Include="wwwroot\images\Names\" />
     <Folder Include="wwwroot\images\Exported\" />

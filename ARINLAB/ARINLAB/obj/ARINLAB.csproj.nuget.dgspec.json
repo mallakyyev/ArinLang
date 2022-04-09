@@ -96,6 +96,14 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Serilog.Extensions.Logging.File": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "SkiaSharp.HarfBuzz": {
+              "target": "Package",
+              "version": "[2.80.3, )"
+            },
             "SkiaSharp.NativeAssets.Linux.NoDependencies": {
               "target": "Package",
               "version": "[2.80.3, )"

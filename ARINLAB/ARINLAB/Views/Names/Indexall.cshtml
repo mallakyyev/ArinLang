@@ -32,162 +32,6 @@
         $(function () {
             let url = `@API.GetNamesWithDictId/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
-            @*$("#gridContainer").dxDataGrid({
-                dataSource: DevExpress.data.AspNet.createStore({
-                    key: "id",
-                    loadUrl: url,
-                    insertUrl: url,
-                    updateUrl: url,
-                    deleteUrl: url,
-                    onBeforeSend: function (method, ajaxOptions) {
-                        ajaxOptions.xhrFields = { withCredentials: true };
-                    }
-                }),
-                onInitNewRow: function(e) {
-                    var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
-                    window.location = url;
-                },
-                onCellClick: function (e) {
-                    if (e.columnIndex == 0 || e.columnIndex == 3) {
-                        var idString = e.data.id;
-                        var url = `@Url.Action("Details", "Names", new { Area = "" })`;
-                        window.location = url + '?id=' + idString;
-                    }
-                },
-                //selection: {
-                //    mode: "multiple"
-                //},
-                "export": {
-                    enabled: false,
-                    fileName: "Documents",
-                    allowExportSelectedData: false
-                },
-                filterPanel: {
-                    visible: false
-                },
-                filterRow: { visible: false },
-                remoteOperations: true,
-                onRowUpdating: function (e) {
-                    e.newData = Object.assign(e.oldData, e.newData)
-                },
-                scrolling: {
-                    mode: "virtual",
-                    rowRenderingMode: "virtual"
-                },
-                paging: {
-                    pageSize: 100
-                },
-                editing: {
-                    useIcons: true,
-                    allowUpdating: false,
-                    allowDeleting: false,
-                    allowAdding: false
-                },
-                headerFilter: {
-                    visible: false
-                },
-                wordWrapEnabled: true,
-                showColumnLines: false,
-                showRowLines: true,
-                hoverStateEnabled: true,
-                rowAlternationEnabled: true,
-                showBorders: true,
-                searchPanel: {
-                    visible: false
-                },
-
-                stateStoring: {
-                    enabled: false,
-                    type: "localStorage",
-                    storageKey: "partnersAdmin"
-                },
-                allowColumnReordering: false,
-                columns: [
-                    {
-                        caption: '@SharedLocalizer["Arab Name"]',
-                        dataField: "arabName",
-                        allowHeaderFiltering: true,
-                        alignment: "center",
-                        width:300
-                    },
-                     {
-                        caption: ' ',
-                        dataField: "arabVoice",
-                        cellTemplate: function (element, options) {
-                             if (options.value) {
-                                 $('<div>', { class: 'cell' })
-                                     .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
-                                     .append($('<img>', {
-                                         onclick: 'playAudio(\'' + options.value + '\')',
-                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer; ',
-                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
-                                    },))
-                                    .appendTo(element);
-                            } else {
-
-                            }
-                        },
-                        allowHeaderFiltering: false,
-
-                    },
-                    {
-                        caption: ' ',
-                        width : 110,
-                    },
-                    {
-                        caption: '@SharedLocalizer["Türkmen Name"]',
-                        dataField: "otherName",
-                        allowHeaderFiltering: true,
-                        alignment: "center",
-                        width: 300
-                    },
-                     {
-                        caption: ' ',
-                        dataField: "otherVoice",
-
-                        cellTemplate: function (element, options) {
-                             if (options.value) {
-                                 $('<div>', { class: 'cell' })
-                                     .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
-                                     .append($('<img>', {
-                                         onclick: 'playAudio(\'' + options.value + '\')',
-                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
-                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
-                                    },))
-                                    .appendTo(element);
-                            } else {
-
-                            }
-                        },
-                        allowHeaderFiltering: false,
-
-                    },
-                      {
-                        type: "buttons",
-                        width: 55,
-                        caption: '@SharedLocalizer["Share"]',
-                        buttons: [
-                            {
-                                hint: '@SharedLocalizer["Share"]',
-                                icon: "share",
-                                onClick: function (e) {
-                                    var req = new XMLHttpRequest();
-                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabName + "/" + e.row.data.otherName, false);
-                                    req.send();
-                                    var a = document.createElement("a");
-                                    a.setAttribute("href", ""+req.responseText);
-                                    a.setAttribute("download", "" + req.responseText);
-                                    document.body.appendChild(a);
-                                    a.click();
-                                    document.body.removeChild(a);
-                                }
-                            },
-                        ]
-                    }
-                ]
-            });*@
              $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -199,6 +43,7 @@
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
+                 columnHidingEnabled: true,
                 onInitNewRow: function(e) {
                     var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
                     window.location = url;
@@ -264,16 +109,17 @@
                         dataField: "arabName",
                         allowHeaderFiltering: true,
                         alignment: "center",
-                        width:300
+                        //width:300
                     },
                      {
                         caption: ' ',
-                        dataField: "arabVoice",
+                         dataField: "arabVoice",
+                         width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -296,17 +142,17 @@
                         dataField: "otherName",
                         allowHeaderFiltering: true,
                         alignment: "center",
-                        width: 300
+                        //width: 300
                     },
                      {
                         caption: ' ',
                         dataField: "otherVoice",
-
+                         width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
                                  $('<div>', { class: 'cell' })
                                      .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: 'https://localhost:5001/' + options.value, type: 'audio/mpeg' })))
+                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
                                          onclick: 'playAudio(\'' + options.value + '\')',
                                          style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
@@ -346,125 +192,7 @@
             });
         });
     </script>
-    <script>
-        @*$(function () {
-            let url = `@API.GetNamesWithDictId/@Model.DictionaryId`;
-            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
-            $("#gridContainer").dxDataGrid({
-                dataSource: DevExpress.data.AspNet.createStore({
-                    key: "id",
-                    loadUrl: url,
-                    insertUrl: url,
-                    updateUrl: url,
-                    deleteUrl: url,
-                    onBeforeSend: function (method, ajaxOptions) {
-                        ajaxOptions.xhrFields = { withCredentials: true };
-                    }
-                }),
-                onInitNewRow: function(e) {
-                    var url = `@Url.Action("Create", "Names", new { Area = "Admin" })`;
-                    window.location = url;
-                },
-
-                onRowClick: function (e) {
-                    if (e.columnIndex != 2) {
-                        var idString = e.data.id;
-                        var url = `@Url.Action("Details", "Names", new { Area = "" })`;
-                        window.location = url + '?id=' + idString;
-                    }
-                },
-
-                "export": {
-                    enabled: false,
-                    fileName: "Documents",
-                    allowExportSelectedData: false
-                },
-
-                filterPanel: {
-                    visible: false
-                },
-                filterRow: { visible: false },
-                remoteOperations: true,
-                onRowUpdating: function (e) {
-                    e.newData = Object.assign(e.oldData, e.newData)
-                },
-                scrolling: {
-                    mode: "virtual",
-                    rowRenderingMode: "virtual"
-                },
-                paging: {
-                    pageSize: 15
-                },
-                pager: {
-                    visible: true,
-                    allowedPageSizes: [10, 20, 40],
-                    showPageSizeSelector: true,
-                    showInfo: true,
-                    showNavigationButtons: true,
-                },
-                editing: {
-                    useIcons: true,
-                    allowUpdating: true,
-                    allowDeleting: false,
-                    allowAdding: false
-                },
-                headerFilter: {
-                    visible: true
-                },
-                wordWrapEnabled: true,
-                showColumnLines: true,
-                showRowLines: true,
-                rowAlternationEnabled: true,
-                hoverStateEnabled: true,
-                showBorders: true,
-                searchPanel: {
-                    visible: true
-                },
-
-                stateStoring: {
-                    enabled: false,
-                    type: "localStorage",
-                    storageKey: "partnersAdmin"
-                },
-                allowColumnReordering: false,
-                columns: [
-                    {
-                        caption: '@SharedLocalizer["Arab Name"]',
-                        dataField: "arabName",
-                        allowHeaderFiltering: true
-                    },
-                    {
-                        caption: '@SharedLocalizer["Türkmen Name"]',
-                        dataField: "otherName",
-                        allowHeaderFiltering: true
-                    },
-
-                    {
-                        type: "buttons",
-                        width: 60,
-                        caption: '@SharedLocalizer["Share"]',
-                        buttons: [
-                            {
-                                hint: '@SharedLocalizer["Share"]',
-                                icon: "share",
-                                onClick: function (e) {
-                                    var req = new XMLHttpRequest();
-                                    req.open("GET", "/api/ExportAPI/" + e.row.data.arabName + "/" + e.row.data.otherName, false);
-                                    req.send();
-                                    var a = document.createElement("a");
-                                    a.setAttribute("href", ""+req.responseText);
-                                    a.setAttribute("download", "" + req.responseText);
-                                    document.body.appendChild(a);
-                                    a.click();
-                                    document.body.removeChild(a);
-                                }
-                            },
-                        ]
-                    }
-                ]
-            });
-        });*@
-
+    <script>     
         function playAudio(id) {
             var x = document.getElementById(id);
             x.play();

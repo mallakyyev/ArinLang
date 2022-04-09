@@ -12,5 +12,6 @@ namespace ARINLAB
         public static string clausesFilePath = "Clauses";
         public static int Home_table_Count = 5;
         public static string NamesPath = "Names";
+        public static string HostName = "https://arinlang.com/";
     }
 }
