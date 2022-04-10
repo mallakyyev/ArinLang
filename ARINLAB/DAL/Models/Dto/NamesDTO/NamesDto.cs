@@ -25,6 +25,7 @@ namespace DAL.Models.Dto.NamesDTO
         public string ArabVoice { get; set; }
         public string OtherVoice { get; set; }
         public IFormFile ArabForm{ get; set; }
+        public DateTime AddedDate { get; set; }
         public IFormFile OtherForm { get; set; }
         public int? Viewed { get; set; }
         public ICollection<NameImages> NameImages { get; set; }

@@ -21,6 +21,8 @@ namespace DAL.Models
         public int? Viewed { get; set; }
         public ICollection<NameImages> NameImages { get; set; }
         public ICollection<NamesRating> NamesRatings { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+        public DateTime AddedDate { get; set; }
 
     }
 }

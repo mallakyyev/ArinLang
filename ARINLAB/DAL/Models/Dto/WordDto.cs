@@ -17,6 +17,7 @@ namespace DAL.Models.Dto
         public bool IsApproved { get; set; }
         public string ImageForShare { get; set; }
         public string ArabVoice { get; set; }
+        public DateTime AddedDate { get; set; }
         public int? Viewed { get; set; }
         public string OtherVoice { get; set; }                 
         public string Dictionary { get; set; }

@@ -37,6 +37,7 @@ namespace ARINLAB.Areas.Admin.Utils
         public static string SearchClauses { get; } = "/api/SearchAPI/SearchClauses";
 
         public static string Countries { get; } = "/api/CountryAPI";
+        public static string GetAllUserStatistics { get; } = "/api/ApplicationUserAPI/UserStatistics"; 
     }
     
 }

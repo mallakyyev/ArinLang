@@ -1,10 +1,14 @@
-﻿
+﻿@using ARINLAB.Areas.Admin.Utils;
+@using ARINLAB;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
 
 }
 @using ARINLAB.Models
-@model List<StatisticCard> 
+@model List<StatisticCard>
 <h1>@SharedLocalizer["Admin Dashboard"]</h1>
 
 <div class="main-wrapper">
@@ -21,7 +25,7 @@
 
                 <!-- Content -->
                 <div class="content">
-                    <h5>@SharedLocalizer["Todays"]</h5>
+                    <h5>@SharedLocalizer["All"]</h5>
                     <h2>@Model[0].totalCount</h2>
                 </div>
 
@@ -48,7 +52,7 @@
 
                 <!-- Content -->
                 <div class="content">
-                    <h5>@SharedLocalizer["Todays"]</h5>
+                    <h5>@SharedLocalizer["All"]</h5>
                     <h2>@Model[1].totalCount</h2>
                 </div>
 
@@ -75,7 +79,7 @@
 
                 <!-- Content -->
                 <div class="content">
-                    <h5>@SharedLocalizer["Todays"]</h5>
+                    <h5>@SharedLocalizer["All"]</h5>
                     <h2>@Model[2].totalCount</h2>
                 </div>
 
@@ -102,7 +106,7 @@
 
                 <!-- Content -->
                 <div class="content">
-                    <h5>@SharedLocalizer["Todays"]</h5>
+                    <h5>@SharedLocalizer["All"]</h5>
                     <h2>@Model[3].totalCount</h2>
                 </div>
 
@@ -118,7 +122,125 @@
         </div><!-- Top Report End -->
         <!-- Top Report Start -->
     </div><!-- Top Report Wrap End -->
-
-    <!--   
+    <hr />
+    <div class="row">
+        <h2 style="text-align:center; padding-top:50px;"> @SharedLocalizer["User Contributions"]</h2>
+        <div id="gridContainer">
+        </div>
+    </div>
 </div>
 
+
+@section Scripts{
+    <script>
+
+        $(function () {
+            let url = `@API.GetAllUserStatistics`;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({                    
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+
+                selection: {
+                    mode: "multiple"
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Documents",
+                    allowExportSelectedData: true
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 10
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: true
+                },
+
+              
+
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["User Name"]',
+                        dataField: "userName",
+                        allowHeaderFiltering: false
+                    },
+
+                    {
+                        caption: '@SharedLocalizer["Email"]',
+                        dataField: "email",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        caption: '@SharedLocalizer["Added Words Total"]',
+                        dataField: "totalWords",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        caption: '@SharedLocalizer["Added Phrases Total"]',
+                        dataField: "totalPhrases",
+                        allowHeaderFiltering: false
+                    },
+
+                    {
+                        caption: '@SharedLocalizer["Added Names Total"]',
+                        dataField: "totalNames",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        caption: '@SharedLocalizer["Added Word Sentences Total"]',
+                        dataField: "totalWordSentences",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Edit"]',
+                                icon: "edit",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("Edit", "ApplicationUser", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                           
+                        ]
+                    }
+                ]
+            });
+
+        });
+    </script>
+}

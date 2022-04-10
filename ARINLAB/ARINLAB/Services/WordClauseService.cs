@@ -40,8 +40,11 @@ namespace ARINLAB.Services
         public async Task<Responce> CreateWordClause(CreateWordClauseDto model)
         {
             try
-            {                
-                var res = await _dbContext.WordClauses.AddAsync(_mapper.Map<WordClause>(model));
+            {
+                var m = _mapper.Map<WordClause>(model);
+                m.AddedDate = DateTime.Now;
+                var res = await _dbContext.WordClauses.AddAsync(m);
+                
                 await _dbContext.SaveChangesAsync();
                 return ResponceGenerator.GetResponceModel(true, "", res);
             }catch(Exception e)
@@ -106,6 +109,7 @@ namespace ARINLAB.Services
             try
             {                
                 var res = _mapper.Map<WordClause>(model);
+                res.AddedDate = DateTime.Now;
                 _dbContext.WordClauses.Update(res);
                 await _dbContext.SaveChangesAsync();
                 return ResponceGenerator.GetResponceModel(true, "", res);

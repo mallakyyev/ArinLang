@@ -26,12 +26,7 @@
 
 @section Scripts{
     <script>
-         var UserType = [
-            { Id: 0, name: '@SharedLocalizer["Employee"]' },
-            { Id: 1, name: '@SharedLocalizer["Entrepreneur"]' },
-            { Id: 2, name: '@SharedLocalizer["Organization"]' }
-        ];
-
+        
         $(function () {
             let url = `@API.GetAllUsers`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';

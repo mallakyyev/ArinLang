@@ -21,5 +21,6 @@ namespace DAL.Models
         public string OtherVoice { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public ICollection<WordSentenceRating> WordSentenceRatings { get; set; }
+        public DateTime AddedDate { get; set; }
     }
 }

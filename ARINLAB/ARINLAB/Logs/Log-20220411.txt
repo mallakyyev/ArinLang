@@ -1,0 +1,247 @@
+2022-04-11T00:23:47.8023696+05:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2022-04-11T00:23:47.8081349+05:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2022-04-11T00:23:47.8106742+05:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-04-11T00:23:47.8127649+05:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-04-11T00:23:47.8142349+05:00  [INF] Content root path: "D:\ARINLAB\ARINLAB\ARINLAB" (b5d60022)
+2022-04-11T00:23:53.8033201+05:00 0HMGR4UHGVS1T:00000001 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. (96eb03fe)
+2022-04-11T00:24:10.8026379+05:00 0HMGR4UHGVS1T:0000005D [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))' (74d62de4)
+2022-04-11T00:24:39.6536069+05:00 0HMGR4UHGVS1T:000000B5 [INF] Start processing HTTP request "POST" https://www.google.com/recaptcha/api/siteverify?secret=6LdODTcfAAAAAJ1ixMz_tccWXTuK0Isj9ny5zlY2&response=03AGdBq27Yr6GKj0wCqc74o_hrrXJYT3b1J5IExDBi9RFL3HS6vKUH0501HTAbm-3SouHNCUA4bTdAOynJSzJuyFkBsTpF8xzmRK_pnGPpfBiISWdhSPiJDY6-ZzRJ05GAmDoaljU_5vQ81I3n2XccFx5wtmWEdCQpfnzpBNaqe8tIK4ThUpJBgbYvqim3lPs7mrise8CKGPnWrriemjM9WncDmSPyRymian6ggcX7ian7QaEjK5D9mxOMhGfBywdNqEaTozUKHmb-jdqKcp5x1mE5U_5g7UgJ2QINmr-WrgCv5BieGW7Zp3gYhDu7gL7QLFnaXWVORHOmMfXT1L0JzdrMhvBdmtmaLpJyTgwlwwRLQGJoWVpmtamJtKzAjgIHTTlpQuGnxIxg0xo-bu8bUPZus7G4rgxEzY9MCIlqbkyn0hwXCSKO4-evqgXpENEE80WWGfwmsMspgjo8pf9VUY6FGaN_C-sAvw (338f1c77)
+2022-04-11T00:24:39.6572324+05:00 0HMGR4UHGVS1T:000000B5 [INF] Sending HTTP request "POST" https://www.google.com/recaptcha/api/siteverify?secret=6LdODTcfAAAAAJ1ixMz_tccWXTuK0Isj9ny5zlY2&response=03AGdBq27Yr6GKj0wCqc74o_hrrXJYT3b1J5IExDBi9RFL3HS6vKUH0501HTAbm-3SouHNCUA4bTdAOynJSzJuyFkBsTpF8xzmRK_pnGPpfBiISWdhSPiJDY6-ZzRJ05GAmDoaljU_5vQ81I3n2XccFx5wtmWEdCQpfnzpBNaqe8tIK4ThUpJBgbYvqim3lPs7mrise8CKGPnWrriemjM9WncDmSPyRymian6ggcX7ian7QaEjK5D9mxOMhGfBywdNqEaTozUKHmb-jdqKcp5x1mE5U_5g7UgJ2QINmr-WrgCv5BieGW7Zp3gYhDu7gL7QLFnaXWVORHOmMfXT1L0JzdrMhvBdmtmaLpJyTgwlwwRLQGJoWVpmtamJtKzAjgIHTTlpQuGnxIxg0xo-bu8bUPZus7G4rgxEzY9MCIlqbkyn0hwXCSKO4-evqgXpENEE80WWGfwmsMspgjo8pf9VUY6FGaN_C-sAvw (2e7ac211)
+2022-04-11T00:24:40.2759050+05:00 0HMGR4UHGVS1T:000000B5 [INF] Received HTTP response headers after 613.0655ms - 200 (f0742c1f)
+2022-04-11T00:24:40.2801543+05:00 0HMGR4UHGVS1T:000000B5 [INF] End processing HTTP request after 644.4796ms - 200 (7656b38e)
+2022-04-11T00:24:42.5731797+05:00 0HMGR4UHGVS1T:000000B5 [INF] User logged in. (fdce0db4)
+2022-04-11T00:25:43.3620685+05:00 0HMGR4UHGVS1T:0000011F [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: 'id' is not a member of type 'DAL.Models.Dto.UserStatistics' (Parameter 'propertyOrFieldName')
+   at System.Linq.Expressions.Expression.PropertyOrField(Expression expression, String propertyOrFieldName)
+   at DevExtreme.AspNet.Data.ExpressionCompiler.CompileAccessorExpression(Expression target, String clientExpr, Action`1 customizeProgression, Boolean liftToNullable)
+   at DevExtreme.AspNet.Data.FilterExpressionCompiler.CompileBinary(ParameterExpression dataItemExpr, IList criteriaJson)
+   at DevExtreme.AspNet.Data.FilterExpressionCompiler.CompileCore(ParameterExpression dataItemExpr, IList criteriaJson)
+   at DevExtreme.AspNet.Data.FilterExpressionCompiler.Compile(IList criteriaJson)
+   at DevExtreme.AspNet.Data.DataSourceExpressionBuilder.AddFilter(IList filterOverride)
+   at DevExtreme.AspNet.Data.DataSourceExpressionBuilder.BuildLoadExpr(Boolean paginate, IList filterOverride, IReadOnlyList`1 selectOverride)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.LoadAsync()
+   at DevExtreme.AspNet.Data.DataSourceLoader.Load[T](IQueryable`1 source, DataSourceLoadOptionsBase options)
+   at ARINLAB.Areas.Admin.Controllers.API.ApplicationUserAPIController.UserStatistics(DataSourceLoadOptions loadOptions) in D:\ARINLAB\ARINLAB\ARINLAB\Areas\Admin\Controllers\API\ApplicationUserAPIController.cs:line 55
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-04-11T00:27:33.0006672+05:00 0HMGR4UHGVS1T:0000018D [ERR] Failed executing DbCommand ("443"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) COUNT(*) AS [I0], (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId]) AS [I1]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Discriminator] = N'ApplicationUser'
+GROUP BY (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId])
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId])" (627a98df)
+2022-04-11T00:27:33.0587888+05:00 0HMGR4UHGVS1T:0000018D [ERR] An exception occurred while iterating over the results of a query for context type '"DAL.Data.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15" (f5c7ac34)
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15
+2022-04-11T00:27:33.4824599+05:00 0HMGR4UHGVS1T:0000018D [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, GroupingInfo groupInfo)
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, IEnumerable`1 groupInfo)
+   at DevExtreme.AspNet.Data.RemoteGrouping.RemoteGroupTransformer.Run(Type sourceItemType, IEnumerable`1 flatGroups, Int32 groupCount, IReadOnlyList`1 totalSummary, IReadOnlyList`1 groupSummary)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.ExecRemoteGroupingAsync(Boolean remotePaging, Boolean suppressGroups, Boolean suppressTotals)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.LoadAsync()
+   at DevExtreme.AspNet.Data.DataSourceLoader.Load[T](IQueryable`1 source, DataSourceLoadOptionsBase options)
+   at ARINLAB.Areas.Admin.Controllers.API.ApplicationUserAPIController.UserStatistics(DataSourceLoadOptions loadOptions) in D:\ARINLAB\ARINLAB\ARINLAB\Areas\Admin\Controllers\API\ApplicationUserAPIController.cs:line 55
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15
+2022-04-11T00:28:07.8585503+05:00 0HMGR4UHGVS1T:00000191 [ERR] Failed executing DbCommand ("386"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) COUNT(*) AS [I0], (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId]) AS [I1]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Discriminator] = N'ApplicationUser'
+GROUP BY (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId])
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [WordClauses] AS [w]
+    WHERE [a].[Id] = [w].[UserId])" (627a98df)
+2022-04-11T00:28:07.9009841+05:00 0HMGR4UHGVS1T:00000191 [ERR] An exception occurred while iterating over the results of a query for context type '"DAL.Data.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15" (f5c7ac34)
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, GroupingInfo groupInfo)
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, IEnumerable`1 groupInfo)
+   at DevExtreme.AspNet.Data.RemoteGrouping.RemoteGroupTransformer.Run(Type sourceItemType, IEnumerable`1 flatGroups, Int32 groupCount, IReadOnlyList`1 totalSummary, IReadOnlyList`1 groupSummary)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.ExecRemoteGroupingAsync(Boolean remotePaging, Boolean suppressGroups, Boolean suppressTotals)
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15
+2022-04-11T00:28:08.2793954+05:00 0HMGR4UHGVS1T:00000191 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot use an aggregate or a subquery in an expression used for the group by list of a GROUP BY clause.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, GroupingInfo groupInfo)
+   at DevExtreme.AspNet.Data.GroupHelper`1.Group(IEnumerable`1 data, IEnumerable`1 groupInfo)
+   at DevExtreme.AspNet.Data.RemoteGrouping.RemoteGroupTransformer.Run(Type sourceItemType, IEnumerable`1 flatGroups, Int32 groupCount, IReadOnlyList`1 totalSummary, IReadOnlyList`1 groupSummary)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.ExecRemoteGroupingAsync(Boolean remotePaging, Boolean suppressGroups, Boolean suppressTotals)
+   at DevExtreme.AspNet.Data.DataSourceLoaderImpl`1.LoadAsync()
+   at DevExtreme.AspNet.Data.DataSourceLoader.Load[T](IQueryable`1 source, DataSourceLoadOptionsBase options)
+   at ARINLAB.Areas.Admin.Controllers.API.ApplicationUserAPIController.UserStatistics(DataSourceLoadOptions loadOptions) in D:\ARINLAB\ARINLAB\ARINLAB\Areas\Admin\Controllers\API\ApplicationUserAPIController.cs:line 55
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:fd9fb750-98e3-44bb-bb45-f62d3be716f5
+Error Number:144,State:1,Class:15

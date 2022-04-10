@@ -23,6 +23,7 @@ namespace DAL.Models
         public WordClauseCategory WordClauseCategory { get; set; }
         public Dictionary Dictionary { get; set; }
         public ICollection<WordClauseRating> WordClauseRatings { get; set; }
+        public DateTime AddedDate { get; set; }
 
     }
 }

@@ -42,3 +42,4 @@ D:\ARINLAB\ARINLAB\DAL\obj\Debug\net5.0\DAL.dll
 D:\ARINLAB\ARINLAB\DAL\obj\Debug\net5.0\ref\DAL.dll
 D:\ARINLAB\ARINLAB\DAL\obj\Debug\net5.0\DAL.pdb
 D:\ARINLAB\ARINLAB\DAL\obj\Debug\net5.0\DAL.genruntimeconfig.cache
+D:\ARINLAB\ARINLAB\DAL\obj\Debug\net5.0\DAL.csproj.AssemblyReference.cache

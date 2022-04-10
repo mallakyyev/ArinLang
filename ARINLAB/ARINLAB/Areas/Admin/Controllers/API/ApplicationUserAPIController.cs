@@ -6,6 +6,7 @@ using ARINLAB.Services.ApplicationUser;
 using ARINLAB.Services.ImageService;
 using DAL.Data;
 using DAL.Models;
+using DAL.Models.Dto;
 using DevExtreme.AspNet.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,13 @@ namespace ARINLAB.Areas.Admin.Controllers.API
                 return DataSourceLoader.Load<ApplicationUser>(_userService.GetAllUsers().AsQueryable(), loadOptions);
             else return null;
             
+        }
+
+        // GET: api/ApplicationUserAPI
+        [HttpGet("UserStatistics")]
+        public object UserStatistics(DataSourceLoadOptions loadOptions)
+        {            
+            return DataSourceLoader.Load<UserStatistics>(_userService.GetAllUserstatistics().AsQueryable(), loadOptions);            
         }
         // DELETE: api/CallBacksAPI/5
         [HttpDelete("{id}")]

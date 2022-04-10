@@ -54,6 +54,8 @@ namespace ARINLAB.Services
                     _word.ArabVoice = await _fileService.UploadImage(word.ArabVoiceForm, SD.wordFilePath);
                 if (word.OtherVoiceForm != null)
                     _word.OtherVoice = await _fileService.UploadImage(word.OtherVoiceForm, SD.wordFilePath);
+
+                _word.AddedDate = DateTime.Now;
                 var data = _dbContext.Words.AddAsync(_word).Result;
                 await _dbContext.SaveChangesAsync();
                 if (data.IsKeySet)
@@ -84,6 +86,7 @@ namespace ARINLAB.Services
                     if (createWordModel.OtherVoiceForm != null)
                         newSentences.OtherVoice = await _fileService.UploadImage(createWordModel.OtherVoiceForm, SD.wordFilePath);
 
+                    newSentences.AddedDate = DateTime.Now;
                     var data = await _dbContext.WordSentences.AddAsync(newSentences);
                     await _dbContext.SaveChangesAsync();
                     return ResponceGenerator.GetResponceModel(true, "", data);
@@ -159,6 +162,7 @@ namespace ARINLAB.Services
             _word.ImageForShare = editWordDto.ImageForShare;
             _word.ArabVoice = editWordDto.ArabVoice;
             _word.OtherVoice = editWordDto.OtherVoice;
+            _word.AddedDate = DateTime.Now;
             if (editWordDto.ArabVoiceForm != null)
             {
                 _fileService.DeleteImage(editWordDto.ArabVoice);
@@ -222,6 +226,7 @@ namespace ARINLAB.Services
 
                     editWord.ArabSentence = editWord.ArabSentence;
                     editWord.OtherSentence = editWord.OtherSentence;
+                    editWord.AddedDate = DateTime.Now;
                     var data = _dbContext.WordSentences.Update(editWord).Entity;
                     _ = await _dbContext.SaveChangesAsync();
                     return ResponceGenerator.GetResponceModel(true, "", data);

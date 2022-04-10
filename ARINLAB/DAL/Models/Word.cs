@@ -22,6 +22,7 @@ namespace DAL.Models
         public Dictionary Dictionary { get; set; }
         public ICollection<WordRating> WordRatings { get; set; }
         public ICollection<WordSentences> WordSentences { get; set; }
-       
+        public DateTime AddedDate { get; set; }
+
     }
 }

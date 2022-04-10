@@ -15,7 +15,9 @@ namespace DAL.Models.Dto
         public string ArabVoice{ get; set; }
         public string OtherVoice { get; set; }
         public int? Viewed { get; set; }
-        public string OtherReader { get; set; }        
+        public string OtherReader { get; set; }
+        public DateTime AddedDate { get; set; }
+
         public bool IsApproved { get; set; }        
         public string UserName { get; set; }
         public string DictionaryName { get; set; }

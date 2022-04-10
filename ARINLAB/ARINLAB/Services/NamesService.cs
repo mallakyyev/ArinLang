@@ -56,7 +56,7 @@ namespace ARINLAB.Services
                 {
                     model.NamesId = image.NamesId;
                     model.UserId = image.UserId;
-                    model.IsApproved = true;
+                    model.IsApproved = true;                    
                     if (image.ImageUri != null)
                     {
                         model.ImageUri = await _imageService._UploadImage(image.ImageUri, "Names");
@@ -81,6 +81,8 @@ namespace ARINLAB.Services
                     res.ArabVoice = await _fileService.UploadImage(name.ArabForm, SD.NamesPath);
                 if (name.OtherForm!= null)
                     res.OtherVoice = await _fileService.UploadImage(name.OtherForm, SD.NamesPath);
+
+                res.AddedDate = DateTime.Now;
                 _dbContext.Names.Add(res);
                 await _dbContext.SaveChangesAsync();
                 return ResponceGenerator.GetResponceModel(true, "Success", name);
@@ -156,6 +158,7 @@ namespace ARINLAB.Services
                         _fileService.DeleteImage(result.OtherVoice);
                         result.OtherVoice = await _fileService.UploadImage(name.OtherForm, SD.NamesPath);
                     }
+                    result.AddedDate = DateTime.Now;
                     _dbContext.Update(result);
                     _dbContext.SaveChanges();
                     return ResponceGenerator.GetResponceModel(true, "", result);

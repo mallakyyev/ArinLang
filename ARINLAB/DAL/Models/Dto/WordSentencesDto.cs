@@ -18,6 +18,8 @@ namespace DAL.Models.Dto
         public IFormFile OtherVoiceForm { get; set; }
         public string ArabVoice { get; set; }
         public string OtherVoice { get; set; }
+        public DateTime AddedDate { get; set; }
+
         public int WordId { get; set; }
         public string UserId { get; set; }
         public bool IsApproved { get; set; }

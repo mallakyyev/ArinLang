@@ -393,6 +393,9 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ArabName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -417,8 +420,7 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Viewed")
                         .HasColumnType("int");
@@ -426,6 +428,8 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DictionaryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Names");
                 });
@@ -593,6 +597,9 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ArabVoice")
                         .HasColumnType("nvarchar(max)");
 
@@ -637,6 +644,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ArabClause")
                         .IsRequired()
@@ -786,6 +796,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ArabReader")
                         .HasColumnType("nvarchar(max)");
@@ -1131,6 +1144,12 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DAL.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Names")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationUser");
+
                     b.Navigation("Dictionary");
                 });
 
@@ -1436,6 +1455,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("Names");
+
                     b.Navigation("WordClauses");
 
                     b.Navigation("Words");

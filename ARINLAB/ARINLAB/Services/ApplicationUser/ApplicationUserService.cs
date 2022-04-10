@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DAL.Models.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,7 +15,6 @@ namespace ARINLAB.Services.ApplicationUser
         private readonly UserManager<DAL.Models.ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
-
 
         public ApplicationUserService(UserManager<DAL.Models.ApplicationUser> userManager,RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
@@ -38,6 +38,24 @@ namespace ARINLAB.Services.ApplicationUser
             var appUsers = _userManager.Users.AsNoTracking().Where(o=>o.UserName!="Admin").OrderBy(o => o.FirstName);
             //var users = _mapper.ProjectTo<ApplicationUserDTO>(appUsers).AsQueryable();
             return appUsers;//users;
+        }
+
+        public IEnumerable<UserStatistics> GetAllUserstatistics()
+        {
+            var res = _userManager.Users.AsNoTracking().Include(word => word.Words)
+                                                       .Include(phrases => phrases.WordClauses)
+                                                       .Include(names => names.Names)
+                                                       .Include(sent => sent.WordSentences)
+                                                       .Select(p => new UserStatistics
+                                                       {
+                                                           Email = p.Email,
+                                                           TotalNames = p.Names.Count,
+                                                           TotalPhrases = p.WordClauses.Count,
+                                                           TotalWords = p.Words.Count,
+                                                           TotalWordSentences = p.WordSentences.Count,
+                                                           UserName = p.UserName
+                                                       });
+            return res;
         }
 
         public async Task<DAL.Models.ApplicationUser> GetUserProfile(string userId)

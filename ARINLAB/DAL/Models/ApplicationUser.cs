@@ -17,6 +17,6 @@ namespace DAL.Models
         public ICollection<WordSentences> WordSentences { get; set; }
         public ICollection<Word> Words { get; set; }
         public ICollection<WordClause> WordClauses { get; set; }
-
+        public ICollection<Names> Names { get; set; }
     }
 }
