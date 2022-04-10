@@ -12,7 +12,7 @@ namespace ARINLAB
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            CreateAdminData.CreateDataTask(host).GetAwaiter().GetResult();
+            //CreateAdminData.CreateDataTask(host).GetAwaiter().GetResult();
             host.Run();
         }
 

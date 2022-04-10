@@ -101,20 +101,18 @@ namespace ARINLAB.Controllers
             return LocalRedirect($"{returnUrl}{value}");
         }
 
+        [HttpGet("Unsubscribe")]
         public ActionResult Unsubscribe()
         {
             return View();
         }
 
-        [HttpGet("Unsubscribed/{email}/{code}")]
-        public async Task<IActionResult> Unsubscribed(string email, string code)
+        
+        public async Task<IActionResult> Unsubscribed(string email)
         {
-            
-            string emailcode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-
-            if(email == emailcode)
+            string id = _subscriberService.GetEmail(email);
+            if (!string.IsNullOrEmpty(id))
             {
-                string id = _subscriberService.GetEmail(email);
                 await _subscriberService.DeleteSubscriber(id);
                 ViewBag.Email = _localizer["You have succeffully unsubscribed"];
                 return View();
