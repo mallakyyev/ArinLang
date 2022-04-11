@@ -32,11 +32,12 @@ const branchSlider = new Swiper('.branch-swiper-container', {
 		},
 		600: {
 			slidesPerView: 2,
-
+			centeredSlides: true,
 			spaceBetween: 20,
 		},
 		800: {
 			slidesPerView: 3,
+			centeredSlides: true,
 			spaceBetween: 20,
 		},
 	},
@@ -59,19 +60,22 @@ const productsSlider = new Swiper('.products-swiper-container', {
 		},
 		600: {
 			slidesPerView: 2,
-
+			centeredSlides: true,
 			spaceBetween: 20,
 		},
 		768: {
 			slidesPerView: 2.5,
+			centeredSlides: true,
 			spaceBetween: 10,
 		},
 		1024: {
 			slidesPerView: 3,
+			centeredSlides: true,
 			spaceBetween: 10,
 		},
 		1200: {
 			slidesPerView: 3.6,
+			centeredSlides: true,
 			spaceBetween: 10,
 		},
 	},
