@@ -119,8 +119,8 @@
                                 icon: "edit",
                                 onClick: function (e) {
                                     var idString = e.row.data.id;
-                                    var url = `@Url.Action("Edit", "ApplicationUser", new { Area = "Admin" })`;
-                                    window.location = url + '?id=' + idString;
+                                    var url = `@Url.Action("UserStatistics", "ApplicationUser", new { Area = "Admin" })`;
+                                    window.location = url + '?id=' + idString + '&period=2';
                                 }
                             },
 

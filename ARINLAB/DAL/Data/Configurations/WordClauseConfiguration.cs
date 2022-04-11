@@ -23,7 +23,7 @@ namespace DAL.Data.Configurations
             builder.Property(p => p.IsApproved).IsRequired();
             builder.Property(p => p.UserId).IsRequired();
             builder.Property(p => p.Viewed).IsRequired(false);
-            builder.Property(p => p.AddedDate).IsRequired();
+            builder.Property(p => p.AddedDate).IsRequired().HasDefaultValue(DateTime.Now);
             builder.HasOne(p => p.WordClauseCategory).WithMany(p => p.WordClauses).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(p => p.ApplicationUser).WithMany(p => p.WordClauses).HasForeignKey(p => p.UserId).OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(p => p.Dictionary).WithMany(p => p.WordClauses).HasForeignKey(p => p.DictionaryId).OnDelete(DeleteBehavior.Restrict);

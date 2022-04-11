@@ -2582,3 +2582,4 @@ D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.Async.dll
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.File.dll
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
+D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\ApplicationUser\UserStatistics.cshtml.g.cs

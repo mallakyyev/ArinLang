@@ -394,7 +394,9 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 754, DateTimeKind.Local).AddTicks(1834));
 
                     b.Property<string>("ArabName")
                         .IsRequired()
@@ -598,7 +600,9 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 741, DateTimeKind.Local).AddTicks(3623));
 
                     b.Property<string>("ArabVoice")
                         .HasColumnType("nvarchar(max)");
@@ -646,7 +650,9 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 735, DateTimeKind.Local).AddTicks(3156));
 
                     b.Property<string>("ArabClause")
                         .IsRequired()
@@ -798,7 +804,9 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 743, DateTimeKind.Local).AddTicks(4624));
 
                     b.Property<string>("ArabReader")
                         .HasColumnType("nvarchar(max)");

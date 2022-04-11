@@ -1,0 +1,212 @@
+﻿@using ARINLAB.Areas.Admin.Utils;
+@using ARINLAB;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Dashboard";
+    StatPeriod p = (StatPeriod)ViewBag.Period;
+}
+@using ARINLAB.Models
+@model UserStats
+
+<h1>@SharedLocalizer["User"] <strong style="color:darkred">@Model.Email</strong> @SharedLocalizer["Contributions"]</h1>
+<form asp-area="Admin" asp-controller="ApplicationUser" asp-action="UserStatistics" method="get">
+    <div class="row mbn-20">
+        <input type="hidden" name="id" value="@ViewBag.id" />
+        <div class="col-12 mb-15">
+            <select class="form-control form-control-lg" name="period">
+                @if (p == StatPeriod.Daily)
+                {
+                    <option value="@((int)p)" selected>Daily</option>
+                }
+                else
+                {
+                    <option value="1">Daily</option>
+                }
+
+                @if (p == StatPeriod.Monthly)
+                {
+                    <option value="@((int)p)" selected>Monthly</option>
+                }
+                else
+                {
+                    <option value="2">Monthly</option>
+                }
+
+                @if (p == StatPeriod.Yearly)
+                {
+                    <option value="@((int)p)" selected>Yearly</option>
+                }
+                else
+                {
+                    <option value="3">Yearly</option>
+                }
+
+            </select>
+        </div>
+        <div class="col-lg-6 col-12 mb-20"><input type="submit" class="button button-primary" value="@SharedLocalizer["View Statistics"]"></div>
+    </div>
+
+</form>
+<div class="container">
+    <h3>@SharedLocalizer["Contributions"]</h3>
+    <canvas id="words" width="800" height="450"></canvas>
+</div>
+@*<div class="container" style="padding-top:100px;">
+        <h3>@SharedLocalizer["Contributed Word Sentences"]</h3>
+        <canvas id="words_cent" width="800" height="450"></canvas>
+    </div>
+    <div class="container" style="padding-top:100px;">
+        <h3>@SharedLocalizer["Contributed Names"]</h3>
+        <canvas id="names" width="800" height="450"></canvas>
+    </div>
+
+    <div class="container" style="padding-top:100px;">
+        <h3>@SharedLocalizer["Contributed Phrases"]</h3>
+        <canvas id="phrases" width="800" height="450"></canvas>
+    </div>*@
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.esm.js" integrity="sha512-jUlTTDoq6IvZiinGFQetLcklithBTp8sVUkkUBEYQvYd3hwMuCTd59kAzVpJwvRTmZ2palO++nX+vKC+cK9lqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.esm.min.js" integrity="sha512-ESlgC6ZyzTZdmD7XoDrXJNOqoIugH+FNKg8nAk8sa3cZfFALiV+lo5xoia649oyygwnkKsdUdPAJ+puqGbOs+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js" integrity="sha512-Lii3WMtgA0C0qmmkdCpsG0Gjr6M0ajRyQRQSbTF6BsrVh/nhZdHpVZ76iMIPvQwz1eoXC3DmAg9K51qT5/dEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/helpers.esm.js" integrity="sha512-DfyVRytIoS7LXOzmxSD4//oV81uwh1xV/EuK/xeh5gVJycOdBj+XTl7jeM6bcy7jiBIabR/9S2uyRL3oKKustw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/helpers.esm.min.js
+    <script>
+    var words_labels = [];
+    @foreach (var d in Model.WordSent_X)
+    {
+        @:words_labels.push("@d");
+    }
+
+         var words_data = [];
+
+    @foreach (var d in Model.WordSent_Y)
+    {
+        @:word_data.push("@d");
+    }
+        new Chart(document.getElementById("words_cent"), {
+            type: 'line',
+            data: {
+                labels: words_labels,
+                datasets: [{
+                    data: words_data,
+                    label: "Word Sentences",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                }
+                ]
+            },
+
+        });
+    </script>
+
+    <script>
+    var names_labels = [];
+    @foreach (var d in Model.Names_X)
+    {
+        @:names_labels.push("@d");
+    }
+
+         var names_data = [];
+
+    @foreach (var d in Model.Names_Y)
+    {
+        @:names_data.push("@d");
+    }
+        new Chart(document.getElementById("names"), {
+            type: 'line',
+            data: {
+                labels: names_labels,
+                datasets: [{
+                    data: names_data,
+                    label: "Names",
+                    borderColor: "#e8c3b9",
+                    fill: false
+                }
+                ]
+            },
+
+        });
+    </script>
+
+    <script>
+    var phrases_labels = [];
+    @foreach (var d in Model.Phrases_X)
+    {
+        @:phrases_labels.push("@d");
+    }
+
+         var phrases_data = [];
+
+    @foreach (var d in Model.Phrases_Y)
+    {
+        @:phrases_data.push("@d");
+    }
+        new Chart(document.getElementById("phrases"), {
+            type: 'line',
+            data: {
+                labels: phrases_labels,
+                datasets: [
+                    {
+                        data: phrases_data,
+                        label: "Phrases",
+                        borderColor: "#c45850",
+                        fill: false
+                    }
+                ]
+            },
+
+        });
+    </script>
+    <script>
+    var word_labels = [];
+    @foreach (var d in Model.Words_X)
+    {
+        @:word_labels.push("@d");
+    }
+
+         var word_data = [];
+
+    @foreach (var d in Model.Words_Y)
+    {
+        @:word_data.push("@d");
+    }
+        new Chart(document.getElementById("words"), {
+            type: 'line',
+            data: {
+                labels: word_labels,
+                datasets: [
+                    {
+                    data: word_data,
+                    label: "Words",
+                    borderColor: "#3e95cd",
+                    fill: false
+                    },
+                    {
+                        data: phrases_data,
+                        label: "Phrases",
+                        borderColor: "#c45850",
+                        fill: false
+                    },
+                    {
+                        data: names_data,
+                        label: "Names",
+                        borderColor: "#e8c3b9",
+                        fill: false
+                    },
+                    {
+                        data: words_data,
+                        label: "Word Sentences",
+                        borderColor: "#8e5ea2",
+                        fill: false
+                    }
+                ]
+            },
+
+        });
+    </script>
+
+
+}

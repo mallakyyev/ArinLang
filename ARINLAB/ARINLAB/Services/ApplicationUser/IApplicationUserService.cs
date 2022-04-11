@@ -1,4 +1,5 @@
-﻿using DAL.Models.Dto;
+﻿using ARINLAB.Models;
+using DAL.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,8 @@ namespace ARINLAB.Services.ApplicationUser
         public IEnumerable<UserStatistics> GetAllUserstatistics();
         //IEnumerable<TSTB.DAL.Models.User.ApplicationUser> GetAllInterpreneurAndOrg();
         Task DeleteUser(string id);
+
+        public Task<UserStats> GetUserStatistics(string userId, StatPeriod period); 
+
     }
 }

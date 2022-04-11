@@ -20,6 +20,8 @@ using ARINLAB.Services.ImageService;
 using ARINLAB;
 using ARINLAB.Areas.Admin.Models;
 using DAL.Models.Configs;
+using ARINLAB.Services.ApplicationUser;
+using ARINLAB.Models;
 
 namespace ARINLAB.Areas.Admin.Controllers
 {
@@ -33,13 +35,13 @@ namespace ARINLAB.Areas.Admin.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _dbContex;
         private readonly RoleManager<IdentityRole> _roleManager;
-        //private readonly IApplicationUserService _applicationUserService;
+        private readonly IApplicationUserService _userService;
         private readonly IImageService _imageService;
         private readonly IStringLocalizer<SharedResource> _localizer;
-
+        
         public ApplicationUserController(ILanguageService langService, IMapper mapper, RoleManager<IdentityRole> roleManager, 
             UserManager<ApplicationUser> userManager, IImageService imageService, ApplicationDbContext dbContext, 
-            IStringLocalizer<SharedResource> localizer)
+            IStringLocalizer<SharedResource> localizer, IApplicationUserService applicationUserService)
         {
             _mapper = mapper;
             _imageService = imageService;
@@ -48,6 +50,7 @@ namespace ARINLAB.Areas.Admin.Controllers
             _userManager = userManager;
             _dbContex = dbContext;
             _localizer = localizer;
+            _userService = applicationUserService;
 
         }
         // GET: Admin/ApplicationUser
@@ -78,6 +81,20 @@ namespace ARINLAB.Areas.Admin.Controllers
                 };
                 return View(userForChangePass);
             }            
+        }
+
+        public async Task<IActionResult> UserStatisticsAsync(string id, StatPeriod period)
+        {
+           
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return View("Stats");
+
+            var result = await _userService.GetUserStatistics(id, period);
+            result.Email = user.Email;
+            ViewBag.Period = period;
+            ViewBag.Id = id;
+            return View(result);
         }
 
 
