@@ -66,7 +66,7 @@
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.SearchWords/@Model.Term/@Model.DictionaryId`;
+            let url = `@API.SearchWords/@Html.Raw(Model.Term)/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
 
 
@@ -91,11 +91,18 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                    mode: "virtual",
+
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 100
+                    pageSize: 10
+                },
+                pager: {
+                    visible: true,
+                    allowedPageSizes: [10, 20, 'all'],
+                    showPageSizeSelector: true,
+                    showInfo: true,
+                    showNavigationButtons: true,
                 },
                 editing: {
                     useIcons: true,
@@ -231,7 +238,7 @@
     </script>
     <script>
         $(function () {
-            let url = `@API.SearchClauses/@Model.Term/@Model.DictionaryId`;
+            let url = `@API.SearchClauses/@Html.Raw(Model.Term)/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
 
             $("#gridContainerClause").dxDataGrid({
@@ -270,11 +277,18 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                    mode: "virtual",
+
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 100
+                    pageSize: 10
+                },
+                pager: {
+                    visible: true,
+                    allowedPageSizes: [10, 20, 'all'],
+                    showPageSizeSelector: true,
+                    showInfo: true,
+                    showNavigationButtons: true,
                 },
                 editing: {
                     useIcons: true,
@@ -397,7 +411,7 @@
     </script>
     <script>
             $(function () {
-                let url = `@API.SearchNames/@Model.Term/@Model.DictionaryId`;
+                let url = `@API.SearchNames/@Html.Raw(Model.Term)/@Model.DictionaryId`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
 
 
@@ -441,12 +455,19 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                    mode: "virtual",
+                   
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 100
-                },
+                    pageSize: 10
+                    },
+                    pager: {
+                        visible: true,
+                        allowedPageSizes: [10, 20, 'all'],
+                        showPageSizeSelector: true,
+                        showInfo: true,
+                        showNavigationButtons: true,
+                    },
                 editing: {
                     useIcons: true,
                     allowUpdating: false,

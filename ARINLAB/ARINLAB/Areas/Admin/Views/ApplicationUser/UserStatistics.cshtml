@@ -80,26 +80,13 @@
         @:words_labels.push("@d");
     }
 
-         var words_data = [];
+    var words_data = [];
 
     @foreach (var d in Model.WordSent_Y)
     {
-        @:word_data.push("@d");
+        @:words_data.push("@d");
     }
-        new Chart(document.getElementById("words_cent"), {
-            type: 'line',
-            data: {
-                labels: words_labels,
-                datasets: [{
-                    data: words_data,
-                    label: "Word Sentences",
-                    borderColor: "#8e5ea2",
-                    fill: false
-                }
-                ]
-            },
-
-        });
+        
     </script>
 
     <script>
@@ -115,20 +102,7 @@
     {
         @:names_data.push("@d");
     }
-        new Chart(document.getElementById("names"), {
-            type: 'line',
-            data: {
-                labels: names_labels,
-                datasets: [{
-                    data: names_data,
-                    label: "Names",
-                    borderColor: "#e8c3b9",
-                    fill: false
-                }
-                ]
-            },
-
-        });
+       
     </script>
 
     <script>
@@ -144,39 +118,38 @@
     {
         @:phrases_data.push("@d");
     }
-        new Chart(document.getElementById("phrases"), {
-            type: 'line',
-            data: {
-                labels: phrases_labels,
-                datasets: [
-                    {
-                        data: phrases_data,
-                        label: "Phrases",
-                        borderColor: "#c45850",
-                        fill: false
-                    }
-                ]
-            },
-
-        });
+       
     </script>
     <script>
     var word_labels = [];
     @foreach (var d in Model.Words_X)
     {
+       
         @:word_labels.push("@d");
     }
-
+       
          var word_data = [];
 
     @foreach (var d in Model.Words_Y)
     {
         @:word_data.push("@d");
     }
+        labels = phrases_labels;
+        if (names_labels.length > labels.length) { labels = names_labels; }
+        
+
+        if (word_labels.length > labels.length) { labels = word_labels; }
+
+
+        if (words_labels.length > labels.length) { labels = words_labels; }
+        //for (var i = 0; i < labels.length; ++i) {
+        //    alert(labels[i]);
+        //}
+
         new Chart(document.getElementById("words"), {
             type: 'line',
             data: {
-                labels: word_labels,
+                labels: labels,
                 datasets: [
                     {
                     data: word_data,

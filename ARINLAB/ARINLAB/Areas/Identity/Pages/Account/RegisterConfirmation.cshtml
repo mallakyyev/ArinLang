@@ -6,26 +6,73 @@
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
 @{
     ViewData["Title"] = "Register confirmation";
+    string message = "";
+    if (Model.StatusMessage != null)
+        message = Model.StatusMessage;
+
 }
 
 <div class="wrapper bg-gray-100 w-screen h-screen flex items-center justify-center flex-col" style="height: 60vh ">
     <div class="p-10 bg-white shadow-md rounded">
         <div class="items-center text-xl max-w-xs px-10 text-center font-bold">
-            @SharedLocalizer["Verification Code have been sent to your Email."]
+            @if (message != "1")
+            {
+                @SharedLocalizer["Verification Code have been sent to your Email."]
+            }
+            else
+            {
+                @SharedLocalizer["Thank your for your Registration. Your account confirmed"]
+            }
         </div>
+        <div class="items-center text-sm max-w-xs px-10 text-center font-bold" style="color:darkblue">
+            @if(message == "0")
+            {
+                @SharedLocalizer["Invalid Code"]
+            }
+            else if (message == "2")
+            {
+                @SharedLocalizer["Email Message was Sent again"]
+            }
+        </div>
+        @if (message == "1")
+        {
+            <form class="input-forms flex flex-col py-2" id="account" method="post">
+                <a asp-page="./Login" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Conitnue"]</a>
+            </form>
+        }
+        else
+        {
         <form class="input-forms flex flex-col py-2" id="account" method="post">
-
             <input type="hidden" asp-for="Input.Email" value="@Model.Email" />
-            
             <input asp-for="Input.ECode" type="text" class="mt-4 py-3 border-gray-100 border-solid border-2 outline-none pl-4 focus:border focus:border-link rounded" placeholder="@SharedLocalizer["Code"]" />
             <span asp-validation-for="Input.ECode" class="text-danger"></span>
-
             <button type="submit" class="bg-blue-700 hover:bg-link text-center text-white py-3 mt-4 select-none rounded">@SharedLocalizer["Verify"]</button>
         </form>
+        <a id="resend" onclick="return Debounce.call(this)" asp-page="./RegisterConfirmation" asp-route-resend="1" asp-route-email="@Model.Email" class="text-gray-400 hover:text-link">@SharedLocalizer["Resend confirmation code!"]</a>
+        <script>
+            var time = 0;
+           
+           
+            setInterval(function () {
+                time = time + 1;
+            }, 1000);
+
+            function Debounce()
+            {              
+                var self = this;
+                if (time < 30) {
+                    alert("You can resend after " + time + " seconds");
+                    return false
+                };
+                this.clicked = true;
+                
+            }
+        </script>
+        }
 
         @*<div class="text-right max-w-xs text-sm leading-tight mt-5">
-                <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
-            </div>*@
+            <a id="forgot-password" asp-page="./ForgotPassword" class="text-gray-400 hover:text-link">@SharedLocalizer["Forgot your password?"]</a>
+        </div>*@
     </div>
     @*<div class="text-center mt-4 max-w-sm">
             Еще не зарегистрировались?

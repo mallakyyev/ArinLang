@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 namespace ARINLAB.Areas.Identity.Pages.Account
@@ -35,12 +36,13 @@ namespace ARINLAB.Areas.Identity.Pages.Account
         private readonly ApplicationDbContext _dbContext;
         private readonly IEmailService _emailService;
         private readonly ReCaptcha _captcha;
+        private readonly IStringLocalizer<SharedResource> _localizer;
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender, ApplicationDbContext dbContext, IEmailService emailService,
-            ReCaptcha captcha)
+            ReCaptcha captcha,  IStringLocalizer<SharedResource> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -49,6 +51,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
             _dbContext = dbContext;
             _emailService = emailService;
             _captcha = captcha;
+            _localizer = localizer;
         }
 
         [BindProperty]
@@ -92,6 +95,8 @@ namespace ARINLAB.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.PhoneNumber)]
+            [RegularExpression(@"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{2,4})(?: *x(\d+))?\s*$",
+                                ErrorMessage = "Invalid phone number format")]
             public string PhoneNumber { get; set; }
 
             [Required]
@@ -191,7 +196,7 @@ namespace ARINLAB.Areas.Identity.Pages.Account
                     mailMessage.Password = _dbContext.Settings.FirstOrDefault(p => p.Name.Contains("AdminEmailPassword")).Value;
                     mailMessage.Subject = "Verify code from ARINLANG";
                     mailMessage.Message = "Your Email Confirmation for ARINLANG Your Code is " + Ecode;
-                    var res =  _emailService.SendSingleEmailAsync(mailMessage);
+                    var res =  await _emailService.SendSingleEmailAsync(mailMessage);
                     
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -384,7 +384,7 @@ namespace ARINLAB.Services
             {
                 var dictId = _userDicts.GetDictionaryId();
                 string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Include(p => p.AudioFiles).Include(p => p.WordClauseCategory).ThenInclude(p => p.WordClauseCategoryTranslates).ToList();
+                var res = _dbContext.WordClauses.Where(p => p.DictionaryId == dictId && p.IsApproved == true).Include(p => p.AudioFiles.Where(p => p.IsApproved == true)).Include(p => p.WordClauseCategory).ThenInclude(p => p.WordClauseCategoryTranslates).ToList();
                 _dictionaryService.Shuffle(res);
                 res = res.Take(n).ToList();
                 //string DictName = _dbContext.Dictionaries.Find(dictId)?.Language;
@@ -416,7 +416,7 @@ namespace ARINLAB.Services
         public List<WordClauseDto> GetAllWordClausesWithDictId(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var res = _dbContext.WordClauses.Where(p => p.DictionaryId == id && p.IsApproved == true).Include(p => p.AudioFiles);
+            var res = _dbContext.WordClauses.Where(p => p.DictionaryId == id && p.IsApproved == true).Include(p => p.AudioFiles.Where(p => p.IsApproved == true));
             List<WordClauseDto> result = new List<WordClauseDto>();
             if (res != null)
             {

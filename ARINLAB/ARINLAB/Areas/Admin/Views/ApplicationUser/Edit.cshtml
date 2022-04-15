@@ -162,9 +162,9 @@
 
             $("#phone").dxTextBox({
                 name: "PhoneNumber",
-                value:"@(string.IsNullOrEmpty(Model.PhoneNumber)?"":Model.PhoneNumber)",
-                mask: "(+000)-00-00-00-00",
-                maskInvalidMessage: '@SharedLocalizer["Please enter valid phone number"]'
+                value:"@Model.PhoneNumber",
+                //mask: "(+000)-00-00-00-00",
+                //maskInvalidMessage: '@SharedLocalizer["Please enter valid phone number"]'
             }).dxValidator({
                 validationRules: [{
                     type: "required",

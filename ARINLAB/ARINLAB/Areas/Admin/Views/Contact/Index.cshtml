@@ -53,11 +53,18 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                    mode: "virtual",
+                   
                     rowRenderingMode: "virtual"
                 },
                 paging: {
-                    pageSize: 100
+                    pageSize: 10
+                },
+                pager: {
+                    visible: true,
+                    allowedPageSizes: [10, 20, 'all'],
+                    showPageSizeSelector: true,
+                    showInfo: true,
+                    showNavigationButtons: true,
                 },
                 editing: {
 

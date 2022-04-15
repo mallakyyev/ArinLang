@@ -153,6 +153,9 @@ namespace ARINLAB.Areas.Admin.Controllers
             var user = await _userManager.FindByIdAsync(id);            
             if(user != null)
             {
+                if (!string.IsNullOrEmpty(user.PhoneNumber))
+                    if (user.PhoneNumber[0] == '+')
+                        user.PhoneNumber = user.PhoneNumber.Substring(1, user.PhoneNumber.Length - 1);
                 return View(user);
             }
             return RedirectToAction("Index");

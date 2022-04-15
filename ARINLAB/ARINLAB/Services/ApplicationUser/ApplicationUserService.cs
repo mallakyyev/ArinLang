@@ -78,35 +78,7 @@ namespace ARINLAB.Services.ApplicationUser
             UserStats result = new UserStats();
             if (period == StatPeriod.Monthly)
             {               
-                        var wordsm = _dbContext.Words.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
-                                    .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
-                                                (key, group) => new TestStat()
-                                                {
-                                                    Year = key.Year,
-                                                    Month = key.Month,
-                                                    Count = group.Count()
-                                                });                        
-                        foreach (var r in wordsm)
-                        {
-                            result.Words_X.Add($"{r.Year}-{r.Month}");
-                            result.Words_Y.Add(r.Count);
-                        }                                               
-                  
-                        var namesm = _dbContext.Names.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
-                                    .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
-                                                                (key, group) => new TestStat()
-                                                                {
-                                                                    Year = key.Year,
-                                                                    Month = key.Month,
-                                                                    Count = group.Count()
-                                                                });                       
-                        foreach (var r in namesm)
-                        {
-                            result.Names_X.Add($"{r.Year}-{r.Month}");
-                            result.Names_Y.Add(r.Count);
-                        }
-                                        
-                            var wsm = _dbContext.WordSentences.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                        var wordsm = _dbContext.Words.Where(w => w.UserId == userId)
                                     .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
                                                 (key, group) => new TestStat()
                                                 {
@@ -114,13 +86,14 @@ namespace ARINLAB.Services.ApplicationUser
                                                     Month = key.Month,
                                                     Count = group.Count()
                                                 });
-                        foreach (var r in wsm)
+                        wordsm = wordsm.OrderBy(p => p.Year).ThenBy(p => p.Month);
+                        foreach (var r in wordsm)
                         {
-                            result.WordSent_X.Add($"{r.Year}-{r.Month}");
-                            result.WordSent_Y.Add(r.Count);
-                        }
-                                         
-                        var wcm = _dbContext.WordClauses.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                            result.Words_X.Add($"{r.Year}-{r.Month}");
+                            result.Words_Y.Add(r.Count);
+                        }                                               
+                  
+                        var namesm = _dbContext.Names.Where(w => w.UserId == userId)
                                     .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
                                                                 (key, group) => new TestStat()
                                                                 {
@@ -128,7 +101,38 @@ namespace ARINLAB.Services.ApplicationUser
                                                                     Month = key.Month,
                                                                     Count = group.Count()
                                                                 });
-                        foreach (var r in wcm)
+                namesm = namesm.OrderBy(p => p.Year).ThenBy(p => p.Month);
+                foreach (var r in namesm)
+                        {
+                            result.Names_X.Add($"{r.Year}-{r.Month}");
+                            result.Names_Y.Add(r.Count);
+                        }
+                                        
+                            var wsm = _dbContext.WordSentences.Where(w => w.UserId == userId)
+                                    .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
+                                                (key, group) => new TestStat()
+                                                {
+                                                    Year = key.Year,
+                                                    Month = key.Month,
+                                                    Count = group.Count()
+                                                });
+                wsm = wsm.OrderBy(p => p.Year).ThenBy(p => p.Month);
+                foreach (var r in wsm)
+                        {
+                            result.WordSent_X.Add($"{r.Year}-{r.Month}");
+                            result.WordSent_Y.Add(r.Count);
+                        }
+                                         
+                        var wcm = _dbContext.WordClauses.Where(w => w.UserId == userId)
+                                    .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month },
+                                                                (key, group) => new TestStat()
+                                                                {
+                                                                    Year = key.Year,
+                                                                    Month = key.Month,
+                                                                    Count = group.Count()
+                                                                });
+                wcm = wcm.OrderBy(p => p.Year).ThenBy(p => p.Month);
+                foreach (var r in wcm)
                         {
                             result.Phrases_X.Add($"{r.Year}-{r.Month}");
                             result.Phrases_Y.Add(r.Count);
@@ -138,42 +142,43 @@ namespace ARINLAB.Services.ApplicationUser
 
             if(period == StatPeriod.Yearly)
             {               
-                        var wordsy = _dbContext.Words.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                        var wordsy = _dbContext.Words.Where(w => w.UserId == userId)
                                     .GroupBy(g => new { g.AddedDate.Year },
                                                 (key, group) => new TestStat()
                                                 {
                                                     Year = key.Year,                                                   
                                                     Count = group.Count()
                                                 });
-
-                        foreach (var r in wordsy)
+                wordsy = wordsy.OrderBy(p => p.Year);
+                foreach (var r in wordsy)
                         {
                             result.Words_X.Add($"{r.Year}");
                             result.Words_Y.Add(r.Count);
                         }                       
                    
-                        var namesy = _dbContext.Names.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                        var namesy = _dbContext.Names.Where(w => w.UserId == userId)
                                     .GroupBy(g => new { g.AddedDate.Year },
                                                                 (key, group) => new TestStat()
                                                                 {
                                                                     Year = key.Year,                                                                  
                                                                     Count = group.Count()
                                                                 });
-
-                        foreach (var r in namesy)
+                namesy = namesy.OrderBy(p => p.Year);
+                foreach (var r in namesy)
                         {
                             result.Names_X.Add($"{r.Year}");
                             result.Names_Y.Add(r.Count);
                         }                       
                     
-                        var wsy = _dbContext.WordSentences.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                        var wsy = _dbContext.WordSentences.Where(w => w.UserId == userId)
                                 .GroupBy(g => new { g.AddedDate.Year },
                                             (key, group) => new TestStat()
                                             {
                                                 Year = key.Year,                                               
                                                 Count = group.Count()
                                             });
-                        foreach (var r in wsy)
+                wsy = wsy.OrderBy(p => p.Year);
+                foreach (var r in wsy)
                         {
                             result.WordSent_X.Add($"{r.Year}");
                             result.WordSent_Y.Add(r.Count);
@@ -186,7 +191,8 @@ namespace ARINLAB.Services.ApplicationUser
                                                                     Year = key.Year,                                                                   
                                                                     Count = group.Count()
                                                                 });
-                        foreach (var r in wcy)
+                wcy = wcy.OrderBy(p => p.Year);
+                foreach (var r in wcy)
                         {
                             result.Phrases_X.Add($"{r.Year}");
                             result.Phrases_Y.Add(r.Count);
@@ -195,7 +201,7 @@ namespace ARINLAB.Services.ApplicationUser
             }
 
            
-                    var words = _dbContext.Words.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                    var words = _dbContext.Words.Where(w => w.UserId == userId)
                                 .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month, g.AddedDate.Day },
                                             (key, group) => new TestStat()
                                             {
@@ -204,8 +210,8 @@ namespace ARINLAB.Services.ApplicationUser
                                                 Day = key.Day,
                                                 Count = group.Count()
                                             });
-
-                    foreach (var r in words)
+            words = words.OrderBy(p => p.Year).ThenBy(p => p.Month).ThenBy(p => p.Day);
+            foreach (var r in words)
                     {
                         result.Words_X.Add($"{r.Year}-{r.Month}-{r.Day}");
                         result.Words_Y.Add(r.Count);
@@ -213,7 +219,7 @@ namespace ARINLAB.Services.ApplicationUser
                    
 
               
-                    var names = _dbContext.Names.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                    var names = _dbContext.Names.Where(w => w.UserId == userId)
                                 .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month, g.AddedDate.Day },
                                                             (key, group) => new TestStat()
                                                             {
@@ -222,8 +228,8 @@ namespace ARINLAB.Services.ApplicationUser
                                                                 Day = key.Day,
                                                                 Count = group.Count()
                                                             });
-
-                    foreach (var r in names)
+            names = names.OrderBy(p => p.Year).ThenBy(p => p.Month).ThenBy(p => p.Day);
+            foreach (var r in names)
                     {
                         result.Names_X.Add($"{r.Year}-{r.Month}-{r.Day}");
                         result.Names_Y.Add(r.Count);
@@ -231,7 +237,7 @@ namespace ARINLAB.Services.ApplicationUser
                    
 
                
-                    var ws = _dbContext.WordSentences.Where(w => w.UserId == userId).OrderBy(p => p.AddedDate)
+                    var ws = _dbContext.WordSentences.Where(w => w.UserId == userId)
                             .GroupBy(g => new { g.AddedDate.Year, g.AddedDate.Month, g.AddedDate.Day },
                                         (key, group) => new TestStat()
                                         {
@@ -240,7 +246,8 @@ namespace ARINLAB.Services.ApplicationUser
                                             Day = key.Day,
                                             Count = group.Count()
                                         });
-                    foreach (var r in ws)
+            ws = ws.OrderBy(p => p.Year).ThenBy(p => p.Month).ThenBy(p => p.Day);
+            foreach (var r in ws)
                     {
                         result.WordSent_X.Add($"{r.Year}-{r.Month}-{r.Day}");
                         result.WordSent_Y.Add(r.Count);
