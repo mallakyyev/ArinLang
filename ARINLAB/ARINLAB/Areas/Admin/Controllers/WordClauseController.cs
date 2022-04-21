@@ -2,6 +2,7 @@
 using ARINLAB.Services;
 using AutoMapper;
 using DAL.Data;
+using DAL.Models;
 using DAL.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 var res = await _wordClauseService.CreateWordClause(model);
                 if (res.IsSuccess)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = ((WordClause)res.Data).Id});
                 }               
             }
             ViewBag.Data = model;
@@ -79,7 +80,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 var res = await _wordClauseService.EditWordClause(model);
                 if (res.IsSuccess)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = ((WordClause)res.Data).Id });
                 }                
             }
             return View();

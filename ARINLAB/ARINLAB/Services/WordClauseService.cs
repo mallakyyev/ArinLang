@@ -46,7 +46,7 @@ namespace ARINLAB.Services
                 var res = await _dbContext.WordClauses.AddAsync(m);
                 
                 await _dbContext.SaveChangesAsync();
-                return ResponceGenerator.GetResponceModel(true, "", res);
+                return ResponceGenerator.GetResponceModel(true, "", res.Entity);
             }catch(Exception e)
             {
                 return ResponceGenerator.GetResponceModel(false, e.Message, null);

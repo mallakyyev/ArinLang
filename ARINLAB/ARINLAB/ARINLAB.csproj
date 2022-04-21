@@ -2128,7 +2128,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\SharedResource.ar.resx">
+    <EmbeddedResource Update="Resources\SharedResource.ar_old.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\SharedResource.en.resx">

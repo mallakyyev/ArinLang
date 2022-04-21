@@ -69,14 +69,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Message from Aringlang"]</h5>               
+                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Message from Aringlang"]</h5>
             </div>
             <div class="modal-body">
                 @SharedLocalizer["Some thing went wrong, please try again later"]
             </div>
             <div class="modal-footer">
                 @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@SharedLocalizer["Close"]</button>*@
-                <button type="button" class="btn-primary" asp-controller="Home" asp-action="Index">@SharedLocalizer["Go to Home page"]</button>
+                <a type="button" class="btn-primary" asp-controller="Home" asp-action="Index">@SharedLocalizer["Go to Home page"]</a>
+            </div>
+            <div class="modal-body" style="padding-top:35%; text-align:center;">
+                @SharedLocalizer["Close"]
             </div>
         </div>
     </div>
@@ -89,22 +92,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Message from Aringlang"]</h5>               
+                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Message from Aringlang"]</h5>
             </div>
             <div class="modal-body">
                 @SharedLocalizer["Thank your for your message. We will responce to your message in 24 hour."]
             </div>
             <div class="modal-footer">
                 @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
-                <button type="button" asp-action="Index" asp-controller="Home" class="btn btn-primary">@SharedLocalizer["Go to Home page"]</button>
+                <a type="button" asp-action="Index" asp-controller="Home" class="btn btn-primary">@SharedLocalizer["Go to Home page"]</a>
             </div>
+        </div>
+        <div class="modal-body" style="padding-top: 35%; text-align: center;">
+            @SharedLocalizer["Close"]
         </div>
     </div>
 </div>
 
 @section Scripts{
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />*@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
         var res = '@ViewBag.Success';

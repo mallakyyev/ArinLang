@@ -73,7 +73,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     {
                         ViewBag.text = $"Word {newW.ArabWord} <-> {newW.OtherWord} added successfully";
                         ViewBag.page = 1;
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Edit", new { id = ((Word)result.Data).Id});
                     }
                 }
                
@@ -108,7 +108,7 @@ namespace ARINLAB.Areas.Admin.Controllers
             try
             {
                 Responce result = await _wordsService.editWordAsync(model);
-                return RedirectToAction("Index");               
+                return RedirectToAction("Edit", new { id = model.Id});               
             }
             catch (Exception e)
             {

@@ -83,9 +83,9 @@ namespace ARINLAB.Services
                     res.OtherVoice = await _fileService.UploadImage(name.OtherForm, SD.NamesPath);
 
                 res.AddedDate = DateTime.Now;
-                _dbContext.Names.Add(res);
+                res = _dbContext.Names.Add(res).Entity;
                 await _dbContext.SaveChangesAsync();
-                return ResponceGenerator.GetResponceModel(true, "Success", name);
+                return ResponceGenerator.GetResponceModel(true, "Success", res);
             }
             catch(Exception e)
             {

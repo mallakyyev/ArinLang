@@ -43,7 +43,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 var res = await _nameService.CreateNameAsync(model);
                 if (res.IsSuccess)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = ((Names)res.Data).Id});
                 }
             }          
             ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;            
@@ -70,7 +70,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 var res =  await _nameService.EditNameAsync(model);
                 if (res.IsSuccess)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = ((Names)res.Data).Id});
                 }
             }
             return View();
