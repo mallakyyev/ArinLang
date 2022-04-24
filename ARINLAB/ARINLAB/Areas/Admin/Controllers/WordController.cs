@@ -394,9 +394,10 @@ namespace ARINLAB.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> DeleteVoiceAsync(int id)
+        public async Task<IActionResult> DeleteVoiceAsync(int id, int vnum)
         {
-            var rname = await _wordsService.DeleteVoice(id);
+            
+            var rname = await _wordsService.DeleteVoice(id, vnum);
 
             return RedirectToAction("Edit", new { id });
         }

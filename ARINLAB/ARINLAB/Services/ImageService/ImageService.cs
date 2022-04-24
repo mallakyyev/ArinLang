@@ -276,5 +276,22 @@ namespace ARINLAB.Services.ImageService
                 return "";
             }
         }
+
+        public bool ClearImageCash()
+        {
+            var directory = Directory.GetFiles($"{_appEnvironment.WebRootPath}/images/Exported/");
+            foreach(string image in directory)
+            {               
+                if (!File.Exists(image)) continue;
+                try
+                {
+                    File.Delete(image);
+                }
+                catch (Exception e)
+                {                    
+                }
+            }
+            return true;
+        }
     }
 }

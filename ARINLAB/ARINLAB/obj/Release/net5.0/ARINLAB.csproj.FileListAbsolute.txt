@@ -648,7 +648,6 @@ D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\appsettings.Development.json
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\ARINLAB.StaticWebAssets.xml
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\appsettings.json
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\ARINLAB.exe
-D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.ar.resx
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.en.resx
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.tk.resx
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\ARINLAB.deps.json
@@ -1301,3 +1300,5 @@ D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Serilog.Sinks.Async.dll
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Serilog.Sinks.File.dll
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Serilog.Sinks.RollingFile.dll
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\Razor\Areas\Admin\Views\ApplicationUser\UserStatistics.cshtml.g.cs
+D:\ARINLAB\ARINLAB\ARINLAB\obj\Release\net5.0\ARINLAB.Resources.SharedResource.ar_old.resources
+D:\ARINLAB\ARINLAB\ARINLAB\bin\Release\net5.0\Resources\SharedResource.ar.resx

@@ -16,5 +16,6 @@ namespace ARINLAB.Services.ImageService
 
         public string CreateImageForExport(string first, string second);
         public string PhraseExport(string arabPh, string readsTm, string turkmenPh, string readsAr);
+        public bool ClearImageCash();
     }
 }

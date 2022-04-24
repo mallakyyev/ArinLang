@@ -396,7 +396,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 754, DateTimeKind.Local).AddTicks(1834));
+                        .HasDefaultValue(new DateTime(2022, 4, 24, 13, 53, 56, 912, DateTimeKind.Local).AddTicks(2337));
 
                     b.Property<string>("ArabName")
                         .IsRequired()
@@ -602,9 +602,21 @@ namespace DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 741, DateTimeKind.Local).AddTicks(3623));
+                        .HasDefaultValue(new DateTime(2022, 4, 24, 13, 53, 56, 899, DateTimeKind.Local).AddTicks(1527));
 
                     b.Property<string>("ArabVoice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArabVoice1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArabVoice2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArabVoice3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArabVoice4")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArabWord")
@@ -621,6 +633,18 @@ namespace DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("OtherVoice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherVoice1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherVoice2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherVoice3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherVoice4")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OtherWord")
@@ -652,7 +676,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 735, DateTimeKind.Local).AddTicks(3156));
+                        .HasDefaultValue(new DateTime(2022, 4, 24, 13, 53, 56, 892, DateTimeKind.Local).AddTicks(1692));
 
                     b.Property<string>("ArabClause")
                         .IsRequired()
@@ -806,7 +830,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 4, 11, 11, 52, 47, 743, DateTimeKind.Local).AddTicks(4624));
+                        .HasDefaultValue(new DateTime(2022, 4, 24, 13, 53, 56, 901, DateTimeKind.Local).AddTicks(3613));
 
                     b.Property<string>("ArabReader")
                         .HasColumnType("nvarchar(max)");

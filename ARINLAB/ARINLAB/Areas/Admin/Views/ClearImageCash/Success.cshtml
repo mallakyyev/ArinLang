@@ -1,0 +1,32 @@
+﻿@using ARINLAB.Areas.Admin.Utils;
+@using ARINLAB;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Contacted messages"];
+    string t = ViewBag.Success;
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @if (!string.IsNullOrEmpty(t) && t == "0")
+                {
+                    @SharedLocalizer["Could not clear image cash right now, Please try again later!!"]
+                }
+                else
+                {
+                    @SharedLocalizer["Image cash have been successfully cleared. Please keep clearing the cash as often as activity of your web site"]
+                }
+
+            </h1>
+        </div>
+    </div>
+    
+</div>
+
+

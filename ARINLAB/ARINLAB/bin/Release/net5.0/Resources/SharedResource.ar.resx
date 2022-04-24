@@ -121,7 +121,7 @@
     <value>معلومات عنا</value>
   </data>
   <data name="Accupation" xml:space="preserve">
-    <value>الاحتلال</value>
+    <value>الوظيفة</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>نشط</value>
@@ -139,7 +139,7 @@
     <value>إضافة أصوات للكلمة</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>تبوك</value>
+    <value>العنوان</value>
   </data>
   <data name="Admin" xml:space="preserve">
     <value>المدير</value>
@@ -154,7 +154,7 @@
     <value>مطلوب بريد المدير</value>
   </data>
   <data name="Album" xml:space="preserve">
-    <value>البوم</value>
+    <value>الألبوم</value>
   </data>
   <data name="All Categories" xml:space="preserve">
     <value>جميع الأقسام</value>
@@ -205,10 +205,10 @@
     <value>العبارة العربية</value>
   </data>
   <data name="Arabic Transcription" xml:space="preserve">
-    <value>النسخ العربي</value>
+    <value>النطق بالعربي</value>
   </data>
   <data name="Arabic Word in" xml:space="preserve">
-    <value>كلمة عربية في </value>
+    <value>الكلمةالعربية في  </value>
   </data>
   <data name="ARINLAG" xml:space="preserve">
     <value>العربية في اللغات</value>
@@ -226,7 +226,7 @@
     <value>تقرير الحقيبة</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>يلغي</value>
+    <value>إلغاء</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>القسم</value>
@@ -448,7 +448,7 @@
     <value>الاسم</value>
   </data>
   <data name="Name in" xml:space="preserve">
-    <value>الاسم</value>
+    <value>الاسم في </value>
   </data>
   <data name="Name in Arab" xml:space="preserve">
     <value>الاسم بالعربية</value>
@@ -598,7 +598,7 @@
     <value>تأكيد إعادة تعيين كلمة المرور</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>يحفظ</value>
+    <value>حفظ</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>البحث</value>
@@ -646,7 +646,7 @@
     <value>شارك</value>
   </data>
   <data name="Show more" xml:space="preserve">
-    <value>عرض المزيد</value>
+    <value>المزيد</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>خروج</value>
@@ -658,10 +658,10 @@
     <value>تفضيلات الموقع</value>
   </data>
   <data name="Some thing went wrong !! Try resend the Email" xml:space="preserve">
-    <value>حدث خطأ!! حاول إعادة الإرسال</value>
+    <value>حدث خطأ! حاول إعادة الإرسال!</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>يلعب</value>
+    <value>إيقاف</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>العنوان</value>
@@ -676,7 +676,7 @@
     <value>الاشتراك في القائمة البريدية للأخبار والمناسبات</value>
   </data>
   <data name="Subscription1" xml:space="preserve">
-    <value>سيتم استخدام عنوان بريدك الإلكتروني لإرسال الرسائل الإخبارية والأحداث ورسائل البريد الإلكتروني حول Arinlang</value>
+    <value>سيتم استخدام عنوان بريدك الإلكتروني لإرسال الرسائل الإخبارية والأحداث ورسائل البريد الإلكتروني  Arinlang</value>
   </data>
   <data name="Subscription2" xml:space="preserve">
     <value>يمكنك إلغاء الاشتراك في أي وقت من خلال النقر على رابط إلغاء الاشتراك الموجود في كل بريد إلكتروني</value>
@@ -718,13 +718,13 @@
     <value>إجمالي الكلمات</value>
   </data>
   <data name="Transcription" xml:space="preserve">
-    <value>النسخ</value>
+    <value>النطق</value>
   </data>
   <data name="Translation to Other Word" xml:space="preserve">
     <value>ترجم إلى كلمة أخرى</value>
   </data>
   <data name="Trusted" xml:space="preserve">
-    <value>الموثوق</value>
+    <value>المعتمد</value>
   </data>
   <data name="Turkmenistan" xml:space="preserve">
     <value>تركمانستان</value>
@@ -733,13 +733,13 @@
     <value>الاسم التركماني</value>
   </data>
   <data name="Türkmen Word" xml:space="preserve">
-    <value>كلمة التركمان</value>
+    <value>الكلمة التركمانية</value>
   </data>
   <data name="Türmen Clause" xml:space="preserve">
-    <value>عبارة تركمانية</value>
+    <value>العبارة التركمانية</value>
   </data>
   <data name="Unsubscribe" xml:space="preserve">
-    <value>إلغاء الإستراك</value>
+    <value>إلغاء الاشتراك</value>
   </data>
   <data name="Unsubscribe from ARINLANG web newsletter and events" xml:space="preserve">
     <value>إلغاء الإشتراك في القائمة البريدية للأخبار والمناسبات</value>
@@ -793,22 +793,22 @@
     <value>الكلمة</value>
   </data>
   <data name="Word Categories" xml:space="preserve">
-    <value>قسم الكلمة</value>
+    <value>نوع</value>
   </data>
   <data name="Word in" xml:space="preserve">
     <value>كلمة في</value>
   </data>
   <data name="Word in Arabic" xml:space="preserve">
-    <value>كلمة عربية</value>
+    <value>الكلمة بالعربية</value>
   </data>
   <data name="Words" xml:space="preserve">
     <value>الكلمات</value>
   </data>
   <data name="Words Clauses Collection" xml:space="preserve">
-    <value>مجموعة فقرات الكلمات</value>
+    <value>مجموعة العبارات</value>
   </data>
   <data name="Words Collection" xml:space="preserve">
-    <value>مجموعة كلمات</value>
+    <value>جميع الكلمات</value>
   </data>
   <data name="You have successfully Logged out" xml:space="preserve">
     <value>تم تسجيل خروجك بنجاح</value>

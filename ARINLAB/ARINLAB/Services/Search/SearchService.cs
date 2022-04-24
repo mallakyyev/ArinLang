@@ -65,9 +65,34 @@ namespace ARINLAB.Services.Search
         {
             try
             {
-                return _mapper.Map<List<WordDto>>(_dbContext.Words.Where(p => p.IsApproved == true && p.DictionaryId == dictId
+                var res = _dbContext.Words.Where(p => p.IsApproved == true && p.DictionaryId == dictId
                                                                   && (p.OtherWord.ToLower().Contains(term.ToLower())
-                                                                  || p.ArabWord.ToLower().Contains(term.ToLower()))));
+                                                                  || p.ArabWord.ToLower().Contains(term.ToLower())));
+
+                if (res != null)
+                {
+                    foreach (var w in res)
+                    {
+                        string t = $"{w.ArabVoice};{w.ArabVoice1};{w.ArabVoice2};{w.ArabVoice3};{w.ArabVoice4}";
+                        string[] m = t.Trim().Split(";");
+                        string p = null;
+                        foreach (var s in m)
+                            if (!string.IsNullOrEmpty(s))
+                                p = p == null ? $"{s}" : $"{p};{s}";
+                        w.ArabVoice = p;
+
+                        string t1 = $"{w.OtherVoice};{w.OtherVoice1};{w.OtherVoice2};{w.OtherVoice3};{w.OtherVoice4}";
+                        string[] m1 = t1.Trim().Split(";");
+                        string p1 = null;
+                        foreach (var s in m1)
+                            if (!string.IsNullOrEmpty(s))
+                                p1 = p1 == null ? $"{s}" : $"{p1};{s}";
+                        w.OtherVoice = p1;
+                    }
+                    return _mapper.Map<List<WordDto>>(res);
+                }
+                return new List<WordDto>();
+
             }catch(Exception e)
             {
                 return new List<WordDto>();

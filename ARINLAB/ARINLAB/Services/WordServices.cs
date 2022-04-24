@@ -163,16 +163,40 @@ namespace ARINLAB.Services
             _word.ArabVoice = editWordDto.ArabVoice;
             _word.OtherVoice = editWordDto.OtherVoice;
             _word.AddedDate = DateTime.Now;
+            
             if (editWordDto.ArabVoiceForm != null)
             {
-                _fileService.DeleteImage(editWordDto.ArabVoice);
-                _word.ArabVoice = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                if (string.IsNullOrEmpty(_word.ArabVoice))
+                {                    
+                    _word.ArabVoice = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                }else if (string.IsNullOrEmpty(_word.ArabVoice1))
+                {                    
+                    _word.ArabVoice1 = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                }
+                else if(string.IsNullOrEmpty(_word.ArabVoice2))
+                {
+                    _word.ArabVoice2 = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                }else if (string.IsNullOrEmpty(_word.ArabVoice3))
+                {
+                    _word.ArabVoice3 = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                }else if (string.IsNullOrEmpty(_word.ArabVoice4))
+                {
+                    _word.ArabVoice4 = await _fileService.UploadImage(editWordDto.ArabVoiceForm, SD.wordFilePath);
+                }
             }
 
             if (editWordDto.OtherVoiceForm != null)
             {
-                _fileService.DeleteImage(editWordDto.OtherVoice);
-                _word.OtherVoice = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+                if (string.IsNullOrEmpty(_word.OtherVoice))
+                    _word.OtherVoice = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+                else if (string.IsNullOrEmpty(_word.OtherVoice1))
+                    _word.OtherVoice1 = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+                else if (string.IsNullOrEmpty(_word.OtherVoice2))
+                    _word.OtherVoice2 = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+                else if (string.IsNullOrEmpty(_word.OtherVoice3))
+                    _word.OtherVoice3 = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);
+                else if (string.IsNullOrEmpty(_word.OtherVoice4))
+                    _word.OtherVoice4 = await _fileService.UploadImage(editWordDto.OtherVoiceForm, SD.wordFilePath);                
             }
             
             Responce result = new Responce();
@@ -364,7 +388,24 @@ namespace ARINLAB.Services
                 res = res.Take(n).ToList();
                 if (res != null)
                 {
-              
+                    foreach(var w in res)
+                    {
+                        string t = $"{w.ArabVoice};{w.ArabVoice1};{w.ArabVoice2};{w.ArabVoice3};{w.ArabVoice4}";
+                        string[] m = t.Trim().Split(";");
+                        string p = null;
+                        foreach (var s in m)
+                            if (!string.IsNullOrEmpty(s))
+                                p = p == null ? $"{s}" : $"{p};{s}";
+                        w.ArabVoice = p;
+
+                        string t1 = $"{w.OtherVoice};{w.OtherVoice1};{w.OtherVoice2};{w.OtherVoice3};{w.OtherVoice4}";
+                        string[] m1 = t1.Trim().Split(";");
+                        string p1 = null;
+                        foreach (var s in m1)
+                            if (!string.IsNullOrEmpty(s))
+                                p1 = p1 == null ? $"{s}" : $"{p1};{s}";
+                        w.OtherVoice = p1;
+                    }
                     return _mapper.Map<List<WordDto>>(res);
                 }
                     return new List<WordDto>();                
@@ -383,9 +424,24 @@ namespace ARINLAB.Services
                 var res1 = _dbContext.Words.Where(p => p.DictionaryId == id && p.IsApproved == true);
                 var res = _mapper.Map<List<WordDto>>(res1);
                 string dd = _dbContext.Dictionaries.Find(id)?.Language;
-                foreach (var r in res)
+                foreach (var w in res)
                 {
-                    r.Dictionary = string.IsNullOrEmpty(dd) ? "" : dd;                    
+                    w.Dictionary = string.IsNullOrEmpty(dd) ? "" : dd;
+                    string t = $"{w.ArabVoice};{w.ArabVoice1};{w.ArabVoice2};{w.ArabVoice3};{w.ArabVoice4}";
+                    string[] m = t.Trim().Split(";");
+                    string p = null;
+                    foreach (var s in m)
+                        if (!string.IsNullOrEmpty(s))
+                            p = p == null ? $"{s}" : $"{p};{s}";
+                    w.ArabVoice = p;
+
+                    string t1 = $"{w.OtherVoice};{w.OtherVoice1};{w.OtherVoice2};{w.OtherVoice3};{w.OtherVoice4}";
+                    string[] m1 = t1.Trim().Split(";");
+                    string p1 = null;
+                    foreach (var s in m1)
+                        if (!string.IsNullOrEmpty(s))
+                            p1 = p1 == null ? $"{s}" : $"{p1};{s}";
+                    w.OtherVoice = p1;
                 }
                 return res;
             }
@@ -417,18 +473,47 @@ namespace ARINLAB.Services
             return null;
         }
 
-        public async Task<bool> DeleteVoice(int id)
+        public async Task<bool> DeleteVoice(int id, int vnum)
         {
             var res = await _dbContext.Words.FindAsync(id);
             if (res == null)
                 return false;
 
-            _fileService.DeleteImage(res.ArabVoice);
-            res.ArabVoice = null;
+            switch (vnum)
+            {
+                case 0:
+                    _fileService.DeleteImage(res.ArabVoice);
+                    res.ArabVoice = null;
+                    _fileService.DeleteImage(res.OtherVoice);
+                    res.OtherVoice = null;                    
+                    break;
+                case 1:
+                    _fileService.DeleteImage(res.ArabVoice1);
+                    res.ArabVoice1 = null;
+                    _fileService.DeleteImage(res.OtherVoice1);
+                    res.OtherVoice1 = null;
+                    break;
+                case 2:
+                    _fileService.DeleteImage(res.ArabVoice2);
+                    res.ArabVoice2 = null;
+                    _fileService.DeleteImage(res.OtherVoice2);
+                    res.OtherVoice2 = null;
+                    break;
+                case 3:
+                    _fileService.DeleteImage(res.ArabVoice3);
+                    res.ArabVoice3 = null;
+                    _fileService.DeleteImage(res.OtherVoice3);
+                    res.OtherVoice3 = null;
+                    break;
+                case 4:
+                    _fileService.DeleteImage(res.ArabVoice4);
+                    res.ArabVoice4 = null;
+                    _fileService.DeleteImage(res.OtherVoice4);
+                    res.OtherVoice4 = null;
+                    break;
+            }
 
-            _fileService.DeleteImage(res.OtherVoice);
-            res.OtherVoice = null;
-
+            
             _dbContext.Words.Update(res);
             await _dbContext.SaveChangesAsync();
 

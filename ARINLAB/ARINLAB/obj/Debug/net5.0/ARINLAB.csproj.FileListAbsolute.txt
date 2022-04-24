@@ -2584,3 +2584,5 @@ D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\ApplicationUser\UserStatistics.cshtml.g.cs
 D:\ARINLAB\ARINLAB\ARINLAB\bin\Debug\net5.0\Resources\SharedResource.ar_old.resx
 D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\ARINLAB.Resources.SharedResource.ar_old.resources
+D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\ClearImageCash\Success.cshtml.g.cs
+D:\ARINLAB\ARINLAB\ARINLAB\obj\Debug\net5.0\Razor\Areas\Admin\Views\ClearImageCash\Confirm.cshtml.g.cs

@@ -56,7 +56,7 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                    
+
                     rowRenderingMode: "virtual"
                 },
                 paging: {
@@ -113,12 +113,16 @@
                         width: 110,
                         cellTemplate: function (element, options) {
                              if (options.value) {
+                                const voices = options.value.split(";");
+                                for (let i = 0; i < voices.length; i++) {
+                                    $('<audio>', { id: voices[i], })
+                                        .append($('<source>', { src: '@(SD.HostName)' + voices[i], type: 'audio/mpeg' }))
+                                    .appendTo(element);
+                                }
                                  $('<div>', { class: 'cell' })
-                                     .append($('<audio>', { id: options.value, })
-                                         .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
                                      .append($('<img>', {
-                                         onclick: 'playAudio(\'' + options.value + '\')',
-                                         style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
+                                         onclick: 'playAudioM(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 10px; cursor:pointer',
                                          src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
                                     },))
                                     .appendTo(element);
@@ -146,14 +150,18 @@
                         width: 110,
                         cellTemplate: function (element, options) {
                             if (options.value) {
-                                $('<div>', { class: 'cell' })
-                                    .append($('<audio>', { id: options.value, })
-                                        .append($('<source>', { src: '@(SD.HostName)' + options.value, type: 'audio/mpeg' })))
-                                    .append($('<img>', {
-                                        onclick: 'playAudio(\'' + options.value + '\')',
-                                        style: 'padding-left: 10px; padding-right: 40px; cursor:pointer',
-                                        src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
-                                    }))
+                                const voices = options.value.split(";");
+                                for (let i = 0; i < voices.length; i++) {
+                                    $('<audio>', { id: voices[i], })
+                                        .append($('<source>', { src: '@(SD.HostName)' + voices[i], type: 'audio/mpeg' }))
+                                    .appendTo(element);
+                                }
+                                 $('<div>', { class: 'cell' })
+                                     .append($('<img>', {
+                                         onclick: 'playAudioM(\'' + options.value + '\')',
+                                         style: 'padding-left: 10px; padding-right: 10px; cursor:pointer',
+                                         src: '@(CultureInfo.CurrentCulture.Name.StartsWith("ar")? "/images/Icons/Voice_L.svg" : "/images/Icons/Voice_R.svg")',
+                                    },))
                                     .appendTo(element);
                             } else {
 
@@ -187,6 +195,13 @@
                 ]
             });
         });
+
+        function playAudioM(id) {
+            const voices = id.split(";");
+            const ind = Math.floor(Math.random() * (voices.length - 1));           
+            var x = document.getElementById(voices[ind]);
+            x.play();
+        }
 
         function playAudio(id) {
             var x = document.getElementById(id);

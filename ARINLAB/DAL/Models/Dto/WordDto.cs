@@ -22,6 +22,16 @@ namespace DAL.Models.Dto
         public string OtherVoice { get; set; }                 
         public string Dictionary { get; set; }
         public int Number { get; set; }
+
+        public string ArabVoice1 { get; set; }
+        public string OtherVoice1 { get; set; }
+        public string ArabVoice2 { get; set; }
+        public string OtherVoice2 { get; set; }
+        public string ArabVoice3 { get; set; }
+        public string OtherVoice3 { get; set; }
+        public string ArabVoice4 { get; set; }
+        public string OtherVoice4 { get; set; }
+
         public ICollection<WordSentencesDto> WordSentences { get; set; }
     }
 }

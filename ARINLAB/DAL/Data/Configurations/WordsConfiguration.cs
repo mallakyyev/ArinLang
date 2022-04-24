@@ -20,6 +20,14 @@ namespace DAL.Data.Configurations
             builder.Property(p => p.IsApproved).IsRequired();
             builder.Property(p => p.ArabVoice).IsRequired(false);
             builder.Property(p => p.OtherVoice).IsRequired(false);
+            builder.Property(p => p.ArabVoice1).IsRequired(false);
+            builder.Property(p => p.OtherVoice1).IsRequired(false);
+            builder.Property(p => p.ArabVoice2).IsRequired(false);
+            builder.Property(p => p.OtherVoice2).IsRequired(false);
+            builder.Property(p => p.ArabVoice3).IsRequired(false);
+            builder.Property(p => p.OtherVoice3).IsRequired(false);
+            builder.Property(p => p.ArabVoice4).IsRequired(false);
+            builder.Property(p => p.OtherVoice4).IsRequired(false);
             builder.Property(p => p.Viewed).IsRequired(false);
             builder.Property(p => p.AddedDate).IsRequired().HasDefaultValue(DateTime.Now);
             builder.HasOne(p => p.ApplicationUser).WithMany(p => p.Words).HasForeignKey(p => p.UserId);
