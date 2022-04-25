@@ -233,7 +233,7 @@
 
         function playAudioM(id) {
             const voices = id.split(";");
-            const ind = Math.floor(Math.random() * (voices.length - 1));           
+            const ind = Math.floor(Math.random() * (voices.length));           
             var x = document.getElementById(voices[ind]);
             x.play();
         }

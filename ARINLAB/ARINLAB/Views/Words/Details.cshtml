@@ -34,7 +34,11 @@
         dictName = "Error";
     }
 
+    string [] arabVoices = Model.Word.ArabVoice?.Split(";");
+    string[] otherVoices = Model.Word.OtherVoice?.Split(";");
+
 }
+
 @await Component.InvokeAsync("HeaderMenu")
 
 @if (true)@*//CultureInfo.CurrentCulture.Name.StartsWith("ar") || )*@
@@ -74,16 +78,18 @@
                 <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
             </div>
             <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-
-                <audio id="myAudio@(Model.Word.Id)">
-                    <source src="~/@Model.Word.OtherVoice" type="audio/mpeg">
-                </audio>
+                @foreach (string otherVoice in otherVoices)
+                {
+                    <audio id="@otherVoice">
+                        <source src="~/@otherVoice" type="audio/mpeg">
+                    </audio>
+                }
                 <p>
                     @if (!string.IsNullOrEmpty(Model.Word.OtherVoice))
                     {
                         <img style="padding-right: 10px; margin-left: 40px; cursor: pointer"
                              src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_R.svg" :
-                   "/images/Icons/Voice_L.svg")" onclick="playAudio('myAudio@(Model.Word.Id)')">
+                   "/images/Icons/Voice_L.svg")" onclick="playAudioM('@Model.Word.OtherVoice')">
                     }
                     else
                     {
@@ -92,17 +98,19 @@
                     @Model.Word.OtherWord
                 </p>
 
-
-                <audio id="myAudio@(Model.Word.Id)_o">
-                    <source src="~/@Model.Word.ArabVoice" type="audio/mpeg">
+                @foreach (string arabVoice in arabVoices)
+                {
+                <audio id="@arabVoice">
+                    <source src="~/@arabVoice" type="audio/mpeg">
                 </audio>
+                }
                 <p>
                     @Model.Word.ArabWord
                     @if (!string.IsNullOrEmpty(Model.Word.ArabVoice))
                     {
                         <img style="padding-left: 10px; padding-right: 40px; cursor:pointer"
                              src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_L.svg" :
-                      "/images/Icons/Voice_R.svg")" onclick="playAudio('myAudio@(Model.Word.Id)_o')">
+                      "/images/Icons/Voice_R.svg")" onclick="playAudioM('@Model.Word.ArabVoice')">
                     }
                     else
                     {
@@ -153,6 +161,15 @@
         } else if (r === 'bagerror') {
             alert('@SharedLocalizer["Some thing went wrong, you may forget click reCAPTCHA!!!"]');
             document.getElementById("bagerror").click();
+        }
+
+        function playAudioM(id) {
+            const voices = id.split(";");
+            
+            const ind = Math.floor(Math.random() * (voices.length));
+            alert("Index = " + ind + " Voice=" + voices[ind]);
+            var x = document.getElementById(voices[ind]);
+            x.play();
         }
 
         function playAudio(id) {

@@ -466,6 +466,22 @@ namespace ARINLAB.Services
                 _dbContext.Words.Update(word);
                 await _dbContext.SaveChangesAsync();
 
+                string t = $"{word.ArabVoice};{word.ArabVoice1};{word.ArabVoice2};{word.ArabVoice3};{word.ArabVoice4}";
+                string[] m = t.Trim().Split(";");
+                string p = null;
+                foreach (var s in m)
+                    if (!string.IsNullOrEmpty(s))
+                        p = p == null ? $"{s}" : $"{p};{s}";
+                word.ArabVoice = p;
+
+                string t1 = $"{word.OtherVoice};{word.OtherVoice1};{word.OtherVoice2};{word.OtherVoice3};{word.OtherVoice4}";
+                string[] m1 = t1.Trim().Split(";");
+                string p1 = null;
+                foreach (var s in m1)
+                    if (!string.IsNullOrEmpty(s))
+                        p1 = p1 == null ? $"{s}" : $"{p1};{s}";
+                word.OtherVoice = p1;
+
                 var res = _mapper.Map<WordDto>(word);
                 res.Dictionary = (await _dbContext.Dictionaries.FindAsync(res.DictionaryId))?.Language;
                 return res;
