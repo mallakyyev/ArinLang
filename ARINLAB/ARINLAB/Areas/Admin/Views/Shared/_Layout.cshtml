@@ -1,4 +1,9 @@
 ﻿
+@inject ARINLAB.Services.BagService _bagService;
+@{ 
+
+    var bags = _bagService.GetAllBags();
+}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -67,7 +72,6 @@
 <body>
 
     <div class="main-wrapper">
-        <!-- Header Section Start -->
         <div class="header-section">
             <div class="container-fluid">
                 <div class="row justify-content-between align-items-center">
@@ -75,23 +79,137 @@
                     <div class="header-logo col-auto">
                         <a asp-area="" asp-controller="Home" asp-action="Index">
                             <img src="~/images/logo_arinlang_1.png" alt="">
-
                         </a>
                     </div><!-- Header Logo (Header Left) End -->
                     <!-- Header Right Start -->
                     <div class="header-right flex-grow-1 col-auto">
                         <div class="row justify-content-between align-items-center">
-                            <h1>@SharedLocalizer["Welcome to ARINLANG Control Panel."]</h1>
-                            <h1 class="text-danger">@SharedLocalizer["You are Super Admin."]</h1>
+
+                            <!-- Side Header Toggle & Search Start -->
+                            <div class="col-auto">
+                                <div class="row align-items-center">
+                                    <!--Side Header Toggle-->
+                                    <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
+
+                                </div>
+                            </div><!-- Side Header Toggle & Search End -->
+                            <!-- Header Notifications Area Start -->
+                            <div class="col-auto">
+
+                                <ul class="header-notification-area">
+
+                                    <!--Notification-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#"><i class="zmdi zmdi-notifications"></i><span class="badge"></span></a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-notifications">
+                                            <div class="head">
+                                                @if (bags.Count > 0)
+                                                {
+                                                    <h5 class="title">You have @bags.Count bag notifications.</h5>
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="title">You do not have notification.</h5>
+                                                }
+                                            </div>
+                                            <div class="body custom-scroll">
+                                                <ul>
+                                                    @foreach (var bag in bags)
+                                                    {
+                                                    <li>
+                                                        <a asp-area="Admin" asp-controller="Bag" asp-action="Index">
+                                                            <i class="zmdi zmdi-notifications-none"></i>
+                                                            <p>Bag in @(bag.Link).</p>                                                            
+                                                        </a>
+                                                        @*<a class="delete"><i class="zmdi zmdi-close-circle-o"></i></a>*@
+                                                    </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div class="footer">
+                                                <a href="#" class="view-all">view all</a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                    <!--User-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#">
+                                            <span class="user">
+                                                <span class="avatar">
+                                                    <img src="~/Admin/assets/images/avatar/avatar-1.jpg" alt="">
+                                                    <span class="status"></span>
+                                                </span>
+                                                <span class="name">Madison Howard</span>
+                                            </span>
+                                        </a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-user">
+                                            <div class="head">
+                                                <h5 class="name"><a href="#">Madison Howard</a></h5>
+                                                <a class="mail" href="#">mailnam@mail.com</a>
+                                            </div>
+                                            <div class="body">
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-account"></i>Profile</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-lock-open"></i>Sing out</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-paypal"></i>Payment</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+
+                            </div><!-- Header Notifications Area End -->
 
                         </div>
                     </div><!-- Header Right End -->
-                    <form name="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="#" method="post">
-                        <button type="submit" style=" cursor: pointer;" class="bg-transparent text-center text-black-50 py-3 mt-3 select-none rounded"> <i class="fa fa-sign-out" style="padding-left:10px;">@SharedLocalizer["Sign out"]</i></button>
-                    </form>
+
                 </div>
             </div>
         </div><!-- Header Section End -->
+        <!-- Header Section Start -->
+        <!--<div class="header-section">
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center">-->
+        <!-- Header Logo (Header Left) Start -->
+        <!--<div class="header-logo col-auto">
+        <a asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/images/logo_arinlang_1.png" alt="">
+
+        </a>
+    </div>-->
+        <!-- Header Logo (Header Left) End -->
+        <!-- Header Right Start -->
+        <!--<div class="header-right flex-grow-1 col-auto">
+        <div class="row justify-content-between align-items-center">
+            <h1>@SharedLocalizer["Welcome to ARINLANG Control Panel."]</h1>
+            <h1 class="text-danger">@SharedLocalizer["You are Super Admin."]</h1>
+
+        </div>
+    </div>-->
+        <!-- Header Right End -->
+        <!--<form name="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="#" method="post">
+                    <button type="submit" style=" cursor: pointer;" class="bg-transparent text-center text-black-50 py-3 mt-3 select-none rounded"> <i class="fa fa-sign-out" style="padding-left:10px;">@SharedLocalizer["Sign out"]</i></button>
+                </form>
+            </div>
+        </div>
+    </div>-->
+        <!-- Header Section End -->
         <!-- Side Header Start -->
         @await Html.PartialAsync("_SideBarPartial")
         <!-- Side Header End -->
