@@ -164,10 +164,8 @@
         }
 
         function playAudioM(id) {
-            const voices = id.split(";");
-            
-            const ind = Math.floor(Math.random() * (voices.length));
-            alert("Index = " + ind + " Voice=" + voices[ind]);
+            const voices = id.split(";");            
+            const ind = Math.floor(Math.random() * (voices.length));            
             var x = document.getElementById(voices[ind]);
             x.play();
         }
