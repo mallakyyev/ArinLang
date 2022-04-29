@@ -14,8 +14,8 @@ namespace DAL.Data.Configurations
         public void Configure(EntityTypeBuilder<AudioFileForClause> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.OtherVoice).IsRequired();
-            builder.Property(p => p.ArabVoice).IsRequired();
+            builder.Property(p => p.OtherVoice).IsRequired(false);
+            builder.Property(p => p.ArabVoice).IsRequired(false);
             builder.HasOne(p => p.WordClause).WithMany(p => p.AudioFiles).HasForeignKey(p => p.ClauseId).OnDelete(DeleteBehavior.Cascade);
         }
     }

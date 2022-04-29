@@ -78,15 +78,17 @@
                 <h3 style="font-weight: bold;">@SharedLocalizer["Word in Arabic"]:</h3>
             </div>
             <div class="justify-between flex flex-row px-5" style="margin-top: 20px;">
-                @foreach (string otherVoice in otherVoices)
-                {
-                    <audio id="@otherVoice">
-                        <source src="~/@otherVoice" type="audio/mpeg">
-                    </audio>
-                }
+                
                 <p>
                     @if (!string.IsNullOrEmpty(Model.Word.OtherVoice))
                     {
+                        @foreach (string otherVoice in otherVoices)
+                        {
+                            <audio id="@otherVoice">
+                                <source src="~/@otherVoice" type="audio/mpeg">
+                            </audio>
+                        }
+
                         <img style="padding-right: 10px; margin-left: 40px; cursor: pointer"
                              src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_R.svg" :
                    "/images/Icons/Voice_L.svg")" onclick="playAudioM('@Model.Word.OtherVoice')">
@@ -98,24 +100,25 @@
                     @Model.Word.OtherWord
                 </p>
 
-                @foreach (string arabVoice in arabVoices)
-                {
-                <audio id="@arabVoice">
-                    <source src="~/@arabVoice" type="audio/mpeg">
-                </audio>
-                }
+                
                 <p>
                     @Model.Word.ArabWord
                     @if (!string.IsNullOrEmpty(Model.Word.ArabVoice))
                     {
-                        <img style="padding-left: 10px; padding-right: 40px; cursor:pointer"
-                             src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_L.svg" :
+                        @foreach (string arabVoice in arabVoices)
+                        {
+                            <audio id="@arabVoice">
+                                <source src="~/@arabVoice" type="audio/mpeg">
+                            </audio>
+                        }
+                    <img style="padding-left: 10px; padding-right: 40px; cursor:pointer"
+                         src="@(CultureInfo.CurrentCulture.Name.StartsWith("ar") ? "/images/Icons/Voice_L.svg" :
                       "/images/Icons/Voice_R.svg")" onclick="playAudioM('@Model.Word.ArabVoice')">
-                    }
-                    else
-                    {
-                        <img style="padding-left: 10px; padding-right: 30px; cursor:pointer" />
-                    }
+                }
+                else
+                {
+                    <img style="padding-left: 10px; padding-right: 30px; cursor:pointer" />
+                }
                 </p>
 
             </div>

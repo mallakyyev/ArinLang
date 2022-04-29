@@ -14,13 +14,13 @@
 @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
    
-    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none" style="height: 250px; border-bottom: 3px solid #282848;">
+    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray relative shadow:none sm:shadow xl:shadow-none" style="height: 250px; border-bottom: 3px solid #282848;">
         <div id="header_slider" class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
             <a href="@logos.Link1">
                 <img id="head_img" src="~/images/Logo/@logos.Image1" alt="" class="max-w-full xl:h-40 h-20" style="margin-left: 40px; padding-right: 50px;" />
             </a>
             <div class="relative" style="margin-left: 50px; margin-right: 50px;">
-            <div class="prev">
+            <div class="prev" style="z-index:-1;">
                 <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
                     <path id="path"
                           d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
@@ -28,7 +28,7 @@
                           fill="#5e5e77" />
                 </svg>          
             </div>
-            <div class="next"> 
+            <div class="next" style="z-index:-1;"> 
                 <svg width="18" height="12" viewBox="0 0 18 12">
                     <path id="path"
                           d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
@@ -88,13 +88,13 @@
 }
 else
 {
-    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray sm:z-10 z-30 z-999 relative shadow:none sm:shadow xl:shadow-none" style="height: 250px; border-bottom: 3px solid #282848;">
+    <div class="w-full flex sm:block xl:flex items-center xl:h-40 xl:px-0 px-4 sm:justify-evenly justify-between bg-gray relative shadow:none sm:shadow xl:shadow-none" style="height: 250px; border-bottom: 3px solid #282848;">
         <div id="header_slider" class="logo flex items-center xl:pt-0 sm:pb-0 pb-2 pt-2">
             <a href="@logos.Link2">
                 <img id="head_img" src="~/images/Logo/@logos.Image2" alt="" class="max-w-full xl:h-40 h-20" style="margin-left: 40px; padding-right: 50px;" />
             </a>
                 <div class="relative" style="margin-left: 50px; margin-right: 50px;">
-            <div class="prev">
+            <div class="prev" style="z-index:-1;">
                 <svg width="18" height="12" viewBox="0 0 18 12" class="transform rotate-180">
                     <path id="path"
                           d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"
@@ -102,7 +102,7 @@ else
                           fill="#5e5e77" />
                 </svg>          
             </div>
-            <div class="next"> 
+            <div class="next" style="z-index:-1";> 
                 <svg width="18" height="12" viewBox="0 0 18 12">
                     <path id="path"
                           d="M353.6,392.8v2H339.4l3.6,3.6-1.4,1.4-6-6,6-6,1.4,1.4-3.6,3.6Z"

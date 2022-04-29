@@ -312,7 +312,7 @@ namespace ARINLAB.Services
 
         public async Task<Responce> CreateAudiFileForClause(CreateAudioFileForClauseDto model)
         {
-            if (model.ArabVoiceFile == null && model.OtherVoiceFile== null)
+            if (model.ArabVoiceFile == null && model.OtherVoiceFile == null)
             {
                 return ResponceGenerator.GetResponceModel(false,"", null);
             }

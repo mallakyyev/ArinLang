@@ -58,20 +58,23 @@
                 },
                 paging: {
                     pageSize: 10
-                },
+                },                
+                
                 pager: {
                     visible: true,
-                    allowedPageSizes: [10, 20, 'all'],
+                    allowedPageSizes: [10, 20, 100],
                     showPageSizeSelector: true,
                     showInfo: true,
                     showNavigationButtons: true,
                 },
-                editing: {
-
-                    useIcons: true,
-                    allowUpdating: false,
-                    allowDeleting: true,
-
+                editing: {                    
+                        mode: 'batch',
+                        allowUpdating: false,
+                    allowAdding: true,
+                    showicons: true,
+                        allowDeleting: true,
+                        selectTextOnEditStart: false,
+                        startEditAction: 'click',                  
                 },
                 //onEditorPreparing: function (e) {
                 //    if (e.dataField === "name" && e.parentType === "dataRow") {
