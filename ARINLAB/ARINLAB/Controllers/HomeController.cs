@@ -65,7 +65,7 @@ namespace ARINLAB.Controllers
 
         public IActionResult Index()
         {
-            var dicts = _dictService.GetAllDictionaries();
+            var dicts = _dictService.GetAllDictionaries(true);
             ViewBag.Dictionaries = dicts;
             HomeViewModel model = new HomeViewModel() { StatistiCards = _statService.GetStatisticsCard() };
             ViewBag.News = (List<NewsDTO>)(_newsService.GetFourPublishNews().ToList());

@@ -16,6 +16,8 @@ namespace DAL.Data.Configurations
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Language).IsRequired();
             builder.Property(p => p.ArabTranslate).IsRequired();
+            builder.Property(p => p.IsActive).IsRequired();
+            builder.Property(p => p.FooterLogo).IsRequired(false);
             builder.HasMany(p => p.Words).WithOne(p => p.Dictionary).HasForeignKey(p => p.DictionaryId).OnDelete(DeleteBehavior.Restrict);
         }
     }

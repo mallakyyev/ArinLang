@@ -113,13 +113,13 @@ namespace ARINLAB.Areas.Admin.Controllers
                     CountryId = model.CountryId,
                     Email = model.Email,
                     EmailConfirmed = true,
-                    Gender = model.Gender,
-                    IsApproved = model.IsApproved,
+                    Gender = model.Gender,                    
                     PhoneNumber = model.PhoneNumber,
                     PhoneNumberConfirmed = true,
                     UserName = model.UserName
                 };
-
+                if (model.Role != 1)  user.IsApproved = true;
+                                else  user.IsApproved = false;
                 
                 var existing_user = await _userManager.FindByEmailAsync(user.Email);
                 
@@ -134,8 +134,10 @@ namespace ARINLAB.Areas.Admin.Controllers
                 
                 if (result.Succeeded)
                 {
-                    if (user.IsApproved)
+                    if (model.Role == 2)
                         await _userManager.AddToRoleAsync(user, Roles.Trusted);
+                    else if (model.Role == 3)
+                        await _userManager.AddToRoleAsync(user, Roles.Admin);
                     else
                         await _userManager.AddToRoleAsync(user, Roles.Registered);
                     return RedirectToAction("Index");
@@ -156,14 +158,28 @@ namespace ARINLAB.Areas.Admin.Controllers
                 if (!string.IsNullOrEmpty(user.PhoneNumber))
                     if (user.PhoneNumber[0] == '+')
                         user.PhoneNumber = user.PhoneNumber.Substring(1, user.PhoneNumber.Length - 1);
-                return View(user);
+
+                var usr = _mapper.Map<EditUser>(user);
+                var roles = await _userManager.GetRolesAsync(user);
+                if (roles.Contains(Roles.Admin))
+                {
+                    usr.Role = 3;
+                }else if (roles.Contains(Roles.Trusted))
+                {
+                    usr.Role = 2;
+                }else
+                {
+                    usr.Role = 1;
+                }
+
+                return View(usr);
             }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ApplicationUser model)
+        public async Task<IActionResult> Edit(EditUser model)
         {
             ViewBag.Countries = new List<Country>(_dbContex.Countries);
             if (ModelState.IsValid)
@@ -176,7 +192,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 user.FirstName = model.FirstName;
                 user.Email = model.Email;
                 user.EmailConfirmed = true;
-                user.IsApproved = model.IsApproved;
+                
                 user.FamilyName = model.FamilyName;
                 user.PasswordHash = model.PasswordHash;
                 user.UserName = model.UserName;
@@ -186,14 +202,23 @@ namespace ARINLAB.Areas.Admin.Controllers
                 user.Gender = model.Gender;
                 user.PhoneNumberConfirmed = true;
 
+                if (model.Role != 1) user.IsApproved = true;
+                else user.IsApproved = false;
+
                 var result = await _userManager.UpdateAsync(user);
-                await _userManager.RemoveFromRoleAsync(user, Roles.Trusted);
+                
                 if (result.Succeeded)
                 {
-                    if (model.IsApproved)
+                   await _userManager.RemoveFromRoleAsync(user, Roles.Trusted);
+                   await _userManager.RemoveFromRoleAsync(user, Roles.Admin);
+                    await _userManager.RemoveFromRoleAsync(user, Roles.Registered);
+                    if (model.Role == 2)
                         await _userManager.AddToRoleAsync(user, Roles.Trusted);
+                    else if(model.Role == 3)
+                        await _userManager.AddToRoleAsync(user, Roles.Admin);
                     else
                         await _userManager.AddToRoleAsync(user, Roles.Registered);
+
                     return RedirectToAction("Index");
                 }
             }

@@ -7,6 +7,7 @@ using DAL.Models.Dto.NamesDTO;
 using DAL.Models.Dto.NewsModelDTO;
 using DAL.Models.Menu;
 using DAL.Models.News;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,8 @@ namespace ARINLAB.Extensions
             CreateMap<Contact, CreateContactDto>().ReverseMap();
             CreateMap<Bag, CreateBagDto>().ReverseMap();
 
+
+            CreateMap<ApplicationUser, EditUser>().ReverseMap();
         }
     }
 }

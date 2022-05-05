@@ -10,7 +10,7 @@ namespace ARINLAB.Services
     public interface IDictionaryService
     {
         public Responce CreateDictionary(CreateDictionaryDto createModel);
-        public Responce GetAllDictionaries();
+        public Responce GetAllDictionaries(bool isActive);
         public Responce EditDictionary(DAL.Models.Dictionary edit);
         public Task<Responce> DeleteDictionaryAsync(int id);
         public string GetDictionaryNameById(int id);

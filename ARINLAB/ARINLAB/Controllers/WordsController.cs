@@ -73,7 +73,7 @@ namespace ARINLAB.Controllers
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(id);
                     //model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(id);
-                    ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                    ViewBag.dict = _dictService.GetAllDictionaries(true).Data;
                     ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWord(id));
                     ViewBag.RatingResult = ratingResult;
                     ViewBag.ExportImage = res.ImageForShare;
@@ -133,7 +133,7 @@ namespace ARINLAB.Controllers
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(WordId);
                     //model.AudioFiles = _audoFileServise.GetAudioFilesByWordId(WordId);
-                    ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                    ViewBag.dict = _dictService.GetAllDictionaries(true).Data;
                     ViewBag.RatingResult = responce.IsSuccess;
                     ViewBag.Rating = _ratingServices.GetRatingForWord(WordId);
                     return RedirectToAction("Details", new { id = WordId, ratingResult = responce.IsSuccess });

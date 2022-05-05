@@ -29,7 +29,7 @@ namespace ARINLAB.Areas.Registered.Controllers
 
         public IActionResult Create()
         {           
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;            
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;            
             return View(new CreateNamesDto());
         }
 
@@ -47,7 +47,7 @@ namespace ARINLAB.Areas.Registered.Controllers
                     return RedirectToAction("Index");
                 }
             }          
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;            
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;            
             return View("Create");
         }
 
@@ -57,7 +57,7 @@ namespace ARINLAB.Areas.Registered.Controllers
             string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (res.UserId != userId)
                 return RedirectToAction("Index");
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             if (res != null)
                 return View(res);
             else
@@ -98,7 +98,7 @@ namespace ARINLAB.Areas.Registered.Controllers
             if (clause.UserId != userId)
                 return RedirectToAction("Index");
            
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Model = clause;
             var voices = _nameService.GetAllNamesImagesByNameIdAsync(id);
             return View(voices);

@@ -51,7 +51,7 @@ namespace ARINLAB.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var result = new List<DAL.Models.Dictionary>((IEnumerable<DAL.Models.Dictionary>)_dictService.GetAllDictionaries().Data);
+            var result = new List<DAL.Models.Dictionary>((IEnumerable<DAL.Models.Dictionary>)_dictService.GetAllDictionaries(false).Data);
             ViewBag.Dicts = result;
             return View();
         }
@@ -60,7 +60,7 @@ namespace ARINLAB.Areas.Admin.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> CreateAsync(CreateWordDto newW)
         {
-            var r = new List<DAL.Models.Dictionary>((IEnumerable<DAL.Models.Dictionary>)_dictService.GetAllDictionaries().Data);
+            var r = new List<DAL.Models.Dictionary>((IEnumerable<DAL.Models.Dictionary>)_dictService.GetAllDictionaries(false).Data);
             if (newW != null)
             {
                 var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -97,7 +97,7 @@ namespace ARINLAB.Areas.Admin.Controllers
             {
                 RedirectToAction("Index");
             }
-            ViewBag.Dictionaries = new List<Dictionary>((IEnumerable<Dictionary>)_dictService.GetAllDictionaries().Data);
+            ViewBag.Dictionaries = new List<Dictionary>((IEnumerable<Dictionary>)_dictService.GetAllDictionaries(false).Data);
             return View(_mapper.Map<EditWordDto>(res));
         }
 
@@ -112,7 +112,7 @@ namespace ARINLAB.Areas.Admin.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.Dictionaries = new List<Dictionary>((IEnumerable<Dictionary>)_dictService.GetAllDictionaries().Data);
+                ViewBag.Dictionaries = new List<Dictionary>((IEnumerable<Dictionary>)_dictService.GetAllDictionaries(false).Data);
                 return View(model);
             }
         }
@@ -128,7 +128,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(id);
 
-                    ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                    ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
                     return View(model);
                 }
                 else
@@ -160,7 +160,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                             model.Word = res;
                             model.WordSentences = _wordsService.GetAllWordSentencesByWordId(model1.WordId);
 
-                            ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                            ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
                             ViewBag.text = "Success";
                             return View("EditWord", model);
                         }
@@ -195,7 +195,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 OtherWord = otherWord,
                 DictID = dictId
             };
-            ViewBag.dict = _dictService.GetAllDictionaries().Data;
+            ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
             ViewBag.model = model;
             return View();
         }
@@ -209,7 +209,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 OtherWord = otherWord,
                 DictID = dictId
             };
-            ViewBag.dict = _dictService.GetAllDictionaries().Data;
+            ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
             ViewBag.model = model;
             var sent = await _wordsService.GetWordSentencesById(id);
             return View(sent);
@@ -237,7 +237,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                             model.Word = res;
                             model.WordSentences = _wordsService.GetAllWordSentencesByWordId(model1.WordId);
 
-                            ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                            ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
                             ViewBag.text = "Success";
                             return View("EditWord", model);
                         }
@@ -285,7 +285,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                     WordSentencesViewModel model = new();
                     model.Word = res;
                     model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res.Id);
-                    ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                    ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
                     return View("EditWord", model);
                 }
                 else
@@ -377,7 +377,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                         WordSentencesViewModel model = new();
                         model.Word = res1;
                         model.WordSentences = _wordsService.GetAllWordSentencesByWordId(res1.Id);
-                        ViewBag.dict = _dictService.GetAllDictionaries().Data;
+                        ViewBag.dict = _dictService.GetAllDictionaries(false).Data;
                         ViewBag.text = "Success";
                         return View("EditWord", model);
                     }

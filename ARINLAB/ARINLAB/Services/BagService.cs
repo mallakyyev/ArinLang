@@ -22,7 +22,9 @@ namespace ARINLAB.Services
         public bool CreateBag(CreateBagDto bag)
         {
             try
-            {                 
+            {
+                Bag b = _mapper.Map<Bag>(bag);
+                b.Date = DateTime.Now;
                 _dbContext.Bags.Add(_mapper.Map<Bag>(bag));
                 _dbContext.SaveChanges();
                 return true;
@@ -30,6 +32,11 @@ namespace ARINLAB.Services
             {
                 return false;
             }
+        }
+
+        public List<Bag> GetTopBags()
+        {
+            return _dbContext.Bags.OrderByDescending(p => p.Date).Take(5).ToList();
         }
 
         public bool DeleteBag(int id)

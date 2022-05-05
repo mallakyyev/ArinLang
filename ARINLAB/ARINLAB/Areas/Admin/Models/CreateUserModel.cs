@@ -11,7 +11,7 @@ namespace ARINLAB.Areas.Admin.Models
     {           
         public Gender Gender { get; set; }
         public int CountryId { get; set; }
-        public bool IsApproved { get; set; }
+        public int Role { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }

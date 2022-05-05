@@ -1,8 +1,14 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using DAL.Models
+@inject UserManager<ApplicationUser> UserManager
 @inject ARINLAB.Services.BagService _bagService;
-@{ 
+@{
 
-    var bags = _bagService.GetAllBags();
+    var bags = _bagService.GetTopBags();
+
+    var usr = await UserManager.GetUserAsync(User);
+    var email = usr?.Email;
+    var name = usr?.UserName;
 }
 
 <!DOCTYPE html>
@@ -118,13 +124,14 @@
                                                 <ul>
                                                     @foreach (var bag in bags)
                                                     {
-                                                    <li>
-                                                        <a asp-area="Admin" asp-controller="Bag" asp-action="Index">
-                                                            <i class="zmdi zmdi-notifications-none"></i>
-                                                            <p>Bag in @(bag.Link).</p>                                                            
-                                                        </a>
-                                                        @*<a class="delete"><i class="zmdi zmdi-close-circle-o"></i></a>*@
-                                                    </li>
+                                                        <li>
+                                                            <a asp-area="Admin" asp-controller="Bag" asp-action="Index">
+                                                                <i class="zmdi zmdi-notifications-none"></i>
+                                                                <p>Bag in @(bag.Link).</p>
+                                                            </a>
+                                                            <span>@bag.Date.ToShortDateString()</span>
+                                                            @*<a class="delete"><i class="zmdi zmdi-close-circle-o"></i></a>*@
+                                                        </li>
                                                     }
                                                 </ul>
                                             </div>
@@ -150,17 +157,17 @@
                                         <!-- Dropdown -->
                                         <div class="adomx-dropdown-menu dropdown-menu-user">
                                             <div class="head">
-                                                <h5 class="name"><a href="#">Madison Howard</a></h5>
-                                                <a class="mail" href="#">info@arinlang.com</a>
+                                                <h5 class="name"><a href="#">@name</a></h5>
+                                                <a class="mail" href="#">@email</a>
                                             </div>
                                             <div class="body">
-                                               
+
                                                 <ul>
                                                     <form name="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="https://arinlang.com" method="post">
-                                                        <button type="submit" style=" cursor: pointer; border: none; background: transparent;" > <i class="zmdi zmdi-lock-open" style="padding-left:15px;">@SharedLocalizer["   Sign out"]</i></button>
-                                                    </form>                                                    
+                                                        <button type="submit" style=" cursor: pointer; border: none; background: transparent;"> <i class="zmdi zmdi-lock-open" style="padding-left:15px;">@SharedLocalizer["   Sign out"]</i></button>
+                                                    </form>
                                                 </ul>
-                                               
+
                                             </div>
                                         </div>
 
@@ -182,27 +189,27 @@
             <div class="row justify-content-between align-items-center">-->
         <!-- Header Logo (Header Left) Start -->
         <!--<div class="header-logo col-auto">
-        <a asp-area="" asp-controller="Home" asp-action="Index">
-            <img src="~/images/logo_arinlang_1.png" alt="">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo_arinlang_1.png" alt="">
 
-        </a>
-    </div>-->
+            </a>
+        </div>-->
         <!-- Header Logo (Header Left) End -->
         <!-- Header Right Start -->
         <!--<div class="header-right flex-grow-1 col-auto">
-        <div class="row justify-content-between align-items-center">
-            <h1>@SharedLocalizer["Welcome to ARINLANG Control Panel."]</h1>
-            <h1 class="text-danger">@SharedLocalizer["You are Super Admin."]</h1>
+            <div class="row justify-content-between align-items-center">
+                <h1>@SharedLocalizer["Welcome to ARINLANG Control Panel."]</h1>
+                <h1 class="text-danger">@SharedLocalizer["You are Super Admin."]</h1>
 
-        </div>
-    </div>-->
+            </div>
+        </div>-->
         <!-- Header Right End -->
         <!--<form name="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="#" method="post">
-                    <button type="submit" style=" cursor: pointer;" class="bg-transparent text-center text-black-50 py-3 mt-3 select-none rounded"> <i class="fa fa-sign-out" style="padding-left:10px;">@SharedLocalizer["Sign out"]</i></button>
-                </form>
+                        <button type="submit" style=" cursor: pointer;" class="bg-transparent text-center text-black-50 py-3 mt-3 select-none rounded"> <i class="fa fa-sign-out" style="padding-left:10px;">@SharedLocalizer["Sign out"]</i></button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>-->
+        </div>-->
         <!-- Header Section End -->
         <!-- Side Header Start -->
         @await Html.PartialAsync("_SideBarPartial")

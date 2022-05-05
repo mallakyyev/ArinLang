@@ -30,9 +30,31 @@
                     <h4 class="title">Edit Dictionary</h4>
                 </div>
                 <div class="box-body">
-                    <form method="post" id="AddForm" asp-action="Edit" asp-area="Admin" asp-controller="Dictionary">
+                    <form method="post" id="AddForm" asp-action="Edit" asp-area="Admin" asp-controller="Dictionary" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="@Model.FooterLogo" value="@Model.FooterLogo" />
                         <input type="text" class="form-control" asp-for="@Model.Language" value="@Model.Language" placeholder="Dictionary">
                         <input type="text" class="form-control" asp-for="@Model.ArabTranslate" value="@Model.ArabTranslate" placeholder="Dict name in Arab" />
+                        <img src="~/images/Logo/@Model.FooterLogo" style=" width:250px; height:auto"/>
+                        
+                                <label class="label">@SharedLocalizer["Upload Footer logo"]</label>
+                                <input  type="file" asp-for="@Model.File" class="form-control" />
+                            
+                        <div class="col-12 mb-20">
+                            <h6 class="mb-15">@SharedLocalizer["Enabled:"]</h6>
+                            <div class="adomx-checkbox-radio-group inline">
+                                <label class="adomx-switch success">
+                                    @if (Model.IsActive)
+                                    {
+                                        <input type="checkbox" asp-for="@Model.IsActive" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" asp-for="@Model.IsActive">
+                                    }
+                                    <i class="lever"></i>
+                                </label>
+                            </div>
+                        </div>
                         <input type="submit" class="button button-primary" value="@SharedLocalizer["Edit"]">
                     </form>
                 </div>

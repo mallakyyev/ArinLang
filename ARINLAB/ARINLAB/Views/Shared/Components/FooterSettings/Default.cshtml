@@ -2,15 +2,34 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using ARINLAB.Services
+@using ARINLAB.Services.SessionService
+@inject UserDictionary _currentDict;
+@inject IDictionaryService _dictService;
+@{ 
+    string footerLogo = "";
+    DAL.Models.Dictionary dict = _dictService.GetDictionary(_currentDict.GetDictionaryId());
+    if (dict != null)
+        footerLogo = dict.FooterLogo;
+}
 @using System.Globalization
-  
-@if(CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+
+@if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
 {
-    <footer dir="rtl" class="bg-gray-100 flex flex-col" style="border-top: 2px solid #282848;">
+
+
+<footer dir="rtl" class="bg-gray-100 flex flex-col" style="border-top: 2px solid #282848;">
         <div class="xl:container xl:px-0 px-4 py-8">
             <div class="grid gap-y-4 justify-evenly items-center sm:flex">
                 <div class="sm:flex flex-col grid" style="width:15%">
-                    <img src="~/images/Char_1.png" style="width:100%" />
+                    @if (string.IsNullOrEmpty(footerLogo))
+                    {
+                        <img src="~/images/Char_1.png" style="width:100%" />
+                    }
+                    else
+                    {
+                        <img src="~/images/Logo/@footerLogo" style="width:100%" />
+                    }
                 </div>
                 @foreach (var setting in Model)
                 {
@@ -47,23 +66,30 @@ else
         <div class="xl:container xl:px-0 px-4 py-8">
             <div class="grid gap-y-4 justify-evenly items-center sm:flex">
                 <div class="sm:flex flex-col grid" style="width:15%">
-                    <img src="~/images/Char_1.png" style="width:100%" />
+                    @if (string.IsNullOrEmpty(footerLogo))
+                    {
+                        <img src="~/images/Char_1.png" style="width:100%" />
+                    }
+                    else
+                    {
+                        <img src="~/images/Logo/@footerLogo" style="width:100%" />
+                    }
                 </div>
                 @foreach (var setting in Model)
                 {
-            <div class="sm:flex flex-col grid">
-                <span class="text-gray-400 select-none font-roboto">
-                    @SharedLocalizer[setting.Name]
-                </span>
-                @if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
-                {
-                    <span class="font-semibold font-roboto"> @setting.Value </span>
-                }
-                else
-                {
-                    <span class="font-semibold font-roboto"> @setting.Value_tm </span>
-                }
-            </div>
+                    <div class="sm:flex flex-col grid">
+                        <span class="text-gray-400 select-none font-roboto">
+                            @SharedLocalizer[setting.Name]
+                        </span>
+                        @if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
+                        {
+                            <span class="font-semibold font-roboto"> @setting.Value </span>
+                        }
+                        else
+                        {
+                            <span class="font-semibold font-roboto"> @setting.Value_tm </span>
+                        }
+                    </div>
                 }
                 <div class="sm:flex flex-col grid" style="width:15%">
                     <img src="~/images/Char_2.png" style="width:100%" />

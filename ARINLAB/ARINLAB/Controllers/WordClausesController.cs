@@ -55,7 +55,7 @@ namespace ARINLAB.Controllers
                 return RedirectToAction("Index");
             
             ViewBag.Rating = (int)Math.Round(_ratingServices.GetRatingForWordClause(id));
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(true).Data;
             ViewBag.Model = clause;
             if (!string.IsNullOrEmpty(bag))
             {
@@ -78,7 +78,7 @@ namespace ARINLAB.Controllers
                 var res = await _wordClauseService.GetWordClauseByIdAsync(WordClauseId);
                 if (res != null)
                 {
-                    ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+                    ViewBag.Dictionaries = _dictService.GetAllDictionaries(true).Data;
                     ViewBag.Model = res;
                     var voices = _wordClauseService.GetAudioFileForClausebyID(WordClauseId, true);
                     ViewBag.RatingResult = responce.IsSuccess;

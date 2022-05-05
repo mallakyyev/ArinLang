@@ -12,5 +12,6 @@ namespace DAL.Models
         public string Email { get; set; }
         public string Problem { get; set; }
         public string Link { get; set; }
+        public DateTime Date { get; set; }
     }
 }

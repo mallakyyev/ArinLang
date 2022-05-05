@@ -78,9 +78,14 @@ namespace ARINLAB.Services
             }
         }
 
-        public Responce GetAllDictionaries()
+        public Responce GetAllDictionaries(bool onlyActive)
         {
-            var result = _dbContext.Dictionaries;
+            IEnumerable<Dictionary> result;
+            if(onlyActive)
+                result = _dbContext.Dictionaries.Where(p => p.IsActive==onlyActive);
+            else
+                result = _dbContext.Dictionaries;
+
             return ResponceGenerator.GetResponceModel(true, "", new List<Dictionary>(result));
         }
 

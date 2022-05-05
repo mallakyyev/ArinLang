@@ -39,7 +39,7 @@ namespace ARINLAB.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View();
         }
@@ -58,7 +58,7 @@ namespace ARINLAB.Areas.Admin.Controllers
                 }               
             }
             ViewBag.Data = model;
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View("Create");
         }
@@ -66,7 +66,7 @@ namespace ARINLAB.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var res = await _wordClauseService.GetWordClauseByIdAsync(id);
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View(res);
         }
@@ -92,7 +92,7 @@ namespace ARINLAB.Areas.Admin.Controllers
             var clause = await _wordClauseService.GetWordClauseByIdAsync(id);
             if (clause == null)
                 return RedirectToAction("Index");
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Model = clause;
             var voices = _wordClauseService.GetAudioFileForClausebyID(id);
             return View(voices);

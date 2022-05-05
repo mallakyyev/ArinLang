@@ -176,7 +176,7 @@ namespace ARINLAB.Services
             try
             {
                 var res = _mapper.Map<List<NamesDto>>(_dbContext.Names);
-                var dicts = new List<Dictionary>((IEnumerable<Dictionary>)_dictionaryService.GetAllDictionaries().Data);
+                var dicts = new List<Dictionary>((IEnumerable<Dictionary>)_dictionaryService.GetAllDictionaries(true).Data);
                 foreach (var name in res)
                 {
                     name.DictionaryName = dicts.SingleOrDefault(p => p.Id == name.DictionaryId)?.Language;
@@ -192,7 +192,7 @@ namespace ARINLAB.Services
             try
             {
                 var res = _mapper.Map<List<NamesDto>>(_dbContext.Names.Where(p => p.UserId == userId));
-                var dicts = new List<Dictionary>((IEnumerable<Dictionary>)_dictionaryService.GetAllDictionaries().Data);
+                var dicts = new List<Dictionary>((IEnumerable<Dictionary>)_dictionaryService.GetAllDictionaries(true).Data);
                 foreach (var name in res)
                 {
                     name.DictionaryName = dicts.SingleOrDefault(p => p.Id == name.DictionaryId)?.Language;

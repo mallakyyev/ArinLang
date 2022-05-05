@@ -16,6 +16,7 @@ namespace DAL.Data.Configurations
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Email).IsRequired();
             builder.Property(p => p.Problem).IsRequired();
+            builder.Property(p => p.Date).IsRequired().HasDefaultValue(DateTime.Now);
             builder.Property(p => p.Link).IsRequired();
         }
     }

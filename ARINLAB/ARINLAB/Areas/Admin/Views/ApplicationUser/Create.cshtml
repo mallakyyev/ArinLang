@@ -124,8 +124,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label>@SharedLocalizer["Approve"]</label>
-                                <input type="checkbox"  asp-for="IsApproved" />
+                                <label>@SharedLocalizer["User Role"] *</label>
+                                <select asp-for="Role" class="form-control" placeholder="@SharedLocalizer["Role"]">                              
+                                        <option value="1" selected="selected">Regilar User</option>
+                                        <option value="2">Trusted User</option>
+                                    <option value="3">Admin User</option>
+                                </select>
                             </div>
 
                         </div>

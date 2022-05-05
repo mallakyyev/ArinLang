@@ -30,6 +30,8 @@
                                 <th>#</th>
                                 <th>Dictionary Name</th>
                                 <th>Dictionary Name in Arabic</th>
+                                <th>Enabled</th>
+                                <th>Footer Logo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,6 +47,8 @@
                                     @{i = i + 1;}
                                     <td> @item.Language</td>
                                     <td> @item.ArabTranslate</td>
+                                    <td>@(item.IsActive?"Enabled":"Disabled")</td>
+                                    <td> <img src="~/images/Logo/@item.FooterLogo" style=" height: 50px; "/></td>
                                     <td>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Remove" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-delete"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> <span>Del</span></a></div>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12"><a asp-area="Admin" asp-controller="Dictionary" asp-action="Edit" asp-route-id="@item.Id" data-clipboard-text="zmdi zmdi-edit"><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <span>Edit</span></a></div>
@@ -62,9 +66,22 @@
                     <h4 class="title">Insert New Dictionary</h4>
                 </div>
                 <div class="box-body">                   
-                    <form method="post" id="AddForm" asp-action="Create" asp-area="Admin" asp-controller="Dictionary">
+                    <form method="post" id="AddForm" asp-action="Create" asp-area="Admin" asp-controller="Dictionary" enctype="multipart/form-data">
                         <input type="text" class="form-control" name="dictName" placeholder="Input">
                         <input type="text" class="form-control" name="arabName" placeholder="Dict name in Arab" />
+                       
+                                <label class="label">@SharedLocalizer["Upload Footer logo"]</label>
+                                <input name="FooterLogo" type="file" class="form-control" />
+                            
+                        <div class="col-12 mb-20">
+                            <h6 class="mb-15">@SharedLocalizer["Enabled:"]</h6>
+                            <div class="adomx-checkbox-radio-group inline">
+                                <label class="adomx-switch success">
+                                    <input type="checkbox" name="IsActive">
+                                    <i class="lever"></i>
+                                </label>
+                            </div>
+                        </div>
                         <input type="submit" class="button button-primary" value="@SharedLocalizer["Insert"]">
                     </form>
                 </div>

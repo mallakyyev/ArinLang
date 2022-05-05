@@ -38,7 +38,7 @@ namespace ARINLAB.Areas.Registered.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View();
         }
@@ -57,7 +57,7 @@ namespace ARINLAB.Areas.Registered.Controllers
                 }               
             }
             ViewBag.Data = model;
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View("Create");
         }
@@ -70,7 +70,7 @@ namespace ARINLAB.Areas.Registered.Controllers
                 return RedirectToAction("Index");
 
                 
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Categories = _wordClauseService.GetAllWordClauseCategories();
             return View(res);
         }
@@ -105,7 +105,7 @@ namespace ARINLAB.Areas.Registered.Controllers
             if (userId != clause.UserId)
                 return RedirectToAction("Index");
 
-            ViewBag.Dictionaries = _dictService.GetAllDictionaries().Data;
+            ViewBag.Dictionaries = _dictService.GetAllDictionaries(false).Data;
             ViewBag.Model = clause;
             var voices = _wordClauseService.GetAudioFileForClausebyID(id);
             return View(voices);

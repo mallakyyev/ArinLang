@@ -14,7 +14,7 @@
 
 @inject IOptions<RequestLocalizationOptions> LocOptions
 @{
-    var dictService = _dictService.GetAllDictionaries().Data;
+    var dictService = _dictService.GetAllDictionaries(true).Data;
     List<DAL.Models.Dictionary> dicts = new List<DAL.Models.Dictionary>();
     if (dictService != null)
     {
@@ -241,7 +241,7 @@
                             @await Html.PartialAsync("_LoginPartial")
                         </div>
                     </div>
-                    <div id="ex1" class="modal" style="vertical-align:inherit">
+                    <div id="ex1" class="modal" style="vertical-align:middle; position:relative; height:auto;">
                         <div>
                             <form asp-area="" asp-controller="Home" asp-action="Setsettings" method="get">
                                 <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
@@ -281,7 +281,7 @@
                         </div>
                     </div>
 
-                    <div id="ex2" class="modal" style="vertical-align:central;">
+                    <div id="ex2" class="modal" style="vertical-align: middle; position: relative; height: auto;">
                         <div>
                             <p style="text-align:center">@SharedLocalizer["Search"]</p>
                             <form asp-area="" asp-controller="Search" asp-action="Search" method="get">
@@ -298,7 +298,7 @@
                             </form>
                         </div>
                     </div>
-                    <div id="ex3" class="modal" style="vertical-align:central">
+                    <div id="ex3" class="modal" style="vertical-align: middle; position: relative; height: auto;">
                         <div>
                             <p style="text-align:center">@SharedLocalizer["Share"]</p>
                             <div class="flex flex-row justify-between">
@@ -312,7 +312,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="ex4" class="modal" style="vertical-align:bottom;z-index:1000">
+                    <div id="ex4" class="modal" style="vertical-align: middle; position: relative; height: auto;">
                         <div>
                             <p style="text-align:center">@SharedLocalizer["Bag Report"]</p>
                             <form method="post" asp-controller="Home" asp-action="CreateBags">
