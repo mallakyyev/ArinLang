@@ -125,7 +125,7 @@
                                                     @foreach (var bag in bags)
                                                     {
                                                         <li>
-                                                            <a asp-area="Admin" asp-controller="Bag" asp-action="Index">
+                                                            <a asp-area="Admin" asp-controller="Bag" asp-action="Index" asp-route-id="@bag.Id">
                                                                 <i class="zmdi zmdi-notifications-none"></i>
                                                                 <p>Bag in @(bag.Link).</p>
                                                             </a>

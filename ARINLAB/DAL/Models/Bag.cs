@@ -13,5 +13,6 @@ namespace DAL.Models
         public string Problem { get; set; }
         public string Link { get; set; }
         public DateTime Date { get; set; }
+        public bool IsRead { get; set; }
     }
 }

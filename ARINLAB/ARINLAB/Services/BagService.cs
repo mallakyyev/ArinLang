@@ -25,6 +25,7 @@ namespace ARINLAB.Services
             {
                 Bag b = _mapper.Map<Bag>(bag);
                 b.Date = DateTime.Now;
+                b.IsRead = false;
                 _dbContext.Bags.Add(_mapper.Map<Bag>(bag));
                 _dbContext.SaveChanges();
                 return true;
@@ -36,7 +37,7 @@ namespace ARINLAB.Services
 
         public List<Bag> GetTopBags()
         {
-            return _dbContext.Bags.OrderByDescending(p => p.Date).Take(5).ToList();
+            return _dbContext.Bags.Where(p => p.IsRead == false).OrderByDescending(p => p.Date).Take(5).ToList();
         }
 
         public bool DeleteBag(int id)
@@ -53,12 +54,31 @@ namespace ARINLAB.Services
 
         public List<Bag> GetAllBags()
         {
-            return _dbContext.Bags.ToList();
+            return _dbContext.Bags.OrderByDescending(p => p.Date).ToList();
         }
 
         public Bag GetBagById(int id)
         {
             return _dbContext.Bags.Find(id);
+        }
+
+        public bool Readed(int id)
+        {
+            try
+            {
+                var res = _dbContext.Bags.Find(id);
+                if (res != null)
+                {
+                    res.IsRead = true;
+                    _dbContext.Bags.Update(res);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                return false;
+            }catch(Exception e)
+            {
+                return false;
+            }
         }
     }
 }

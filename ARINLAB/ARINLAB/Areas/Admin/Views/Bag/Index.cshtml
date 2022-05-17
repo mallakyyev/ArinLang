@@ -53,7 +53,7 @@
                     e.newData = Object.assign(e.oldData, e.newData)
                 },
                 scrolling: {
-                  
+
                     rowRenderingMode: "virtual"
                 },
                 pager: {
@@ -104,7 +104,6 @@
                         width: 400,
                     },
 
-
                     {
                         caption: '@SharedLocalizer["Email"]',
                         dataField: "email",
@@ -113,11 +112,22 @@
 
                     },
                     {
+                        caption: '@SharedLocalizer["Date"]',
+                        dataField: "date",
+                        width: 200,
+                        allowHeaderFiltering: false,
+                    },
+                    {
                         caption: '@SharedLocalizer["Bag Report"]',
                         dataField: "problem",
                         allowHeaderFiltering: false,
                     },
 
+                    {
+                        caption: '@SharedLocalizer["Is Read"]',
+                        dataField: "isRead",
+                        allowHeaderFiltering: true,
+                    },
                 ]
 
             });

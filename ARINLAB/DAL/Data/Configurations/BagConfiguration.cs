@@ -18,6 +18,7 @@ namespace DAL.Data.Configurations
             builder.Property(p => p.Problem).IsRequired();
             builder.Property(p => p.Date).IsRequired().HasDefaultValue(DateTime.Now);
             builder.Property(p => p.Link).IsRequired();
+            builder.Property(p => p.IsRead).IsRequired();
         }
     }
 }
